@@ -1,0 +1,95 @@
+@import 'color'
+
+.table-warp
+  padding: 0 0
+  line-height: 1.5
+  position: relative
+  .table-header
+    font-weight: bold
+    padding-left: 8px
+    margin-bottom: 8px
+  // overflow: auto
+  .table-loading
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    background-color: rgba(255, 255, 255, 0.6)
+    span
+      position: absolute
+      top: 50%
+      left: 50%
+      margin: -10px
+      display: block
+      border-radius: 50%
+      background-color: $color-main
+      width: 20px;
+      height: 20px;
+      animation: spin-bounce 1s 0s ease-in-out infinite
+  .ct-table-empty
+    position: relative
+    text-align: center
+    min-height: 50px
+    background: #fff
+    padding: 16px
+    > div
+      width: 100%
+      text-align: center
+  &.has-border
+    border: 1px solid $border-color
+    border-bottom: 0
+  .table-action
+    padding: 8px 0
+    .btn
+      margin-right: 8px
+      &:last-child
+        margin-right: 0
+
+table
+  width: 100%
+  margin: 0
+  padding: 0
+  text-align: left
+  border-collapse: separate
+  border-spacing: 0
+  border-radius: 4px 4px 0 0
+  &.table-width-auto
+    width: auto
+
+table > thead
+  border-radius: 4px 4px 0 0
+  overflow: hidden
+
+table > thead > tr > th
+  background-color: #dfe6ec
+  text-align: left
+  height: 40px
+  & > .cell
+    line-height: 24px
+    padding-left: 16px
+    padding-right: 16px
+
+table tbody tr
+  padding: 5px
+  transition: all 0.3s ease
+  border-bottom: 1px solid $border-color
+  background-color: #fff
+  &:hover
+    background-color: #eef1f6
+
+table > tbody > tr > td
+  border-bottom: 1px solid #dfe6ec
+  height: 40px
+  text-align: left
+  position: relative
+  font-weight: normal
+  & > .cell
+    line-height: 24px
+    padding-left: 16px
+    padding-right: 16px
+
+table th
+  text-transform: uppercase
+  font-size: 12px
+  letter-spacing: 1px

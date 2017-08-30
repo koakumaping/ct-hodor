@@ -1,0 +1,62 @@
+// 淡入淡出
+.fade-enter-active, .fade-leave-active
+  transition: opacity .3s
+
+.fade-enter, .fade-leave-to
+  opacity: 0
+
+// 向左滑入滑出
+.in-out-translate-fade-enter-active,
+.in-out-translate-fade-leave-active
+  transition: all .3s
+
+.in-out-translate-fade-enter,
+.in-out-translate-fade-leave-active
+  opacity: 0
+
+.in-out-translate-fade-enter
+  transform: translateX(18px)
+  // background-color: #FFFEEE
+
+.in-out-translate-fade-leave-active
+  transform: translateX(-18px)
+
+// 向下滑入滑出
+.down-fade-enter-active,
+.down-fade-leave-active
+  transition: all .6s
+
+.down-fade-enter,
+.down-fade-leave-active
+  opacity: 0
+
+.down-fade-enter
+  transform: translateY(-18px)
+
+.down-fade-leave-active
+  transform: translateY(18px)
+
+// 菜单动画
+.collapse-transition
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out
+
+.zoom-in-top-enter-active,
+.zoom-in-top-leave-active
+  opacity: 1
+  transform: scaleY(1)
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms
+  transform-origin: center top
+
+.zoom-in-top-enter,
+.zoom-in-top-leave-active
+  opacity: 0
+  transform: scaleY(0)
+
+.fade-in-linear-enter-active,
+.fade-in-linear-leave-active
+  transition: opacity 200ms linear
+
+.fade-in-linear-enter,
+.fade-in-linear-leave,
+.fade-in-linear-leave-active 
+  opacity: 0

@@ -1,0 +1,178 @@
+<template>
+  <button class="ct-button"
+    type="button"
+    @click="handleClick"
+    :autofocus="autofocus"
+    :class="[
+      type ? 'ct-button-' + type : '',
+      size ? 'ct-button-' + size : '',
+      {
+        'is-disabled': disabled,
+        'is-loading': loading,
+        'is-plain': plain,
+        'icon-only': icon && !$slots.default,
+      }
+    ]"
+  >
+    <faFont name="spinner" v-if="loading"></faFont>
+    <faFont :name="icon" v-if="icon && !loading"></faFont>
+    <span v-if="$slots.default">
+      <slot></slot>
+    </span>
+    <router-link :to="{ name: routerName }" v-if="routerName"></router-link>
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'ctButton',
+  props: {
+    type: {
+      type: [String],
+      default: 'default',
+    },
+    routerName: String,
+    size: {
+      type: [String],
+      default: '',
+    },
+    // 使用fontawesome
+    icon: {
+      type: [String],
+      default: '',
+    },
+    disabled: {
+      type: [Boolean],
+      default: false,
+    },
+    loading: {
+      type: [Boolean],
+      default: false,
+    },
+    // true时显示默认样式，hover之后显示带颜色的样式
+    plain: {
+      type: [Boolean],
+      default: false,
+    },
+    // 聚焦
+    autofocus: {
+      type: [Boolean],
+      default: false,
+    },
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit('click', event)
+    },
+  },
+}
+</script>
+
+<style lang="stylus">
+@import '../../assets/stylus/color'
+
+.ct-button
+  display: block
+  line-height: 1
+  white-space: nowrap
+  cursor: pointer
+  background: #fff
+  border: 1px solid $border-color
+  color: #1f2d3d
+  -webkit-appearance: none
+  text-align: center
+  box-sizing: border-box
+  outline: none
+  margin: 0
+  user-select: none
+  padding: 9px 16px
+  font-size: 12px
+  border-radius: 4px
+  position: relative
+  &.icon-only
+    font-size: 16px
+    padding: 7px 16px 6px 16px
+  > a
+    display: block
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+  & > .fa-spinner
+    animation: spin 1.5s linear infinite
+  &:hover,
+  &:active
+    color: $color-main
+    border-color: $color-main
+  &.is-loading
+    position: relative
+    pointer-events: none
+    &:before
+      pointer-events: none
+      content: ''
+      position: absolute
+      left: -1px
+      top: -1px
+      right: -1px
+      bottom: -1px
+      border-radius: inherit
+      background-color: hsla(0,0%,100%,.35)
+  &^[0]-primary
+    color: #fff
+    background-color: $color-main
+    border-color: $color-main
+    &^[0].is-disabled,
+    &^[0].is-disabled:hover,
+    &^[0].is-disabled:active
+      color: #bfcbd9
+      cursor: not-allowed
+      background-image: none
+      background-color: #eef1f6
+      border-color: #d1dbe5
+    &:hover
+      background-color: #ffaa82
+      border-color: #ffaa82
+    &:active
+      background-color: #f5844d
+      border-color: #f5844d
+  &^[0]-reversed
+    color: $color-main
+    border-color: $color-main
+    &:hover
+      color: #ffaa82
+      border-color: #ffaa82
+    &:active
+      color: #f5844d
+      border-color: #f5844d
+  &^[0]-text
+    color: $color-main
+    border-color: transparent
+    background-color: transparent
+    &^[0].is-disabled,
+    &^[0].is-disabled:hover,
+    &^[0].is-disabled:active
+      color: #bfcbd9
+      cursor: not-allowed
+      background-image: none
+      background-color: transparent
+      border-color: transparent
+      transform: translateY(0)
+    &:hover
+      color: #ffaa82
+  &^[0].is-disabled,
+  &^[0].is-disabled:hover,
+  &^[0].is-disabled:active
+    background-color: #fff
+    border-color: #d1dbe5
+    color: #bfcbd9
+    cursor: not-allowed
+    transform: translateY(0)
+
+@keyframes spin
+    0%
+      transform: rotate(0deg)
+    100%
+      transform: rotate(359deg)
+
+</style>
