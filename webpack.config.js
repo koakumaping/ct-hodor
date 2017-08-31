@@ -2,16 +2,20 @@ var path = require('path')
 var webpack = require('webpack')
 var vueLoaderConfig = require('./build/vue-loader.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var utils = require('./build/utils')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '.', dir)
 }
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index'),
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js',
+    filename: 'ctHodor.js',
+    library: 'ctHodor',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -41,7 +45,29 @@ module.exports = {
         loader: 'babel-loader',
         include: resolve('src'),
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          name: utils.assetsPath('img/[name].[ext]')
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          name: utils.assetsPath('fonts/[name].[ext]')
+        },
+      },
     ],
+  },
+  externals: {
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue',
+    },
   },
   plugins: [
     // new webpack.optimize.UglifyJsPlugin({
@@ -53,7 +79,7 @@ module.exports = {
     //   sourceMap: true,
     // }),
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: 'ctHodor.css'
     }),
   ],
 }

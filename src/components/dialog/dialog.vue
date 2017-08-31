@@ -32,7 +32,9 @@
 <script>
 import {
   throttle,
-} from '@/util'
+  isNumber,
+  handleEvent,
+} from '../../util'
 
 const prefixCls = 'ct-dialog'
 
@@ -103,7 +105,7 @@ export default {
     },
   },
   mounted() {
-    this.windowResizeHandler = this.$util.handleEvent('resize', {
+    this.windowResizeHandler = handleEvent('resize', {
       onElement: window,
       withCallback: throttle(() => {
         this.windowWidth = document.body.clientWidth
@@ -146,11 +148,11 @@ export default {
         this.dialogHeight = this.$refs.container.clientHeight
       }
 
-      ret.height = `${this.dialogHeight}${this.$util.isNumber(this.dialogHeight) ? 'px' : ''}`
+      ret.height = `${this.dialogHeight}${isNumber(this.dialogHeight) ? 'px' : ''}`
 
       let marginTop = this.windowHeight / 2 - this.dialogHeight / 2
       if (marginTop < 0) marginTop = 0
-      ret.marginTop = `${marginTop}${this.$util.isNumber(marginTop) ? 'px' : ''}`
+      ret.marginTop = `${marginTop}${isNumber(marginTop) ? 'px' : ''}`
       this.customHeightStyle = ret
     },
   },
@@ -161,3 +163,7 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus">
+@import '../../assets/stylus/dialog.styl'
+</style>

@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import Emitter from '@/mixins/emitter'
+import Emitter from '../../mixins/emitter'
+import { isArray } from '../../util'
 
 export default {
   name: 'ctOption',
@@ -47,7 +48,7 @@ export default {
     },
     updateSelect(payload) {
       // console.log('updateSelect', payload)
-      if (this.$util.isArray(payload)) {
+      if (isArray(payload)) {
         // console.log('payload.indexOf(this.value)', payload.indexOf(this.value))
         if (payload.indexOf(this.value) > -1) {
           this.selected = true

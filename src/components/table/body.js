@@ -1,3 +1,8 @@
+import {
+  addClass,
+  removeClass,
+} from '../../util'
+
 function getCell(event) {
   let cell = event.target
 
@@ -92,10 +97,10 @@ export default {
       const oldRow = rows[oldVal]
       const newRow = rows[newVal]
       if (oldRow) {
-        this.$util.removeClass(oldRow, 'hover-row')
+        removeClass(oldRow, 'hover-row')
       }
       if (newRow) {
-        this.$util.addClass(newRow, 'hover-row')
+        addClass(newRow, 'hover-row')
       }
     },
     'store.states.currentRow'(newVal, oldVal) {
@@ -107,12 +112,12 @@ export default {
       const oldRow = rows[data.indexOf(oldVal)]
       const newRow = rows[data.indexOf(newVal)]
       if (oldRow) {
-        this.$util.removeClass(oldRow, 'current-row')
+        removeClass(oldRow, 'current-row')
       } else if (rows) {
-        [].forEach.call(rows, row => this.$util.removeClass(row, 'current-row'))
+        [].forEach.call(rows, row => removeClass(row, 'current-row'))
       }
       if (newRow) {
-        this.$util.addClass(newRow, 'current-row')
+        addClass(newRow, 'current-row')
       }
     },
   },

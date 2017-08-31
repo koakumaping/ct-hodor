@@ -46,9 +46,15 @@
 </template>
 
 <script>
-import clickoutside from '@/directives/clickoutside'
-import ct from '@/mixins/collapse-transition'
-import Emitter from '@/mixins/emitter'
+import clickoutside from '../../directives/clickoutside'
+import ct from '../../mixins/collapse-transition'
+import Emitter from '../../mixins/emitter'
+
+import {
+  getWindowHeight,
+  hasClass,
+  isArray,
+} from '../../util'
 
 export default {
   name: 'ctSelect',
@@ -133,7 +139,7 @@ export default {
   },
   methods: {
     toggleList() {
-      const windowHeight = this.$util.getWindowHeight()
+      const windowHeight = getWindowHeight()
       const elToBottom = this.$refs.ctSelect.getBoundingClientRect().bottom
       const maxHeight = 32 * this.maxItem
       if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
@@ -154,7 +160,7 @@ export default {
         const parent = this.$refs.ctSelectList
         const children = parent.children
         for (let i = 0, l = children.length; i < l; ++i) {
-          if (this.$util.hasClass(children[i], 'current')) {
+          if (hasClass(children[i], 'current')) {
             parent.scrollTop = i * 32
           }
         }
@@ -162,14 +168,14 @@ export default {
     },
     setCurrentValue() {
       if (this.multiple) {
-        if (!this.$util.isArray(this.value)) {
+        if (!isArray(this.value)) {
           console.warn('multiple select v-model must be Array.')
           this.currentValue = []
         } else {
           this.currentValue = this.value
         }
       } else {
-        if (this.$util.isArray(this.value)) {
+        if (isArray(this.value)) {
           console.warn('multiple select v-model can not Array.')
           this.currentValue = ''
         } else {

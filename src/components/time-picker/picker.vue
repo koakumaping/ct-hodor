@@ -10,6 +10,9 @@
 </template>
 
 <script>
+import { ctSelect, ctOption } from '../select'
+import { clone } from '../../util'
+
 const prefixCls = 'ct-time-picker'
 
 export default {
@@ -31,6 +34,10 @@ export default {
       type: [String, Number],
       default: '00',
     },
+  },
+  components: {
+    ctSelect,
+    ctOption,
   },
   computed: {
     getHour() {
@@ -59,7 +66,7 @@ export default {
 
       const _hourList = []
       for (let i = 0; i < 24; ++i) {
-        const item = this.$util.clone(_hourItem)
+        const item = clone(_hourItem)
         if (i < 10) {
           item.key = `0${i}`
           item.label = `0${i}`
@@ -84,7 +91,7 @@ export default {
 
       const _minutesList = []
       for (let i = 0; i < 60; ++i) {
-        const item = this.$util.clone(_minutesItem)
+        const item = clone(_minutesItem)
         if (i < 10) {
           item.key = `0${i}`
           item.label = `0${i}`

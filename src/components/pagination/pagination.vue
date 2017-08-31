@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { clone } from '../../util'
+
 export default {
   name: 'ctPagination',
   props: {
@@ -115,7 +117,7 @@ export default {
       }
     },
     setSearchQuery() {
-      this.query = this.$util.clone(this.$route.query)
+      this.query = clone(this.$route.query)
       // 带上权限，避免分页切换时显示不需要显示的组件
       Object.assign(this.query, {
         permission: JSON.stringify(this.permission),

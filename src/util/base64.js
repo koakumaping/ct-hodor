@@ -165,14 +165,13 @@ function CharToHex(str) {
   return out;
 }
 
-function doEncode() {
-  var src = document.getElementById('src').value;
-  document.getElementById('dest').value = base64encode(utf16to8(src));
+function encode64(src) {
+  base64encode(utf16to8(src))
 }
 
 function decode64(src) {
-    return utf8to16(base64decode(src));
+    return utf8to16(base64decode(src))
 }
 
-export { decode64 }
+export { decode64, encode64 }
 /*eslint-enable */

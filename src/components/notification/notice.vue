@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     handleClose(key) {
-      console.log(key)
       this.$store.commit('DEL_NOTICE', key)
     },
   },
@@ -39,6 +38,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../../assets/stylus/common'
 @import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 

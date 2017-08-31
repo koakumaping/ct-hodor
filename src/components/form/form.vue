@@ -94,3 +94,86 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus">
+@import '../../assets/stylus/color'
+
+.form
+  display: block
+  border-radius: 4px
+  font-size: 12px
+  .form-title
+    height 28px
+    line-height 28px
+    margin-bottom 8px
+    font-size 0
+    .title
+      font-size 12px
+      display inline-block
+      // padding-right: 12px
+      min-width: 6em
+      margin-right 12px
+      &.active
+        color: $color-main
+        border-bottom 1px solid $color-main
+    .btn
+      margin-right 8px
+  &.form-group
+    padding: 8px
+    & > section
+      padding: 8px
+      border: 1px solid #ccc
+      border-radius: 1px
+  .section
+    margin-bottom 12px
+    transition: all 0.3s
+  & > section
+    margin-bottom 12px
+    transition: all 0.3s
+    &.is-required > label::before
+      content: "*"
+      color: $color-red
+      margin-right: 4px
+    & > label
+      display block
+      padding: 7px 0
+      position: relative
+      & > .text-red
+        position: absolute
+        right: 4px
+        top: 0
+    & > .form-content
+      display block
+      line-height: 32px
+      position: relative
+      & > .ct-input,
+      & > .ct-select
+        width: 300px
+      .ct-form-content-error
+        font-size: 12px
+        color: $color-red
+        line-height: 1
+        margin-top: 3px
+        position: absolute
+        top: 100%
+        left: 0
+    // TODO del
+    // & > label + .form-content
+    //   margin-left: 6em
+.form-action
+  margin: 0 auto
+  padding: 8px 0
+  font-size: 0
+  .btn
+    margin-right: 8px
+    &:last-child
+      margin-right: 0
+
+// 错误提示
+.form section.is-error
+  margin-bottom: 20px
+  .ct-input > input,
+  .ct-input > textarea
+  .ct-select > .ct-select-name
+    border-color: $color-red
+</style>

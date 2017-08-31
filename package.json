@@ -1,21 +1,21 @@
 {
   "name": "ct-hodor",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "hodor",
-  "main": "dist/main.js",
+  "main": "dist/ctHodor.js",
   "files": [
-    "src"
+    "src",
+    "dist"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "vue": "^2.4.2"
+    "vue": "^2.4.2",
+    "async-validator": "^1.8.0"
   },
   "devDependencies": {
-    "async-validator": "^1.8.0",
     "autoprefixer": "^6.7.2",
-    "axios": "^0.16.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",

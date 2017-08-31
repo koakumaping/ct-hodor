@@ -18,7 +18,7 @@
 
 <script>
 import AsyncValidator from 'async-validator'
-import Emitter from '@/mixins/emitter'
+import Emitter from '../../mixins/emitter'
 
 function getPropByPath(obj, path) {
   let tempObj = obj

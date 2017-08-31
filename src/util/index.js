@@ -1,6 +1,9 @@
 import debounce from './debounce'
 import throttle from './throttle'
 import scrollbarWidth from './scrollbarWidth'
+import notices from './notices'
+import popover from './popover'
+import { decode64, encode64 } from './base64'
 
 // dom监听
 import { addResizeListener, removeResizeListener } from './resize-event'
@@ -50,6 +53,10 @@ import {
 } from './date'
 
 export {
+  decode64,
+  encode64,
+  notices,
+  popover,
   debounce,
   throttle,
   scrollbarWidth,

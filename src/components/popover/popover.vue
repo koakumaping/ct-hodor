@@ -1,19 +1,19 @@
 <template>
-<transition name="fade-in-linear" mode="out-in">
-  <div class="ct-popover"
-    :style="popStyle"
-    :class="[`${prefixCls}-${place}`]"
-    aria-hidden="true"
-  >
-    <div class="ct-popover-warp">
-      <slot></slot>
+  <transition name="fade-in-linear" mode="out-in">
+    <div class="ct-popover"
+      :style="popStyle"
+      :class="[`${prefixCls}-${place}`]"
+      aria-hidden="true"
+    >
+      <div class="ct-popover-warp">
+        <slot></slot>
+      </div>
     </div>
-  </div>
-</transition>
+  </transition>
 </template>
 
 <script>
-import popover from '@/util/popover'
+import { popover, handleEvent } from '../../util'
 
 const prefixCls = 'ct-popover'
 
@@ -80,7 +80,7 @@ export default {
         this.set()
       }
       if (this.trigger === 'click') {
-        this.handleDocumentClick = this.$util.handleEvent('click', {
+        this.handleDocumentClick = handleEvent('click', {
           onElement: document,
           withCallback: (event) => {
             this.documentClick(event)
@@ -118,26 +118,26 @@ export default {
       this.ret.visibility = 'visible'
     },
     setHover() {
-      this.handleFocus = this.$util.handleEvent('mouseenter', {
+      this.handleFocus = handleEvent('mouseenter', {
         onElement: this.el,
         withCallback: (event) => {
           this.show()
         },
       })
-      this.handleBlur = this.$util.handleEvent('mouseleave', {
+      this.handleBlur = handleEvent('mouseleave', {
         onElement: this.el,
         withCallback: (event) => {
           this.hide()
         },
       })
 
-      this.handlePopoverFocus = this.$util.handleEvent('mouseenter', {
+      this.handlePopoverFocus = handleEvent('mouseenter', {
         onElement: this.$el,
         withCallback: (event) => {
           this.show()
         },
       })
-      this.handlePopoverBlur = this.$util.handleEvent('mouseleave', {
+      this.handlePopoverBlur = handleEvent('mouseleave', {
         onElement: this.$el,
         withCallback: (event) => {
           this.hide()
@@ -145,7 +145,7 @@ export default {
       })
     },
     setClick() {
-      this.handleClick = this.$util.handleEvent('click', {
+      this.handleClick = handleEvent('click', {
         onElement: this.el,
         withCallback: (event) => {
           this.toggle()

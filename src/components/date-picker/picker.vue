@@ -82,7 +82,12 @@ import {
   getPrevMonth,
   getNextMonth,
   clearHours,
-} from '@/util'
+} from './util'
+
+import {
+  getWindowHeight,
+  clone,
+} from '../../util'
 
 import ctTimePicker from '../time-picker'
 
@@ -241,7 +246,7 @@ export default {
 
       const prevMonthStartDay = prevMonthAllDays - (day - 1)
       for (let i = prevMonthStartDay; i <= prevMonthAllDays; ++i) {
-        const _cellItem = this.$util.clone(cellItem)
+        const _cellItem = clone(cellItem)
         _cellItem.day = i
         _cellItem.month = prevMonth
         _cellItem.year = prevYear
@@ -256,7 +261,7 @@ export default {
       const thisMonthAllDays = getDayCountOfMonth(thisMonth)
       for (let j = 1; j < thisMonthAllDays + 1; ++j) {
         // 此时渲染的日期
-        const _cellItem = this.$util.clone(cellItem)
+        const _cellItem = clone(cellItem)
 
         _cellItem.day = j
         _cellItem.month = thisMonth
@@ -281,7 +286,7 @@ export default {
       const nextMonth = getNextMonth(thisMonth)
       const nextMonthEndDay = 42 - this.cells.length
       for (let k = 1; k < nextMonthEndDay + 1; ++k) {
-        const _cellItem = this.$util.clone(cellItem)
+        const _cellItem = clone(cellItem)
         _cellItem.day = k
         _cellItem.month = nextMonth
         _cellItem.year = nextYear
@@ -368,7 +373,7 @@ export default {
       this.dateTimeEmit()
     },
     showPicker() {
-      const windowHeight = this.$util.getWindowHeight()
+      const windowHeight = getWindowHeight()
       const elToBottom = this.$refs.ctDatePicker.getBoundingClientRect().bottom
       const maxHeight = 286
       if (windowHeight - elToBottom - maxHeight <= 0) {
@@ -387,5 +392,115 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../assets/stylus/date-picker'
+@import '../../assets/stylus/color'
+
+.ct-date-picker
+  position: relative
+  background-color: #fff
+  text-align: center
+  border-radius: 4px
+  display: block
+  ^[0]-input
+    position: relative
+    i
+      position: absolute
+      right: 10px
+      top: 10px
+      color: #ccc
+    input
+      padding-right: 24px
+  .ct-input
+    display: block
+  ^[0]-warpper
+    background-color: #fff
+    border-radius: 4px
+    position: absolute
+    top: 34px
+    z-index: 3
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2)
+    &^[0]-top
+      top: -290px
+    ^[0]-header
+      height: 32px
+      line-height: 32px
+      border-bottom: 1px solid #e9eaec
+      span.pointer
+        display: inline-block
+        i
+          color: #ccc
+        &:hover i
+          color: #333
+      ^[2]-prev-year
+        margin-left: 12px
+        width: 16px
+      ^[2]-next-year
+        margin-right: 12px
+        width: 16px
+      ^[2]-prev-month
+        margin-left: 8px
+        width: 16px
+      ^[2]-next-month
+        margin-right: 8px
+        width: 16px
+    ^[0]-body
+      ^[0]-cells
+        width: 196px
+        margin: 10px 10px 0 10px
+        white-space: normal
+        font-size: 0
+        span
+          font-size: 12px
+          width: 28px
+          height: 28px
+          line-height: 24px
+          display: inline-block
+          text-align: center
+          cursor: pointer
+          border: 2px solid #fff
+          position: relative
+          user-select: none
+          &^[0]-cell-disabled
+            cursor: not-allowed
+            color: #ccc
+            background-color: #f7f7f7
+            &:hover
+              cursor: not-allowed
+              color: #ccc
+              background-color: #f7f7f7
+          &^[0]-cell-selected
+            background-color: $color-main
+            color: #fff
+            border-radius: 4px
+            &:hover
+              background-color: $color-main
+          &:hover
+            background-color: rgba(248, 138, 85, 0.30)
+            border-radius: 4px
+          ^[0]-cell-today:after
+            content: ''
+            display: block
+            height: 6px
+            width: 6px
+            border-radius: 50%
+            background-color: $color-main
+            position: absolute
+            top: 2px
+            right: 2px
+          ^[0]-cells-header > span
+            color: #bbbec4
+            cursor: default
+            &:hover
+              color: #bbbec4
+              border: 2px solid #fff
+              background-color: #fff
+        ^[0]-cell-prev-month,
+        ^[0]-cell-next-month
+          color: #bbbec4
+    ^[0]-actions
+      padding: 10px
+      border-top: 1px solid #e9eaec
+      .btn
+        min-width: 40px
+        width: 40px
+        padding: 0
 </style>

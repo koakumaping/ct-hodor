@@ -125,7 +125,7 @@ import {
   throttle,
   addResizeListener,
   removeResizeListener,
-} from '@/util'
+} from '../../util'
 
 import TableStore from './store'
 import ctTableHeader from './head'
@@ -333,5 +333,4 @@ export default {
 
 <style lang="stylus">
 @import './table'
-
 </style>

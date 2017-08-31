@@ -1,5 +1,5 @@
 <template>
-  <div class="ct-checkbox" :class="{'ct-checkbox-indeterminate': indeterminate}">
+  <div class="ct-checkbox" :class="{ 'ct-checkbox-indeterminate': indeterminate }">
     <label>
       <span :class="{ 'checked': getChecked, 'radio': type === 'radio' }">
         <input v-if="type === 'checkbox'" type="checkbox" :value="content" v-model="currentValue">
