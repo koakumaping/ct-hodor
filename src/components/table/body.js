@@ -1,7 +1,7 @@
 import {
   addClass,
   removeClass,
-} from '../../util'
+} from 'ct-util'
 
 function getCell(event) {
   let cell = event.target

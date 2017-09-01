@@ -64,7 +64,6 @@ const components = {
 }
 
 require('./directives')
-const util = require('./util')
 
 const install = function _install(Vue, opts = {}) {
   /* istanbul ignore if */
@@ -73,8 +72,6 @@ const install = function _install(Vue, opts = {}) {
   Object.keys(components).forEach((key) => {
     Vue.component(key, components[key])
   })
-
-  Vue.prototype.$util = util
 }
 
 // auto install

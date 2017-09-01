@@ -7,7 +7,7 @@
 
 <script>
 import Emitter from '../../mixins/emitter'
-import { isArray } from '../../util'
+import { isArray } from 'ct-util'
 
 export default {
   name: 'ctOption',

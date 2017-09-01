@@ -125,7 +125,7 @@ import {
   throttle,
   addResizeListener,
   removeResizeListener,
-} from '../../util'
+} from 'ct-util'
 
 import TableStore from './store'
 import ctTableHeader from './head'

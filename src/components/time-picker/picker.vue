@@ -11,7 +11,7 @@
 
 <script>
 import { ctSelect, ctOption } from '../select'
-import { clone } from '../../util'
+import { clone } from 'ct-util'
 
 const prefixCls = 'ct-time-picker'
 

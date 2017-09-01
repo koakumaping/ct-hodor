@@ -1,5 +1,5 @@
 import util from '../../assets/js/util'
-import scrollbarWidth from '../../util/scrollbarWidth'
+import scrollbarWidth from 'ct-util/scrollbarWidth'
 
 class TableLayout {
   constructor(options) {

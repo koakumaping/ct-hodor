@@ -54,7 +54,7 @@ import {
   getWindowHeight,
   hasClass,
   isArray,
-} from '../../util'
+} from 'ct-util'
 
 export default {
   name: 'ctSelect',

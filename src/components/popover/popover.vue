@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { popover, handleEvent } from '../../util'
+import { popover, handleEvent } from 'ct-util'
 
 const prefixCls = 'ct-popover'
 

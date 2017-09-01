@@ -87,7 +87,7 @@ import {
 import {
   getWindowHeight,
   clone,
-} from '../../util'
+} from 'ct-util'
 
 import ctTimePicker from '../time-picker'
 

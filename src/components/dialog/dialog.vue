@@ -34,7 +34,7 @@ import {
   throttle,
   isNumber,
   handleEvent,
-} from '../../util'
+} from 'ct-util'
 
 const prefixCls = 'ct-dialog'
 

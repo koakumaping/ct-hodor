@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { clone } from '../../util'
+import { clone } from 'ct-util'
 
 export default {
   name: 'ctPagination',
