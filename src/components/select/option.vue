@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isArray } from 'ct-util'
+import { isArray, clone } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 
 export default {
@@ -81,8 +81,9 @@ export default {
       //     this.parent.optionList.splice(index, 1)
       //   }
       // })
-      this.parent.optionList = this.parent.optionList.filter(
+      const _optionList = this.parent.optionList.filter(
         (element) => element.value !== this.value)
+      this.$set(this.parent, 'optionList', _optionList)
       // 通知select组件，该选项被移除了
       this.dispatch('ctSelect', 'remove-option', this.value)
       console.log('removeOption')
