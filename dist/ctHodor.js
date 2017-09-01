@@ -6303,13 +6303,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       selected: false
     };
   },
-
-  watch: {
-    value: function value() {
-      this.removeOption();
-      this.addOption();
-    }
-  },
   created: function created() {
     this.$on('update-selected', this.updateSelect);
     this.addOption();
@@ -6358,10 +6351,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     removeOption: function removeOption() {
       var _this = this;
 
-      this.parent.optionList.forEach(function (element, index) {
-        if (element.value === _this.value) {
-          _this.parent.optionList.splice(index, 1);
-        }
+      this.parent.optionList = this.parent.optionList.filter(function (element) {
+        return element.value !== _this.value;
       });
 
       this.dispatch('ctSelect', 'remove-option', this.value);

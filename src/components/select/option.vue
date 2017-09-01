@@ -26,12 +26,6 @@ export default {
       selected: false,
     }
   },
-  watch: {
-    value() {
-      this.removeOption()
-      this.addOption()
-    },
-  },
   created() {
     this.$on('update-selected', this.updateSelect)
     this.addOption()
@@ -81,10 +75,13 @@ export default {
       }
     },
     removeOption() {
-      this.parent.optionList.forEach((element, index) => {
-        if (element.value === this.value) {
-          this.parent.optionList.splice(index, 1)
-        }
+      // this.parent.optionList.forEach((element, index) => {
+      //   if (element.value === this.value) {
+      //     this.parent.optionList.splice(index, 1)
+      //   }
+      // })
+      this.parent.optionList = this.parent.optionList.filter((element) => {
+        return element.value !== this.value
       })
       // 通知select组件，该选项被移除了
       this.dispatch('ctSelect', 'remove-option', this.value)
