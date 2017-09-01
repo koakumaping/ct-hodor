@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isArray } from 'ct-util'
+import { isArray, randomString } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 
 export default {
@@ -23,12 +23,15 @@ export default {
   },
   data() {
     return {
+      id: '',
       selected: false,
     }
   },
   created() {
+    this.id = randomString(24, true)
     this.$on('update-selected', this.updateSelect)
     this.parent.optionList.push({
+      id: this.id,
       label: this.label,
       value: this.value,
       selected: false,
@@ -71,6 +74,15 @@ export default {
         }
       }
     },
+  },
+  beforeDestroy() {
+    this.parent.optionList.forEach((element, index) => {
+      if (element.id === this.id) {
+        this.parent.optionList.splice(index, 1)
+      }
+    })
+    // 通知select组件，该选项被移除了
+    this.dispatch('ctSelect', 'remove-option', this.value)
   },
 }
 </script>

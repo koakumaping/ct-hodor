@@ -136,6 +136,17 @@ export default {
       }
       this.$emit('input', payload)
     })
+    this.$on('remove-option', (payload) => {
+      if (this.multiple) {
+        const _index = this.currentValue.indexOf(payload)
+        if (_index > -1) {
+          this.currentValue.splice(_index, 1)
+        }
+        this.$emit('input', this.currentValue)
+        return false
+      }
+      this.$emit('input', '')
+    })
   },
   methods: {
     toggleList() {
