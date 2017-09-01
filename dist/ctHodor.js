@@ -6308,7 +6308,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     value: function value(newVal, oldVal) {
       var _this = this;
 
-      this.removeOption(oldVal);
+      this.removeOption(oldVal, true);
       this.$nextTick(function () {
         _this.addOption();
       });

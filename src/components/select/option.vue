@@ -28,7 +28,7 @@ export default {
   },
   watch: {
     value(newVal, oldVal) {
-      this.removeOption(oldVal)
+      this.removeOption(oldVal, true)
       this.$nextTick(() => {
         this.addOption()
       })
