@@ -63,7 +63,12 @@ const components = {
   ctNotification,
 }
 
-require('./directives')
+const {
+  sync,
+  display,
+  popover,
+} = require('./directives')
+
 const util = require('ct-util')
 
 const install = function _install(Vue, opts = {}) {
@@ -76,6 +81,10 @@ const install = function _install(Vue, opts = {}) {
 
   Vue.prototype.$util = util
   Vue.prototype.$util.notices = require('./components/notification/notices').default
+
+  Vue.directive('sync', sync)
+  Vue.directive('display', display)
+  Vue.directive('popover', popover)
 }
 
 // auto install
