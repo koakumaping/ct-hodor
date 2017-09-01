@@ -6303,6 +6303,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       selected: false
     };
   },
+
+  watch: {
+    value: function value(newVal, oldVal) {
+      var _this = this;
+
+      this.removeOption(oldVal);
+      this.$nextTick(function () {
+        _this.addOption();
+      });
+    }
+  },
   created: function created() {
     this.$on('update-selected', this.updateSelect);
     this.addOption();
@@ -6349,15 +6360,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }
     },
-    removeOption: function removeOption() {
-      var _this = this;
+    removeOption: function removeOption(oldVal) {
+      var _this2 = this;
 
-      var _optionList = this.parent.optionList.filter(function (element) {
-        return element.value !== _this.value;
-      });
-      this.$set(this.parent, 'optionList', _optionList);
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-      this.dispatch('ctSelect', 'remove-option', this.value);
+      if (flag) {
+        var _optionList = this.parent.optionList.filter(function (element) {
+          return element.value !== oldVal;
+        });
+        this.$set(this.parent, 'optionList', _optionList);
+
+        this.dispatch('ctSelect', 'remove-option', oldVal);
+      } else {
+        var _optionList2 = this.parent.optionList.filter(function (element) {
+          return element.value !== _this2.value;
+        });
+        this.$set(this.parent, 'optionList', _optionList2);
+
+        this.dispatch('ctSelect', 'remove-option', this.value);
+      }
+
       console.log('removeOption');
     }
   },

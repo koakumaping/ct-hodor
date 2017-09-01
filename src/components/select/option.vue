@@ -26,6 +26,14 @@ export default {
       selected: false,
     }
   },
+  watch: {
+    value(newVal, oldVal) {
+      this.removeOption(oldVal)
+      this.$nextTick(() => {
+        this.addOption()
+      })
+    },
+  },
   created() {
     this.$on('update-selected', this.updateSelect)
     this.addOption()
@@ -75,17 +83,26 @@ export default {
         }
       }
     },
-    removeOption() {
+    removeOption(oldVal, flag = false) {
       // this.parent.optionList.forEach((element, index) => {
       //   if (element.value === this.value) {
       //     this.parent.optionList.splice(index, 1)
       //   }
       // })
-      const _optionList = this.parent.optionList.filter(
-        (element) => element.value !== this.value)
-      this.$set(this.parent, 'optionList', _optionList)
-      // 通知select组件，该选项被移除了
-      this.dispatch('ctSelect', 'remove-option', this.value)
+      if (flag) {
+        const _optionList = this.parent.optionList.filter(
+          (element) => element.value !== oldVal)
+        this.$set(this.parent, 'optionList', _optionList)
+        // 通知select组件，该选项被移除了
+        this.dispatch('ctSelect', 'remove-option', oldVal)
+      } else {
+        const _optionList = this.parent.optionList.filter(
+          (element) => element.value !== this.value)
+        this.$set(this.parent, 'optionList', _optionList)
+        // 通知select组件，该选项被移除了
+        this.dispatch('ctSelect', 'remove-option', this.value)
+      }
+
       console.log('removeOption')
     },
   },
