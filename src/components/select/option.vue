@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isArray, randomString } from 'ct-util'
+import { isArray } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 
 export default {
@@ -23,19 +23,18 @@ export default {
   },
   data() {
     return {
-      id: '',
       selected: false,
     }
   },
+  watch: {
+    value() {
+      this.removeOption()
+      this.addOption()
+    },
+  },
   created() {
-    this.id = randomString(24, true)
     this.$on('update-selected', this.updateSelect)
-    this.parent.optionList.push({
-      id: this.id,
-      label: this.label,
-      value: this.value,
-      selected: false,
-    })
+    this.addOption()
   },
   computed: {
     parent() {
@@ -43,6 +42,13 @@ export default {
     },
   },
   methods: {
+    addOption() {
+      this.parent.optionList.push({
+        label: this.label,
+        value: this.value,
+        selected: false,
+      })
+    },
     setCurrentValue() {
       // 通知select组件，该选项被点击了
       this.dispatch('ctSelect', 'selected', this.value)
@@ -74,15 +80,18 @@ export default {
         }
       }
     },
+    removeOption() {
+      this.parent.optionList.forEach((element, index) => {
+        if (element.value === this.value) {
+          this.parent.optionList.splice(index, 1)
+        }
+      })
+      // 通知select组件，该选项被移除了
+      this.dispatch('ctSelect', 'remove-option', this.value)
+    },
   },
   beforeDestroy() {
-    this.parent.optionList.forEach((element, index) => {
-      if (element.id === this.id) {
-        this.parent.optionList.splice(index, 1)
-      }
-    })
-    // 通知select组件，该选项被移除了
-    this.dispatch('ctSelect', 'remove-option', this.value)
+    this.removeOption()
   },
 }
 </script>
