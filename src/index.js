@@ -75,6 +75,7 @@ const install = function _install(Vue, opts = {}) {
   })
 
   Vue.prototype.$util = util
+  Vue.prototype.$util.notices = require('./components/notification/notices').default
 }
 
 // auto install
