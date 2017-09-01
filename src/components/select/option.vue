@@ -81,9 +81,7 @@ export default {
       //     this.parent.optionList.splice(index, 1)
       //   }
       // })
-      this.parent.optionList = this.parent.optionList.filter((element) => {
-        return element.value !== this.value
-      })
+      this.parent.optionList = this.parent.optionList.filter((element) => element.value !== this.value)
       // 通知select组件，该选项被移除了
       this.dispatch('ctSelect', 'remove-option', this.value)
       console.log('removeOption')
