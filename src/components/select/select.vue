@@ -138,10 +138,8 @@ export default {
     })
     this.$on('remove-option', (payload) => {
       if (this.multiple) {
-        const _index = this.currentValue.indexOf(payload)
-        if (_index > -1) {
-          this.currentValue.splice(_index, 1)
-        }
+        this.currentValue = this.currentValue.filter(
+          (element) => element.value !== payload)
         this.$emit('input', this.currentValue)
         return false
       }
@@ -203,14 +201,18 @@ export default {
     },
     singleSelect() {
       this.clearAllSelected()
+      let hasSelectedOption = false
       for (let i = 0, l = this.optionList.length; i < l; ++i) {
         if (this.currentValue === this.optionList[i].value) {
           this.optionList[i].selected = true
           // this.name = this.optionList[i].label
           this.updateEmptyName(this.optionList[i].label)
           this.updateSelectStatus()
+          hasSelectedOption = true
         }
       }
+      // 防止optionList更新后，name显示不正确
+      if (!hasSelectedOption) this.updateEmptyName()
     },
     multipleSelect() {
       for (let i = 0, l = this.optionList.length; i < l; ++i) {

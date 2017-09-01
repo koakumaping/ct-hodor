@@ -6303,17 +6303,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       selected: false
     };
   },
-
-  watch: {
-    value: function value(newVal, oldVal) {
-      var _this = this;
-
-      this.removeOption(oldVal, true);
-      this.$nextTick(function () {
-        _this.addOption();
-      });
-    }
-  },
   created: function created() {
     this.$on('update-selected', this.updateSelect);
     this.addOption();
@@ -6360,27 +6349,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }
     },
-    removeOption: function removeOption(oldVal) {
-      var _this2 = this;
+    removeOption: function removeOption() {
+      var _this = this;
 
-      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      this.parent.optionList = this.parent.optionList.filter(function (element) {
+        return element.value !== _this.value;
+      });
 
-      if (flag) {
-        var _optionList = this.parent.optionList.filter(function (element) {
-          return element.value !== oldVal;
-        });
-        this.$set(this.parent, 'optionList', _optionList);
-
-        this.dispatch('ctSelect', 'remove-option', oldVal);
-      } else {
-        var _optionList2 = this.parent.optionList.filter(function (element) {
-          return element.value !== _this2.value;
-        });
-        this.$set(this.parent, 'optionList', _optionList2);
-
-        this.dispatch('ctSelect', 'remove-option', this.value);
-      }
-
+      this.dispatch('ctSelect', 'remove-option', this.value);
       console.log('removeOption');
     }
   },
@@ -6492,10 +6468,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
     this.$on('remove-option', function (payload) {
       if (_this.multiple) {
-        var _index = _this.currentValue.indexOf(payload);
-        if (_index > -1) {
-          _this.currentValue.splice(_index, 1);
-        }
+        _this.currentValue = _this.currentValue.filter(function (element) {
+          return element.value !== payload;
+        });
         _this.$emit('input', _this.currentValue);
         return false;
       }
@@ -6560,14 +6535,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     singleSelect: function singleSelect() {
       this.clearAllSelected();
+      var hasSelectedOption = false;
       for (var i = 0, l = this.optionList.length; i < l; ++i) {
         if (this.currentValue === this.optionList[i].value) {
           this.optionList[i].selected = true;
 
           this.updateEmptyName(this.optionList[i].label);
           this.updateSelectStatus();
+          hasSelectedOption = true;
         }
       }
+
+      if (!hasSelectedOption) this.updateEmptyName();
     },
     multipleSelect: function multipleSelect() {
       for (var i = 0, l = this.optionList.length; i < l; ++i) {
