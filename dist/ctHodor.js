@@ -6315,6 +6315,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     addOption: function addOption() {
+      console.log('addOption');
       this.parent.optionList.push({
         label: this.label,
         value: this.value,
@@ -6356,6 +6357,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       this.dispatch('ctSelect', 'remove-option', this.value);
+      console.log('removeOption');
     }
   },
   beforeDestroy: function beforeDestroy() {
@@ -6572,6 +6574,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
     },
     update: function update() {
+      console.log('update select');
       this.setCurrentValue();
       if (!this.multiple) {
         this.singleSelect();
