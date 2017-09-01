@@ -6474,6 +6474,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.$emit('input', _this.currentValue);
         return false;
       }
+
+      var hasCurrentValue = false;
+      _this.optionList.forEach(function (element) {
+        if (element.value === _this.currentValue && _this.currentValue != payload) {
+          hasCurrentValue = true;
+        }
+      });
+      if (hasCurrentValue) {
+        _this.update();
+        return;
+      }
       _this.$emit('input', '');
     });
   },

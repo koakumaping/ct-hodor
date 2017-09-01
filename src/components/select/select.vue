@@ -143,6 +143,19 @@ export default {
         this.$emit('input', this.currentValue)
         return false
       }
+
+      // 如果当前选中的项跟要移除的项的值不同，则不更新currentValue
+      // 如果当前选中的项跟要移除的项的值相同，则更新currentValue为空,即移除选中值
+      let hasCurrentValue = false
+      this.optionList.forEach((element) => {
+        if (element.value === this.currentValue && this.currentValue != payload) {
+          hasCurrentValue = true
+        }
+      })
+      if (hasCurrentValue) {
+        this.update()
+        return
+      }
       this.$emit('input', '')
     })
   },
