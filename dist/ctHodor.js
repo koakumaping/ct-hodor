@@ -6352,9 +6352,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     removeOption: function removeOption() {
       var _this = this;
 
-      this.parent.optionList = this.parent.optionList.filter(function (element) {
+      var _optionList = this.parent.optionList.filter(function (element) {
         return element.value !== _this.value;
       });
+      this.$set(this.parent, 'optionList', _optionList);
 
       this.dispatch('ctSelect', 'remove-option', this.value);
       console.log('removeOption');
