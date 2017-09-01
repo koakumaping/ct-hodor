@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import { ctSelect, ctOption } from '../select'
 import { clone } from 'ct-util'
+import { ctSelect, ctOption } from '../select'
 
 const prefixCls = 'ct-time-picker'
 

@@ -1,5 +1,7 @@
-import util from '../../assets/js/util'
-import scrollbarWidth from 'ct-util/scrollbarWidth'
+import {
+  hasOwn,
+  scrollbarWidth,
+} from 'ct-util'
 
 class TableLayout {
   constructor(options) {
@@ -24,7 +26,7 @@ class TableLayout {
     this.gutterWidth = scrollbarWidth()
 
     for (const name in options) {
-      if (util.hasOwn(options, name)) {
+      if (hasOwn(options, name)) {
         this[name] = options[name]
       }
     }

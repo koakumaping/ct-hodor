@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Emitter from '../../mixins/emitter'
 import { isArray } from 'ct-util'
+import Emitter from '../../mixins/emitter'
 
 export default {
   name: 'ctOption',

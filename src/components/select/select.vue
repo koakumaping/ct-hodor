@@ -46,15 +46,15 @@
 </template>
 
 <script>
-import clickoutside from '../../directives/clickoutside'
-import ct from '../../mixins/collapse-transition'
-import Emitter from '../../mixins/emitter'
-
 import {
   getWindowHeight,
   hasClass,
   isArray,
 } from 'ct-util'
+
+import clickoutside from '../../directives/clickoutside'
+import ct from '../../mixins/collapse-transition'
+import Emitter from '../../mixins/emitter'
 
 export default {
   name: 'ctSelect',

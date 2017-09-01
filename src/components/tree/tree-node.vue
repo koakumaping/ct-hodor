@@ -35,8 +35,8 @@
 </template>
 
 <script>
-import ct from '@/mixins/collapse-transition'
-import Emitter from '@/mixins/emitter'
+import ct from '../../mixins/collapse-transition'
+import Emitter from '../../mixins/emitter'
 
 export default {
   name: 'treeNode',

@@ -73,8 +73,13 @@
 </template>
 
 <script>
-import Emitter from '@/mixins/emitter'
-import clickoutside from '@/directives/clickoutside'
+import {
+  getWindowHeight,
+  clone,
+} from 'ct-util'
+
+import Emitter from '../../mixins/emitter'
+import clickoutside from '../../directives/clickoutside'
 
 import {
   getFirstDayOfMonth,
@@ -83,11 +88,6 @@ import {
   getNextMonth,
   clearHours,
 } from './util'
-
-import {
-  getWindowHeight,
-  clone,
-} from 'ct-util'
 
 import ctTimePicker from '../time-picker'
 
