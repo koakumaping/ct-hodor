@@ -242,6 +242,7 @@ export default {
       this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
     },
     update() {
+      console.log('update select')
       this.setCurrentValue()
       if (!this.multiple) {
         this.singleSelect()
