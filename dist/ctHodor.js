@@ -6315,7 +6315,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     addOption: function addOption() {
-      console.log('addOption');
       this.parent.optionList.push({
         label: this.label,
         value: this.value,
@@ -6357,7 +6356,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       this.dispatch('ctSelect', 'remove-option', this.value);
-      console.log('removeOption');
     }
   },
   beforeDestroy: function beforeDestroy() {
@@ -6477,7 +6475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var hasCurrentValue = false;
       _this.optionList.forEach(function (element) {
-        if (element.value === _this.currentValue && _this.currentValue != payload) {
+        if (element.value === _this.currentValue && _this.currentValue !== payload) {
           hasCurrentValue = true;
         }
       });
@@ -6588,7 +6586,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
     },
     update: function update() {
-      console.log('update select');
       this.setCurrentValue();
       if (!this.multiple) {
         this.singleSelect();

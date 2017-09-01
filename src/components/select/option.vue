@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     addOption() {
-      console.log('addOption')
       this.parent.optionList.push({
         label: this.label,
         value: this.value,
@@ -80,7 +79,6 @@ export default {
         (element) => element.value !== this.value)
       // 通知select组件，该选项被移除了
       this.dispatch('ctSelect', 'remove-option', this.value)
-      console.log('removeOption')
     },
   },
   beforeDestroy() {

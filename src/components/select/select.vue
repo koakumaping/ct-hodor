@@ -148,7 +148,7 @@ export default {
       // 如果当前选中的项跟要移除的项的值相同，则更新currentValue为空,即移除选中值
       let hasCurrentValue = false
       this.optionList.forEach((element) => {
-        if (element.value === this.currentValue && this.currentValue != payload) {
+        if (element.value === this.currentValue && this.currentValue !== payload) {
           hasCurrentValue = true
         }
       })
@@ -257,7 +257,6 @@ export default {
       this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
     },
     update() {
-      console.log('update select')
       this.setCurrentValue()
       if (!this.multiple) {
         this.singleSelect()
