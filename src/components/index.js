@@ -33,9 +33,6 @@ import { ctRow, ctCol } from './layout'
 // 分页
 import ctPagination from './pagination'
 
-// 返回按钮
-import backButton from './common/backButton'
-
 const components = [
   iconFont,
   faFont,
@@ -64,8 +61,6 @@ const components = [
   ctPagination,
   ctRow,
   ctCol,
-
-  backButton,
 ]
 
 components.map(component => {
