@@ -4189,6 +4189,9 @@ var TableLayout = function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ct_util__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ct_util__);
+
 
 
 function toggleRowSelection(states, row, selected) {
@@ -4444,7 +4447,36 @@ TableStore.prototype.toggleRowSelection = function tRS(row) {
   }
 };
 
-TableStore.prototype.clearSelection = function cleanSelection() {
+TableStore.prototype.cleanSelection = function cleanSelection() {
+  var selection = this.states.selection || [];
+  var data = this.states.data;
+  var rowKey = this.states.rowKey;
+  var deleted = void 0;
+  if (rowKey) {
+    deleted = [];
+    var selectedMap = getKeysMap(selection, rowKey);
+    var dataMap = getKeysMap(data, rowKey);
+    for (var key in selectedMap) {
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ct_util__["hasOwn"])(selectedMap, key) && !dataMap[key]) {
+        deleted.push(selectedMap[key].row);
+      }
+    }
+  } else {
+    deleted = selection.filter(function (item) {
+      return data.indexOf(item) === -1;
+    });
+  }
+
+  deleted.forEach(function (deletedItem) {
+    selection.splice(selection.indexOf(deletedItem), 1);
+  });
+
+  if (deleted.length) {
+    this.table.$emit('selection-change', selection);
+  }
+};
+
+TableStore.prototype.clearSelection = function clearSelection() {
   var states = this.states;
   states.isAllSelected = false;
 

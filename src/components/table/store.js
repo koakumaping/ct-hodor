@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { hasOwn } from 'ct-util'
 
 function toggleRowSelection(states, row, selected) {
   let changed = false
@@ -240,8 +241,36 @@ TableStore.prototype.toggleRowSelection = function tRS(row) {
   }
 }
 
+// 删除特定的
+TableStore.prototype.cleanSelection = function cleanSelection() {
+  const selection = this.states.selection || []
+  const data = this.states.data
+  const rowKey = this.states.rowKey
+  let deleted
+  if (rowKey) {
+    deleted = []
+    const selectedMap = getKeysMap(selection, rowKey)
+    const dataMap = getKeysMap(data, rowKey)
+    for (const key in selectedMap) {
+      if (hasOwn(selectedMap, key) && !dataMap[key]) {
+        deleted.push(selectedMap[key].row)
+      }
+    }
+  } else {
+    deleted = selection.filter((item) => data.indexOf(item) === -1)
+  }
+
+  deleted.forEach((deletedItem) => {
+    selection.splice(selection.indexOf(deletedItem), 1)
+  })
+
+  if (deleted.length) {
+    this.table.$emit('selection-change', selection)
+  }
+}
+
 // 清除所有选中项
-TableStore.prototype.clearSelection = function cleanSelection() {
+TableStore.prototype.clearSelection = function clearSelection() {
   const states = this.states
   states.isAllSelected = false
 
