@@ -1007,11 +1007,15 @@ function required(rule, value, source, errors, options, type) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+
+
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   methods: {
     beforeEnter: function beforeEnter(el) {
-      this.$util.addClass(el, 'collapse-transition');
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addClass"])(el, 'collapse-transition');
       if (!el.dataset) el.dataset = {};
 
       el.dataset.oldPaddingTop = el.style.paddingTop;
@@ -1036,7 +1040,7 @@ function required(rule, value, source, errors, options, type) {
       el.style.overflow = 'hidden';
     },
     afterEnter: function afterEnter(el) {
-      this.$util.removeClass(el, 'collapse-transition');
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeClass"])(el, 'collapse-transition');
       el.style.height = '';
       el.style.overflow = el.dataset.oldOverflow;
     },
@@ -1051,14 +1055,14 @@ function required(rule, value, source, errors, options, type) {
     },
     leave: function leave(el) {
       if (el.scrollHeight !== 0) {
-        this.$util.addClass(el, 'collapse-transition');
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addClass"])(el, 'collapse-transition');
         el.style.height = 0;
         el.style.paddingTop = 0;
         el.style.paddingBottom = 0;
       }
     },
     afterLeave: function afterLeave(el) {
-      this.$util.removeClass(el, 'collapse-transition');
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeClass"])(el, 'collapse-transition');
       el.style.height = '';
       el.style.overflow = el.dataset.oldOverflow;
       el.style.paddingTop = el.dataset.oldPaddingTop;

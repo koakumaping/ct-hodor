@@ -131,20 +131,20 @@ export default {
       background-color: #eef1f6
       border-color: #d1dbe5
     &:hover
-      background-color: #ffaa82
-      border-color: #ffaa82
+      background-color: #687f8e
+      border-color: #687f8e
     &:active
-      background-color: #f5844d
-      border-color: #f5844d
+      background-color: #687f8e
+      border-color: #687f8e
   &^[0]-reversed
     color: $color-main
     border-color: $color-main
     &:hover
-      color: #ffaa82
-      border-color: #ffaa82
+      color: #687f8e
+      border-color: #687f8e
     &:active
-      color: #f5844d
-      border-color: #f5844d
+      color: #687f8e
+      border-color: #687f8e
   &^[0]-text
     color: $color-main
     border-color: transparent
@@ -159,7 +159,7 @@ export default {
       border-color: transparent
       transform: translateY(0)
     &:hover
-      color: #ffaa82
+      color: #687f8e
   &^[0].is-disabled,
   &^[0].is-disabled:hover,
   &^[0].is-disabled:active
