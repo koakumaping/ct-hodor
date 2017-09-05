@@ -334,7 +334,7 @@ export default {
     &:before
       font-size: 16px
       display: inline-block
-      vertical-align: top
+      vertical-align: middle
       color: #ccc
     &.arrow-up
       background-position-y 0

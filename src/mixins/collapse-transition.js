@@ -1,8 +1,10 @@
 // thanks to element ui
+import { addClass, removeClass } from 'ct-util'
+
 export default {
   methods: {
     beforeEnter(el) {
-      this.$util.addClass(el, 'collapse-transition')
+      addClass(el, 'collapse-transition')
       if (!el.dataset) el.dataset = {}
 
       el.dataset.oldPaddingTop = el.style.paddingTop
@@ -28,7 +30,7 @@ export default {
     },
     afterEnter(el) {
       // for safari: remove class then reset height is necessary
-      this.$util.removeClass(el, 'collapse-transition')
+      removeClass(el, 'collapse-transition')
       el.style.height = ''
       el.style.overflow = el.dataset.oldOverflow
     },
@@ -44,14 +46,14 @@ export default {
     leave(el) {
       if (el.scrollHeight !== 0) {
         // for safari: add class after set height, or it will jump to zero height suddenly, weired
-        this.$util.addClass(el, 'collapse-transition')
+        addClass(el, 'collapse-transition')
         el.style.height = 0
         el.style.paddingTop = 0
         el.style.paddingBottom = 0
       }
     },
     afterLeave(el) {
-      this.$util.removeClass(el, 'collapse-transition')
+      removeClass(el, 'collapse-transition')
       el.style.height = ''
       el.style.overflow = el.dataset.oldOverflow
       el.style.paddingTop = el.dataset.oldPaddingTop
