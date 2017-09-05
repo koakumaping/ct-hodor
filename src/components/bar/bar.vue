@@ -29,19 +29,21 @@ export default {
   .ct-bar-warp
     background-color: #fff
     position: relative
-    padding: 8px 16px
+    padding: 4px 16px
     .ct-bar-title
       float: left
       padding-right: 16px
       font-size: 14px
-      line-height: 32px
+      line-height: 24px
     .ct-bar-content
-      line-height: 32px
+      line-height: 24px
     .ct-bar-actions
       float: right
       // padding-right: 8px
       .ct-button
         margin-right: 8px
+        padding: 3px 4px 4px 4px
+        border: 0;
         &:last-child
           margin-right: 0
 </style>

@@ -1782,22 +1782,24 @@ body {
 .ct-bar .ct-bar-warp {
   background-color: #fff;
   position: relative;
-  padding: 8px 16px;
+  padding: 4px 16px;
 }
 .ct-bar .ct-bar-warp .ct-bar-title {
   float: left;
   padding-right: 16px;
   font-size: 14px;
-  line-height: 32px;
+  line-height: 24px;
 }
 .ct-bar .ct-bar-warp .ct-bar-content {
-  line-height: 32px;
+  line-height: 24px;
 }
 .ct-bar .ct-bar-warp .ct-bar-actions {
   float: right;
 }
 .ct-bar .ct-bar-warp .ct-bar-actions .ct-button {
   margin-right: 8px;
+  padding: 3px 4px 4px 4px;
+  border: 0;
 }
 .ct-bar .ct-bar-warp .ct-bar-actions .ct-button:last-child {
   margin-right: 0;
