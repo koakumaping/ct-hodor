@@ -102,6 +102,7 @@ export default {
   display: block
   border-radius: 4px
   font-size: 12px
+  color: #000
   .form-title
     height 28px
     line-height 28px
