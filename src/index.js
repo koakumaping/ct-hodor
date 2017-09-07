@@ -67,6 +67,7 @@ const {
   sync,
   display,
   popover,
+  clickoutside,
 } = require('./directives')
 
 const util = require('ct-util')
@@ -85,6 +86,7 @@ const install = function _install(Vue, opts = {}) {
   Vue.directive('sync', sync)
   Vue.directive('display', display)
   Vue.directive('popover', popover)
+  Vue.directive('clickoutside', clickoutside)
 }
 
 // auto install

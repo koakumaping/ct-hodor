@@ -4971,6 +4971,7 @@ body {
   display: block;
   border-radius: 4px;
   font-size: 12px;
+  color: #000;
 }
 .form .form-title {
   height: 28px;
