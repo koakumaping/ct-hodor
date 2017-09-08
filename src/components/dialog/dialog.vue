@@ -147,9 +147,6 @@ export default {
       }
 
       ret.height = `${this.dialogHeight}${isNumber(this.dialogHeight) ? 'px' : ''}`
-      if (!this.fullscreen || !this.height) {
-        ret.height = ''
-      }
 
       let marginTop = this.windowHeight / 2 - this.dialogHeight / 2
       if (marginTop < 0) marginTop = 0

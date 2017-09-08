@@ -5372,9 +5372,6 @@ var prefixCls = 'ct-dialog';
       }
 
       ret.height = '' + this.dialogHeight + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.dialogHeight) ? 'px' : '');
-      if (!this.fullscreen || !this.height) {
-        ret.height = '';
-      }
 
       var marginTop = this.windowHeight / 2 - this.dialogHeight / 2;
       if (marginTop < 0) marginTop = 0;

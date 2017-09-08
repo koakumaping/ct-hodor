@@ -1872,7 +1872,7 @@ body {
   right: 0;
   bottom: 0;
   z-index: 12;
-  overflow: hidden;
+  overflow: auto;
 }
 .ct-dialog-bg {
   position: fixed;
