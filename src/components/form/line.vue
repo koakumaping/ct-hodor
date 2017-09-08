@@ -107,6 +107,7 @@ export default {
       if (this.form.labelPosition !== 'top') {
         ret.float = 'left'
         ret.width = this.form.labelWidth
+        if (isNumber(this.labelWidth) || this.labelWidth) ret.width = this.labelWidth
       }
       if (this.form.labelPosition === 'right') {
         ret.textAlign = 'right'

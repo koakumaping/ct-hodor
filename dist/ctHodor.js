@@ -5635,6 +5635,7 @@ function getPropByPath(obj, path) {
       if (this.form.labelPosition !== 'top') {
         ret.float = 'left';
         ret.width = this.form.labelWidth;
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.labelWidth) || this.labelWidth) ret.width = this.labelWidth;
       }
       if (this.form.labelPosition === 'right') {
         ret.textAlign = 'right';
