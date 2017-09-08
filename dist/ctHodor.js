@@ -5625,9 +5625,10 @@ function getPropByPath(obj, path) {
       return parent;
     },
     getLabel: function getLabel() {
-      if (this.form.semicolon || this.semicolon) {
+      if (this.form.semicolon) {
         return this.label + '\uFF1A';
       }
+      if (this.semicolon === false) return this.label;
       return this.label;
     },
     labelStyle: function labelStyle() {

@@ -97,9 +97,10 @@ export default {
       return parent
     },
     getLabel() {
-      if (this.form.semicolon || this.semicolon) {
+      if (this.form.semicolon) {
         return `${this.label}：`
       }
+      if (this.semicolon === false) return this.label
       return this.label
     },
     labelStyle() {
