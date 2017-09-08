@@ -5287,7 +5287,7 @@ var prefixCls = 'ct-dialog';
       windowWidth: document.body.clientWidth,
       windowHeight: document.body.clientHeight,
       dialogHeight: 'auto',
-      windowResizeHandler: null,
+      resizeHandleEvent: null,
       closeAnimation: '',
       animation: 'zoom',
       customHeightStyle: {}
@@ -5329,14 +5329,11 @@ var prefixCls = 'ct-dialog';
   mounted: function mounted() {
     var _this2 = this;
 
-    this.windowResizeHandler = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["handleEvent"])('resize', {
-      onElement: window,
-      withCallback: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["throttle"])(function () {
-        _this2.windowWidth = document.body.clientWidth;
-        _this2.windowHeight = document.body.clientHeight;
-        _this2.calcHeight();
-      }, 60)
-    });
+    this.resizeHandleEvent = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["throttle"])(function () {
+      _this2.calcHeight();
+    }, 10);
+
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addResizeListener"])(this.$el, this.resizeHandleEvent);
   },
 
   methods: {
@@ -5386,8 +5383,8 @@ var prefixCls = 'ct-dialog';
     }
   },
   beforeDestroy: function beforeDestroy() {
-    if (this.windowResizeHandler) {
-      this.windowResizeHandler.destroy();
+    if (this.resizeHandleEvent) {
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeResizeListener"])(this.$el, this.resizeHandleEvent);
     }
   }
 });

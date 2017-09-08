@@ -33,7 +33,8 @@
 import {
   throttle,
   isNumber,
-  handleEvent,
+  addResizeListener,
+  removeResizeListener,
 } from 'ct-util'
 
 const prefixCls = 'ct-dialog'
@@ -68,7 +69,7 @@ export default {
       windowWidth: document.body.clientWidth,
       windowHeight: document.body.clientHeight,
       dialogHeight: 'auto',
-      windowResizeHandler: null,
+      resizeHandleEvent: null,
       closeAnimation: '',
       animation: 'zoom',
       customHeightStyle: {},
@@ -105,14 +106,11 @@ export default {
     },
   },
   mounted() {
-    this.windowResizeHandler = handleEvent('resize', {
-      onElement: window,
-      withCallback: throttle(() => {
-        this.windowWidth = document.body.clientWidth
-        this.windowHeight = document.body.clientHeight
-        this.calcHeight()
-      }, 60),
-    })
+    this.resizeHandleEvent = throttle(() => {
+      this.calcHeight()
+    }, 10)
+
+    addResizeListener(this.$el, this.resizeHandleEvent)
   },
   methods: {
     handleClose() {
@@ -160,8 +158,8 @@ export default {
     },
   },
   beforeDestroy() {
-    if (this.windowResizeHandler) {
-      this.windowResizeHandler.destroy()
+    if (this.resizeHandleEvent) {
+      removeResizeListener(this.$el, this.resizeHandleEvent)
     }
   },
 }
