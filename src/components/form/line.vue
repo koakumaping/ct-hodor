@@ -63,6 +63,7 @@ export default {
       default: true,
     },
     labelWidth: [String, Number],
+    semicolon: Boolean,
   },
   data() {
     return {
@@ -96,7 +97,7 @@ export default {
       return parent
     },
     getLabel() {
-      if (this.form.semicolon) {
+      if (this.form.semicolon || this.semicolon) {
         return `${this.label}：`
       }
       return this.label

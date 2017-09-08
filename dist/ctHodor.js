@@ -5589,7 +5589,8 @@ function getPropByPath(obj, path) {
       type: Boolean,
       default: true
     },
-    labelWidth: [String, Number]
+    labelWidth: [String, Number],
+    semicolon: Boolean
   },
   data: function data() {
     return {
@@ -5624,7 +5625,7 @@ function getPropByPath(obj, path) {
       return parent;
     },
     getLabel: function getLabel() {
-      if (this.form.semicolon) {
+      if (this.form.semicolon || this.semicolon) {
         return this.label + '\uFF1A';
       }
       return this.label;
