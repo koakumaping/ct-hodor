@@ -5333,7 +5333,7 @@ var prefixCls = 'ct-dialog';
       _this2.calcHeight();
     }, 10);
 
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addResizeListener"])(this.$el, this.resizeHandleEvent);
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addResizeListener"])(this.$refs.dialogWarp, this.resizeHandleEvent);
   },
 
   methods: {
@@ -5384,7 +5384,7 @@ var prefixCls = 'ct-dialog';
   },
   beforeDestroy: function beforeDestroy() {
     if (this.resizeHandleEvent) {
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeResizeListener"])(this.$el, this.resizeHandleEvent);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeResizeListener"])(this.$refs.dialogWarp, this.resizeHandleEvent);
     }
   }
 });
@@ -10418,6 +10418,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.shark
     }
   }), _vm._v(" "), _c('div', {
+    ref: "dialogWarp",
     staticClass: "ct-dialog-warp"
   }, [_c('div', {
     staticClass: "ct-dialog-container",

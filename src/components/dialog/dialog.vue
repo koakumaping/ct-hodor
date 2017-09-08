@@ -1,7 +1,7 @@
 <template>
   <div class="ct-dialog" v-show="visible" :class="sizeCls" aria-hidden="true">
     <div class="ct-dialog-bg" @click="shark"></div>
-    <div class="ct-dialog-warp">
+    <div class="ct-dialog-warp" ref="dialogWarp">
       <div class="ct-dialog-container" :style="customWidthStyle">
         <div class="ct-dialog-box clear"
           :style="customHeightStyle"
@@ -110,7 +110,7 @@ export default {
       this.calcHeight()
     }, 10)
 
-    addResizeListener(this.$el, this.resizeHandleEvent)
+    addResizeListener(this.$refs.dialogWarp, this.resizeHandleEvent)
   },
   methods: {
     handleClose() {
@@ -159,7 +159,7 @@ export default {
   },
   beforeDestroy() {
     if (this.resizeHandleEvent) {
-      removeResizeListener(this.$el, this.resizeHandleEvent)
+      removeResizeListener(this.$refs.dialogWarp, this.resizeHandleEvent)
     }
   },
 }
