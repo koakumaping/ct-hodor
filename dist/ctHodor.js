@@ -5651,7 +5651,7 @@ function getPropByPath(obj, path) {
         ret.lineHeight = '1.5';
       }
 
-      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.labelWidth)) ret.marginLeft = this.labelWidth;
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.labelWidth) || this.labelWidth) ret.marginLeft = this.labelWidth;
       return ret;
     },
 
