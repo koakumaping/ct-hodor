@@ -1,5 +1,8 @@
 <template>
-  <div class="ct-input" :style="{width: width}" :class="{ 'active': active }">
+  <div class="ct-input"
+    :style="{ width: currentWidth }"
+    :class="{ 'active': active }"
+  >
     <input v-if="type === 'text'" type="text"
       :value="currentValue" 
       @input="handleInput"
@@ -38,6 +41,7 @@
 </template>
 
 <script>
+import { isNumber } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 
 export default {
@@ -75,6 +79,11 @@ export default {
   watch: {
     value(val) {
       this.setCurrentValue(val)
+    },
+  },
+  computed: {
+    currentWidth() {
+      return `${this.width}${isNumber(this.width) ? 'px' : ''}`
     },
   },
   data() {
