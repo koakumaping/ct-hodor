@@ -5538,8 +5538,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_validator__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_emitter__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_validator__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_emitter__ = __webpack_require__(4);
+
 
 
 
@@ -5568,7 +5571,7 @@ function getPropByPath(obj, path) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ctFormLine',
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_emitter__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_emitter__["a" /* default */]],
   props: {
     label: {
       type: [String, Number],
@@ -5585,7 +5588,8 @@ function getPropByPath(obj, path) {
     showMessage: {
       type: Boolean,
       default: true
-    }
+    },
+    labelWidth: [String, Number]
   },
   data: function data() {
     return {
@@ -5646,6 +5650,8 @@ function getPropByPath(obj, path) {
       } else {
         ret.lineHeight = '1.5';
       }
+
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.labelWidth)) ret.marginLeft = this.labelWidth;
       return ret;
     },
 
@@ -5710,7 +5716,7 @@ function getPropByPath(obj, path) {
       this.validateState = 'validating';
       var descriptor = {};
       descriptor[this.prop] = rules;
-      var validator = new __WEBPACK_IMPORTED_MODULE_0_async_validator__["a" /* default */](descriptor);
+      var validator = new __WEBPACK_IMPORTED_MODULE_1_async_validator__["a" /* default */](descriptor);
       var model = {};
       model[this.prop] = this.fieldValue;
       validator.validate(model, { firstFields: true }, function (errors, fields) {

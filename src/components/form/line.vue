@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { isNumber } from 'ct-util'
 import AsyncValidator from 'async-validator'
 import Emitter from '../../mixins/emitter'
 
@@ -61,6 +62,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    labelWidth: [String, Number],
   },
   data() {
     return {
@@ -120,6 +122,8 @@ export default {
       } else {
         ret.lineHeight = '1.5'
       }
+
+      if (isNumber(this.labelWidth)) ret.marginLeft = this.labelWidth
       return ret
     },
     fieldValue: {
