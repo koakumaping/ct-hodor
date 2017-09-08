@@ -123,7 +123,7 @@ export default {
         ret.lineHeight = '1.5'
       }
 
-      if (isNumber(this.labelWidth)) ret.marginLeft = this.labelWidth
+      if (isNumber(this.labelWidth) || this.labelWidth) ret.marginLeft = this.labelWidth
       return ret
     },
     fieldValue: {
