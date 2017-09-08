@@ -1,6 +1,6 @@
 {
   "name": "ct-hodor",
-  "version": "1.1.41",
+  "version": "1.1.42",
   "description": "hodor",
   "main": "dist/ctHodor.js",
   "files": [
@@ -10,10 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "async-validator": "^1.8.0"
-  },
   "peerDependencies": {
+    "async-validator": "^1.8.0",
     "ct-util": "^1.0.5",
     "vue": "^2.4.2"
   },
