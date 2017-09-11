@@ -1345,6 +1345,7 @@ body {
 }
 .ct-table.ct-table-border > .ct-table-header-warp > table > thead > tr > th {
   border-right: 1px solid #e5e7ea;
+  border-bottom: 1px solid #e5e7ea;
 }
 .ct-table .hidden-columns {
   display: none;
@@ -1442,7 +1443,6 @@ body {
 }
 .ct-table table > thead > tr > th {
   background-color: #f1f1f1;
-  border-bottom: 1px solid #e5e7ea;
   height: 40px;
   text-transform: uppercase;
   font-size: 12px;
