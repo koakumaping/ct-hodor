@@ -5333,7 +5333,7 @@ var prefixCls = 'ct-dialog';
       _this2.calcHeight();
     }, 10);
 
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addResizeListener"])(this.$refs.dialogWarp, this.resizeHandleEvent);
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addResizeListener"])(this.$refs.dialogContent, this.resizeHandleEvent);
   },
 
   methods: {
@@ -5384,7 +5384,7 @@ var prefixCls = 'ct-dialog';
   },
   beforeDestroy: function beforeDestroy() {
     if (this.resizeHandleEvent) {
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeResizeListener"])(this.$refs.dialogWarp, this.resizeHandleEvent);
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeResizeListener"])(this.$refs.dialogContent, this.resizeHandleEvent);
     }
   }
 });
@@ -10412,7 +10412,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.shark
     }
   }), _vm._v(" "), _c('div', {
-    ref: "dialogWarp",
     staticClass: "ct-dialog-warp"
   }, [_c('div', {
     staticClass: "ct-dialog-container",
@@ -10434,6 +10433,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "ct-dialog-title"
   }, [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c('div', {
+    ref: "dialogContent",
     staticClass: "ct-dialog-content",
     class: [_vm.$slots.footer ? 'has-footer' : '']
   }, [_vm._t("default")], 2), _vm._v(" "), (_vm.$slots.footer) ? _c('div', {
