@@ -120,7 +120,8 @@ export default {
 @import '../../assets/stylus/color'
 
 .ct-input
-  display: block
+  display: inline-block
+  vertical-align: top
   width: 100%
   position relative
   &.active,

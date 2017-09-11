@@ -399,7 +399,8 @@ export default {
   background-color: #fff
   text-align: center
   border-radius: 4px
-  display: block
+  display: inline-block
+  vertical-align: top
   ^[0]-input
     position: relative
     i

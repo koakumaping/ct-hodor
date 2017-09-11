@@ -9,7 +9,7 @@
     <label v-if="label" :style="labelStyle">
       {{getLabel}}
     </label>
-    <div class="form-content clear" :style="contentStyle">
+    <div class="form-content clear relative" :style="contentStyle">
       <slot></slot>
       <div class="ct-form-content-error" v-if="validateState === 'error' && showMessage && form.showMessage">{{validateMessage}}</div>
     </div>
@@ -63,7 +63,7 @@ export default {
       default: true,
     },
     labelWidth: [String, Number],
-    semicolon: Boolean,
+    semicolon: [String, Boolean],
   },
   data() {
     return {
@@ -97,10 +97,12 @@ export default {
       return parent
     },
     getLabel() {
-      if (this.form.semicolon) {
+      if (this.semicolon === false) return this.label
+
+      if (this.form.semicolon || this.semicolon) {
         return `${this.label}：`
       }
-      if (this.semicolon === false) return this.label
+
       return this.label
     },
     labelStyle() {

@@ -72,7 +72,8 @@ export default {
 @import '../../assets/stylus/color'
 
 .ct-button
-  display: block
+  display: inline-block
+  vertical-align: top
   line-height: 1
   white-space: nowrap
   cursor: pointer

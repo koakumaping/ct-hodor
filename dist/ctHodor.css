@@ -906,7 +906,8 @@ body {
 }
 
 .ct-input {
-  display: block;
+  display: inline-block;
+  vertical-align: top;
   width: 100%;
   position: relative;
 }
@@ -965,7 +966,8 @@ body {
 }
 
 .ct-button {
-  display: block;
+  display: inline-block;
+  vertical-align: top;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
@@ -1123,7 +1125,8 @@ body {
 }
 
 .ct-select {
-  display: block;
+  display: inline-block;
+  vertical-align: top;
   position: relative;
   font-size: 12px;
 }
@@ -1643,7 +1646,8 @@ body {
   background-color: #fff;
   text-align: center;
   border-radius: 4px;
-  display: block;
+  display: inline-block;
+  vertical-align: top;
 }
 .ct-date-picker-input {
   position: relative;

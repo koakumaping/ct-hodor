@@ -292,7 +292,8 @@ export default {
 @import '../../assets/stylus/color'
 
 .ct-select
-  display: block
+  display: inline-block
+  vertical-align: top
   position: relative
   font-size: 12px
   // z-index: 2

@@ -5590,7 +5590,7 @@ function getPropByPath(obj, path) {
       default: true
     },
     labelWidth: [String, Number],
-    semicolon: Boolean
+    semicolon: [String, Boolean]
   },
   data: function data() {
     return {
@@ -5625,10 +5625,12 @@ function getPropByPath(obj, path) {
       return parent;
     },
     getLabel: function getLabel() {
-      if (this.form.semicolon) {
+      if (this.semicolon === false) return this.label;
+
+      if (this.form.semicolon || this.semicolon) {
         return this.label + '\uFF1A';
       }
-      if (this.semicolon === false) return this.label;
+
       return this.label;
     },
     labelStyle: function labelStyle() {
@@ -9771,7 +9773,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.label) ? _c('label', {
     style: (_vm.labelStyle)
   }, [_vm._v("\n    " + _vm._s(_vm.getLabel) + "\n  ")]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "form-content clear",
+    staticClass: "form-content clear relative",
     style: (_vm.contentStyle)
   }, [_vm._t("default"), _vm._v(" "), (_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage) ? _c('div', {
     staticClass: "ct-form-content-error"
