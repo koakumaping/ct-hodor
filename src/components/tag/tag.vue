@@ -7,7 +7,7 @@
     <slot></slot>
     <div
       class="ct-tag-close"
-      v-if="closable"
+      v-if="closeable"
       @click="handleClose"
     >
       <iconFont name="close"
