@@ -912,7 +912,9 @@ body {
   position: relative;
 }
 .ct-input.active > input,
-.ct-input:hover > input {
+.ct-input:hover > input,
+.ct-input.active > textarea,
+.ct-input:hover > textarea {
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
   outline: none;
   border: 1px solid #597a8e;
@@ -963,6 +965,44 @@ body {
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
   outline: none;
   border: 1px solid #597a8e;
+}
+
+.ct-tag {
+  display: inline-block;
+  padding: 0 5px;
+  height: 24px;
+  line-height: 22px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.ct-tag.ct-tag-success {
+  background-color: rgba(18,206,102,0.1);
+  border-color: rgba(18,206,102,0.2);
+  color: #13ce66;
+}
+.ct-tag.warning {
+  background-color: rgba(247,186,41,0.1);
+  border-color: rgba(247,186,41,0.2);
+  color: #f7ba2a;
+}
+.ct-tag.danger {
+  background-color: rgba(255,73,73,0.1);
+  border-color: rgba(255,73,73,0.2);
+  color: #ff4949;
+}
+.ct-tag.ct-tag-primary {
+  background-color: rgba(32,160,255,0.1);
+  border-color: rgba(32,160,255,0.2);
+  color: #20a0ff;
+}
+.ct-tag.ct-tag-gray {
+  background-color: #e4e8f1;
+  border-color: #e4e8f1;
+  color: #48576a;
 }
 
 .ct-button {

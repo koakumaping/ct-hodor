@@ -2,6 +2,7 @@
 const ctNotification = require('./components/notification').default
 const warpper = require('./components/warpper.vue')
 const ctInput = require('./components/input').default
+const ctTag = require('./components/tag').default
 
 // 全局组件
 const { ctButton, ctButtonGroup } = require('./components/button')
@@ -39,6 +40,7 @@ const components = {
   ctButton,
   ctButtonGroup,
   ctInput,
+  ctTag,
   ctSelect,
   ctOption,
   ctCheckbox,
