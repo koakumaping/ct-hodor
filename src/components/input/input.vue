@@ -126,7 +126,8 @@ export default {
   position relative
   &.active,
   &:hover
-    > input
+    > input,
+    > textarea
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3)
       outline: none
       border: 1px solid $color-main
