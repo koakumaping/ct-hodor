@@ -5383,7 +5383,8 @@ var prefixCls = 'ct-dialog';
       }
 
       ret.height = '' + this.dialogHeight + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.dialogHeight) ? 'px' : '');
-      if (this.height) {
+
+      if (!this.height) {
         ret.height = '';
       }
 

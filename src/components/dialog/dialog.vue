@@ -145,7 +145,8 @@ export default {
       }
 
       ret.height = `${this.dialogHeight}${isNumber(this.dialogHeight) ? 'px' : ''}`
-      if (this.height) {
+
+      if (!this.height) {
         ret.height = ''
       }
 
