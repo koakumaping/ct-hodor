@@ -62,7 +62,6 @@ export default {
     },
     width: [String, Number],
     height: [String, Number],
-    fullscreen: Boolean,
   },
   data() {
     return {
@@ -139,16 +138,14 @@ export default {
     },
     calcHeight() {
       const ret = {}
-      if (this.fullscreen) {
-        this.dialogHeight = document.body.clientHeight
-      } else if (this.height) {
+      if (this.height) {
         this.dialogHeight = Number(this.height)
       } else if (this.$refs.container && this.$refs.container.clientHeight) {
         this.dialogHeight = this.$refs.container.clientHeight
       }
 
       ret.height = `${this.dialogHeight}${isNumber(this.dialogHeight) ? 'px' : ''}`
-      if (!this.fullscreen || !this.height) {
+      if (this.height) {
         ret.height = ''
       }
 

@@ -5292,8 +5292,7 @@ var prefixCls = 'ct-dialog';
       default: true
     },
     width: [String, Number],
-    height: [String, Number],
-    fullscreen: Boolean
+    height: [String, Number]
   },
   data: function data() {
     return {
@@ -5377,16 +5376,14 @@ var prefixCls = 'ct-dialog';
     },
     calcHeight: function calcHeight() {
       var ret = {};
-      if (this.fullscreen) {
-        this.dialogHeight = document.body.clientHeight;
-      } else if (this.height) {
+      if (this.height) {
         this.dialogHeight = Number(this.height);
       } else if (this.$refs.container && this.$refs.container.clientHeight) {
         this.dialogHeight = this.$refs.container.clientHeight;
       }
 
       ret.height = '' + this.dialogHeight + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.dialogHeight) ? 'px' : '');
-      if (!this.fullscreen || !this.height) {
+      if (this.height) {
         ret.height = '';
       }
 
