@@ -1169,6 +1169,7 @@ body {
   vertical-align: top;
   position: relative;
   font-size: 12px;
+  width: 100%;
 }
 .ct-select .ct-select-name {
   padding: 0 8px 0 8px;

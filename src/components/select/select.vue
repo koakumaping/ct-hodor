@@ -296,6 +296,7 @@ export default {
   vertical-align: top
   position: relative
   font-size: 12px
+  width: 100%
   // z-index: 2
   .ct-select-name
     padding: 0 8px 0 8px
