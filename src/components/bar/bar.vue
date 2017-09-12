@@ -43,7 +43,8 @@ export default {
       .ct-button
         margin-right: 8px
         padding: 3px 4px 4px 4px
-        border: 0;
+        border: 0
+        background-color: transparent
         &:last-child
           margin-right: 0
 </style>

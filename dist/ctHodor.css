@@ -1843,6 +1843,7 @@ body {
   margin-right: 8px;
   padding: 3px 4px 4px 4px;
   border: 0;
+  background-color: transparent;
 }
 .ct-bar .ct-bar-warp .ct-bar-actions .ct-button:last-child {
   margin-right: 0;
