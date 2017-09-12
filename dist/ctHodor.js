@@ -10430,9 +10430,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "!showClearBtn"
     }],
     staticClass: "ct-select-arrow",
-    class: {
-      'arrow-up': _vm.visible
-    },
     attrs: {
       "name": "angle-down"
     }

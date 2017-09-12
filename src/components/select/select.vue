@@ -11,7 +11,6 @@
       v-on:click="toggleList"
     >{{name}}
       <faFont class="ct-select-arrow"
-        :class="{ 'arrow-up': visible }"
         v-show="!showClearBtn"
         name="angle-down">
       </faFont>
@@ -343,9 +342,9 @@ export default {
       display: inline-block
       vertical-align: middle
       color: #ccc
-    &.arrow-up
-      background-position-y 0
-      transform rotateZ(180deg)
+    // &.arrow-up
+    //   background-position-y 0
+    //   transform rotateZ(180deg)
   .ct-select-list
     min-width: 100%
     position: fixed

@@ -1215,10 +1215,6 @@ body {
   vertical-align: middle;
   color: #ccc;
 }
-.ct-select .ct-select-arrow.arrow-up {
-  background-position-y: 0;
-  transform: rotateZ(180deg);
-}
 .ct-select .ct-select-list {
   min-width: 100%;
   position: fixed;
