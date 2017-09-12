@@ -10568,7 +10568,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     style: ({
       backgroundColor: _vm.color
     })
-  }, [_vm._t("default"), _vm._v(" "), (_vm.closable) ? _c('div', {
+  }, [_vm._t("default"), _vm._v(" "), (_vm.closeable) ? _c('div', {
     staticClass: "ct-tag-close",
     on: {
       "click": _vm.handleClose

@@ -48,11 +48,11 @@ export default {
     background-color: rgba(18,206,102,.1)
     border-color: rgba(18,206,102,.2)
     color: #13ce66
-  &.warning
+  &.ct-tag-warning
     background-color: rgba(247,186,41,.1)
     border-color: rgba(247,186,41,.2)
     color: #f7ba2a
-  &.danger
+  &.ct-tag-danger
     background-color: rgba(255,73,73,.1)
     border-color: rgba(255,73,73,.2)
     color: #ff4949
