@@ -50,6 +50,7 @@ import {
   getWindowHeight,
   hasClass,
   isArray,
+  popover,
 } from 'ct-util'
 
 import clickoutside from '../../directives/clickoutside'
@@ -90,6 +91,9 @@ export default {
       hover: false,
       optionList: [],
       defaultName: '请选择',
+      ret: {
+        left: '-9999px',
+      },
     }
   },
   computed: {
@@ -100,9 +104,9 @@ export default {
       ]
     },
     listStyle() {
-      return {
-        maxHeight: `${this.maxItem * 32}px`,
-      }
+      const _ret = this.ret
+      _ret.maxHeight = `${this.maxItem * 32}px`
+      return _ret
     },
     showClearBtn() {
       if (!this.clearable) return false
@@ -174,6 +178,7 @@ export default {
     },
     hideList() {
       this.view = false
+      this.ret.left = 999999
     },
     scrollToCurrent() {
       if (this.multiple) return
@@ -272,6 +277,13 @@ export default {
       if (!this.clearable) return
       this.hover = false
     },
+    updateOptionPosition() {
+      this.ret = popover(this.$el, this, {
+        place: this.place,
+      })
+      // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
+      this.ret.visibility = 'visible'
+    },
     clearValue() {
       if (this.multiple) {
         this.currentValue = []
@@ -294,7 +306,6 @@ export default {
 .ct-select
   display: inline-block
   vertical-align: top
-  position: relative
   font-size: 12px
   width: 100%
   // z-index: 2
@@ -311,6 +322,7 @@ export default {
     border-radius: 4px
     text-align: left
     background-color: #fff
+    position: relative
     &:hover,
     &.is-active
       border-color $color-main

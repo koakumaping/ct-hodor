@@ -6489,7 +6489,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       currentValue: this.multiple ? [] : '',
       hover: false,
       optionList: [],
-      defaultName: '请选择'
+      defaultName: '请选择',
+      ret: {
+        left: '-9999px'
+      }
     };
   },
 
@@ -6498,9 +6501,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return [this.multiple ? 'is-multiple' : undefined, this.view ? 'is-active' : undefined];
     },
     listStyle: function listStyle() {
-      return {
-        maxHeight: this.maxItem * 32 + 'px'
-      };
+      var _ret = this.ret;
+      _ret.maxHeight = this.maxItem * 32 + 'px';
+      return _ret;
     },
     showClearBtn: function showClearBtn() {
       if (!this.clearable) return false;
@@ -6574,6 +6577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     hideList: function hideList() {
       this.view = false;
+      this.ret.left = 999999;
     },
     scrollToCurrent: function scrollToCurrent() {
       var _this2 = this;
@@ -6672,6 +6676,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     handleMouseOut: function handleMouseOut() {
       if (!this.clearable) return;
       this.hover = false;
+    },
+    updateOptionPosition: function updateOptionPosition() {
+      this.ret = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["popover"])(this.$el, this, {
+        place: this.place
+      });
+
+      this.ret.visibility = 'visible';
     },
     clearValue: function clearValue() {
       if (this.multiple) {

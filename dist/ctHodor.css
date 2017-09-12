@@ -1167,7 +1167,6 @@ body {
 .ct-select {
   display: inline-block;
   vertical-align: top;
-  position: relative;
   font-size: 12px;
   width: 100%;
 }
@@ -1184,6 +1183,7 @@ body {
   border-radius: 4px;
   text-align: left;
   background-color: #fff;
+  position: relative;
 }
 .ct-select .ct-select-name:hover,
 .ct-select .ct-select-name.is-active {
