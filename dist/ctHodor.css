@@ -1410,7 +1410,6 @@ body {
 .ct-table .ct-table-body-warp {
   position: relative;
   width: 100%;
-  overflow: auto;
 }
 .ct-table .ct-table-fixed {
   position: absolute;
