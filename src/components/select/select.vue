@@ -22,26 +22,12 @@
         </faFont>
       </dl>
     </dl>
-    <!-- <dl class="ct-select-arrow" :class="{ 'arrow-up': view }" v-on:click="toggleList"></dl> -->
-    <div v-show="view">
-      <transition
-        v-on:before-enter="beforeEnter"
-        v-on:enter="enter"
-        v-on:after-enter="afterEnter"
-        v-on:before-leave="beforeLeave"
-        v-on:leave="leave"
-        v-on:after-leave="afterLeave"
-      >
-        <dl
-          :class="[topCls, 'ct-select-list', 'left']"
-          v-show="view"
-        >
-          <ul :style="listStyle" ref="ctSelectList">
-            <slot></slot>
-          </ul>
-        </dl>
-      </transition>
-    </div>
+    <ul ref="ctSelectList"
+      :class="[topCls, 'ct-select-list']"
+      :style="listStyle"
+    >
+      <slot></slot>
+    </ul>
   </div>
 </template>
 
@@ -54,13 +40,12 @@ import {
 } from 'ct-util'
 
 import clickoutside from '../../directives/clickoutside'
-import ct from '../../mixins/collapse-transition'
 import Emitter from '../../mixins/emitter'
 
 export default {
   name: 'ctSelect',
   directives: { clickoutside },
-  mixins: [Emitter, ct],
+  mixins: [Emitter],
   props: {
     width: {
       default: '',
@@ -174,11 +159,12 @@ export default {
         this.topCls = ''
       }
       this.view = !this.view
+      this.updateOptionPosition()
       this.scrollToCurrent()
     },
     hideList() {
       this.view = false
-      this.ret.left = 999999
+      this.ret.left = '9999px'
     },
     scrollToCurrent() {
       if (this.multiple) return
@@ -283,6 +269,7 @@ export default {
       })
       // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
       this.ret.visibility = 'visible'
+      this.ret.minWidth = `${this.$el.offsetWidth}px`
     },
     clearValue() {
       if (this.multiple) {
@@ -355,21 +342,19 @@ export default {
       transform rotateZ(180deg)
   .ct-select-list
     min-width: 100%
-    position absolute
-    left: 0
-    top: 34px
+    position: fixed
+    left: 9999px
+    top: 0
     border-radius: 4px
-    overflow: hidden
+    overflow auto
+    background-color #fff
     box-shadow 0 1px 6px rgba(0, 0, 0, .2)
     z-index: 2
     border: 1px solid #fff
+    visibility: hidden
     &.ct-select-list-top
       bottom: 34px
       top: inherit
-    ul
-      max-height: 32px * 5
-      overflow auto
-      background-color #fff
     li
       background-color: #fff
       padding: 7px 8px
