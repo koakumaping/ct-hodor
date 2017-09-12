@@ -24,10 +24,10 @@ export default {
 @import '../../assets/stylus/color'
 
 .ct-bar
-  margin: 0 -16px 16px -16px
+  margin: 8px -16px 8px -16px
   box-shadow: 0 0 2px rgba(0,0,0,0.3)
   .ct-bar-warp
-    background-color: #fff
+    background-color: transparent
     position: relative
     padding: 4px 16px
     .ct-bar-title
