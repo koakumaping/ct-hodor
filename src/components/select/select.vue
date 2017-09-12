@@ -332,7 +332,7 @@ export default {
     height: 26px
   .ct-select-arrow
     position: absolute
-    top: 0
+    top: -1px
     right: 8px
     transition all 0.3s
     display: block
