@@ -6479,7 +6479,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      view: false,
+      visible: false,
       index: '',
       optionName: '',
       topCls: '',
@@ -6496,7 +6496,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     selectCls: function selectCls() {
-      return [this.multiple ? 'is-multiple' : undefined, this.view ? 'is-active' : undefined];
+      return [this.multiple ? 'is-multiple' : undefined, this.visible ? 'is-active' : undefined];
     },
     listStyle: function listStyle() {
       var _ret = this.ret;
@@ -6570,20 +6570,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         this.topCls = '';
       }
-      this.view = !this.view;
+      this.visible = !this.visible;
       this.updateOptionPosition();
       this.scrollToCurrent();
     },
     hideList: function hideList() {
-      this.view = false;
-      this.ret.left = '9999px';
+      this.visible = false;
+      this.updateOptionPosition();
     },
     scrollToCurrent: function scrollToCurrent() {
       var _this2 = this;
 
       if (this.multiple) return;
       this.$nextTick(function () {
-        if (!_this2.view) return;
+        if (!_this2.visible) return;
         var parent = _this2.$refs.ctSelectList;
         var children = parent.children;
         for (var i = 0, l = children.length; i < l; ++i) {
@@ -6677,12 +6677,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.hover = false;
     },
     updateOptionPosition: function updateOptionPosition() {
-      this.ret = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["popover"])(this.$el, this, {
-        place: this.place
-      });
+      if (this.visible) {
+        this.ret = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["popover"])(this.$el, this, {
+          place: this.place
+        });
 
-      this.ret.visibility = 'visible';
-      this.ret.minWidth = this.$el.offsetWidth + 'px';
+        this.ret.visibility = 'visible';
+        this.ret.minWidth = this.$el.offsetWidth + 'px';
+      } else {
+        this.ret = {
+          left: '-9999px'
+        };
+      }
     },
     clearValue: function clearValue() {
       if (this.multiple) {
@@ -10425,7 +10431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "ct-select-arrow",
     class: {
-      'arrow-up': _vm.view
+      'arrow-up': _vm.visible
     },
     attrs: {
       "name": "angle-down"

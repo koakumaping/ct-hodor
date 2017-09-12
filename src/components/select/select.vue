@@ -11,7 +11,7 @@
       v-on:click="toggleList"
     >{{name}}
       <faFont class="ct-select-arrow"
-        :class="{ 'arrow-up': view }"
+        :class="{ 'arrow-up': visible }"
         v-show="!showClearBtn"
         name="angle-down">
       </faFont>
@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      view: false,
+      visible: false,
       index: '',
       optionName: '',
       topCls: '',
@@ -85,7 +85,7 @@ export default {
     selectCls() {
       return [
         this.multiple ? 'is-multiple' : undefined,
-        this.view ? 'is-active' : undefined,
+        this.visible ? 'is-active' : undefined,
       ]
     },
     listStyle() {
@@ -158,18 +158,18 @@ export default {
       } else {
         this.topCls = ''
       }
-      this.view = !this.view
+      this.visible = !this.visible
       this.updateOptionPosition()
       this.scrollToCurrent()
     },
     hideList() {
-      this.view = false
-      this.ret.left = '9999px'
+      this.visible = false
+      this.updateOptionPosition()
     },
     scrollToCurrent() {
       if (this.multiple) return
       this.$nextTick(() => {
-        if (!this.view) return
+        if (!this.visible) return
         const parent = this.$refs.ctSelectList
         const children = parent.children
         for (let i = 0, l = children.length; i < l; ++i) {
@@ -264,12 +264,18 @@ export default {
       this.hover = false
     },
     updateOptionPosition() {
-      this.ret = popover(this.$el, this, {
-        place: this.place,
-      })
-      // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
-      this.ret.visibility = 'visible'
-      this.ret.minWidth = `${this.$el.offsetWidth}px`
+      if (this.visible) {
+        this.ret = popover(this.$el, this, {
+          place: this.place,
+        })
+        // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
+        this.ret.visibility = 'visible'
+        this.ret.minWidth = `${this.$el.offsetWidth}px`
+      } else {
+        this.ret = {
+          left: '-9999px',
+        }
+      }
     },
     clearValue() {
       if (this.multiple) {
