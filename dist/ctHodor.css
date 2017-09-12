@@ -1408,8 +1408,8 @@ body {
   overflow: hidden;
 }
 .ct-table .ct-table-body-warp {
-  position: relative;
   width: 100%;
+  overflow: auto;
 }
 .ct-table .ct-table-fixed {
   position: absolute;
@@ -1512,7 +1512,6 @@ body {
 .ct-table table > tbody > tr > td {
   border-bottom: 1px solid #e5e7ea;
   height: 40px;
-  position: relative;
   font-weight: normal;
 }
 .ct-table table > tbody > tr > td.is-hidden > .cell {
