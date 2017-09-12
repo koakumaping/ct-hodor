@@ -25,7 +25,7 @@ export default {
 
 .ct-bar
   margin: 8px -16px 8px -16px
-  box-shadow: 0 0 2px rgba(0,0,0,0.3)
+  // box-shadow: 0 0 2px rgba(0,0,0,0.3)
   .ct-bar-warp
     background-color: transparent
     position: relative
