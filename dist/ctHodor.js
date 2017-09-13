@@ -3370,7 +3370,7 @@ var getRowIdentity = function getRowIdentity(row, rowKey) {
                   column: column,
                   $index: $index,
                   store: _this.store,
-                  _self: _this.context || _this.table.$vnode.context
+                  _self: _this.context || _this.table.$vnode.context || '--'
                 })]
               )];
             }), !_this.fixed && _this.layout.scrollY && _this.layout.gutterWidth ? h(
