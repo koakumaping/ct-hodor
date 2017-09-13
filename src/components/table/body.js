@@ -172,7 +172,7 @@ export default {
                                 column,
                                 $index,
                                 store: this.store,
-                                _self: this.context || this.table.$vnode.context || '--',
+                                _self: this.context || this.table.$vnode.context,
                               },
                             )
                           }

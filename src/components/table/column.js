@@ -129,7 +129,13 @@ export default {
     context: {},
     // 固定
     fixed: [Boolean, String],
-    formatter: Function,
+    formatter: {
+      type: Function,
+      default: (row, column, cellValue) => {
+        if (!cellValue) return '--'
+        return cellValue
+      },
+    },
     // 是否可选
     selectable: Function,
     // 还原选择

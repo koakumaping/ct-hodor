@@ -3370,7 +3370,7 @@ var getRowIdentity = function getRowIdentity(row, rowKey) {
                   column: column,
                   $index: $index,
                   store: _this.store,
-                  _self: _this.context || _this.table.$vnode.context || '--'
+                  _self: _this.context || _this.table.$vnode.context
                 })]
               )];
             }), !_this.fixed && _this.layout.scrollY && _this.layout.gutterWidth ? h(
@@ -3633,7 +3633,13 @@ function DEFAULT_RENDER_CELL(h, _ref5) {
     context: {},
 
     fixed: [Boolean, String],
-    formatter: Function,
+    formatter: {
+      type: Function,
+      default: function _default(row, column, cellValue) {
+        if (!cellValue) return '--';
+        return cellValue;
+      }
+    },
 
     selectable: Function,
 
