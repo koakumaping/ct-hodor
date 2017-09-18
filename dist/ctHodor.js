@@ -6467,10 +6467,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: ''
     },
     value: {
-      type: [String, Number, Object, Array],
-      default: function _default() {
-        return [];
-      }
+      type: [String, Number, Object, Array]
     },
 
     multiple: Boolean,
@@ -6481,6 +6478,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     maxItem: {
       type: Number,
       default: 8
+    },
+    place: {
+      default: 'left',
+      validator: function validator(value) {
+        return ['left', 'right', 'top', 'bottom'].indexOf(value) > -1;
+      }
     }
   },
   data: function data() {

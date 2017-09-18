@@ -51,7 +51,6 @@ export default {
     },
     value: {
       type: [String, Number, Object, Array],
-      default: () => [],
     },
     // 多选
     multiple: Boolean,
@@ -62,6 +61,10 @@ export default {
     maxItem: {
       type: Number,
       default: 8,
+    },
+    place: {
+      default: 'left',
+      validator: value => ['left', 'right', 'top', 'bottom'].indexOf(value) > -1,
     },
   },
   data() {
