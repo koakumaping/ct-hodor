@@ -1373,6 +1373,7 @@ body {
 .ct-table {
   position: relative;
   width: 100%;
+  box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
 }
 .ct-table.ct-table-border > .ct-table-body-warp > table > tbody > tr > td {
   border-right: 1px solid #e5e7ea;
