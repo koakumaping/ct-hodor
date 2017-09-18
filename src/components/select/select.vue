@@ -26,7 +26,7 @@
       :class="[topCls, 'ct-select-list']"
       :style="listStyle"
     >
-      <ul>
+      <ul ref="ctSelectUlList">
         <slot></slot>
       </ul>
     </div>
@@ -183,7 +183,8 @@ export default {
       this.$nextTick(() => {
         if (!this.visible) return
         const parent = this.$refs.ctSelectList
-        const children = parent.children
+        const ul = this.$refs.ctSelectUlList
+        const children = ul.children
         for (let i = 0, l = children.length; i < l; ++i) {
           if (hasClass(children[i], 'current')) {
             parent.scrollTop = i * 32

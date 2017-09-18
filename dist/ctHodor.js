@@ -6600,7 +6600,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$nextTick(function () {
         if (!_this2.visible) return;
         var parent = _this2.$refs.ctSelectList;
-        var children = parent.children;
+        var ul = _this2.$refs.ctSelectUlList;
+        var children = ul.children;
         for (var i = 0, l = children.length; i < l; ++i) {
           if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasClass"])(children[i], 'current')) {
             parent.scrollTop = i * 32;
@@ -10474,7 +10475,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     ref: "ctSelectList",
     class: [_vm.topCls, 'ct-select-list'],
     style: (_vm.listStyle)
-  }, [_c('ul', [_vm._t("default")], 2)])])
+  }, [_c('ul', {
+    ref: "ctSelectUlList"
+  }, [_vm._t("default")], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
