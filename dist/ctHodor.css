@@ -1198,6 +1198,7 @@ body {
   right: 0;
   bottom: 0;
   opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   height: 26px;
 }
 .ct-select .ct-select-arrow {
@@ -1222,17 +1223,19 @@ body {
   top: 0;
   border-radius: 4px;
   overflow: auto;
-  background-color: #fff;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
   z-index: 2;
-  border: 1px solid #fff;
   visibility: hidden;
+  box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
 }
 .ct-select .ct-select-list.ct-select-list-top {
   bottom: 34px;
   top: inherit;
 }
-.ct-select .ct-select-list li {
+.ct-select .ct-select-list ul {
+  background-color: #fff;
+  border-radius: 4px;
+}
+.ct-select .ct-select-list ul li {
   background-color: #fff;
   padding: 7px 8px;
   line-height: 1.5;
@@ -1242,15 +1245,15 @@ body {
   transition: background 0.3s ease;
   position: relative;
 }
-.ct-select .ct-select-list li.current {
+.ct-select .ct-select-list ul li.current {
   color: #fff;
   background-color: #597a8e;
 }
-.ct-select .ct-select-list li.current:hover {
+.ct-select .ct-select-list ul li.current:hover {
   color: #fff;
   background-color: #597a8e;
 }
-.ct-select .ct-select-list li:hover {
+.ct-select .ct-select-list ul li:hover {
   color: #333;
   background-color: #e4e4e4;
 }
@@ -1271,6 +1274,7 @@ body {
   border-right: 2px solid #597a8e;
   border-bottom: 2px solid #597a8e;
   opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   transform: translate3d(8px, -16px, 0) rotateZ(45deg) scale(1);
 }
 

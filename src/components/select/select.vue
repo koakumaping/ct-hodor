@@ -21,12 +21,16 @@
         </faFont>
       </dl>
     </dl>
-    <ul ref="ctSelectList"
+    <div
+      ref="ctSelectList"
       :class="[topCls, 'ct-select-list']"
       :style="listStyle"
     >
-      <slot></slot>
-    </ul>
+      <ul>
+        <slot></slot>
+      </ul>
+    </div>
+
   </div>
 </template>
 
@@ -63,7 +67,7 @@ export default {
       default: 8,
     },
     place: {
-      default: 'left',
+      default: 'bottom',
       validator: value => ['left', 'right', 'top', 'bottom'].indexOf(value) > -1,
     },
   },
@@ -93,6 +97,12 @@ export default {
     listStyle() {
       const _ret = this.ret
       _ret.maxHeight = `${this.maxItem * 32}px`
+      // 保证有一定的高度
+      if (this.optionList.length < this.maxItem) {
+        _ret.height = `${this.optionList.length * 32}px`
+      } else {
+        _ret.height = `${this.maxItem * 32}px`
+      }
       return _ret
     },
     showClearBtn() {
@@ -270,6 +280,10 @@ export default {
         this.ret = popover(this.$el, this, {
           place: this.place,
         })
+        // 处理下top，保证list能正好覆盖住ct-select
+        let _top = this.ret.top.replace('px', '')
+        _top -= this.$el.offsetHeight
+        this.ret.top = `${_top}px`
         // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
         this.ret.visibility = 'visible'
         this.ret.minWidth = `${this.$el.offsetWidth}px`
@@ -296,6 +310,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 
 .ct-select
@@ -355,32 +370,33 @@ export default {
     top: 0
     border-radius: 4px
     overflow auto
-    background-color #fff
-    box-shadow 0 1px 6px rgba(0, 0, 0, .2)
     z-index: 2
-    border: 1px solid #fff
     visibility: hidden
+    box-shadow: $box-shadow
     &.ct-select-list-top
       bottom: 34px
       top: inherit
-    li
+    ul
       background-color: #fff
-      padding: 7px 8px
-      line-height: 1.5
-      cursor: pointer
-      white-space: nowrap
-      overflow: hidden
-      transition: background .3s ease
-      position: relative
-      &.current
-        color #fff
-        background-color $color-main
-        &:hover
+      border-radius: 4px
+      li
+        background-color: #fff
+        padding: 7px 8px
+        line-height: 1.5
+        cursor: pointer
+        white-space: nowrap
+        overflow: hidden
+        transition: background .3s ease
+        position: relative
+        &.current
           color #fff
           background-color $color-main
-      &:hover
-        color #333
-        background-color: $color-hover
+          &:hover
+            color #fff
+            background-color $color-main
+        &:hover
+          color #333
+          background-color: $color-hover
   &.is-multiple
     .ct-select-list
       li.current

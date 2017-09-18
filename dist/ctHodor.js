@@ -6480,7 +6480,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: 8
     },
     place: {
-      default: 'left',
+      default: 'bottom',
       validator: function validator(value) {
         return ['left', 'right', 'top', 'bottom'].indexOf(value) > -1;
       }
@@ -6510,6 +6510,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     listStyle: function listStyle() {
       var _ret = this.ret;
       _ret.maxHeight = this.maxItem * 32 + 'px';
+
+      if (this.optionList.length < this.maxItem) {
+        _ret.height = this.optionList.length * 32 + 'px';
+      } else {
+        _ret.height = this.maxItem * 32 + 'px';
+      }
       return _ret;
     },
     showClearBtn: function showClearBtn() {
@@ -6690,6 +6696,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.ret = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["popover"])(this.$el, this, {
           place: this.place
         });
+
+        var _top = this.ret.top.replace('px', '');
+        _top -= this.$el.offsetHeight;
+        this.ret.top = _top + 'px';
 
         this.ret.visibility = 'visible';
         this.ret.minWidth = this.$el.offsetWidth + 'px';
@@ -10460,11 +10470,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "times-circle"
     }
-  })], 1)], 1), _vm._v(" "), _c('ul', {
+  })], 1)], 1), _vm._v(" "), _c('div', {
     ref: "ctSelectList",
     class: [_vm.topCls, 'ct-select-list'],
     style: (_vm.listStyle)
-  }, [_vm._t("default")], 2)])
+  }, [_c('ul', [_vm._t("default")], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
