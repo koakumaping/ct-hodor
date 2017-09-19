@@ -142,7 +142,7 @@ export default {
         return false
       }
 
-      this.query.page = index
+      this.query.page = index.toString()
       // 保证t在末尾
       delete this.query.t
       this.query.t = +new Date()

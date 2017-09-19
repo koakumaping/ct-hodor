@@ -392,6 +392,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 
 .ct-date-picker
@@ -418,7 +419,7 @@ export default {
     position: absolute
     top: 34px
     z-index: 3
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2)
+    box-shadow: $box-shadow
     &^[0]-top
       top: -290px
     ^[0]-header
