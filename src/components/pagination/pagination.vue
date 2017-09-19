@@ -65,7 +65,10 @@ export default {
     },
     // 以ajax方式翻页
     ajax: Boolean,
-    permission: Object,
+    permission: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -85,12 +88,12 @@ export default {
     total(val) {
       this.setPageList()
     },
-    permission: {
-      deep: true,
-      handler() {
-        this.setSearchQuery()
-      },
-    },
+    // permission: {
+    //   deep: true,
+    //   handler() {
+    //     this.setSearchQuery()
+    //   },
+    // },
   },
   methods: {
     init() {
@@ -117,12 +120,13 @@ export default {
       }
     },
     setSearchQuery() {
-      if (!this.permission) return false
       this.query = clone(this.$route.query)
       // 带上权限，避免分页切换时显示不需要显示的组件
-      Object.assign(this.query, {
-        permission: JSON.stringify(this.permission),
-      })
+      if (this.permission) {
+        Object.assign(this.query, {
+          permission: JSON.stringify(this.permission),
+        })
+      }
     },
     go(index) {
       if (index === '' || index === window.undefined) {
@@ -142,15 +146,17 @@ export default {
         })
         return false
       }
-
+      this.setSearchQuery()
       this.query.page = index
       // 保证t在末尾
       delete this.query.t
       this.query.t = +new Date()
       // 保证permission在末尾
-      const _permission = this.query.permission
-      delete this.query.permission
-      this.query.permission = _permission
+      if (this.permission) {
+        const _permission = this.query.permission
+        delete this.query.permission
+        this.query.permission = _permission
+      }
 
       if (this.ajax) {
         this.$emit('on-change', {

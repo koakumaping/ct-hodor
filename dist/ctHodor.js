@@ -6068,7 +6068,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     ajax: Boolean,
-    permission: Object
+    permission: {
+      type: Object,
+      default: function _default() {}
+    }
   },
   data: function data() {
     return {
@@ -6088,13 +6091,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     total: function total(val) {
       this.setPageList();
-    },
-
-    permission: {
-      deep: true,
-      handler: function handler() {
-        this.setSearchQuery();
-      }
     }
   },
   methods: {
@@ -6122,12 +6118,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     setSearchQuery: function setSearchQuery() {
-      if (!this.permission) return false;
       this.query = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.$route.query);
 
-      Object.assign(this.query, {
-        permission: JSON.stringify(this.permission)
-      });
+      if (this.permission) {
+        Object.assign(this.query, {
+          permission: JSON.stringify(this.permission)
+        });
+      }
     },
     go: function go(index) {
       if (index === '' || index === window.undefined) {
@@ -6147,15 +6144,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         return false;
       }
-
+      this.setSearchQuery();
       this.query.page = index;
 
       delete this.query.t;
       this.query.t = +new Date();
 
-      var _permission = this.query.permission;
-      delete this.query.permission;
-      this.query.permission = _permission;
+      if (this.permission) {
+        var _permission = this.query.permission;
+        delete this.query.permission;
+        this.query.permission = _permission;
+      }
 
       if (this.ajax) {
         this.$emit('on-change', {
