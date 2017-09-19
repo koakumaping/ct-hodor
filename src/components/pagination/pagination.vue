@@ -117,6 +117,7 @@ export default {
       }
     },
     setSearchQuery() {
+      if (!permission) return false
       this.query = clone(this.$route.query)
       // 带上权限，避免分页切换时显示不需要显示的组件
       Object.assign(this.query, {
@@ -142,7 +143,7 @@ export default {
         return false
       }
 
-      this.query.page = index.toString()
+      this.query.page = index
       // 保证t在末尾
       delete this.query.t
       this.query.t = +new Date()
