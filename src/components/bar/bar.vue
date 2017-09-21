@@ -24,27 +24,28 @@ export default {
 @import '../../assets/stylus/color'
 
 .ct-bar
-  margin: 8px -16px 8px -16px
+  margin: 0 -16px
   // box-shadow: 0 0 2px rgba(0,0,0,0.3)
   .ct-bar-warp
     background-color: transparent
     position: relative
-    padding: 4px 16px
+    padding: 0 16px
     .ct-bar-title
       float: left
       padding-right: 16px
       font-size: 14px
-      line-height: 24px
+      line-height: 42px
     .ct-bar-content
-      line-height: 24px
+      line-height: 42px
     .ct-bar-actions
       float: right
       // padding-right: 8px
       .ct-button
-        margin-right: 8px
-        padding: 3px 4px 4px 4px
+        padding: 0 16px
         border: 0
         background-color: transparent
+        height: 42px
+        line-height: 42px
         &:last-child
           margin-right: 0
 </style>
