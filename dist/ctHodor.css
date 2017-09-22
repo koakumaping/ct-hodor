@@ -1822,7 +1822,7 @@ body {
 .ct-bar .ct-bar-warp {
   background-color: transparent;
   position: relative;
-  padding: 0 16px;
+  padding: 0 0 0 16px;
 }
 .ct-bar .ct-bar-warp .ct-bar-title {
   float: left;
