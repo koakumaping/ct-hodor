@@ -33,6 +33,8 @@ const { ctRow, ctCol } = require('./components/layout')
 // 分页
 const ctPagination = require('./components/pagination').default
 
+const ctActionBar = require('./components/actionbar').default
+
 const components = {
   iconFont,
   faFont,
@@ -63,6 +65,7 @@ const components = {
   ctRow,
   ctCol,
   ctNotification,
+  ctActionBar,
 }
 
 const {
