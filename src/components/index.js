@@ -33,6 +33,8 @@ import { ctRow, ctCol } from './layout'
 // 分页
 import ctPagination from './pagination'
 
+import ctActionBar from './actionbar'
+
 const components = [
   iconFont,
   faFont,
@@ -61,6 +63,7 @@ const components = [
   ctPagination,
   ctRow,
   ctCol,
+  ctActionBar,
 ]
 
 components.map(component => {
