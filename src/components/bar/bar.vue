@@ -29,7 +29,7 @@ export default {
   .ct-bar-warp
     background-color: transparent
     position: relative
-    padding: 0 0 0 16px
+    padding: 0 16px
     .ct-bar-title
       float: left
       padding-right: 16px
@@ -41,7 +41,8 @@ export default {
       float: right
       // padding-right: 8px
       .ct-button
-        padding: 0 16px
+        padding: 0
+        margin-left: 10px
         border: 0
         background-color: transparent
         height: 42px
