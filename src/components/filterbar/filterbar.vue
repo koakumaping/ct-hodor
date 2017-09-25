@@ -3,8 +3,7 @@
     :class="filterbarCls"
   >
     <div class="ct-filterbar-bg" @click="hide()"></div>
-    <div class="ct-filterbar"
-    >
+    <div class="ct-filterbar">
       <div class="ct-fliterbar-title">高级搜索</div>
       <div class="ct-fliterbar-content">
         <slot></slot>
@@ -43,7 +42,7 @@ export default {
 @import '../../assets/stylus/var'
 
 .ct-filterbar-warp
-  position: fixed
+  position: absolute
   top: 0
   left: 0
   right: 0
