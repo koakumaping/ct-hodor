@@ -1399,6 +1399,7 @@ body {
   text-align: center;
   background: #fff;
   padding: 48px;
+  border-bottom: 1px solid #e5e7ea;
 }
 .ct-table .ct-table-loading {
   position: relative;
