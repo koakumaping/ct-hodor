@@ -49,9 +49,14 @@ export default {
   bottom: 0
   z-index: -1
   visibility: hidden
+  height: 0
+  width: 0
+  overflow: hidden
   &.ct-filterbar-visible
     z-index: 1
     visibility: visible
+    height: auto
+    width: auto
     > .ct-filterbar
       transform: translate3d(0, 0, 0)
   .ct-filterbar-bg
