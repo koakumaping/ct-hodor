@@ -4824,6 +4824,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: 'default'
     },
     routerName: String,
+    routerQuery: Object,
     size: {
       type: [String],
       default: ''
@@ -9741,7 +9742,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }) : _vm._e(), _vm._v(" "), (_vm.$slots.default) ? _c('span', [_vm._t("default")], 2) : _vm._e(), _vm._v(" "), (_vm.routerName) ? _c('router-link', {
     attrs: {
       "to": {
-        name: _vm.routerName
+        name: _vm.routerName,
+        query: _vm.routerQuery
       }
     }
   }) : _vm._e()], 1)

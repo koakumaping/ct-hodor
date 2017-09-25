@@ -19,7 +19,7 @@
     <span v-if="$slots.default">
       <slot></slot>
     </span>
-    <router-link :to="{ name: routerName }" v-if="routerName"></router-link>
+    <router-link :to="{ name: routerName, query: routerQuery }" v-if="routerName"></router-link>
   </button>
 </template>
 
@@ -32,6 +32,12 @@ export default {
       default: 'default',
     },
     routerName: String,
+    routerQuery: {
+      type: Object,
+      default: function d() {
+        return {}
+      },
+    },
     size: {
       type: [String],
       default: '',
