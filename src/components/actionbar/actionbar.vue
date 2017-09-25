@@ -20,8 +20,9 @@ export default {
 .ct-action-bar
   margin-bottom 8px
   font-size 0
-  > .left > *
-  > .right > *
+  > .left > *,
+  > .left > div > *,
+  > .right > div > *
     display inline-block
     margin-right 8px
     &:last-child

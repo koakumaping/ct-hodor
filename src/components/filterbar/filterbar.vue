@@ -91,8 +91,14 @@ export default {
         .search-line
           width: 100%
           display: block
+          .title
+            float: none
+            padding: 0
+            padding-bottom: 2px
+            text-align: left
           .content
             padding: 0
+            margin-left: 0
             .ct-button
               width: 100%
 </style>
