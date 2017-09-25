@@ -19,4 +19,11 @@ export default {
 <style lang="stylus">
 .ct-action-bar
   margin-bottom 8px
+  font-size 0
+  > .left > *
+  > .right > *
+    display inline-block
+    margin-right 8px
+    &:last-child
+      margin-right 0
 </style>

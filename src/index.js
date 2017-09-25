@@ -34,6 +34,7 @@ const { ctRow, ctCol } = require('./components/layout')
 const ctPagination = require('./components/pagination').default
 
 const ctActionBar = require('./components/actionbar').default
+const ctFilterbar = require('./components/filterbar').default
 
 const components = {
   iconFont,
@@ -66,6 +67,7 @@ const components = {
   ctCol,
   ctNotification,
   ctActionBar,
+  ctFilterbar,
 }
 
 const {
