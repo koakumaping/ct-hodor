@@ -5219,13 +5219,13 @@ body {
 .ct-action-bar > .left > *,
 .ct-action-bar > .left > div > *,
 .ct-action-bar > .right > div > * {
-  display: inline-block;
-  margin-right: 8px;
+  display: inline-block !important;
+  margin-right: 8px !important;
 }
 .ct-action-bar > .left > *:last-child,
 .ct-action-bar > .left > div > *:last-child,
 .ct-action-bar > .right > div > *:last-child {
-  margin-right: 0;
+  margin-right: 0 !important;
 }
 
 .ct-filterbar-warp {

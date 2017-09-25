@@ -23,8 +23,8 @@ export default {
   > .left > *,
   > .left > div > *,
   > .right > div > *
-    display inline-block
-    margin-right 8px
+    display inline-block!important
+    margin-right 8px!important
     &:last-child
-      margin-right 0
+      margin-right 0!important
 </style>
