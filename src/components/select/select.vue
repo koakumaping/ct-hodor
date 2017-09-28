@@ -396,7 +396,7 @@ export default {
             color #fff
             background-color $color-main
         &:hover
-          color #333
+          color #000
           background-color: $color-hover
   &.is-multiple
     .ct-select-list
