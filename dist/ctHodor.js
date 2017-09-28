@@ -6922,7 +6922,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return [];
       }
     },
-    visible: Boolean
+    visible: Boolean,
+    collapse: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     toggleMenu: function toggleMenu(index) {
@@ -6934,6 +6938,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
       this.list[index].expand = !this.list[index].expand;
+    },
+    handleCollapse: function handleCollapse() {
+      this.$emit('on-collapse', this.visible);
     }
   }
 });
@@ -10187,7 +10194,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "side",
     class: {
-      'side-small': !!!_vm.visible
+      'side-small': !_vm.visible
     }
   }, [_c('nav', _vm._l((_vm.list), function(row, index) {
     return _c('dl', {
@@ -10211,7 +10218,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data": row
       }
     })], 1)
-  }))])
+  })), _vm._v(" "), _c('div', {
+    staticClass: "side-collapse",
+    on: {
+      "click": function($event) {
+        _vm.handleCollapse()
+      }
+    }
+  }, [_c('iconFont', {
+    attrs: {
+      "name": "back"
+    }
+  }), _vm._v(" "), (_vm.visible) ? _c('span', [_vm._v("收起侧边栏")]) : _c('span', [_vm._v("展开侧边栏")])], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

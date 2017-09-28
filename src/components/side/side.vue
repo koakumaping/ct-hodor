@@ -1,5 +1,5 @@
 <template>
-  <div class="side" :class="{ 'side-small': !!!visible }">
+  <div class="side" :class="{ 'side-small': !visible }">
     <!-- <div class="side-name">{{name}}</div> -->
     <nav>
       <dl v-for="(row, index) in list" :key="row.id">
@@ -11,6 +11,11 @@
         <sideItem :data="row"></sideItem>        
       </dl>
     </nav>
+    <div class="side-collapse" @click="handleCollapse()">
+      <iconFont name="back"></iconFont>
+      <span v-if="visible">收起侧边栏</span>
+      <span v-else>展开侧边栏</span>
+    </div>
   </div>
 </template>
 
@@ -28,6 +33,10 @@ export default {
       },
     },
     visible: Boolean,
+    collapse: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     toggleMenu(index) {
@@ -37,6 +46,9 @@ export default {
         }
       })
       this.list[index].expand = !this.list[index].expand
+    },
+    handleCollapse() {
+      this.$emit('on-collapse', this.visible)
     },
   },
 }
@@ -55,13 +67,30 @@ $menu-bg-color = #2B3654
   left: 0
   overflow: hidden
   color: $text-color
-  width: 214px
+  width: 200px
   background: $bg-color
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.24)
   height: 100%
   z-index: 9
   transition: all 0.3s
 
+  .side-collapse
+    width: 100%
+    height: 42px
+    line-height: 42px
+    position: absolute
+    bottom: 0
+    cursor: pointer
+    padding-left: 16px
+    background: $bg-color
+    &:hover
+      color: $color-main
+    .iconfont
+      font-size: 15px
+      transition: all 0.3s
+    span
+      margin-left: 16px
+      font-size: 14px
   .side-name
     height: 50px
     line-height: 50px
@@ -69,7 +98,7 @@ $menu-bg-color = #2B3654
     font-size: 18px
     overflow: hidden
   nav
-    padding: 0 0 32px 0
+    padding: 0 0 42px 0
     transform: translateZ(0)
     height: 100%
     overflow: auto
@@ -98,7 +127,6 @@ $menu-bg-color = #2B3654
     .side-menu:focus,
     a:focus
       outline: 0
-      color: #fff
       background-color: $color-main
 
     .side-menu
@@ -108,7 +136,7 @@ $menu-bg-color = #2B3654
       cursor: pointer
       background-image: url(../../assets/img/more.png)
       background-position: center right
-      background-position-x: 190px
+      background-position-x: 180px
       background-repeat: no-repeat
       transition: all 0.3s
       line-height: 1
@@ -145,31 +173,48 @@ $menu-bg-color = #2B3654
       a
         line-height: 37px
         padding: 0
-        padding-left: 60px
+        padding-left: 58px
         padding-bottom: 1px
+        border-left: 2px solid transparent
+        transition: all 0.3s
+        &.router-link-active:hover
+          color: #fff!important
         &:hover
-          background-color: $color-main
+          color: $color-main
+          border-color: $color-main
       .side-menu-sub-icon
         height: 14px
         width: 14px
         vertical-align: middle
 
 .side.side-small
-  transform translateX(-214px + 49)
+  transform translateX(-200px + 50)
+  .side-collapse,
   nav
-    transform translateX(214px - 49)
+    transform translateX(200px - 50)
+  .side-collapse
+    .iconfont::before
+      display inline-block
+      transform rotateZ(180deg)
+    span
+      display none
+  .side-menu span
+      display none
+  .side-menu-item
+    display none
+
   &:hover
     transform translateX(0)
+    .side-collapse,
     nav
       transform translateX(0)
     .side-menu span
       display inline-block
     .side-menu-item
       display block
-  .side-menu span
-      display none
-  .side-menu-item
-    display none
+    .side-collapse
+      span
+        display inline-block
 
 @keyframes menu-span-fade
   0%
