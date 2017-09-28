@@ -173,8 +173,9 @@ export default {
 // 错误提示
 .form section.is-error
   margin-bottom: 20px
-  .ct-input > input,
-  .ct-input > textarea
-  .ct-select > .ct-select-name
+  > .form-content
+  > .ct-input > input,
+  > .ct-input > textarea
+  > .ct-select > .ct-select-name
     border-color: $color-red
 </style>
