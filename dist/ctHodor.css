@@ -1391,11 +1391,10 @@ body {
 .ct-table {
   position: relative;
   width: 100%;
-  border-top: 1px solid #e5e7ea;
-  border-left: 1px solid #e5e7ea;
-  border-right: 1px solid #e5e7ea;
 }
 .ct-table.ct-table-border {
+  border-top: 1px solid #e5e7ea;
+  border-left: 1px solid #e5e7ea;
   border-right: 0;
 }
 .ct-table.ct-table-border > .ct-table-body-warp > table > tbody > tr > td {
