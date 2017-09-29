@@ -2021,7 +2021,6 @@ body {
   width: 100%;
   position: relative;
   word-break: break-word;
-  overflow: auto;
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box .ct-dialog-content.has-footer {
   padding-bottom: 64px;
