@@ -4888,7 +4888,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     handleClick: function handleClick(event) {
-      this.$emit('click', event);
+      if (this.routerName) {
+        this.$router.push({ name: this.routerName, query: this.routerQuery });
+      } else {
+        this.$emit('click', event);
+      }
     }
   }
 });
@@ -10102,14 +10106,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": _vm.icon
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.$slots.default) ? _c('span', [_vm._t("default")], 2) : _vm._e(), _vm._v(" "), (_vm.routerName) ? _c('router-link', {
-    attrs: {
-      "to": {
-        name: _vm.routerName,
-        query: _vm.routerQuery
-      }
-    }
-  }) : _vm._e()], 1)
+  }) : _vm._e(), _vm._v(" "), (_vm.$slots.default) ? _c('span', [_vm._t("default")], 2) : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

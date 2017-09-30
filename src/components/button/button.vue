@@ -19,7 +19,6 @@
     <span v-if="$slots.default">
       <slot></slot>
     </span>
-    <router-link :to="{ name: routerName, query: routerQuery }" v-if="routerName"></router-link>
   </button>
 </template>
 
@@ -68,7 +67,11 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit('click', event)
+      if (this.routerName) {
+        this.$router.push({ name: this.routerName, query: this.routerQuery })
+      } else {
+        this.$emit('click', event)
+      }
     },
   },
 }
