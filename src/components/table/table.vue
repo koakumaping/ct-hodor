@@ -27,9 +27,12 @@
         :stripe="stripe"
       ></ctTableBody>
       <section :style="{ width: bodyWidth }" class="ct-table-empty" v-if="(!data || data.length === 0) && !loading">
-        <span class="ct-table-empty-text">
-          <slot name="empty">{{ emptyText }}</slot>
-        </span>
+        <div class="ct-table-empty-text relative text-center">
+          <slot name="empty">
+            <img src="../../assets/img/empty_state.jpg" alt="empty_state">
+            <div>{{ emptyText }}</div>
+          </slot>
+        </div>
       </section>
       <section :style="{ width: bodyWidth }"
         class="ct-table-loading"

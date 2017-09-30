@@ -1412,8 +1412,11 @@ body {
   position: relative;
   text-align: center;
   background: #fff;
-  padding: 48px;
-  border-bottom: 1px solid #e5e7ea;
+  padding: 20px;
+}
+.ct-table .ct-table-empty img[alt=empty_state] {
+  display: inline-block;
+  width: 360px;
 }
 .ct-table .ct-table-loading {
   position: relative;
