@@ -67,6 +67,7 @@ export default {
   },
   methods: {
     handleClick(event) {
+      if (this.disabled) return false
       if (this.routerName) {
         this.$router.push({ name: this.routerName, query: this.routerQuery })
       } else {

@@ -4888,6 +4888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     handleClick: function handleClick(event) {
+      if (this.disabled) return false;
       if (this.routerName) {
         this.$router.push({ name: this.routerName, query: this.routerQuery });
       } else {
