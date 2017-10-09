@@ -1401,6 +1401,10 @@ body {
 .ct-table.ct-table-border > .ct-table-body-warp > table > tbody > tr > td {
   border-right: 1px solid #e5e7ea;
 }
+.ct-table.ct-table-border > .ct-table-body-warp .ct-table-empty {
+  border-right: 1px solid #e5e7ea;
+  border-bottom: 1px solid #e5e7ea;
+}
 .ct-table.ct-table-border > .ct-table-header-warp > table > thead > tr > th {
   border-right: 1px solid #e5e7ea;
   border-bottom: 1px solid #e5e7ea;
