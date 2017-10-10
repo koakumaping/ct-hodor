@@ -942,6 +942,8 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 1;
+  cursor: not-allowed;
 }
 .ct-input > input {
   color: #000;
@@ -1180,11 +1182,27 @@ body {
   margin-right: 0;
 }
 
+.ct-select[readonly=readonly] {
+  position: relative;
+}
+.ct-select[readonly=readonly]:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: not-allowed;
+}
 .ct-select {
   display: inline-block;
   vertical-align: top;
   font-size: 12px;
   width: 100%;
+}
+.ct-select:hover > .ct-select-name {
+  border-color: #ee6b5d;
 }
 .ct-select .ct-select-name {
   padding: 0 8px 0 8px;

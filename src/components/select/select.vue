@@ -313,13 +313,27 @@ export default {
 <style lang="stylus">
 @import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
+.ct-select[readonly=readonly]
+  position: relative
+  &:before
+    content: ''
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 1
+    cursor: not-allowed
 
 .ct-select
   display: inline-block
   vertical-align: top
   font-size: 12px
   width: 100%
+
   // z-index: 2
+  &:hover > .ct-select-name
+    border-color $color-main
   .ct-select-name
     padding: 0 8px 0 8px
     vertical-align: top

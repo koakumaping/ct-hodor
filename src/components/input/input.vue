@@ -133,12 +133,13 @@ export default {
       border: 1px solid $color-main
 .ct-input[readonly=readonly]:before
   content: ''
-  position absolute
-  left 0
-  right 0
-  top 0
-  bottom 0
-
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  z-index: 1
+  cursor: not-allowed
   // .ct-input-readonly
   //   display: block
 
