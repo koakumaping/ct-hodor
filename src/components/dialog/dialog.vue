@@ -16,7 +16,7 @@
             :class="[$slots.footer ? 'has-footer' : '']"
             ref="dialogContent"
           >
-            <slot></slot>
+            <slot v-if="visible"></slot>
           </div>
           <div class="ct-dialog-footer clear" v-if="$slots.footer">
             <div class="right">
@@ -46,10 +46,10 @@ export default {
     title: {
       type: [String, Number],
     },
-    visible: {
-      type: Boolean,
-      default: false,
-    },
+    // visible: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     size: {
       default: 'default',
       validator: value => ['small', 'default', 'big', 'large'].indexOf(value) > -1,
@@ -66,6 +66,7 @@ export default {
   data() {
     return {
       prefxiCls: `${prefixCls}`,
+      visible: false,
       windowWidth: document.body.clientWidth,
       windowHeight: document.body.clientHeight,
       dialogHeight: 'auto',
@@ -93,18 +94,18 @@ export default {
       return ret
     },
   },
-  watch: {
-    visible(val) {
-      if (val) {
-        this.$emit('on-open')
-        this.$nextTick(() => {
-          this.calcHeight()
-        })
-      } else {
-        this.$emit('on-hide')
-      }
-    },
-  },
+  // watch: {
+  //   visible(val) {
+  //     if (val) {
+  //       this.$emit('on-open')
+  //       this.$nextTick(() => {
+  //         this.calcHeight()
+  //       })
+  //     } else {
+  //       this.$emit('on-hide')
+  //     }
+  //   },
+  // },
   mounted() {
     this.resizeHandleEvent = throttle(() => {
       this.calcHeight()
@@ -120,10 +121,15 @@ export default {
         this.hide()
       }
     },
+    show() {
+      // this.$emit('update:visible', true)
+      this.$emit('on-open', true)
+      this.visible = true
+    },
     hide() {
-      console.log('hide')
-      this.$emit('update:visible', false)
+      // this.$emit('update:visible', false)
       this.$emit('on-close', false)
+      this.visible = false
     },
     shark() {
       // 避免重复执行

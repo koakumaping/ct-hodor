@@ -5347,10 +5347,7 @@ var prefixCls = 'ct-dialog';
     title: {
       type: [String, Number]
     },
-    visible: {
-      type: Boolean,
-      default: false
-    },
+
     size: {
       default: 'default',
       validator: function validator(value) {
@@ -5369,6 +5366,7 @@ var prefixCls = 'ct-dialog';
   data: function data() {
     return {
       prefxiCls: '' + prefixCls,
+      visible: false,
       windowWidth: document.body.clientWidth,
       windowHeight: document.body.clientHeight,
       dialogHeight: 'auto',
@@ -5397,25 +5395,11 @@ var prefixCls = 'ct-dialog';
       return ret;
     }
   },
-  watch: {
-    visible: function visible(val) {
-      var _this = this;
-
-      if (val) {
-        this.$emit('on-open');
-        this.$nextTick(function () {
-          _this.calcHeight();
-        });
-      } else {
-        this.$emit('on-hide');
-      }
-    }
-  },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     this.resizeHandleEvent = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["throttle"])(function () {
-      _this2.calcHeight();
+      _this.calcHeight();
     }, 10);
 
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addResizeListener"])(this.$refs.dialogContent, this.resizeHandleEvent);
@@ -5429,20 +5413,23 @@ var prefixCls = 'ct-dialog';
         this.hide();
       }
     },
+    show: function show() {
+      this.$emit('on-open', true);
+      this.visible = true;
+    },
     hide: function hide() {
-      console.log('hide');
-      this.$emit('update:visible', false);
       this.$emit('on-close', false);
+      this.visible = false;
     },
     shark: function shark() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.closeAnimation) return;
 
       this.animation = '';
       this.closeAnimation = 'shark';
       this.closesT = window.setTimeout(function () {
-        _this3.closeAnimation = '';
+        _this2.closeAnimation = '';
       }, 400);
       this.$emit('on-bg-click');
     },
@@ -11103,7 +11090,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     ref: "dialogContent",
     staticClass: "ct-dialog-content",
     class: [_vm.$slots.footer ? 'has-footer' : '']
-  }, [_vm._t("default")], 2), _vm._v(" "), (_vm.$slots.footer) ? _c('div', {
+  }, [(_vm.visible) ? _vm._t("default") : _vm._e()], 2), _vm._v(" "), (_vm.$slots.footer) ? _c('div', {
     staticClass: "ct-dialog-footer clear"
   }, [_c('div', {
     staticClass: "right"
