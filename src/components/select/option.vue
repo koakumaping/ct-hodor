@@ -39,8 +39,7 @@ export default {
     addOption() {
       this.parent.optionList.push({
         label: this.label,
-        // 自动转换成数字
-        value: isNumber(this.value) ? Number(this.value) : this.value,
+        value: this.value,
         selected: false,
       })
     },

@@ -6492,8 +6492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addOption: function addOption() {
       this.parent.optionList.push({
         label: this.label,
-
-        value: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.value) ? Number(this.value) : this.value,
+        value: this.value,
         selected: false
       });
     },
