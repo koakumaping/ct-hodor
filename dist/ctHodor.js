@@ -6630,6 +6630,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     value: function value(newVal, oldVal) {
       this.update();
+    },
+    optionList: function optionList(newVal, oldVal) {
+      this.update();
     }
   },
   mounted: function mounted() {

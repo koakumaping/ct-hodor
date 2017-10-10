@@ -1296,6 +1296,7 @@ body {
   background-color: #fff;
 }
 .ct-select.is-multiple .ct-select-list li.current:hover {
+  color: #ee6b5d;
   background-color: #f5f5f5;
 }
 .ct-select.is-multiple .ct-select-list li.current:after {

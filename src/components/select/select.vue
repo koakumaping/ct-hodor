@@ -121,6 +121,9 @@ export default {
     value(newVal, oldVal) {
       this.update()
     },
+    optionList(newVal, oldVal) {
+      this.update()
+    },
   },
   mounted() {
     this.update()
@@ -418,6 +421,7 @@ export default {
         color: $color-main
         background-color: #fff
         &:hover
+          color: $color-main
           background-color $color-hover
         &:after
           content: ''

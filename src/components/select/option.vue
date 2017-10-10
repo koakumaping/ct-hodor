@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isArray, isNumber } from 'ct-util'
+import { isArray } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 
 export default {
