@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isArray } from 'ct-util'
+import { isArray, isNumber } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 
 export default {
@@ -39,7 +39,8 @@ export default {
     addOption() {
       this.parent.optionList.push({
         label: this.label,
-        value: this.value,
+        // 自动转换成数字
+        value: isNumber(this.value) ? Number(this.value) : this.value,
         selected: false,
       })
     },
