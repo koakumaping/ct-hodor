@@ -4477,7 +4477,7 @@ TableStore.prototype.clearSelection = function clearSelection() {
   states.selection = [];
 
   if (oldSelection.length > 0) {
-    this.table.$emit('selection-change', states.selection);
+    this.table.$emit('selection-change', []);
   }
   console.log('clearSelection');
 };
