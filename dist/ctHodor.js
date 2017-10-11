@@ -1624,7 +1624,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var seed = 0;
-var closeTime = 3000;
+var closeTime = 5000;
 var now = Date.now();
 
 function getUuid() {
@@ -5833,13 +5833,11 @@ function getPropByPath(obj, path) {
       });
     },
     resetField: function resetField() {
-      console.log('resetField');
       this.validateState = '';
       this.validateMessage = '';
       var model = this.form.model;
       var value = this.fieldValue;
       var path = this.prop;
-      console.log('path', this.prop);
       if (path.indexOf(':') !== -1) {
         path = path.replace(/:/, '.');
       }

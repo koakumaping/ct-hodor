@@ -1,5 +1,5 @@
 let seed = 0
-const closeTime = 3000
+const closeTime = 5000
 const now = Date.now()
 
 function getUuid() {

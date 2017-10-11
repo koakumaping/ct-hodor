@@ -199,13 +199,11 @@ export default {
       })
     },
     resetField() {
-      console.log('resetField')
       this.validateState = ''
       this.validateMessage = ''
       const model = this.form.model
       const value = this.fieldValue
       let path = this.prop
-      console.log('path', this.prop)
       if (path.indexOf(':') !== -1) {
         path = path.replace(/:/, '.')
       }
