@@ -172,6 +172,7 @@ TableStore.prototype.mutations = {
       this.clearSelection()
     }
 
+    this.table.$emit('selection-change', selection)
     this.table.$emit('selection-all', selection)
   },
   setHoverRow(states, row) {
