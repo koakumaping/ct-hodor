@@ -4361,11 +4361,11 @@ TableStore.prototype.mutations = {
       });
 
       this.states.isAllSelected = true;
+      this.table.$emit('selection-change', selection);
     } else {
       this.clearSelection();
     }
 
-    this.table.$emit('selection-change', selection);
     this.table.$emit('selection-all', selection);
   },
   setHoverRow: function setHoverRow(states, row) {
@@ -4477,7 +4477,7 @@ TableStore.prototype.clearSelection = function clearSelection() {
   states.selection = [];
 
   if (oldSelection.length > 0) {
-    this.table.$emit('selection-change', []);
+    this.table.$emit('selection-change', states.selection);
   }
   console.log('clearSelection');
 };
