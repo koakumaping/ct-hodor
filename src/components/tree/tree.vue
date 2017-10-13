@@ -56,6 +56,8 @@ export default {
         this.updateData()
         this.initMap()
         this.broadcast('treeNode', 'indeterminate')
+        // 初始化数据完成后触发一次回调,更新下选中的列表
+        this.doEmit()
       })
     },
   },
@@ -104,8 +106,6 @@ export default {
       this.data.map(node => reverseChecked(node)).map(node => forwardChecked(node))
       // 更新半选中状态
       this.broadcast('treeNode', 'indeterminate')
-      // 初始化数据完成后触发一次回调,更新下选中的列表
-      if (isInit) this.doEmit()
     },
     getCheckedList(list = this.getCheckedNodes()) {
       console.log('checked list', list)

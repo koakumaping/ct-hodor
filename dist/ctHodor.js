@@ -7468,6 +7468,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.updateData();
         _this2.initMap();
         _this2.broadcast('treeNode', 'indeterminate');
+
+        _this2.doEmit();
       });
     }
   },
@@ -7522,8 +7524,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       this.broadcast('treeNode', 'indeterminate');
-
-      if (isInit) this.doEmit();
     },
     getCheckedList: function getCheckedList() {
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getCheckedNodes();
