@@ -39,8 +39,7 @@ export default {
     })
 
     this.$on('on-checked', () => {
-      this.$emit('on-check-change', this.getCheckedNodes())
-      this.$emit('on-list-change', this.getCheckedList(this.getCheckedNodes()))
+      this.doEmit()
     })
   },
   data() {
@@ -61,6 +60,10 @@ export default {
     },
   },
   methods: {
+    doEmit() {
+      this.$emit('on-check-change', this.getCheckedNodes())
+      this.$emit('on-list-change', this.getCheckedList(this.getCheckedNodes()))
+    },
     getCheckedNodes() {
       const nodes = this.findComponentsDownward(this, 'treeNode')
       return nodes.filter(node => node.model.checked).map(node => node.model)
@@ -101,6 +104,8 @@ export default {
       this.data.map(node => reverseChecked(node)).map(node => forwardChecked(node))
       // 更新半选中状态
       this.broadcast('treeNode', 'indeterminate')
+      // 初始化数据完成后触发一次回调,更新下选中的列表
+      if (isInit) this.doEmit()
     },
     getCheckedList(list = this.getCheckedNodes()) {
       console.log('checked list', list)

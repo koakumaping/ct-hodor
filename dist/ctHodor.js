@@ -7449,8 +7449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     this.$on('on-checked', function () {
-      _this.$emit('on-check-change', _this.getCheckedNodes());
-      _this.$emit('on-list-change', _this.getCheckedList(_this.getCheckedNodes()));
+      _this.doEmit();
     });
   },
   data: function data() {
@@ -7473,6 +7472,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    doEmit: function doEmit() {
+      this.$emit('on-check-change', this.getCheckedNodes());
+      this.$emit('on-list-change', this.getCheckedList(this.getCheckedNodes()));
+    },
     getCheckedNodes: function getCheckedNodes() {
       var nodes = this.findComponentsDownward(this, 'treeNode');
       return nodes.filter(function (node) {
@@ -7519,6 +7522,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       this.broadcast('treeNode', 'indeterminate');
+
+      if (isInit) this.doEmit();
     },
     getCheckedList: function getCheckedList() {
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getCheckedNodes();
@@ -10401,9 +10406,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         'is-validating': _vm.validateState === 'validating',
         'is-required': _vm.isRequired || _vm.required,
     }
-  }, [(_vm.label) ? _c('label', {
+  }, [(_vm.label || _vm.$slots.label) ? _c('label', {
     style: (_vm.labelStyle)
-  }, [_vm._v("\n    " + _vm._s(_vm.getLabel) + "\n  ")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n    " + _vm._s(_vm.getLabel) + "\n    "), _vm._t("label")], 2) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "form-content clear relative",
     style: (_vm.contentStyle)
   }, [_vm._t("default"), _vm._v(" "), (_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage) ? _c('div', {
