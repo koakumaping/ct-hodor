@@ -7414,9 +7414,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_emitter__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_node__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_node___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__tree_node__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_emitter__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tree_node__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tree_node___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__tree_node__);
+
 
 
 
@@ -7425,9 +7428,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tree',
   components: {
-    treeNode: __WEBPACK_IMPORTED_MODULE_1__tree_node___default.a
+    treeNode: __WEBPACK_IMPORTED_MODULE_2__tree_node___default.a
   },
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_emitter__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_emitter__["a" /* default */]],
   props: {
     data: {
       type: [Array],
@@ -7597,6 +7600,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         level++;
         for (var i = 0; i < root.length; ++i) {
           var node = root[i];
+          node.id = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(node.id) ? Number(node.id) : node.id;
           node.level = level;
           node.parentId = parentId;
           datas.set(node.id, node);

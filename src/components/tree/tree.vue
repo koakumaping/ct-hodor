@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { isNumber } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 import treeNode from './tree-node'
 
@@ -175,6 +176,7 @@ export default {
         level++
         for (let i = 0; i < root.length; ++i) {
           const node = root[i]
+          node.id = isNumber(node.id) ? Number(node.id) : node.id
           node.level = level
           node.parentId = parentId
           datas.set(node.id, node)
