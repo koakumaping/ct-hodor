@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { clone } from 'ct-util'
 import ct from '../../mixins/collapse-transition'
 import Emitter from '../../mixins/emitter'
 
@@ -98,7 +99,7 @@ export default {
       console.log(checked)
       this.$set(this.model, 'checked', checked)
       this.dispatch('Tree', 'checked')
-      this.dispatch('Tree', 'on-checked')
+      this.dispatch('Tree', 'on-checked', clone(this.model))
     },
     // 更新半选中状态
     setIndeterminate() {

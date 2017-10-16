@@ -7330,8 +7330,11 @@ var prefixCls = 'ct-time-picker';
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_collapse_transition__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_emitter__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_collapse_transition__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_emitter__ = __webpack_require__(4);
+
 
 
 
@@ -7339,7 +7342,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'treeNode',
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_emitter__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0__mixins_collapse_transition__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_emitter__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_collapse_transition__["a" /* default */]],
   props: {
     model: {
       type: Object,
@@ -7398,7 +7401,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(checked);
       this.$set(this.model, 'checked', checked);
       this.dispatch('Tree', 'checked');
-      this.dispatch('Tree', 'on-checked');
+      this.dispatch('Tree', 'on-checked', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.model));
     },
     setIndeterminate: function setIndeterminate() {
       this.indeterminate = this.model.checked ? false : this.findComponentsDownward(this, 'treeNode').some(function (node) {
@@ -7451,8 +7454,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.initMap();
     });
 
-    this.$on('on-checked', function () {
+    this.$on('on-checked', function (payload) {
       _this.doEmit();
+      _this.$emit('on-node-check', payload);
     });
   },
   data: function data() {
@@ -7463,17 +7467,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   watch: {
-    data: function data() {
-      var _this2 = this;
+    data: {
+      deep: true,
+      handler: function handler() {
+        var _this2 = this;
 
-      console.log('tree data change');
-      this.$nextTick(function () {
-        _this2.updateData();
-        _this2.initMap();
-        _this2.broadcast('treeNode', 'indeterminate');
+        console.log('tree data change');
+        this.$nextTick(function () {
+          _this2.updateData();
+          _this2.initMap();
+          _this2.broadcast('treeNode', 'indeterminate');
 
-        _this2.doEmit();
-      });
+          _this2.doEmit();
+        });
+      }
     }
   },
   methods: {

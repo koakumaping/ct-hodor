@@ -39,8 +39,9 @@ export default {
       this.initMap()
     })
 
-    this.$on('on-checked', () => {
+    this.$on('on-checked', (payload) => {
       this.doEmit()
+      this.$emit('on-node-check', payload)
     })
   },
   data() {
@@ -51,15 +52,18 @@ export default {
   },
   watch: {
     // 初始化时复原数据用，半选中框的显示（indeterminate）
-    data() {
-      console.log('tree data change')
-      this.$nextTick(() => {
-        this.updateData()
-        this.initMap()
-        this.broadcast('treeNode', 'indeterminate')
-        // 初始化数据完成后触发一次回调,更新下选中的列表
-        this.doEmit()
-      })
+    data: {
+      deep: true,
+      handler() {
+        console.log('tree data change')
+        this.$nextTick(() => {
+          this.updateData()
+          this.initMap()
+          this.broadcast('treeNode', 'indeterminate')
+          // 初始化数据完成后触发一次回调,更新下选中的列表
+          this.doEmit()
+        })
+      },
     },
   },
   methods: {
