@@ -1,5 +1,6 @@
 <template>
   <button class="ct-button"
+    v-waves
     type="button"
     @click="handleClick"
     :autofocus="autofocus"
@@ -100,6 +101,12 @@ export default {
   font-size: 12px
   border-radius: 4px
   position: relative
+
+  // 用于列表显示
+  ul
+    > li
+      padding: 2px 0
+      line-height: 1.2
   &.icon-only
     font-size: 16px
     padding: 7px 16px 6px 16px
