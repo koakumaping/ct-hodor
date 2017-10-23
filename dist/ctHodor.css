@@ -1763,6 +1763,7 @@ body {
   border-radius: 4px;
   display: inline-block;
   vertical-align: top;
+  width: 100%;
 }
 .ct-date-picker-input {
   position: relative;
@@ -5374,7 +5375,7 @@ body {
   padding: 0;
   margin-left: 0;
 }
-.ct-filterbar-warp .ct-filterbar .ct-fliterbar-content > .ct-form-search .search-line .content .ct-button {
+.ct-filterbar-warp .ct-filterbar .ct-fliterbar-content > .ct-form-search .search-line .content > .ct-button {
   width: 100%;
 }
 

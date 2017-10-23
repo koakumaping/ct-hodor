@@ -103,6 +103,6 @@ export default {
           .content
             padding: 0
             margin-left: 0
-            .ct-button
+            > .ct-button
               width: 100%
 </style>

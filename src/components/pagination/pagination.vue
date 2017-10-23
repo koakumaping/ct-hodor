@@ -65,10 +65,6 @@ export default {
     },
     // 以ajax方式翻页
     ajax: Boolean,
-    permission: {
-      type: Object,
-      default: () => {},
-    },
   },
   data() {
     return {
@@ -121,12 +117,6 @@ export default {
     },
     setSearchQuery() {
       this.query = clone(this.$route.query)
-      // 带上权限，避免分页切换时显示不需要显示的组件
-      if (this.permission) {
-        Object.assign(this.query, {
-          permission: JSON.stringify(this.permission),
-        })
-      }
     },
     go(index) {
       if (index === '' || index === window.undefined) {

@@ -5179,9 +5179,6 @@ var prefixCls = 'ct-date-picker';
     init: function init() {
       var flag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-      if (flag) {
-        this.set();
-      }
 
       this.setDate();
       this.getCells();
@@ -6200,11 +6197,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: 0
     },
 
-    ajax: Boolean,
-    permission: {
-      type: Object,
-      default: function _default() {}
-    }
+    ajax: Boolean
   },
   data: function data() {
     return {
@@ -6252,12 +6245,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     setSearchQuery: function setSearchQuery() {
       this.query = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.$route.query);
-
-      if (this.permission) {
-        Object.assign(this.query, {
-          permission: JSON.stringify(this.permission)
-        });
-      }
     },
     go: function go(index) {
       if (index === '' || index === window.undefined) {

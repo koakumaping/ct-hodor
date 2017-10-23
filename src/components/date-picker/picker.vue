@@ -177,9 +177,9 @@ export default {
   },
   methods: {
     init(flag = false) {
-      if (flag) {
-        this.set()
-      }
+      // if (flag) {
+      //   this.set()
+      // }
 
       this.setDate()
       this.getCells()
@@ -402,6 +402,7 @@ export default {
   border-radius: 4px
   display: inline-block
   vertical-align: top
+  width: 100%
   ^[0]-input
     position: relative
     i
