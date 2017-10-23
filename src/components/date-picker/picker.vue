@@ -1,7 +1,7 @@
 <template>
   <div :class="prefixCls" v-clickoutside="hidePicker" ref="ctDatePicker" :style="{width: width}">
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
-      <ctInput v-model="value" readonly :active="visiable"></ctInput>
+      <ctInput v-model="currentValue" readonly :active="visiable" :placeholder="emptyText"></ctInput>
       <i class="fa fa-calendar" aria-hidden="true"></i>
     </div>
 
@@ -114,6 +114,9 @@ export default {
     width: {
       default: '',
     },
+    emptyText: {
+      default: '请选择',
+    },
   },
   directives: { clickoutside },
   mixins: [Emitter],
@@ -132,6 +135,7 @@ export default {
       cells: [],
       visiable: false,
       topCls: '',
+      currentValue: '',
     }
   },
   computed: {
@@ -168,8 +172,8 @@ export default {
     },
   },
   watch: {
-    value() {
-      this.set()
+    value(val) {
+      this.setCurrentValue(val)
     },
   },
   mounted() {
@@ -177,29 +181,35 @@ export default {
   },
   methods: {
     init(flag = false) {
-      // if (flag) {
-      //   this.set()
-      // }
+      if (flag) {
+        this.set()
+      }
 
       this.setDate()
       this.getCells()
     },
+    setCurrentValue(value) {
+      if (value === this.currentValue) return
+      this.currentValue = value
+      this.set()
+    },
+    // 设置初始化时间
     set() {
-      if (this.value) {
+      if (this.currentValue) {
         const dateReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/
         const dateTimeReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])( ([01]\d|2[0-3]):[0-5]\d)$/
 
         if (this.type === 'datetime') {
-          if (!dateTimeReg.test(this.value)) {
+          if (!dateTimeReg.test(this.currentValue)) {
             console.error('ctDatePicker: date value error!')
           }
         } else {
-          if (!dateReg.test(this.value)) {
+          if (!dateReg.test(this.currentValue)) {
             console.error('ctDatePicker: date value error!')
           }
         }
 
-        this.date = new Date(this.value)
+        this.date = new Date(this.currentValue)
       } else {
         this.date = new Date()
       }
@@ -208,7 +218,7 @@ export default {
       this.day = this.date.getDate()
 
       // 如果没有传入初始化值，则hour, minutes均为00
-      // if (this.value) {
+      // if (this.currentValue) {
       //   this.hour = this.date.getHours()
       //   this.minutes = this.date.getMinutes()
       // }
@@ -272,7 +282,7 @@ export default {
         // 此时渲染的日期如果跟选择的值相同，则判定为选中
         // 不需要对上个月跟下个月做此判断
         // 因为选中上个月或者下个月的时候会自动切换成该月
-        _cellItem.selected = time === clearHours(new Date(this.value))
+        _cellItem.selected = time === clearHours(new Date(this.currentValue))
 
         _cellItem.disabled = this.disabledDate(new Date(time))
         this.cells.push(_cellItem)
@@ -306,12 +316,11 @@ export default {
       this.day = day
 
       if (this.type === 'datetime') {
-        this.dateTimeEmit()
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
       } else {
-        const datatime = `${this.year}-${this.getMonth}-${this.getDay}`
-        this.$emit('input', datatime)
-        this.dispatch('ctFormLine', 'ct.form.change', datatime)
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay}`
       }
+      this.dateTimeEmit()
       // $emit是异步的，所以要放在$nextTick中重新初始化数据
       this.$nextTick(() => {
         this.init()
@@ -360,16 +369,19 @@ export default {
       ]
     },
     dateTimeEmit() {
-      const datetime = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
-      this.$emit('input', datetime)
-      this.dispatch('ctFormLine', 'ct.form.change', datetime)
+      if (this.currentValue) {
+        this.$emit('input', this.currentValue)
+        this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
+      }
     },
     handleHourChange(val) {
       this.hour = val
+      this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
       this.dateTimeEmit()
     },
     handleMinutesChange(val) {
       this.minutes = val
+      this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
       this.dateTimeEmit()
     },
     showPicker() {
@@ -414,6 +426,9 @@ export default {
       padding-right: 24px
   .ct-input
     display: block
+    z-index: 0
+    &::before
+      cursor: pointer!important
   ^[0]-warpper
     background-color: #fff
     border-radius: 4px

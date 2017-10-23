@@ -5111,6 +5111,9 @@ var prefixCls = 'ct-date-picker';
     },
     width: {
       default: ''
+    },
+    emptyText: {
+      default: '请选择'
     }
   },
   directives: { clickoutside: __WEBPACK_IMPORTED_MODULE_2__directives_clickoutside__["a" /* default */] },
@@ -5129,7 +5132,8 @@ var prefixCls = 'ct-date-picker';
       minutes: '00',
       cells: [],
       visiable: false,
-      topCls: ''
+      topCls: '',
+      currentValue: ''
     };
   },
 
@@ -5167,8 +5171,8 @@ var prefixCls = 'ct-date-picker';
     }
   },
   watch: {
-    value: function value() {
-      this.set();
+    value: function value(val) {
+      this.setCurrentValue(val);
     }
   },
   mounted: function mounted() {
@@ -5179,26 +5183,34 @@ var prefixCls = 'ct-date-picker';
     init: function init() {
       var flag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
+      if (flag) {
+        this.set();
+      }
 
       this.setDate();
       this.getCells();
     },
+    setCurrentValue: function setCurrentValue(value) {
+      if (value === this.currentValue) return;
+      this.currentValue = value;
+      this.set();
+    },
     set: function set() {
-      if (this.value) {
+      if (this.currentValue) {
         var dateReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/;
         var dateTimeReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])( ([01]\d|2[0-3]):[0-5]\d)$/;
 
         if (this.type === 'datetime') {
-          if (!dateTimeReg.test(this.value)) {
+          if (!dateTimeReg.test(this.currentValue)) {
             console.error('ctDatePicker: date value error!');
           }
         } else {
-          if (!dateReg.test(this.value)) {
+          if (!dateReg.test(this.currentValue)) {
             console.error('ctDatePicker: date value error!');
           }
         }
 
-        this.date = new Date(this.value);
+        this.date = new Date(this.currentValue);
       } else {
         this.date = new Date();
       }
@@ -5258,7 +5270,7 @@ var prefixCls = 'ct-date-picker';
         var _time = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util__["a" /* clearHours */])(new Date(_cellItem2.year, _cellItem2.month, _cellItem2.day));
         _cellItem2.today = _time === today;
 
-        _cellItem2.selected = _time === __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util__["a" /* clearHours */])(new Date(this.value));
+        _cellItem2.selected = _time === __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util__["a" /* clearHours */])(new Date(this.currentValue));
 
         _cellItem2.disabled = this.disabledDate(new Date(_time));
         this.cells.push(_cellItem2);
@@ -5299,12 +5311,11 @@ var prefixCls = 'ct-date-picker';
       this.day = day;
 
       if (this.type === 'datetime') {
-        this.dateTimeEmit();
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
       } else {
-        var datatime = this.year + '-' + this.getMonth + '-' + this.getDay;
-        this.$emit('input', datatime);
-        this.dispatch('ctFormLine', 'ct.form.change', datatime);
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay;
       }
+      this.dateTimeEmit();
 
       this.$nextTick(function () {
         _this.init();
@@ -5345,16 +5356,19 @@ var prefixCls = 'ct-date-picker';
       return [prefixCls + '-cell', (_ref = {}, _defineProperty(_ref, prefixCls + '-cell-selected', cell.selected), _defineProperty(_ref, prefixCls + '-cell-disabled', cell.disabled), _defineProperty(_ref, prefixCls + '-cell-today', cell.today), _defineProperty(_ref, prefixCls + '-cell-prev-month', cell.type === 'prev-month'), _defineProperty(_ref, prefixCls + '-cell-this-month', cell.type === 'this-month'), _defineProperty(_ref, prefixCls + '-cell-next-month', cell.type === 'next-month'), _ref)];
     },
     dateTimeEmit: function dateTimeEmit() {
-      var datetime = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
-      this.$emit('input', datetime);
-      this.dispatch('ctFormLine', 'ct.form.change', datetime);
+      if (this.currentValue) {
+        this.$emit('input', this.currentValue);
+        this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
+      }
     },
     handleHourChange: function handleHourChange(val) {
       this.hour = val;
+      this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
       this.dateTimeEmit();
     },
     handleMinutesChange: function handleMinutesChange(val) {
       this.minutes = val;
+      this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
       this.dateTimeEmit();
     },
     showPicker: function showPicker() {
@@ -6604,7 +6618,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       validator: function validator(value) {
         return ['left', 'right', 'top', 'bottom'].indexOf(value) > -1;
       }
-    }
+    },
+    noFormEmit: Boolean
   },
   data: function data() {
     return {
@@ -6797,7 +6812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     updateSelectStatus: function updateSelectStatus() {
       this.broadcast('ctOption', 'update-selected', this.currentValue);
-      this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
+      if (!this.noFormEmit) this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
     },
     update: function update() {
       this.setCurrentValue();
@@ -9945,7 +9960,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "margin-right": "8px"
     },
     attrs: {
-      "width": "54px"
+      "width": "54px",
+      "noFormEmit": ""
     },
     model: {
       value: (_vm.currentHour),
@@ -9965,7 +9981,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })), _vm._v(" "), _c('ctSelect', {
     staticClass: "left",
     attrs: {
-      "width": "54px"
+      "width": "54px",
+      "noFormEmit": ""
     },
     model: {
       value: (_vm.currentMinutes),
@@ -10705,14 +10722,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ctInput', {
     attrs: {
       "readonly": "",
-      "active": _vm.visiable
+      "active": _vm.visiable,
+      "placeholder": _vm.emptyText
     },
     model: {
-      value: (_vm.value),
+      value: (_vm.currentValue),
       callback: function($$v) {
-        _vm.value = $$v
+        _vm.currentValue = $$v
       },
-      expression: "value"
+      expression: "currentValue"
     }
   }), _vm._v(" "), _c('i', {
     staticClass: "fa fa-calendar",

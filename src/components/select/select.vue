@@ -70,6 +70,7 @@ export default {
       default: 'bottom',
       validator: value => ['left', 'right', 'top', 'bottom'].indexOf(value) > -1,
     },
+    noFormEmit: Boolean,
   },
   data() {
     return {
@@ -261,7 +262,7 @@ export default {
     updateSelectStatus() {
       // 更新option选中项
       this.broadcast('ctOption', 'update-selected', this.currentValue)
-      this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
+      if (!this.noFormEmit) this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
     },
     update() {
       this.setCurrentValue()

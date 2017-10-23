@@ -1779,6 +1779,10 @@ body {
 }
 .ct-date-picker .ct-input {
   display: block;
+  z-index: 0;
+}
+.ct-date-picker .ct-input::before {
+  cursor: pointer !important;
 }
 .ct-date-picker-warpper {
   background-color: #fff;
@@ -5178,8 +5182,12 @@ body {
 }
 .form section.is-error .form-content > .ct-input > input,
 .form section.is-error .form-content > .ct-input > textarea,
+.form section.is-error .form-content > .ct-date-picker > .ct-date-picker-input > .ct-input > input,
 .form section.is-error .form-content > .ct-select > .ct-select-name {
   border-color: #ed3f14;
+}
+.form section.is-error .form-content > .ct-date-picker > .ct-date-picker-input > .ct-input::before {
+  cursor: pointer !important;
 }
 
 .ct-form-search {

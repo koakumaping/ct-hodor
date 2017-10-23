@@ -1,9 +1,9 @@
 <template>
   <div :class="[prefixCls, 'clear']">
-    <ctSelect v-model="currentHour" width="54px" class="left" style="margin-right: 8px;">
+    <ctSelect v-model="currentHour" width="54px" class="left" style="margin-right: 8px;" noFormEmit>
       <ctOption v-for="item in getHourList" :key="item.id" :label="item.label" :value="item.key"></ctOption>
     </ctSelect>
-    <ctSelect v-model="currentMinutes" width="54px" class="left">
+    <ctSelect v-model="currentMinutes" width="54px" class="left" noFormEmit>
       <ctOption v-for="item in getMinutesList" :key="item.id" :label="item.label" :value="item.key"></ctOption>
     </ctSelect>
   </div>

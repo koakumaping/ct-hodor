@@ -175,7 +175,10 @@ export default {
   margin-bottom: 20px
   .form-content
     > .ct-input > input,
-    > .ct-input > textarea
+    > .ct-input > textarea,
+    > .ct-date-picker > .ct-date-picker-input > .ct-input > input,
     > .ct-select > .ct-select-name
       border-color: $color-red
+    > .ct-date-picker > .ct-date-picker-input > .ct-input::before
+      cursor pointer!important
 </style>
