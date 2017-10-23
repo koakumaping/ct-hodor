@@ -25,6 +25,7 @@ export default {
   > .right > div > *
     display inline-block!important
     margin-right 8px!important
+    vertical-align middle
     &:last-child
       margin-right 0!important
 </style>

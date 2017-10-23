@@ -1350,6 +1350,7 @@ body {
   user-select: none;
   height: 16px;
   line-height: 16px;
+  font-size: 12px;
 }
 .ct-checkbox label {
   display: block;
@@ -5291,6 +5292,7 @@ body {
 .ct-action-bar > .right > div > * {
   display: inline-block !important;
   margin-right: 8px !important;
+  vertical-align: middle;
 }
 .ct-action-bar > .left > *:last-child,
 .ct-action-bar > .left > div > *:last-child,
@@ -5456,10 +5458,6 @@ body {
   font-size: 15px;
   padding: 16px 16px;
   cursor: pointer;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAnUlEQVQ4T2NkoBAwUqifgTYGTFmzfwEjM8OE7EDHC4RciNMFYEMYGQ5kBzsuwGcIXi8QYwjBMJi8dn8DyAW5wY5gGh0QNACkYera/Qn/GBgUsBlClAGT1+wPYGBgcMgNcSwg2QUg2///Z3DICXFMINkLk9fsn8DAyPABl/9BBtImGkHR9/8/w4LcUMcDZCckQhph8kTFAtkpkRhXAACtSDMRclJW4QAAAABJRU5ErkJggg==);
-  background-position: center right;
-  background-position-x: 180px;
-  background-repeat: no-repeat;
   transition: all 0.3s;
   line-height: 1;
 }
@@ -5472,14 +5470,17 @@ body {
 .side nav .side-menu:hover img[alt=icon-active] {
   display: inline-block;
 }
-.side nav .side-menu.side-menu-expand {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAqklEQVQ4T2NkoBAwUqifYZAZMHX9foPsQMcL+Lw1ff1+hcxAxwcwNShemLJm/wJGZoYJuAwBWfDvH8OE3GBHB6wGgASnrNm/gZGZoQHdkP71+wVY/zIs+M3MkFAY6PgBpwEghSz/GDYwMTEUwAzBJobTAJAE1LYJv5kZCkC24fMazmiE+ZeRgfE+I8P/g9nBjguwBS7edAAK8X8MDAL4YmaQJSRy8sXAewEAx91FEVE5fycAAAAASUVORK5CYII=);
+.side nav .side-menu.side-menu-expand .icon-more {
+  transform: rotateZ(90deg);
 }
 .side nav .side-menu .iconfont {
   height: 16px;
   width: 16px;
   vertical-align: middle;
   display: inline-block;
+}
+.side nav .side-menu .iconfont.icon-more {
+  transition: all 0.3s;
 }
 .side nav .side-menu .side-menu-icon {
   height: 16px;
@@ -5491,7 +5492,7 @@ body {
 }
 .side nav .side-menu span {
   padding-left: 14px;
-  font-size: 16px;
+  font-size: 14px;
   vertical-align: middle;
   display: inline-block;
 }

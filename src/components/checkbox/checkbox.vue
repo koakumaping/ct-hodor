@@ -102,6 +102,7 @@ export default {
   user-select: none
   height: 16px
   line-height: 16px
+  font-size: 12px
   label
     display block
     position: relative

@@ -7,6 +7,7 @@
         v-on:click="toggleMenu(index)">
           <iconFont :name="row.icon"></iconFont>
           <span>{{row.name}}</span>
+          <iconFont name="more" class="right"></iconFont>
         </dt>
         <sideItem :data="row"></sideItem>        
       </dl>
@@ -134,10 +135,6 @@ $menu-bg-color = #2B3654
       font-size: 15px
       padding: 16px 16px
       cursor: pointer
-      background-image: url(../../assets/img/more.png)
-      background-position: center right
-      background-position-x: 180px
-      background-repeat: no-repeat
       transition: all 0.3s
       line-height: 1
       &:hover
@@ -147,13 +144,16 @@ $menu-bg-color = #2B3654
         img[alt=icon-active]
           display: inline-block
       &.side-menu-expand
-        background-image: url(../../assets/img/more-unfold.png)
+        .icon-more
+          transform: rotateZ(90deg)
 
       .iconfont
         height: 16px
         width: 16px
         vertical-align: middle
         display: inline-block
+        &.icon-more
+          transition: all 0.3s
       .side-menu-icon
         height: 16px
         width: 16px
@@ -163,7 +163,7 @@ $menu-bg-color = #2B3654
 
       span
         padding-left: 14px
-        font-size: 16px
+        font-size: 14px
         vertical-align: middle
         display: inline-block
   
