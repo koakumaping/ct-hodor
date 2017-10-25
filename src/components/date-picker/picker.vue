@@ -96,17 +96,12 @@ const prefixCls = 'ct-date-picker'
 export default {
   name: 'ctDatePicker',
   props: {
-    value: {
-      default: '',
-    },
+    value: String,
     type: {
       type: String,
       default: 'date',
     },
-    autoclose: {
-      type: Boolean,
-      default: false,
-    },
+    autoclose: Boolean,
     disabledDate: {
       type: Function,
       default: () => false,
@@ -114,7 +109,7 @@ export default {
     width: {
       default: '',
     },
-    emptyText: {
+    placeholder: {
       default: '请选择',
     },
   },

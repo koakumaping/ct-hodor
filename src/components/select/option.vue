@@ -63,9 +63,9 @@ export default {
           this.selected = true
           const parent = this.parent
 
-          // 值为空的时候渲染成emptyName, 用于某些要清空选择的清空下
+          // 值为空的时候渲染成placeholder, 用于某些要清空选择的清空下
           if (this.value === '') {
-            parent.name = parent.emptyName ? parent.emptyName : this.label
+            parent.name = parent.placeholder ? parent.placeholder : this.label
           } else {
             parent.name = this.label
           }

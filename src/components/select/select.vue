@@ -60,7 +60,7 @@ export default {
     multiple: Boolean,
     // 可以清空
     clearable: Boolean,
-    emptyName: [String, Number],
+    placeholder: [String, Number],
     // 最多显示多少行
     maxItem: {
       type: Number,
@@ -256,7 +256,7 @@ export default {
     updateEmptyName(name) {
       let _name = this.defaultName
       if (name) _name = name
-      if (this.emptyName) _name = this.emptyName
+      if (this.placeholder) _name = this.placeholder
       this.name = _name
     },
     updateSelectStatus() {

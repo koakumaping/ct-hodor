@@ -176,7 +176,7 @@ $menu-bg-color = #2B3654
         padding-left: 58px
         padding-bottom: 1px
         border-left: 2px solid transparent
-        transition: all 0.3s
+        transition: background-color 0.3s
         &.router-link-active:hover
           color: #fff!important
         &:hover

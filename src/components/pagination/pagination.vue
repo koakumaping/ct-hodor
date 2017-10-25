@@ -70,7 +70,6 @@ export default {
     return {
       perPage: Number(window.localStorage.getItem('perPage')) || this.$perPage,
       currentPage: 1,
-      linkName: '404s',
       pageLength: 0,
       pageList: [],
       searchList: [],
@@ -84,12 +83,6 @@ export default {
     total(val) {
       this.setPageList()
     },
-    // permission: {
-    //   deep: true,
-    //   handler() {
-    //     this.setSearchQuery()
-    //   },
-    // },
   },
   methods: {
     init() {
