@@ -1793,7 +1793,7 @@ body {
   box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
 }
 .ct-date-picker-warpper.ct-date-picker-top {
-  top: -290px;
+  top: -344px;
 }
 .ct-date-picker-header {
   height: 32px;
@@ -5515,7 +5515,7 @@ body {
   padding-left: 58px;
   padding-bottom: 1px;
   border-left: 2px solid transparent;
-  transition: all 0.3s;
+  transition: background-color 0.3s;
 }
 .side nav .side-menu-item a.router-link-active:hover {
   color: #fff !important;

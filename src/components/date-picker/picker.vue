@@ -1,7 +1,7 @@
 <template>
   <div :class="prefixCls" v-clickoutside="hidePicker" ref="ctDatePicker" :style="{width: width}">
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
-      <ctInput v-model="currentValue" readonly :active="visiable" :placeholder="emptyText"></ctInput>
+      <ctInput v-model="currentValue" readonly :active="visiable" :placeholder="placeholder"></ctInput>
       <i class="fa fa-calendar" aria-hidden="true"></i>
     </div>
 
@@ -165,6 +165,17 @@ export default {
         return minutes
       }
     },
+    listOverflow() {
+      const windowHeight = getWindowHeight()
+      const elRect = this.$refs.ctDatePicker.getBoundingClientRect()
+      const elToBottom = elRect.bottom
+      // const maxHeight = elRect.bottom - elRect.top
+
+      if (windowHeight - elToBottom - (340 + 8) <= 0) {
+        return true
+      }
+      return false
+    },
   },
   watch: {
     value(val) {
@@ -177,16 +188,18 @@ export default {
   methods: {
     init(flag = false) {
       if (flag) {
-        this.set()
+        this.setCurrentValue(this.value, true)
       }
 
       this.setDate()
       this.getCells()
     },
-    setCurrentValue(value) {
-      if (value === this.currentValue) return
-      this.currentValue = value
-      this.set()
+    setCurrentValue(value, init = false) {
+      if (value !== this.currentValue && this.currentValue === '') {
+        this.currentValue = value
+        this.set()
+      }
+      if (init) this.set()
     },
     // 设置初始化时间
     set() {
@@ -380,10 +393,7 @@ export default {
       this.dateTimeEmit()
     },
     showPicker() {
-      const windowHeight = getWindowHeight()
-      const elToBottom = this.$refs.ctDatePicker.getBoundingClientRect().bottom
-      const maxHeight = 286
-      if (windowHeight - elToBottom - maxHeight <= 0) {
+      if (this.listOverflow) {
         this.topCls = `${prefixCls}-top`
       } else {
         this.topCls = ''
@@ -432,7 +442,7 @@ export default {
     z-index: 3
     box-shadow: $box-shadow
     &^[0]-top
-      top: -290px
+      top: -344px
     ^[0]-header
       height: 32px
       line-height: 32px

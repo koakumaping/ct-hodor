@@ -5092,17 +5092,12 @@ var prefixCls = 'ct-date-picker';
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ctDatePicker',
   props: {
-    value: {
-      default: ''
-    },
+    value: String,
     type: {
       type: String,
       default: 'date'
     },
-    autoclose: {
-      type: Boolean,
-      default: false
-    },
+    autoclose: Boolean,
     disabledDate: {
       type: Function,
       default: function _default() {
@@ -5112,7 +5107,7 @@ var prefixCls = 'ct-date-picker';
     width: {
       default: ''
     },
-    emptyText: {
+    placeholder: {
       default: '请选择'
     }
   },
@@ -5168,6 +5163,17 @@ var prefixCls = 'ct-date-picker';
         }
         return minutes;
       }
+    },
+    listOverflow: function listOverflow() {
+      var windowHeight = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])();
+      var elRect = this.$refs.ctDatePicker.getBoundingClientRect();
+      var elToBottom = elRect.bottom;
+
+
+      if (windowHeight - elToBottom - (340 + 8) <= 0) {
+        return true;
+      }
+      return false;
     }
   },
   watch: {
@@ -5184,16 +5190,20 @@ var prefixCls = 'ct-date-picker';
       var flag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
       if (flag) {
-        this.set();
+        this.setCurrentValue(this.value, true);
       }
 
       this.setDate();
       this.getCells();
     },
     setCurrentValue: function setCurrentValue(value) {
-      if (value === this.currentValue) return;
-      this.currentValue = value;
-      this.set();
+      var init = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      if (value !== this.currentValue && this.currentValue === '') {
+        this.currentValue = value;
+        this.set();
+      }
+      if (init) this.set();
     },
     set: function set() {
       if (this.currentValue) {
@@ -5372,10 +5382,7 @@ var prefixCls = 'ct-date-picker';
       this.dateTimeEmit();
     },
     showPicker: function showPicker() {
-      var windowHeight = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])();
-      var elToBottom = this.$refs.ctDatePicker.getBoundingClientRect().bottom;
-      var maxHeight = 286;
-      if (windowHeight - elToBottom - maxHeight <= 0) {
+      if (this.listOverflow) {
         this.topCls = prefixCls + '-top';
       } else {
         this.topCls = '';
@@ -6217,7 +6224,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       perPage: Number(window.localStorage.getItem('perPage')) || this.$perPage,
       currentPage: 1,
-      linkName: '404s',
       pageLength: 0,
       pageList: [],
       searchList: [],
@@ -6551,7 +6557,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           var parent = this.parent;
 
           if (this.value === '') {
-            parent.name = parent.emptyName ? parent.emptyName : this.label;
+            parent.name = parent.placeholder ? parent.placeholder : this.label;
           } else {
             parent.name = this.label;
           }
@@ -6607,7 +6613,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     multiple: Boolean,
 
     clearable: Boolean,
-    emptyName: [String, Number],
+    placeholder: [String, Number],
 
     maxItem: {
       type: Number,
@@ -6626,7 +6632,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       visible: false,
       index: '',
       optionName: '',
-      topCls: '',
       name: '请选择',
       currentValue: this.multiple ? [] : '',
       hover: false,
@@ -6660,6 +6665,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return true;
       }
       if (!this.multiple && this.currentValue !== '') {
+        return true;
+      }
+      return false;
+    },
+    listOverflow: function listOverflow() {
+      var windowHeight = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])();
+      var elToBottom = this.$refs.ctSelect.getBoundingClientRect().bottom;
+      var maxHeight = 32 * this.maxItem;
+
+      if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
         return true;
       }
       return false;
@@ -6715,14 +6730,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     toggleList: function toggleList() {
-      var windowHeight = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])();
-      var elToBottom = this.$refs.ctSelect.getBoundingClientRect().bottom;
-      var maxHeight = 32 * this.maxItem;
-      if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
-        this.topCls = 'ct-select-list-top';
-      } else {
-        this.topCls = '';
-      }
       this.visible = !this.visible;
       this.updateOptionPosition();
       this.scrollToCurrent();
@@ -6807,7 +6814,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateEmptyName: function updateEmptyName(name) {
       var _name = this.defaultName;
       if (name) _name = name;
-      if (this.emptyName) _name = this.emptyName;
+      if (this.placeholder) _name = this.placeholder;
       this.name = _name;
     },
     updateSelectStatus: function updateSelectStatus() {
@@ -6837,7 +6844,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         var _top = this.ret.top.replace('px', '');
-        _top -= this.$el.offsetHeight;
+        if (this.place === 'bottom') _top -= this.$el.offsetHeight;
+        if (this.place === 'top' || this.listOverflow) {
+          var _maxItem = this.optionList.length;
+          if (_maxItem > this.maxItem) _maxItem = this.maxItem;
+
+          _maxItem -= 2;
+          _top -= 32 * _maxItem;
+        }
         this.ret.top = _top + 'px';
 
         this.ret.visibility = 'visible';
@@ -9961,7 +9975,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     attrs: {
       "width": "54px",
-      "noFormEmit": ""
+      "noFormEmit": "",
+      "place": "top"
     },
     model: {
       value: (_vm.currentHour),
@@ -9982,7 +9997,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "left",
     attrs: {
       "width": "54px",
-      "noFormEmit": ""
+      "noFormEmit": "",
+      "place": "top"
     },
     model: {
       value: (_vm.currentMinutes),
@@ -10723,7 +10739,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "readonly": "",
       "active": _vm.visiable,
-      "placeholder": _vm.emptyText
+      "placeholder": _vm.placeholder
     },
     model: {
       value: (_vm.currentValue),
@@ -11108,7 +11124,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)], 1), _vm._v(" "), _c('div', {
     ref: "ctSelectList",
-    class: [_vm.topCls, 'ct-select-list'],
+    staticClass: "ct-select-list",
     style: (_vm.listStyle)
   }, [_c('ul', {
     ref: "ctSelectUlList"

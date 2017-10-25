@@ -23,7 +23,7 @@
     </dl>
     <div
       ref="ctSelectList"
-      :class="[topCls, 'ct-select-list']"
+      class="ct-select-list"
       :style="listStyle"
     >
       <ul ref="ctSelectUlList">
@@ -77,7 +77,6 @@ export default {
       visible: false,
       index: '',
       optionName: '',
-      topCls: '',
       name: '请选择',
       currentValue: this.multiple ? [] : '',
       hover: false,
@@ -113,6 +112,16 @@ export default {
         return true
       }
       if (!this.multiple && this.currentValue !== '') {
+        return true
+      }
+      return false
+    },
+    listOverflow() {
+      const windowHeight = getWindowHeight()
+      const elToBottom = this.$refs.ctSelect.getBoundingClientRect().bottom
+      const maxHeight = 32 * this.maxItem
+
+      if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
         return true
       }
       return false
@@ -166,14 +175,6 @@ export default {
   },
   methods: {
     toggleList() {
-      const windowHeight = getWindowHeight()
-      const elToBottom = this.$refs.ctSelect.getBoundingClientRect().bottom
-      const maxHeight = 32 * this.maxItem
-      if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
-        this.topCls = 'ct-select-list-top'
-      } else {
-        this.topCls = ''
-      }
       this.visible = !this.visible
       this.updateOptionPosition()
       this.scrollToCurrent()
@@ -287,7 +288,14 @@ export default {
         })
         // 处理下top，保证list能正好覆盖住ct-select
         let _top = this.ret.top.replace('px', '')
-        _top -= this.$el.offsetHeight
+        if (this.place === 'bottom') _top -= this.$el.offsetHeight
+        if (this.place === 'top' || this.listOverflow) {
+          let _maxItem = this.optionList.length
+          if (_maxItem > this.maxItem) _maxItem = this.maxItem
+          // 排除自己的高度跟select的高度
+          _maxItem -= 2
+          _top -= 32 * _maxItem
+        }
         this.ret.top = `${_top}px`
         // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
         this.ret.visibility = 'visible'
