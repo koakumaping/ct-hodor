@@ -62,6 +62,7 @@ export default {
     },
     width: [String, Number],
     height: [String, Number],
+    fullScreen: Boolean,
   },
   data() {
     return {
@@ -85,27 +86,22 @@ export default {
     },
     customWidthStyle() {
       const ret = {}
-      if (this.width) {
-        const _width = Number(this.width)
-        ret.width = `${_width}px`
-        ret.marginLeft = `${this.windowWidth / 2 - _width / 2}px`
+
+      if (this.fullScreen) {
+        ret.width = '90%'
+        ret.marginLeft = '5%'
+        return ret
       }
 
+      if (this.width) {
+        ret.width = `${this.width}${isNumber(this.width) ? 'px' : ''}`
+        ret.marginLeft = isNumber(this.width) ?
+          `${this.windowWidth / 2 - this.width / 2}px` :
+          `${(100 - this.width.replace('%', '')) / 2}%`
+      }
       return ret
     },
   },
-  // watch: {
-  //   visible(val) {
-  //     if (val) {
-  //       this.$emit('on-open')
-  //       this.$nextTick(() => {
-  //         this.calcHeight()
-  //       })
-  //     } else {
-  //       this.$emit('on-hide')
-  //     }
-  //   },
-  // },
   mounted() {
     this.resizeHandleEvent = throttle(() => {
       this.calcHeight()

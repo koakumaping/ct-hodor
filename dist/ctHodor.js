@@ -5427,7 +5427,8 @@ var prefixCls = 'ct-dialog';
       default: true
     },
     width: [String, Number],
-    height: [String, Number]
+    height: [String, Number],
+    fullScreen: Boolean
   },
   data: function data() {
     return {
@@ -5452,12 +5453,17 @@ var prefixCls = 'ct-dialog';
     },
     customWidthStyle: function customWidthStyle() {
       var ret = {};
-      if (this.width) {
-        var _width = Number(this.width);
-        ret.width = _width + 'px';
-        ret.marginLeft = this.windowWidth / 2 - _width / 2 + 'px';
+
+      if (this.fullScreen) {
+        ret.width = '90%';
+        ret.marginLeft = '5%';
+        return ret;
       }
 
+      if (this.width) {
+        ret.width = '' + this.width + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? 'px' : '');
+        ret.marginLeft = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? this.windowWidth / 2 - this.width / 2 + 'px' : (100 - this.width.replace('%', '')) / 2 + '%';
+      }
       return ret;
     }
   },

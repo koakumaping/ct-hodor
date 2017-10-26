@@ -53,7 +53,7 @@ export default {
   width: 0
   overflow: hidden
   &.ct-filterbar-visible
-    z-index: 1
+    z-index: 8
     visibility: visible
     height: auto
     width: auto
