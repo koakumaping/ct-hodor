@@ -26,21 +26,15 @@
     margin-left: auto
     margin-right: auto
     height: 100%
-    overflow: auto
-    z-index: 1
-    position: absolute
-    left: 0
-    right: 0
-    top: 0
-    bottom: 0
     .ct-dialog-container
       margin-left: 35%
       width: 30%
       transition: top cubic-bezier(0.4, 0.0, 0.2, 1) 0.2s
       .ct-dialog-box
         height: auto
-        margin-top: 300px
-        background: white
+        padding-top: 52px
+        margin-top: 10%
+        background: #ffffff
         border-radius: 3px
         position: relative
         outline: none
@@ -82,7 +76,7 @@
           padding: 16px
 
         .ct-dialog-content
-          padding: 52px 16px
+          padding: 0 16px
           padding-bottom: 16px
           font-size: 14px
           color: #757575
@@ -94,8 +88,14 @@
           transition: height 0.4s ease-in
           display: inline-block
           width: 100%
-          position: relative
           word-break: break-word
+          &.fullscreen
+            overflow: auto
+            position: absolute
+            top: 52px
+            left: 0
+            right: 0
+            bottom: 0
           &.has-footer
             padding-bottom: 64px
         ct-dialog-btn()

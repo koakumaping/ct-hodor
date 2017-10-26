@@ -11198,7 +11198,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c('div', {
     ref: "dialogContent",
     staticClass: "ct-dialog-content",
-    class: [_vm.$slots.footer ? 'has-footer' : '']
+    class: [_vm.$slots.footer ? 'has-footer' : '', _vm.fullScreen ? 'fullscreen' : '']
   }, [(_vm.visible) ? _vm._t("default") : _vm._e()], 2), _vm._v(" "), (_vm.$slots.footer) ? _c('div', {
     staticClass: "ct-dialog-footer clear"
   }, [_c('div', {

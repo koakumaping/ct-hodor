@@ -2017,13 +2017,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 100%;
-  overflow: auto;
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container {
   margin-left: 35%;
@@ -2032,7 +2025,8 @@ body {
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box {
   height: auto;
-  margin-top: 300px;
+  padding-top: 52px;
+  margin-top: 10%;
   background: #fff;
   border-radius: 3px;
   position: relative;
@@ -2082,7 +2076,7 @@ body {
   padding: 16px;
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box .ct-dialog-content {
-  padding: 52px 16px;
+  padding: 0 16px;
   padding-bottom: 16px;
   font-size: 14px;
   color: #757575;
@@ -2093,8 +2087,15 @@ body {
   transition: height 0.4s ease-in;
   display: inline-block;
   width: 100%;
-  position: relative;
   word-break: break-word;
+}
+.ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box .ct-dialog-content.fullscreen {
+  overflow: auto;
+  position: absolute;
+  top: 52px;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box .ct-dialog-content.has-footer {
   padding-bottom: 64px;

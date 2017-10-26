@@ -13,7 +13,7 @@
           </div>
           <div class="ct-dialog-title">{{title}}</div>
           <div class="ct-dialog-content"
-            :class="[$slots.footer ? 'has-footer' : '']"
+            :class="[$slots.footer ? 'has-footer' : '', fullScreen ? 'fullscreen' : '']"
             ref="dialogContent"
           >
             <slot v-if="visible"></slot>
