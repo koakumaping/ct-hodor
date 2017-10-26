@@ -10,7 +10,7 @@ import 'ct-hodor/dist/ctHodor.css'
 Vue.use(ctHodor)
 
 // 配置notice组件
-const notice = new Vue.prototype.$util.notices(store)
+const notice = new Vue.prototype.$notices(store)
 window.notice = notice
 ```
 
