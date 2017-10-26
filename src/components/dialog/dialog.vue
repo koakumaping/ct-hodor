@@ -1,5 +1,5 @@
 <template>
-  <div class="ct-dialog" v-show="visible" :class="sizeCls" aria-hidden="true">
+  <div class="ct-dialog" v-show="visible" :class="sizeCls" aria-hidden="true" ref="ctDialog">
     <div class="ct-dialog-bg" @click="shark"></div>
     <div class="ct-dialog-warp">
       <div class="ct-dialog-container" :style="customWidthStyle">
@@ -69,7 +69,7 @@ export default {
       prefxiCls: `${prefixCls}`,
       visible: false,
       windowWidth: document.body.clientWidth,
-      windowHeight: document.body.clientHeight,
+      // windowHeight: document.body.clientHeight,
       dialogHeight: 'auto',
       resizeHandleEvent: null,
       closeAnimation: '',
@@ -78,6 +78,9 @@ export default {
     }
   },
   computed: {
+    windowHeight() {
+      return this.$refs.ctDialog.clientHeight
+    },
     sizeCls() {
       return [`${this.prefxiCls}-${this.size}`]
     },
@@ -90,6 +93,7 @@ export default {
       if (this.fullScreen) {
         ret.width = '90%'
         ret.marginLeft = '5%'
+        ret.height = '100%'
         return ret
       }
 
@@ -152,8 +156,14 @@ export default {
         ret.height = ''
       }
 
-      let marginTop = this.windowHeight / 2 - this.dialogHeight / 2
-      if (marginTop < 0) marginTop = 0
+      let marginTop = 0
+      if (!this.fullScreen) {
+        marginTop = this.windowHeight / 2 - this.dialogHeight / 2
+        if (marginTop < 0) marginTop = 0
+      } else {
+        ret.minHeight = '100%'
+      }
+
       ret.marginTop = `${marginTop}${isNumber(marginTop) ? 'px' : ''}`
       this.customHeightStyle = ret
     },

@@ -5435,7 +5435,7 @@ var prefixCls = 'ct-dialog';
       prefxiCls: '' + prefixCls,
       visible: false,
       windowWidth: document.body.clientWidth,
-      windowHeight: document.body.clientHeight,
+
       dialogHeight: 'auto',
       resizeHandleEvent: null,
       closeAnimation: '',
@@ -5445,6 +5445,9 @@ var prefixCls = 'ct-dialog';
   },
 
   computed: {
+    windowHeight: function windowHeight() {
+      return this.$refs.ctDialog.clientHeight;
+    },
     sizeCls: function sizeCls() {
       return [this.prefxiCls + '-' + this.size];
     },
@@ -5457,6 +5460,7 @@ var prefixCls = 'ct-dialog';
       if (this.fullScreen) {
         ret.width = '90%';
         ret.marginLeft = '5%';
+        ret.height = '100%';
         return ret;
       }
 
@@ -5519,8 +5523,14 @@ var prefixCls = 'ct-dialog';
         ret.height = '';
       }
 
-      var marginTop = this.windowHeight / 2 - this.dialogHeight / 2;
-      if (marginTop < 0) marginTop = 0;
+      var marginTop = 0;
+      if (!this.fullScreen) {
+        marginTop = this.windowHeight / 2 - this.dialogHeight / 2;
+        if (marginTop < 0) marginTop = 0;
+      } else {
+        ret.minHeight = '100%';
+      }
+
       ret.marginTop = '' + marginTop + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(marginTop) ? 'px' : '');
       this.customHeightStyle = ret;
     }
@@ -11153,6 +11163,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.visible),
       expression: "visible"
     }],
+    ref: "ctDialog",
     staticClass: "ct-dialog",
     class: _vm.sizeCls,
     attrs: {
