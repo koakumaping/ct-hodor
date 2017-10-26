@@ -4754,8 +4754,6 @@ var _require8 = __webpack_require__(69),
     clickoutside = _require8.clickoutside,
     waves = _require8.waves;
 
-var util = __webpack_require__(2);
-
 var install = function _install(Vue) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -4765,8 +4763,7 @@ var install = function _install(Vue) {
     Vue.component(key, components[key]);
   });
 
-  Vue.prototype.$util = util;
-  Vue.prototype.$util.notices = __webpack_require__(62).default;
+  Vue.prototype.$notices = __webpack_require__(62).default;
 
   Vue.directive('sync', sync);
   Vue.directive('display', display);

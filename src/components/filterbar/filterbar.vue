@@ -42,7 +42,7 @@ export default {
 @import '../../assets/stylus/var'
 
 .ct-filterbar-warp
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   right: 0

@@ -80,7 +80,7 @@ const {
   waves,
 } = require('./directives')
 
-const util = require('ct-util')
+// const util = require('ct-util')
 
 const install = function _install(Vue, opts = {}) {
   /* istanbul ignore if */
@@ -90,8 +90,8 @@ const install = function _install(Vue, opts = {}) {
     Vue.component(key, components[key])
   })
 
-  Vue.prototype.$util = util
-  Vue.prototype.$util.notices = require('./components/notification/notices').default
+  // Vue.prototype.$util = util
+  Vue.prototype.$notices = require('./components/notification/notices').default
 
   Vue.directive('sync', sync)
   Vue.directive('display', display)
