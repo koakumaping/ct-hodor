@@ -71,6 +71,7 @@ export default {
   .ct-filterbar
     height: 100%
     width: 240px
+    padding-top: 56px
     position: absolute
     right: 0
     top: 0
@@ -82,14 +83,21 @@ export default {
     .ct-fliterbar-title
       padding: 16px 8px
       font-size: 16px
+      position: absolute
+      background: #fff
+      top: 0
+      left: 0
+      width: 100%
+      z-index: 2
     .ct-fliterbar-content
-      padding: 56px 8px 8px 8px
+      padding: 0 8px 8px 8px
       overflow: auto
       position: absolute
-      top: 0
+      top: 56px
       left: 0
       right: 0
       bottom: 0
+      z-index: 1
       & > .ct-form-search
         margin: 0
         .search-line
