@@ -6570,7 +6570,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           var parent = this.parent;
 
           if (this.value === '') {
-            parent.name = parent.holder ? parent.holder : this.label;
+            parent.name = parent.placeholder ? parent.placeholder : this.label;
           } else {
             parent.name = this.label;
           }
@@ -6626,7 +6626,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     multiple: Boolean,
 
     clearable: Boolean,
-    holder: [String, Number],
+    placeholder: [String, Number],
 
     maxItem: {
       type: Number,
@@ -6827,7 +6827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateEmptyName: function updateEmptyName(name) {
       var _name = this.defaultName;
       if (name) _name = name;
-      if (this.holder) _name = this.holder;
+      if (this.placeholder) _name = this.placeholder;
       this.name = _name;
     },
     updateSelectStatus: function updateSelectStatus() {
