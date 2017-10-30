@@ -11,13 +11,27 @@ export default {
   name: 'ctCheckboxGroup',
   mixins: [emitter],
   props: {
-    value: Array,
-    default: () => [],
+    value: {
+      type: [Array, String, Number],
+    },
+  },
+  data() {
+    return {
+      currentValue: '',
+    }
   },
   watch: {
     value(val) {
-      this.$emit('on-change', val)
-      this.dispatch('ctFormLine', 'ct.form.change', val)
+      this.setCurrentValue(val)
+    },
+  },
+  methods: {
+    setCurrentValue(value) {
+      if (value === this.currentValue) return
+      this.currentValue = value
+      this.$emit('input', this.currentValue)
+      this.$emit('on-change', this.currentValue)
+      this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
     },
   },
 }

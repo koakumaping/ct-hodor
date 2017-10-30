@@ -4961,15 +4961,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'ctCheckboxGroup',
   mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_emitter__["a" /* default */]],
   props: {
-    value: Array,
-    default: function _default() {
-      return [];
+    value: {
+      type: [Array, String, Number]
     }
   },
+  data: function data() {
+    return {
+      currentValue: ''
+    };
+  },
+
   watch: {
     value: function value(val) {
-      this.$emit('on-change', val);
-      this.dispatch('ctFormLine', 'ct.form.change', val);
+      this.setCurrentValue(val);
+    }
+  },
+  methods: {
+    setCurrentValue: function setCurrentValue(value) {
+      if (value === this.currentValue) return;
+      this.currentValue = value;
+      this.$emit('input', this.currentValue);
+      this.$emit('on-change', this.currentValue);
+      this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
     }
   }
 });
@@ -4990,7 +5003,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_emitter__["a" /* default */]],
   props: {
     type: {
-      default: 'checkbox'
+      default: 'checkbox',
+      validator: function validator(value) {
+        return ['checkbox', 'radio'].indexOf(value) > -1;
+      }
     },
     content: {
       default: ''
@@ -5046,7 +5062,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.$emit('input', val);
         this.$emit('on-change', val);
-        this.dispatch('ctFormLine', 'ct.form.change', val);
+        if (!this.isGroup) this.dispatch('ctFormLine', 'ct.form.change', val);
       }
     },
     value: function value(val) {

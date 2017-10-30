@@ -707,34 +707,6 @@ body {
   width: 80px;
   text-align: center;
 }
-.ct-tabs {
-  margin-bottom: 8px;
-  font-size: 0;
-  border-bottom: 1px solid #e5e7ea;
-}
-.ct-tabs .ct-tabs-item {
-  height: 28px;
-  line-height: 28px;
-  font-size: 12px;
-  display: inline-block;
-  min-width: 6em;
-  margin-right: 0;
-  cursor: pointer;
-  text-align: center;
-  margin-bottom: -1px;
-  transition: all 0.3s;
-}
-.ct-tabs .ct-tabs-item.active {
-  color: #ee6b5d;
-  border-bottom: 2px solid #ee6b5d;
-}
-.ct-tabs.reserve {
-  border-color: #ee6b5d;
-}
-.ct-tabs.reserve > .ct-tabs-item.active {
-  background-color: #ee6b5d;
-  color: #fff;
-}
 .ct-logs li {
   padding-bottom: 8px;
 }
@@ -1352,6 +1324,16 @@ body {
   line-height: 16px;
   font-size: 12px;
 }
+.ct-checkbox[readonly=readonly]:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: not-allowed;
+}
 .ct-checkbox label {
   display: block;
   position: relative;
@@ -1915,6 +1897,10 @@ body {
 }
 .ct-bar .ct-bar-warp .ct-bar-content {
   line-height: 42px;
+}
+.ct-bar .ct-bar-warp .ct-bar-content > .ct-button {
+  margin-top: 5px;
+  margin-right: 8px;
 }
 .ct-bar .ct-bar-warp .ct-bar-actions {
   float: right;

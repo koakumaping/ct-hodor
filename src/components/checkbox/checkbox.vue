@@ -20,6 +20,7 @@ export default {
   props: {
     type: {
       default: 'checkbox',
+      validator: value => ['checkbox', 'radio'].indexOf(value) > -1,
     },
     content: {
       default: '',
@@ -77,7 +78,7 @@ export default {
         // 通过emit一个input事件来更新v-model数据
         this.$emit('input', val)
         this.$emit('on-change', val)
-        this.dispatch('ctFormLine', 'ct.form.change', val)
+        if (!this.isGroup) this.dispatch('ctFormLine', 'ct.form.change', val)
       }
     },
     value(val) {
@@ -103,6 +104,15 @@ export default {
   height: 16px
   line-height: 16px
   font-size: 12px
+  &[readonly=readonly]:before
+    content: ''
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 1
+    cursor: not-allowed
   label
     display block
     position: relative

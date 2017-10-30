@@ -37,6 +37,9 @@ export default {
       line-height: 42px
     .ct-bar-content
       line-height: 42px
+      > .ct-button
+        margin-top: 5px
+        margin-right: 8px
     .ct-bar-actions
       float: right
       // padding-right: 8px
