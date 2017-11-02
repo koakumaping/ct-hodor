@@ -2431,7 +2431,7 @@ body {
 }
 .ct-tree .ct-tree-arrow {
   display: inline-block;
-  height: 14px;
+  height: 16px;
   width: 14px;
   opacity: 0;
   vertical-align: text-top;

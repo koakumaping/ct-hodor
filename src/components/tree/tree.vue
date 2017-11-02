@@ -98,7 +98,7 @@ export default {
 
       // 如果parent.checked为true，选中所有子元素
       function forwardChecked(data) {
-        if (data.children) {
+        if (data.children && data.children.length > 0) {
           data.children.forEach(node => {
             if (data.checked) node.checked = true
             if (node.children) node = forwardChecked(node)
@@ -215,7 +215,7 @@ export default {
       cursor pointer
   .ct-tree-arrow
     display inline-block
-    height 14px
+    height 16px
     width 14px
     opacity 0
     vertical-align text-top

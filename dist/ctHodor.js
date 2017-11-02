@@ -7446,6 +7446,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      readonly: false,
+
       disabled: false,
       open: false,
 
@@ -7464,6 +7466,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     if (!this.model.checked) this.$set(this.model, 'checked', false);
     if (this.model.open) this.open = this.model.open;
+    if (this.model.readonly) this.readonly = this.model.readonly;
+    if (this.model.disabled) this.disabled = this.model.disabled;
   },
   mounted: function mounted() {
     var _this = this;
@@ -7612,7 +7616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       function forwardChecked(data) {
-        if (data.children) {
+        if (data.children && data.children.length > 0) {
           data.children.forEach(function (node) {
             if (data.checked) node.checked = true;
             if (node.children) node = forwardChecked(node);
@@ -11043,7 +11047,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.currentValue = _vm.content
       }
     }
-  })]), _vm._v("\n    " + _vm._s(_vm.label) + "\n    "), _vm._t("default")], 2)])
+  })]), _vm._v("\n     " + _vm._s(_vm.label) + "\n    "), _vm._t("default")], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -11294,10 +11298,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.toggle
     }
-  }), _vm._v(" "), _c('ctCheckbox', {
+  }), _vm._v(" "), (!_vm.disabled) ? _c('ctCheckbox', {
     attrs: {
       "value": _vm.model.checked,
-      "indeterminate": _vm.indeterminate
+      "indeterminate": _vm.indeterminate,
+      "aria-readonly": _vm.readonly,
+      "readonly": _vm.readonly
     },
     nativeOn: {
       "click": function($event) {
@@ -11305,7 +11311,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.handleCheck($event)
       }
     }
-  }, [_vm._v(_vm._s(_vm.model.name))])], 1), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.model.name))]) : _c('span', [_vm._v(_vm._s(_vm.model.name))])], 1), _vm._v(" "), _c('transition', {
     on: {
       "before-enter": _vm.beforeEnter,
       "enter": _vm.enter,

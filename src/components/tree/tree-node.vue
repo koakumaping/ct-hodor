@@ -7,10 +7,14 @@
         @click="toggle"
         class="ct-tree-arrow" :class="arrowCls"></span>
       <ctCheckbox
+        v-if="!disabled"
         :value="model.checked"
         :indeterminate="indeterminate"
         @click.native.prevent="handleCheck"
+        :aria-readonly="readonly"
+        :readonly="readonly"
       >{{model.name}}</ctCheckbox>
+      <span v-else>{{model.name}}</span>
     </div>
     <transition
       v-on:before-enter="beforeEnter"
@@ -50,6 +54,8 @@ export default {
   },
   data() {
     return {
+      readonly: false,
+      // 禁止状态不显示Checkbox
       disabled: false,
       open: false,
       // children 中是否有选中的
@@ -68,6 +74,8 @@ export default {
     // created tree-node.vue first, mounted tree.vue second
     if (!this.model.checked) this.$set(this.model, 'checked', false)
     if (this.model.open) this.open = this.model.open
+    if (this.model.readonly) this.readonly = this.model.readonly
+    if (this.model.disabled) this.disabled = this.model.disabled
   },
   mounted() {
     this.$on('indeterminate', () => {

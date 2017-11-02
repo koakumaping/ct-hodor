@@ -5,7 +5,7 @@
         <input v-if="type === 'checkbox'" type="checkbox" :value="content" v-model="currentValue">
         <input v-else type="radio" :value="content" v-model="currentValue">
       </span>
-      {{ label }}
+      &ensp;{{ label }}
       <slot></slot>
     </label>
   </div>
