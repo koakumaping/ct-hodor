@@ -18,7 +18,7 @@ export default {
 
 <style lang="stylus">
 .ct-action-bar
-  margin-bottom 8px
+  margin-bottom 16px
   font-size 0
   > .left > *,
   > .left > div > *,

@@ -674,7 +674,7 @@ body {
   position: relative;
 }
 .warp {
-  padding: 0 16px;
+  padding: 16px 16px 0 16px;
   position: relative;
   height: 100%;
   overflow: auto;
@@ -1955,6 +1955,24 @@ body {
 .ct-popover.ct-popover-right .ct-popover-warp:before {
   left: -4px;
   top: 50%;
+  margin-top: -5px;
+  transform: rotateZ(-45deg);
+}
+.ct-popover.ct-popover-top-left {
+  padding-right: 8px;
+}
+.ct-popover.ct-popover-top-left .ct-popover-warp:before {
+  right: -4px;
+  top: 16px;
+  margin-top: -5px;
+  transform: rotateZ(135deg);
+}
+.ct-popover.ct-popover-top-right {
+  padding-left: 8px;
+}
+.ct-popover.ct-popover-top-right .ct-popover-warp:before {
+  left: -4px;
+  top: 16px;
   margin-top: -5px;
   transform: rotateZ(-45deg);
 }
@@ -5289,7 +5307,7 @@ body {
 }
 
 .ct-action-bar {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   font-size: 0;
 }
 .ct-action-bar > .left > *,
