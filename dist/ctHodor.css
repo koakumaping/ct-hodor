@@ -2410,6 +2410,9 @@ body {
 }
 }
 
+.ct-tree {
+  line-height: 1.5;
+}
 .ct-tree ul {
   list-style: none;
   margin: 0;

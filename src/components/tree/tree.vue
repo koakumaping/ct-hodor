@@ -198,6 +198,7 @@ export default {
 
 <style lang="stylus">
 .ct-tree
+  line-height 1.5
   ul
     list-style none
     margin 0
