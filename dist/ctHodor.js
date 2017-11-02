@@ -11047,7 +11047,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.currentValue = _vm.content
       }
     }
-  })]), _vm._v("\n     " + _vm._s(_vm.label) + "\n    "), _vm._t("default")], 2)])
+  })]), _vm._v("\n    " + _vm._s(_vm.label) + "\n    "), _vm._t("default")], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
