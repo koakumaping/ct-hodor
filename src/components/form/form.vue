@@ -135,7 +135,7 @@ export default {
       margin-right: 4px
     & > label
       display block
-      padding: 7px 0
+      padding: 5px 0
       position: relative
       & > .text-red
         position: absolute
