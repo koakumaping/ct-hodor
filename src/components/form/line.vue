@@ -1,5 +1,5 @@
 <template>
-  <section class="clear"
+  <section class="clear section"
     :class="{
       'is-error': validateState === 'error',
       'is-validating': validateState === 'validating',

@@ -5150,35 +5150,31 @@ body {
   margin-bottom: 12px;
   transition: all 0.3s;
 }
-.form > section {
-  margin-bottom: 12px;
-  transition: all 0.3s;
-}
-.form > section.is-required > label::before {
+.form .section.is-required > label::before {
   content: "*";
   color: #ed3f14;
   margin-right: 4px;
 }
-.form > section > label {
+.form .section > label {
   display: block;
   padding: 7px 0;
   position: relative;
 }
-.form > section > label > .text-red {
+.form .section > label > .text-red {
   position: absolute;
   right: 4px;
   top: 0;
 }
-.form > section > .form-content {
+.form .section > .form-content {
   display: block;
   line-height: 32px;
   position: relative;
 }
-.form > section > .form-content > .ct-input,
-.form > section > .form-content > .ct-select {
+.form .section > .form-content > .ct-input,
+.form .section > .form-content > .ct-select {
   width: 300px;
 }
-.form > section > .form-content .ct-form-content-error {
+.form .section > .form-content .ct-form-content-error {
   font-size: 12px;
   color: #ed3f14;
   line-height: 1;
