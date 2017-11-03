@@ -128,6 +128,7 @@ export default {
   .section
     margin-bottom 12px
     transition: all 0.3s
+    font-size: 14px
     &.is-required > label::before
       content: "*"
       color: $color-red

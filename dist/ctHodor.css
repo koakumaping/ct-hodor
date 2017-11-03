@@ -5149,6 +5149,7 @@ body {
 .form .section {
   margin-bottom: 12px;
   transition: all 0.3s;
+  font-size: 14px;
 }
 .form .section.is-required > label::before {
   content: "*";
