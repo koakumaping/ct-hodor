@@ -104,7 +104,7 @@ export default {
           node.model.checked = true
         })
       }
-      console.log(checked)
+      // console.log(checked)
       this.$set(this.model, 'checked', checked)
       this.dispatch('Tree', 'checked')
       this.dispatch('Tree', 'on-checked', clone(this.model))

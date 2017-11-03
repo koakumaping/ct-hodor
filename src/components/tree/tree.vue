@@ -113,10 +113,10 @@ export default {
       this.broadcast('treeNode', 'indeterminate')
     },
     getCheckedList(list = this.getCheckedNodes()) {
-      console.log('checked list', list)
+      // console.log('checked list', list)
       this.checkedList = []
       if (list.length <= 0) {
-        console.log('checked list is', list.length)
+        // console.log('checked list is', list.length)
         return this.checkedList
       }
 
@@ -164,7 +164,7 @@ export default {
     },
     getNodeItem(id) {
       const checkedItem = this.getNode(id)
-      console.log(id, checkedItem)
+      // console.log(id, checkedItem)
 
       if (checkedItem.parentId) {
         this.getNodeItem(checkedItem.parentId)

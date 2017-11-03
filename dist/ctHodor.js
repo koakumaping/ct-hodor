@@ -7497,7 +7497,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           node.model.checked = true;
         });
       }
-      console.log(checked);
+
       this.$set(this.model, 'checked', checked);
       this.dispatch('Tree', 'checked');
       this.dispatch('Tree', 'on-checked', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.model));
@@ -7637,10 +7637,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getCheckedList: function getCheckedList() {
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getCheckedNodes();
 
-      console.log('checked list', list);
       this.checkedList = [];
       if (list.length <= 0) {
-        console.log('checked list is', list.length);
         return this.checkedList;
       }
 
@@ -7686,7 +7684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getNodeItem: function getNodeItem(id) {
       var checkedItem = this.getNode(id);
-      console.log(id, checkedItem);
+
 
       if (checkedItem.parentId) {
         this.getNodeItem(checkedItem.parentId);
