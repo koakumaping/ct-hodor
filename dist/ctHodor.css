@@ -1042,7 +1042,7 @@ body {
   border-radius: 4px;
   position: relative;
 }
-.ct-button.small {
+.ct-button.ct-button-small {
   padding: 5px 8px;
 }
 .ct-button ul > li {
@@ -1925,6 +1925,7 @@ body {
   position: fixed;
   left: -9999px;
   line-height: 1.5;
+  font-size: 12px;
 }
 .ct-popover .ct-popover-warp {
   background: #fff;

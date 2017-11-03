@@ -4908,7 +4908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     size: {
       type: [String],
-      default: 'default'
+      default: 'normal'
     },
 
     icon: {

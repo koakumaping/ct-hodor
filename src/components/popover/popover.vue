@@ -183,6 +183,7 @@ export default {
   position: fixed
   left: -9999px
   line-height: 1.5
+  font-size: 12px
   .ct-popover-warp
     background: #fff
     padding: 6px 8px
