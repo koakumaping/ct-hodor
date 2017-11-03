@@ -11309,7 +11309,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.handleCheck($event)
       }
     }
-  }, [_vm._v(_vm._s(_vm.model.name))]) : _c('span', [_vm._v(_vm._s(_vm.model.name))])], 1), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.model.name))]) : _c('span', {
+    staticClass: "pointer",
+    on: {
+      "click": _vm.toggle
+    }
+  }, [_vm._v(_vm._s(_vm.model.name))])], 1), _vm._v(" "), _c('transition', {
     on: {
       "before-enter": _vm.beforeEnter,
       "enter": _vm.enter,

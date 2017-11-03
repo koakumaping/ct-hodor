@@ -14,7 +14,7 @@
         :aria-readonly="readonly"
         :readonly="readonly"
       >{{model.name}}</ctCheckbox>
-      <span v-else>{{model.name}}</span>
+      <span v-else @click="toggle" class="pointer">{{model.name}}</span>
     </div>
     <transition
       v-on:before-enter="beforeEnter"
