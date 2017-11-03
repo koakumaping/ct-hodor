@@ -4908,7 +4908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     size: {
       type: [String],
-      default: ''
+      default: 'default'
     },
 
     icon: {
@@ -7544,7 +7544,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       default: '-'
     },
-    full: Boolean
+    level: {
+      type: Number,
+      default: 0
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -7635,6 +7638,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.broadcast('treeNode', 'indeterminate');
     },
     getCheckedList: function getCheckedList() {
+      var _this3 = this;
+
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getCheckedNodes();
 
       this.checkedList = [];
@@ -7676,7 +7681,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var results = [];
       for (var _i = 0; _i < list.length; ++_i) {
         this.getNodeItem(list[_i].id);
-        results.push(this.full ? this.checkedList[0] : this.checkedList.toString().replace(/,/g, this.dot));
+
+        var filterCheckedItem = {};
+        if (this.level) {
+          this.checkedList.forEach(function (child) {
+            if (child.level === _this3.level) filterCheckedItem = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(child);
+          });
+        }
+        results.push(this.level ? filterCheckedItem : this.checkedList.toString().replace(/,/g, this.dot));
         this.checkedList = [];
       }
 
@@ -7686,10 +7698,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var checkedItem = this.getNode(id);
 
 
-      if (checkedItem.parentId && !this.full) {
+      if (checkedItem.parentId) {
         this.getNodeItem(checkedItem.parentId);
       }
-      this.checkedList.push(this.full ? checkedItem : checkedItem.name);
+      this.checkedList.push(this.level ? checkedItem : checkedItem.name);
     },
     getNode: function getNode(key) {
       return this.datas.get(key);

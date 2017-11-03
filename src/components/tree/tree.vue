@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { isNumber } from 'ct-util'
+import { isNumber, clone } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 import treeNode from './tree-node'
 
@@ -32,7 +32,10 @@ export default {
       type: String,
       default: '-',
     },
-    full: Boolean,
+    level: {
+      type: Number,
+      default: 0,
+    },
   },
   mounted() {
     this.$on('checked', () => {
@@ -157,7 +160,14 @@ export default {
       const results = []
       for (let i = 0; i < list.length; ++i) {
         this.getNodeItem(list[i].id)
-        results.push(this.full ? this.checkedList[0] : this.checkedList.toString().replace(/,/g, this.dot))
+
+        let filterCheckedItem = {}
+        if (this.level) {
+          this.checkedList.forEach((child) => {
+            if (child.level === this.level) filterCheckedItem = clone(child)
+          })
+        }
+        results.push(this.level ? filterCheckedItem : this.checkedList.toString().replace(/,/g, this.dot))
         this.checkedList = []
       }
 
@@ -167,10 +177,10 @@ export default {
       const checkedItem = this.getNode(id)
       // console.log(id, checkedItem)
 
-      if (checkedItem.parentId && !this.full) {
+      if (checkedItem.parentId) {
         this.getNodeItem(checkedItem.parentId)
       }
-      this.checkedList.push(this.full ? checkedItem : checkedItem.name)
+      this.checkedList.push(this.level ? checkedItem : checkedItem.name)
     },
     getNode(key) {
       return this.datas.get(key)

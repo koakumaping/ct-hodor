@@ -1042,6 +1042,9 @@ body {
   border-radius: 4px;
   position: relative;
 }
+.ct-button.small {
+  padding: 5px 8px;
+}
 .ct-button ul > li {
   padding: 2px 0;
   line-height: 1.2;

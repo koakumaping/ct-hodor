@@ -40,7 +40,7 @@ export default {
     },
     size: {
       type: [String],
-      default: '',
+      default: 'default',
     },
     // 使用fontawesome
     icon: {
@@ -101,7 +101,8 @@ export default {
   font-size: 12px
   border-radius: 4px
   position: relative
-
+  &.small
+    padding: 5px 8px
   // 用于列表显示
   ul
     > li
