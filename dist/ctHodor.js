@@ -7543,7 +7543,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     dot: {
       type: String,
       default: '-'
-    }
+    },
+    full: Boolean
   },
   mounted: function mounted() {
     var _this = this;
@@ -7554,7 +7555,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     this.$on('on-checked', function (payload) {
-      _this.doEmit();
       _this.$emit('on-node-check', payload);
     });
   },
@@ -7676,7 +7676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var results = [];
       for (var _i = 0; _i < list.length; ++_i) {
         this.getNodeItem(list[_i].id);
-        results.push(this.checkedList.toString().replace(/,/g, this.dot));
+        results.push(this.full ? this.checkedList[0] : this.checkedList.toString().replace(/,/g, this.dot));
         this.checkedList = [];
       }
 
@@ -7686,10 +7686,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var checkedItem = this.getNode(id);
 
 
-      if (checkedItem.parentId) {
+      if (checkedItem.parentId && !this.full) {
         this.getNodeItem(checkedItem.parentId);
       }
-      this.checkedList.push(checkedItem.name);
+      this.checkedList.push(this.full ? checkedItem : checkedItem.name);
     },
     getNode: function getNode(key) {
       return this.datas.get(key);

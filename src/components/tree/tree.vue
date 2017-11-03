@@ -32,6 +32,7 @@ export default {
       type: String,
       default: '-',
     },
+    full: Boolean,
   },
   mounted() {
     this.$on('checked', () => {
@@ -40,7 +41,7 @@ export default {
     })
 
     this.$on('on-checked', (payload) => {
-      this.doEmit()
+      // this.doEmit()
       this.$emit('on-node-check', payload)
     })
   },
@@ -156,7 +157,7 @@ export default {
       const results = []
       for (let i = 0; i < list.length; ++i) {
         this.getNodeItem(list[i].id)
-        results.push(this.checkedList.toString().replace(/,/g, this.dot))
+        results.push(this.full ? this.checkedList[0] : this.checkedList.toString().replace(/,/g, this.dot))
         this.checkedList = []
       }
 
@@ -166,10 +167,10 @@ export default {
       const checkedItem = this.getNode(id)
       // console.log(id, checkedItem)
 
-      if (checkedItem.parentId) {
+      if (checkedItem.parentId && !this.full) {
         this.getNodeItem(checkedItem.parentId)
       }
-      this.checkedList.push(checkedItem.name)
+      this.checkedList.push(this.full ? checkedItem : checkedItem.name)
     },
     getNode(key) {
       return this.datas.get(key)
