@@ -89,6 +89,7 @@ export default {
   white-space: nowrap
   cursor: pointer
   background: #fff
+  border-width: 1px
   border: 1px solid $border-color
   color: #1f2d3d
   -webkit-appearance: none
@@ -158,6 +159,15 @@ export default {
   &^[0]-reversed
     color: $color-main
     border-color: $color-main
+    &:hover
+      color: #687f8e
+      border-color: #687f8e
+    &:active
+      color: #687f8e
+      border-color: #687f8e
+  &^[0]-dashed
+    border-style: dashed
+    border-color: #d9d9d9
     &:hover
       color: #687f8e
       border-color: #687f8e

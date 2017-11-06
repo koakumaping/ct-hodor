@@ -1029,6 +1029,7 @@ body {
   white-space: nowrap;
   cursor: pointer;
   background: #fff;
+  border-width: 1px;
   border: 1px solid #e5e7ea;
   color: #1f2d3d;
   -webkit-appearance: none;
@@ -1115,6 +1116,18 @@ body {
   border-color: #687f8e;
 }
 .ct-button.ct-button-reversed:active {
+  color: #687f8e;
+  border-color: #687f8e;
+}
+.ct-button.ct-button-dashed {
+  border-style: dashed;
+  border-color: #d9d9d9;
+}
+.ct-button.ct-button-dashed:hover {
+  color: #687f8e;
+  border-color: #687f8e;
+}
+.ct-button.ct-button-dashed:active {
   color: #687f8e;
   border-color: #687f8e;
 }
