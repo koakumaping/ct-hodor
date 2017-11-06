@@ -3,6 +3,7 @@
     v-waves
     type="button"
     @click="handleClick"
+    :style="{ width: width }"
     :autofocus="autofocus"
     :class="[
       type ? 'ct-button-' + type : '',
@@ -41,6 +42,9 @@ export default {
     size: {
       type: [String],
       default: 'normal',
+    },
+    width: {
+      default: '',
     },
     // 使用fontawesome
     icon: {

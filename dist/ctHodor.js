@@ -4910,6 +4910,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: [String],
       default: 'normal'
     },
+    width: {
+      default: ''
+    },
 
     icon: {
       type: [String],
@@ -10220,6 +10223,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         'icon-only': _vm.icon && !_vm.$slots.default,
       }
     ],
+    style: ({
+      width: _vm.width
+    }),
     attrs: {
       "type": "button",
       "autofocus": _vm.autofocus
