@@ -2117,6 +2117,10 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: #f0f2f5;
+}
+.ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box .ct-dialog-content.fullscreen > .warp {
+  padding: 16px 0 0 0;
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container .ct-dialog-box .ct-dialog-content.has-footer {
   padding-bottom: 64px;
