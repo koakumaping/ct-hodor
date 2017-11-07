@@ -70,7 +70,8 @@ $menu-bg-color = #2B3654
   color: $text-color
   width: 200px
   background: $bg-color
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.24)
+  // box-shadow: 0 0 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.24)
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35)
   height: 100%
   z-index: 9
   transition: all 0.3s
