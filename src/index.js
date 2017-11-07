@@ -36,6 +36,7 @@ const ctPagination = require('./components/pagination').default
 const ctActionBar = require('./components/actionbar').default
 const ctFilterbar = require('./components/filterbar').default
 const ctSide = require('./components/side').default
+const ctCard = require('./components/card').default
 
 const components = {
   iconFont,
@@ -70,6 +71,7 @@ const components = {
   ctActionBar,
   ctFilterbar,
   ctSide,
+  ctCard,
 }
 
 const {
