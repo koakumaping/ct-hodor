@@ -38,6 +38,8 @@ const ctFilterbar = require('./components/filterbar').default
 const ctSide = require('./components/side').default
 const ctCard = require('./components/card').default
 
+const ctSpin = require('./components/spin')
+
 const components = {
   iconFont,
   faFont,
@@ -72,6 +74,7 @@ const components = {
   ctFilterbar,
   ctSide,
   ctCard,
+  ctSpin,
 }
 
 const {
