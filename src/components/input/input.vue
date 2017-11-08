@@ -178,7 +178,6 @@ export default {
   border-radius: 4px
   display: inline-block
   vertical-align: top
-  max-width: 600px
   min-height: 62px
   &:focus
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3)

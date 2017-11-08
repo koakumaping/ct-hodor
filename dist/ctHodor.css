@@ -974,7 +974,6 @@ body {
   border-radius: 4px;
   display: inline-block;
   vertical-align: top;
-  max-width: 600px;
   min-height: 62px;
 }
 .ct-textarea:focus {
