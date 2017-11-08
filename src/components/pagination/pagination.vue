@@ -163,8 +163,8 @@ export default {
   & > ul
     float: right
     & > li
-      height: 28px
-      line-height: 26px
+      height: 32px
+      line-height: 30px
       min-width: 28px
       display: block
       padding: 0 8px
