@@ -64,6 +64,6 @@ export default {
           display inline-block
           padding-left 16px
   .ct-card-body
-    padding: 24px 32px
+    padding: 24px
     zoom: 1
 </style>
