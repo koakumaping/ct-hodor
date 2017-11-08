@@ -145,9 +145,6 @@ export default {
       display block
       line-height: 32px
       position: relative
-      & > .ct-input,
-      & > .ct-select
-        width: 300px
       .ct-form-content-error
         font-size: 12px
         color: $color-red

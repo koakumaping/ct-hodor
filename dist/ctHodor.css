@@ -5188,10 +5188,6 @@ body {
   line-height: 32px;
   position: relative;
 }
-.form .section > .form-content > .ct-input,
-.form .section > .form-content > .ct-select {
-  width: 300px;
-}
 .form .section > .form-content .ct-form-content-error {
   font-size: 12px;
   color: #ed3f14;
