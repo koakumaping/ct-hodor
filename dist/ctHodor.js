@@ -5002,6 +5002,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     handleClick: function handleClick(event) {
       if (this.disabled) return false;
       if (this.routerName) {
+        if (this.routerName.includes('http://')) {
+          window.location.href = this.routerName;
+          return false;
+        }
         this.$router.push({ name: this.routerName, query: this.routerQuery });
       } else {
         this.$emit('click', event);
