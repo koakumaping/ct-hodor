@@ -2037,6 +2037,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 .ct-dialog .ct-dialog-warp .ct-dialog-container {
   margin-left: 35%;
@@ -2101,7 +2103,7 @@ body {
   font-size: 14px;
   color: #757575;
   min-height: 40px;
-  height: 100%;
+  height: auto;
   line-height: 1.5;
   -webkit-transition: height 0.4s ease-in;
   transition: height 0.4s ease-in;

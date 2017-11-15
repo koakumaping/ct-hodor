@@ -14,6 +14,7 @@
           <div class="ct-dialog-title">{{title}}</div>
           <div class="ct-dialog-content"
             :class="[$slots.footer ? 'has-footer' : '', fullScreen ? 'fullscreen' : '']"
+            :style="contentStyle"
             ref="dialogContent"
           >
             <slot v-if="visible"></slot>
@@ -78,8 +79,12 @@ export default {
     }
   },
   computed: {
-    windowHeight() {
-      return this.$refs.ctDialog.clientHeight
+    windowHeight: {
+      cache: false,
+      get() {
+        if (this.$refs.ctDialog) return this.$refs.ctDialog.clientHeight
+        return ''
+      },
     },
     sizeCls() {
       return [`${this.prefxiCls}-${this.size}`]
@@ -87,23 +92,31 @@ export default {
     boxCls() {
       return [this.animation, this.closeAnimation]
     },
-    customWidthStyle() {
+    contentStyle() {
       const ret = {}
-
       if (this.fullScreen) {
-        ret.width = '90%'
-        ret.marginLeft = '5%'
-        ret.height = '100%'
-        return ret
-      }
-
-      if (this.width) {
-        ret.width = `${this.width}${isNumber(this.width) ? 'px' : ''}`
-        ret.marginLeft = isNumber(this.width) ?
-          `${this.windowWidth / 2 - this.width / 2}px` :
-          `${(100 - this.width.replace('%', '')) / 2}%`
+        ret.height = this.windowHeight ? `${this.windowHeight - 52}px`:
+          isNumber(this.dialogHeight) ? `${this.dialogHeight - 52}px` : ''
       }
       return ret
+    },
+    customWidthStyle: {
+      cache: false,
+      get() {
+        const ret = {}
+        if (this.fullScreen) {
+          ret.width = '90%'
+          ret.marginLeft = '5%'
+        }
+
+        if (this.width) {
+          ret.width = `${this.width}${isNumber(this.width) ? 'px' : ''}`
+          ret.marginLeft = isNumber(this.width) ?
+            `${this.windowWidth / 2 - this.width / 2}px` :
+            `${(100 - this.width.replace('%', '')) / 2}%`
+        }
+        return ret
+      },
     },
   },
   mounted() {

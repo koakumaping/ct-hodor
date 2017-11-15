@@ -1821,7 +1821,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/normal/ctLoading.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\normal\\ctLoading.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ctLoading.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1865,7 +1865,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/normal/faFont.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\normal\\faFont.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] faFont.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1909,7 +1909,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/normal/iconFont.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\normal\\iconFont.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] iconFont.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1953,7 +1953,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/pageLoading.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\pageLoading.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] pageLoading.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1997,7 +1997,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/spin.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\spin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] spin.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2041,7 +2041,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/warpper.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\warpper.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] warpper.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -5540,8 +5540,12 @@ var prefixCls = 'ct-dialog';
   },
 
   computed: {
-    windowHeight: function windowHeight() {
-      return this.$refs.ctDialog.clientHeight;
+    windowHeight: {
+      cache: false,
+      get: function get() {
+        if (this.$refs.ctDialog) return this.$refs.ctDialog.clientHeight;
+        return '';
+      }
     },
     sizeCls: function sizeCls() {
       return [this.prefxiCls + '-' + this.size];
@@ -5549,21 +5553,29 @@ var prefixCls = 'ct-dialog';
     boxCls: function boxCls() {
       return [this.animation, this.closeAnimation];
     },
-    customWidthStyle: function customWidthStyle() {
+    contentStyle: function contentStyle() {
       var ret = {};
-
       if (this.fullScreen) {
-        ret.width = '90%';
-        ret.marginLeft = '5%';
-        ret.height = '100%';
-        return ret;
-      }
-
-      if (this.width) {
-        ret.width = '' + this.width + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? 'px' : '');
-        ret.marginLeft = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? this.windowWidth / 2 - this.width / 2 + 'px' : (100 - this.width.replace('%', '')) / 2 + '%';
+        ret.height = this.windowHeight ? this.windowHeight - 52 + 'px' : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.dialogHeight) ? this.dialogHeight - 52 + 'px' : '';
       }
       return ret;
+    },
+
+    customWidthStyle: {
+      cache: false,
+      get: function get() {
+        var ret = {};
+        if (this.fullScreen) {
+          ret.width = '90%';
+          ret.marginLeft = '5%';
+        }
+
+        if (this.width) {
+          ret.width = '' + this.width + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? 'px' : '');
+          ret.marginLeft = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? this.windowWidth / 2 - this.width / 2 + 'px' : (100 - this.width.replace('%', '')) / 2 + '%';
+        }
+        return ret;
+      }
     }
   },
   mounted: function mounted() {
@@ -8801,7 +8813,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/actionbar/actionbar.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\actionbar\\actionbar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] actionbar.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -8845,7 +8857,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/bar/bar.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\bar\\bar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] bar.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -8889,7 +8901,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/button/button-group.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\button\\button-group.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] button-group.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -8933,7 +8945,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/button/button.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\button\\button.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] button.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -8977,7 +8989,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/card/card.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\card\\card.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] card.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9017,7 +9029,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/checkbox/checkbox-group.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\checkbox\\checkbox-group.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] checkbox-group.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9061,7 +9073,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/checkbox/checkbox.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\checkbox\\checkbox.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] checkbox.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9105,7 +9117,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/date-picker/picker.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\date-picker\\picker.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] picker.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9149,7 +9161,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/dialog/dialog.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\dialog\\dialog.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] dialog.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9193,7 +9205,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/filterbar/filterbar.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\filterbar\\filterbar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] filterbar.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9233,7 +9245,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/form-search/line.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\form-search\\line.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] line.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9277,7 +9289,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/form-search/search.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\form-search\\search.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] search.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9321,7 +9333,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/form/form.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\form\\form.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] form.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9361,7 +9373,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/form/line.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\form\\line.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] line.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9405,7 +9417,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/input/input.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\input\\input.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] input.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9445,7 +9457,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/layout/col.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\layout\\col.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] col.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9485,7 +9497,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/layout/row.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\layout\\row.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] row.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9529,7 +9541,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/notification/notice.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\notification\\notice.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] notice.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9573,7 +9585,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/pagination/pagination.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\pagination\\pagination.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] pagination.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9617,7 +9629,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/popover/popover.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\popover\\popover.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] popover.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9657,7 +9669,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/select/option.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\select\\option.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] option.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9701,7 +9713,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/select/select.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\select\\select.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] select.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9741,7 +9753,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/side/item.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\side\\item.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] item.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9785,7 +9797,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/side/side.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\side\\side.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] side.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9829,7 +9841,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/table/table.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\table\\table.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] table.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9873,7 +9885,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/tag/tag.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\tag\\tag.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] tag.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9913,7 +9925,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/time-picker/picker.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\time-picker\\picker.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] picker.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9953,7 +9965,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/tree/tree-node.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\tree\\tree-node.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] tree-node.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9997,7 +10009,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/mnt/e/ct-hodor/src/components/tree/tree.vue"
+Component.options.__file = "E:\\ct-hodor\\src\\components\\tree\\tree.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] tree.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -11425,7 +11437,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c('div', {
     ref: "dialogContent",
     staticClass: "ct-dialog-content",
-    class: [_vm.$slots.footer ? 'has-footer' : '', _vm.fullScreen ? 'fullscreen' : '']
+    class: [_vm.$slots.footer ? 'has-footer' : '', _vm.fullScreen ? 'fullscreen' : ''],
+    style: (_vm.contentStyle)
   }, [(_vm.visible) ? _vm._t("default") : _vm._e()], 2), _vm._v(" "), (_vm.$slots.footer) ? _c('div', {
     staticClass: "ct-dialog-footer clear"
   }, [_c('div', {
