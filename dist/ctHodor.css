@@ -1761,6 +1761,7 @@ body {
   display: inline-block;
   vertical-align: top;
   width: 100%;
+  font-size: 12px;
 }
 .ct-date-picker-input {
   position: relative;

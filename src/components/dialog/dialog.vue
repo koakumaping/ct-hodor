@@ -95,7 +95,7 @@ export default {
     contentStyle() {
       const ret = {}
       if (this.fullScreen) {
-        ret.height = this.windowHeight ? `${this.windowHeight - 52}px`:
+        ret.height = this.windowHeight ? `${this.windowHeight - 52}px` :
           isNumber(this.dialogHeight) ? `${this.dialogHeight - 52}px` : ''
       }
       return ret

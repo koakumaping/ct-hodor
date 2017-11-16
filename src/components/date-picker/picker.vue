@@ -420,6 +420,7 @@ export default {
   display: inline-block
   vertical-align: top
   width: 100%
+  font-size: 12px
   ^[0]-input
     position: relative
     i
