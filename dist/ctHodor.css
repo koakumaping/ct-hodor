@@ -5332,20 +5332,37 @@ body {
 }
 
 .ct-action-bar {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   font-size: 0;
+  display: -webkit-box /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */;
+  display: -moz-box /* 老版本语法: Firefox (buggy) */;
+  display: -ms-flexbox /* 混合版本语法: IE 10 */;
+  display: -webkit-flex /* 新版本语法: Chrome 21+ */;
+  display: flex /* 新版本语法: Opera 12.1, Firefox 22+ */;
 }
-.ct-action-bar > .left > *,
-.ct-action-bar > .left > div > *,
-.ct-action-bar > .right > div > * {
+.ct-action-bar > .ct-action-bar__left {
+  flex: 0 0 auto;
+}
+.ct-action-bar > .ct-action-bar__right {
+  flex: 1 1 auto;
+}
+.ct-action-bar > .ct-action-bar__left > *,
+.ct-action-bar > .ct-action-bar__left > div > *,
+.ct-action-bar > .ct-action-bar__right > div > * {
   display: inline-block !important;
-  margin-right: 8px !important;
   vertical-align: middle;
+  margin-bottom: 8px;
 }
-.ct-action-bar > .left > *:last-child,
-.ct-action-bar > .left > div > *:last-child,
-.ct-action-bar > .right > div > *:last-child {
-  margin-right: 0 !important;
+.ct-action-bar > .ct-action-bar__left > * {
+  margin-right: 8px !important;
+}
+.ct-action-bar > .ct-action-bar__right > div > * {
+  margin-left: 8px !important;
+}
+.ct-action-bar > .ct-action-bar__right > .ct-action-bar__right-content,
+.ct-action-bar > .ct-action-bar__right > .ct-action-bar__right-action {
+  display: inline-block;
+  text-align: left;
 }
 
 .ct-filterbar-warp {

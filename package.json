@@ -1,6 +1,6 @@
 {
   "name": "ct-hodor",
-  "version": "1.3.67",
+  "version": "1.3.80",
   "description": "hodor",
   "main": "dist/ctHodor.js",
   "files": [
@@ -98,5 +98,12 @@
   "bugs": {
     "url": "https://github.com/koakumaping/ct-hodor/issues"
   },
-  "homepage": "https://github.com/koakumaping/ct-hodor#readme"
+  "homepage": "https://github.com/koakumaping/ct-hodor#readme",
+  "browserslist": [
+    "> 1%",
+    "last 4 versions",
+    "not ie <= 8",
+    "iOS >= 7",
+    "Android >= 4.1"
+  ]
 }
