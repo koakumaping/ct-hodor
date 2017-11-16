@@ -5205,7 +5205,9 @@ var prefixCls = 'ct-date-picker';
     },
     placeholder: {
       default: '请选择'
-    }
+    },
+
+    clearable: Boolean
   },
   directives: { clickoutside: __WEBPACK_IMPORTED_MODULE_2__directives_clickoutside__["a" /* default */] },
   mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_emitter__["a" /* default */]],
@@ -5224,7 +5226,8 @@ var prefixCls = 'ct-date-picker';
       cells: [],
       visiable: false,
       topCls: '',
-      currentValue: ''
+      currentValue: '',
+      hover: false
     };
   },
 
@@ -5270,10 +5273,19 @@ var prefixCls = 'ct-date-picker';
         return true;
       }
       return false;
+    },
+    showClearBtn: function showClearBtn() {
+      if (!this.clearable) return false;
+      if (!this.hover) return false;
+      if (this.currentValue !== '') {
+        return true;
+      }
+      return false;
     }
   },
   watch: {
     value: function value(val) {
+      console.log('watch value');
       this.setCurrentValue(val);
     }
   },
@@ -5295,9 +5307,15 @@ var prefixCls = 'ct-date-picker';
     setCurrentValue: function setCurrentValue(value) {
       var init = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-      if (value !== this.currentValue && this.currentValue === '') {
+      if (value !== this.currentValue) {
         this.currentValue = value;
+        console.log('setCurrentValue', this.currentValue);
         this.set();
+
+        if (value === '') {
+          this.setDate();
+          this.getCells();
+        }
       }
       if (init) this.set();
     },
@@ -5488,6 +5506,19 @@ var prefixCls = 'ct-date-picker';
     },
     hidePicker: function hidePicker() {
       this.visiable = false;
+    },
+    handleMouseIn: function handleMouseIn() {
+      if (!this.clearable) return;
+      this.hover = true;
+    },
+    handleMouseOut: function handleMouseOut() {
+      if (!this.clearable) return;
+      this.hover = false;
+    },
+    clearValue: function clearValue() {
+      this.$emit('input', '');
+
+      this.$emit('on-change', this.value);
     }
   }
 });
@@ -10997,6 +11028,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "active": _vm.visiable,
       "placeholder": _vm.placeholder
     },
+    on: {
+      "mouseover": _vm.handleMouseIn,
+      "mouseout": _vm.handleMouseOut
+    },
     model: {
       value: (_vm.currentValue),
       callback: function($$v) {
@@ -11004,12 +11039,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "currentValue"
     }
-  }), _vm._v(" "), _c('i', {
-    staticClass: "fa fa-calendar",
+  }), _vm._v(" "), _c('faFont', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.showClearBtn),
+      expression: "!showClearBtn"
+    }],
     attrs: {
-      "aria-hidden": "true"
+      "name": "calendar"
     }
-  })], 1), _vm._v(" "), _c('transition', {
+  }), _vm._v(" "), _c('dl', {
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        _vm.clearValue($event)
+      }
+    }
+  }, [_c('faFont', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showClearBtn),
+      expression: "showClearBtn"
+    }],
+    staticStyle: {
+      "top": "11px"
+    },
+    attrs: {
+      "name": "times-circle"
+    }
+  })], 1)], 1), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "fade-in-linear",
       "mode": "out-in"

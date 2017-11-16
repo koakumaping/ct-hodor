@@ -1,8 +1,24 @@
 <template>
-  <div :class="prefixCls" v-clickoutside="hidePicker" ref="ctDatePicker" :style="{width: width}">
+  <div :class="prefixCls" v-clickoutside="hidePicker"
+    ref="ctDatePicker"
+    :style="{width: width}"
+  >
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
-      <ctInput v-model="currentValue" readonly :active="visiable" :placeholder="placeholder"></ctInput>
-      <i class="fa fa-calendar" aria-hidden="true"></i>
+      <ctInput v-model="currentValue"
+        readonly
+        :active="visiable"
+        :placeholder="placeholder"
+        @mouseover="handleMouseIn"
+        @mouseout="handleMouseOut"
+      ></ctInput>
+      <faFont name="calendar" v-show="!showClearBtn"></faFont>
+      <dl v-on:click.stop="clearValue">
+        <faFont
+          style="top: 11px;"
+          v-show="showClearBtn"
+          name="times-circle">
+        </faFont>
+      </dl>
     </div>
 
     <transition name="fade-in-linear" mode="out-in">
@@ -112,6 +128,8 @@ export default {
     placeholder: {
       default: '请选择',
     },
+    // 可以清空
+    clearable: Boolean,
   },
   directives: { clickoutside },
   mixins: [Emitter],
@@ -131,6 +149,7 @@ export default {
       visiable: false,
       topCls: '',
       currentValue: '',
+      hover: false,
     }
   },
   computed: {
@@ -176,9 +195,18 @@ export default {
       }
       return false
     },
+    showClearBtn() {
+      if (!this.clearable) return false
+      if (!this.hover) return false
+      if (this.currentValue !== '') {
+        return true
+      }
+      return false
+    },
   },
   watch: {
     value(val) {
+      console.log('watch value')
       this.setCurrentValue(val)
     },
   },
@@ -195,9 +223,15 @@ export default {
       this.getCells()
     },
     setCurrentValue(value, init = false) {
-      if (value !== this.currentValue && this.currentValue === '') {
+      if (value !== this.currentValue) {
         this.currentValue = value
+        console.log('setCurrentValue', this.currentValue)
         this.set()
+        // 清空时重新渲染下拉内容
+        if (value === '') {
+          this.setDate()
+          this.getCells()
+        }
       }
       if (init) this.set()
     },
@@ -403,6 +437,19 @@ export default {
     },
     hidePicker() {
       this.visiable = false
+    },
+    handleMouseIn() {
+      if (!this.clearable) return
+      this.hover = true
+    },
+    handleMouseOut() {
+      if (!this.clearable) return
+      this.hover = false
+    },
+    clearValue() {
+      this.$emit('input', '')
+      // chang回调
+      this.$emit('on-change', this.value)
     },
   },
 }
