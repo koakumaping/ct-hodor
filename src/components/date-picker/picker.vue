@@ -2,15 +2,12 @@
   <div :class="prefixCls" v-clickoutside="hidePicker"
     ref="ctDatePicker"
     :style="{width: width}"
+    @mouseover="handleMouseIn"
+    @mouseout="handleMouseOut"
   >
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
-      <ctInput v-model="currentValue"
-        readonly
-        :active="visiable"
-        :placeholder="placeholder"
-        @mouseover="handleMouseIn"
-        @mouseout="handleMouseOut"
-      ></ctInput>
+      <span v-if="currentValue">{{currentValue}}</span>
+      <span v-else class="placeholder">{{placeholder}}</span>
       <faFont name="calendar" v-show="!showClearBtn"></faFont>
       <dl v-on:click.stop="clearValue">
         <faFont
@@ -463,25 +460,31 @@ export default {
   position: relative
   background-color: #fff
   text-align: center
+  border: 1px solid $border-color
   border-radius: 4px
   display: inline-block
   vertical-align: top
   width: 100%
   font-size: 12px
+  &:hover
+    border-color: $color-main
   ^[0]-input
+    width: 100%
     position: relative
+    height: 32px
+    line-height: 32px
+    padding-left: 8px
+    padding-right: 24px
+    text-align: left
     i
       position: absolute
       right: 10px
       top: 10px
       color: #ccc
-    input
-      padding-right: 24px
-  .ct-input
-    display: block
-    z-index: 0
     &::before
       cursor: pointer!important
+    .placeholder
+      color: $color-placeholder
   ^[0]-warpper
     background-color: #fff
     border-radius: 4px

@@ -1757,14 +1757,24 @@ body {
   position: relative;
   background-color: #fff;
   text-align: center;
+  border: 1px solid #e5e7ea;
   border-radius: 4px;
   display: inline-block;
   vertical-align: top;
   width: 100%;
   font-size: 12px;
 }
+.ct-date-picker:hover {
+  border-color: #ee6b5d;
+}
 .ct-date-picker-input {
+  width: 100%;
   position: relative;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 8px;
+  padding-right: 24px;
+  text-align: left;
 }
 .ct-date-picker-input i {
   position: absolute;
@@ -1772,15 +1782,11 @@ body {
   top: 10px;
   color: #ccc;
 }
-.ct-date-picker-input input {
-  padding-right: 24px;
-}
-.ct-date-picker .ct-input {
-  display: block;
-  z-index: 0;
-}
-.ct-date-picker .ct-input::before {
+.ct-date-picker-input::before {
   cursor: pointer !important;
+}
+.ct-date-picker-input .placeholder {
+  color: #757575;
 }
 .ct-date-picker-warpper {
   background-color: #fff;

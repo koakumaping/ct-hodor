@@ -11016,30 +11016,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     class: _vm.prefixCls,
     style: ({
       width: _vm.width
-    })
+    }),
+    on: {
+      "mouseover": _vm.handleMouseIn,
+      "mouseout": _vm.handleMouseOut
+    }
   }, [_c('div', {
     class: [_vm.prefixCls + '-input', 'pointer'],
     on: {
       "click": _vm.showPicker
     }
-  }, [_c('ctInput', {
-    attrs: {
-      "readonly": "",
-      "active": _vm.visiable,
-      "placeholder": _vm.placeholder
-    },
-    on: {
-      "mouseover": _vm.handleMouseIn,
-      "mouseout": _vm.handleMouseOut
-    },
-    model: {
-      value: (_vm.currentValue),
-      callback: function($$v) {
-        _vm.currentValue = $$v
-      },
-      expression: "currentValue"
-    }
-  }), _vm._v(" "), _c('faFont', {
+  }, [(_vm.currentValue) ? _c('span', [_vm._v(_vm._s(_vm.currentValue))]) : _c('span', {
+    staticClass: "placeholder"
+  }, [_vm._v(_vm._s(_vm.placeholder))]), _vm._v(" "), _c('faFont', {
     directives: [{
       name: "show",
       rawName: "v-show",
