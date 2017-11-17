@@ -5343,9 +5343,6 @@ body {
 .ct-action-bar > .ct-action-bar__left {
   flex: 0 0 auto;
 }
-.ct-action-bar > .ct-action-bar__right {
-  flex: 1 1 auto;
-}
 .ct-action-bar > .ct-action-bar__left > *,
 .ct-action-bar > .ct-action-bar__left > div > *,
 .ct-action-bar > .ct-action-bar__right > div > * {
@@ -5355,6 +5352,9 @@ body {
 }
 .ct-action-bar > .ct-action-bar__left > * {
   margin-right: 8px !important;
+}
+.ct-action-bar > .ct-action-bar__right {
+  flex: 1 1 auto;
 }
 .ct-action-bar > .ct-action-bar__right > div > * {
   margin-left: 8px !important;

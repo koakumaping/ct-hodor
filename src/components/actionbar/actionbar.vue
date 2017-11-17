@@ -58,8 +58,7 @@ export default {
   display flex /* 新版本语法: Opera 12.1, Firefox 22+ */
   > .ct-action-bar__left
     flex 0 0 auto
-  > .ct-action-bar__right
-    flex 1 1 auto
+
   > .ct-action-bar__left > *,
   > .ct-action-bar__left > div > *,
   > .ct-action-bar__right > div > *
@@ -69,6 +68,9 @@ export default {
 
   > .ct-action-bar__left > *
     margin-right 8px!important
+
+  > .ct-action-bar__right
+    flex 1 1 auto
 
   > .ct-action-bar__right > div > *
     margin-left 8px!important
