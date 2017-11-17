@@ -4929,8 +4929,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     ctFilterbar: __WEBPACK_IMPORTED_MODULE_1__filterbar__["default"]
   },
   props: {
-    hiddenSearchBtn: Boolean,
-    extra: Boolean
+    hiddenSearchBtn: Boolean
   },
   data: function data() {
     return {
@@ -10558,7 +10557,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-action-bar__right text-right clear"
   }, [_c('div', {
     staticClass: "ct-action-bar__right-content"
-  }, [_vm._t("right"), _vm._v(" "), (_vm.extra && _vm.$slots.right) ? _c('ctButton', {
+  }, [_vm._t("right"), _vm._v(" "), (_vm.$slots.extra) ? _c('ctButton', {
     on: {
       "click": _vm.toggle
     }
