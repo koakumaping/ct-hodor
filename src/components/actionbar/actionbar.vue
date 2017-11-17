@@ -15,7 +15,15 @@
       </div>
     </div>
     <ctFilterbar ref="filterbar" @on-show="showExtra = true" @on-hide="showExtra = false">
-      <slot name="extra"></slot>
+      <ctFormSearch>
+        <slot name="extra"></slot>
+        <ctFormSearchLine>
+          <ctButton type="primary" @click="doSearch">搜索</ctButton>
+        </ctFormSearchLine>
+        <ctFormSearchLine v-if="clearable">
+          <ctButton @click="doClear">清空</ctButton>
+        </ctFormSearchLine>
+      </ctFormSearch>
     </ctFilterbar>
   </div>
 </template>
@@ -23,15 +31,19 @@
 <script>
 import { ctButton } from '../button'
 import ctFilterbar from '../filterbar'
+import { ctFormSearch, ctFormSearchLine } from '../form-search'
 
 export default {
   name: 'ctActionBar',
   components: {
     ctButton,
     ctFilterbar,
+    ctFormSearch,
+    ctFormSearchLine,
   },
   props: {
     hiddenSearchBtn: Boolean,
+    clearable: Boolean,
   },
   data() {
     return {
@@ -41,6 +53,9 @@ export default {
   methods: {
     doSearch() {
       this.$emit('on-search', this.showExtra)
+    },
+    doClear() {
+      this.$emit('on-clear', this.showExtra)
     },
     toggle() {
       this.$refs.filterbar.show()
