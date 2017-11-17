@@ -5239,7 +5239,19 @@ var prefixCls = 'ct-date-picker';
       default: '请选择'
     },
 
-    clearable: Boolean
+    clearable: Boolean,
+    hourList: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    minutesList: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    }
   },
   directives: { clickoutside: __WEBPACK_IMPORTED_MODULE_2__directives_clickoutside__["a" /* default */] },
   mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_emitter__["a" /* default */]],
@@ -11205,7 +11217,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "left",
     attrs: {
       "hour": _vm.getHour,
-      "minutes": _vm.getMinutes
+      "minutes": _vm.getMinutes,
+      "hourList": _vm.hourList,
+      "minutesList": _vm.minutesList
     },
     on: {
       "on-hour-change": _vm.handleHourChange,
