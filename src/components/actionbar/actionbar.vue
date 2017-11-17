@@ -7,7 +7,7 @@
     <div class="ct-action-bar__right text-right clear">
       <div class="ct-action-bar__right-content">
         <slot name="right"></slot>
-        <ctButton v-if="extra && $slots.right" @click="toggle">高级搜索</ctButton>
+        <ctButton v-if="$slots.extra" @click="toggle">高级搜索</ctButton>
         <ctButton v-if="!hiddenSearchBtn && $slots.right" @click="doSearch" type="primary">搜索</ctButton>
       </div>
       <div class="ct-action-bar__right-action">
@@ -32,7 +32,6 @@ export default {
   },
   props: {
     hiddenSearchBtn: Boolean,
-    extra: Boolean,
   },
   data() {
     return {
