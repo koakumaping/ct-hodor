@@ -70,8 +70,8 @@
           <ctTimePicker
             v-if="type === 'datetime'"
             class="left"
-            :hour="getHour"
-            :minutes="getMinutes"
+            :hour="hour"
+            :minutes="minutes"
             :hourList="hourList"
             :minutesList="minutesList"
             v-on:on-hour-change="handleHourChange"
@@ -157,6 +157,7 @@ export default {
       topCls: '',
       currentValue: '',
       hover: false,
+      $ready: false,
     }
   },
   computed: {
@@ -218,16 +219,31 @@ export default {
     },
   },
   mounted() {
+    // 用于解决小时分钟列表改变后，初始化值的问题
+    if (this.type === 'datetime') {
+      if (this.hourList.length > 0) {
+        this.hour = this.hourList[0].key
+      }
+      if (this.minutesList.length > 0) {
+        this.minutes = this.minutesList[0].key
+      }
+    }
+
     this.init(true)
   },
   methods: {
     init(flag = false) {
       if (flag) {
         this.setCurrentValue(this.value, true)
+        this.getCells()
+      } else {
+        this.setDate()
+        this.getCells()
       }
-
-      this.setDate()
-      this.getCells()
+      this.$nextTick(() => {
+        this.$ready = true
+        console.log('init over')
+      })
     },
     setCurrentValue(value, init = false) {
       if (value !== this.currentValue) {
@@ -244,6 +260,7 @@ export default {
     },
     // 设置初始化时间
     set() {
+      console.log('set time')
       if (this.currentValue) {
         const dateReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/
         const dateTimeReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])( ([01]\d|2[0-3]):[0-5]\d)$/
@@ -261,6 +278,9 @@ export default {
         this.date = new Date(this.currentValue)
       } else {
         this.date = new Date()
+        this.date.setHours(this.hour)
+        this.date.setMinutes(this.minutes)
+        console.log('111', this.date)
       }
       this.year = this.date.getFullYear()
       this.month = this.date.getMonth()
@@ -424,14 +444,18 @@ export default {
       }
     },
     handleHourChange(val) {
-      this.hour = val
-      this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
-      this.dateTimeEmit()
+      if (this.$ready) {
+        this.hour = val
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
+        this.dateTimeEmit()
+      }
     },
     handleMinutesChange(val) {
-      this.minutes = val
-      this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
-      this.dateTimeEmit()
+      if (this.$ready) {
+        this.minutes = val
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
+        this.dateTimeEmit()
+      }
     },
     showPicker() {
       if (this.listOverflow) {

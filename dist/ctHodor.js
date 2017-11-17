@@ -5271,7 +5271,8 @@ var prefixCls = 'ct-date-picker';
       visiable: false,
       topCls: '',
       currentValue: '',
-      hover: false
+      hover: false,
+      $ready: false
     };
   },
 
@@ -5334,19 +5335,35 @@ var prefixCls = 'ct-date-picker';
     }
   },
   mounted: function mounted() {
+    if (this.type === 'datetime') {
+      if (this.hourList.length > 0) {
+        this.hour = this.hourList[0].key;
+      }
+      if (this.minutesList.length > 0) {
+        this.minutes = this.minutesList[0].key;
+      }
+    }
+
     this.init(true);
   },
 
   methods: {
     init: function init() {
+      var _this = this;
+
       var flag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
       if (flag) {
         this.setCurrentValue(this.value, true);
+        this.getCells();
+      } else {
+        this.setDate();
+        this.getCells();
       }
-
-      this.setDate();
-      this.getCells();
+      this.$nextTick(function () {
+        _this.$ready = true;
+        console.log('init over');
+      });
     },
     setCurrentValue: function setCurrentValue(value) {
       var init = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
@@ -5364,6 +5381,7 @@ var prefixCls = 'ct-date-picker';
       if (init) this.set();
     },
     set: function set() {
+      console.log('set time');
       if (this.currentValue) {
         var dateReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/;
         var dateTimeReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])( ([01]\d|2[0-3]):[0-5]\d)$/;
@@ -5381,6 +5399,9 @@ var prefixCls = 'ct-date-picker';
         this.date = new Date(this.currentValue);
       } else {
         this.date = new Date();
+        this.date.setHours(this.hour);
+        this.date.setMinutes(this.minutes);
+        console.log('111', this.date);
       }
       this.year = this.date.getFullYear();
       this.month = this.date.getMonth();
@@ -5466,7 +5487,7 @@ var prefixCls = 'ct-date-picker';
       var year = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var month = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-      var _this = this;
+      var _this2 = this;
 
       var day = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
       var index = arguments[3];
@@ -5486,9 +5507,9 @@ var prefixCls = 'ct-date-picker';
       this.dateTimeEmit();
 
       this.$nextTick(function () {
-        _this.init();
-        if (_this.autoclose) {
-          _this.hidePicker();
+        _this2.init();
+        if (_this2.autoclose) {
+          _this2.hidePicker();
         }
       });
     },
@@ -5530,14 +5551,18 @@ var prefixCls = 'ct-date-picker';
       }
     },
     handleHourChange: function handleHourChange(val) {
-      this.hour = val;
-      this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
-      this.dateTimeEmit();
+      if (this.$ready) {
+        this.hour = val;
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
+        this.dateTimeEmit();
+      }
     },
     handleMinutesChange: function handleMinutesChange(val) {
-      this.minutes = val;
-      this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
-      this.dateTimeEmit();
+      if (this.$ready) {
+        this.minutes = val;
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
+        this.dateTimeEmit();
+      }
     },
     showPicker: function showPicker() {
       if (this.listOverflow) {
@@ -11216,8 +11241,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.type === 'datetime') ? _c('ctTimePicker', {
     staticClass: "left",
     attrs: {
-      "hour": _vm.getHour,
-      "minutes": _vm.getMinutes,
+      "hour": _vm.hour,
+      "minutes": _vm.minutes,
       "hourList": _vm.hourList,
       "minutesList": _vm.minutesList
     },
