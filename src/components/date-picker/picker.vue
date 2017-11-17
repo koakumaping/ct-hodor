@@ -72,6 +72,8 @@
             class="left"
             :hour="getHour"
             :minutes="getMinutes"
+            :hourList="hourList"
+            :minutesList="minutesList"
             v-on:on-hour-change="handleHourChange"
             v-on:on-minutes-change="handleMinutesChange"
           ></ctTimePicker>
@@ -127,6 +129,14 @@ export default {
     },
     // 可以清空
     clearable: Boolean,
+    hourList: {
+      type: Array,
+      default: () => [],
+    },
+    minutesList: {
+      type: Array,
+      default: () => [],
+    },
   },
   directives: { clickoutside },
   mixins: [Emitter],
