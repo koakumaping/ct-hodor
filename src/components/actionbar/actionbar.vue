@@ -7,24 +7,28 @@
     <div class="ct-action-bar__right text-right clear">
       <div class="ct-action-bar__right-content">
         <slot name="right"></slot>
-        <slot name="extra" v-if="showExtra"></slot>
-        <ctButton v-if="!hiddenSearchBtn" @click="doSearch" type="primary">搜索</ctButton>
-        <ctButton v-if="extra" @click="toggle">{{ showExtra ? '收起' : '展开' }}</ctButton>
+        <ctButton v-if="extra && $slots.right" @click="toggle">高级搜索</ctButton>
+        <ctButton v-if="!hiddenSearchBtn && $slots.right" @click="doSearch" type="primary">搜索</ctButton>
       </div>
       <div class="ct-action-bar__right-action">
         <slot name="btn"></slot>
       </div>
     </div>
+    <ctFilterbar ref="filterbar" @on-show="showExtra = true" @on-hide="showExtra = false">
+      <slot name="extra"></slot>
+    </ctFilterbar>
   </div>
 </template>
 
 <script>
 import { ctButton } from '../button'
+import ctFilterbar from '../filterbar'
 
 export default {
   name: 'ctActionBar',
   components: {
     ctButton,
+    ctFilterbar,
   },
   props: {
     hiddenSearchBtn: Boolean,
@@ -40,8 +44,10 @@ export default {
       this.$emit('on-search', this.showExtra)
     },
     toggle() {
-      this.showExtra = !this.showExtra
-      this.$emit('on-change', this.showExtra)
+      this.$refs.filterbar.show()
+      this.$nextTick(() => {
+        this.$emit('on-change', this.showExtra)
+      })
     },
   },
 }

@@ -30,9 +30,11 @@ export default {
   methods: {
     show() {
       this.visible = true
+      this.$emit('on-show')
     },
     hide() {
       this.visible = false
+      this.$emit('on-hide')
     },
   },
 }
