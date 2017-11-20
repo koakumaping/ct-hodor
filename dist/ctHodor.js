@@ -11262,7 +11262,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.type === 'datetime') ? _c('ctTimePicker', {
     staticClass: "left",
     attrs: {
-      "place": _vm.top,
+      "place": "top",
       "start": _vm.start,
       "end": _vm.end,
       "range": _vm.range

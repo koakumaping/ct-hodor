@@ -73,7 +73,7 @@
             v-model="hhmm"
             v-on:on-hour-change="handleHourChange"
             v-on:on-minutes-change="handleMinutesChange"
-            :place="top"
+            place="top"
             :start="start"
             :end="end"
             :range="range"
