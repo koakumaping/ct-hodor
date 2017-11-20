@@ -5247,17 +5247,17 @@ var prefixCls = 'ct-date-picker';
     },
 
     clearable: Boolean,
-    hourList: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
+    start: {
+      type: Number,
+      default: 0
     },
-    minutesList: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
+    end: {
+      type: Number,
+      default: 23
+    },
+    range: {
+      type: Number,
+      default: 30
     }
   },
   directives: { clickoutside: __WEBPACK_IMPORTED_MODULE_2__directives_clickoutside__["a" /* default */] },
@@ -5272,8 +5272,7 @@ var prefixCls = 'ct-date-picker';
       year: '',
       month: '',
       day: '',
-      hour: '00',
-      minutes: '00',
+      hhmm: '00:00',
       cells: [],
       visiable: false,
       topCls: '',
@@ -5298,21 +5297,13 @@ var prefixCls = 'ct-date-picker';
       return this.day;
     },
     getHour: function getHour() {
-      if (this.date) {
-        var hour = this.date.getHours();
-        if (hour.toString().length === 1) {
-          return '0' + hour;
-        }
-        return hour;
+      if (this.hhmm) {
+        return this.hhmm.split(':')[0];
       }
     },
     getMinutes: function getMinutes() {
-      if (this.date) {
-        var minutes = this.date.getMinutes();
-        if (minutes.toString().length === 1) {
-          return '0' + minutes;
-        }
-        return minutes;
+      if (this.hhmm) {
+        return this.hhmm.split(':')[1];
       }
     },
     listOverflow: function listOverflow() {
@@ -5342,15 +5333,6 @@ var prefixCls = 'ct-date-picker';
     }
   },
   mounted: function mounted() {
-    if (this.type === 'datetime') {
-      if (this.hourList.length > 0) {
-        this.hour = this.hourList[0].key;
-      }
-      if (this.minutesList.length > 0) {
-        this.minutes = this.minutesList[0].key;
-      }
-    }
-
     this.init(true);
   },
 
@@ -5396,6 +5378,8 @@ var prefixCls = 'ct-date-picker';
         if (this.type === 'datetime') {
           if (!dateTimeReg.test(this.currentValue)) {
             console.error('ctDatePicker: date value error!');
+          } else {
+            this.hhmm = this.currentValue.split(' ')[1];
           }
         } else {
           if (!dateReg.test(this.currentValue)) {
@@ -5406,8 +5390,8 @@ var prefixCls = 'ct-date-picker';
         this.date = new Date(this.currentValue);
       } else {
         this.date = new Date();
-        this.date.setHours(this.hour);
-        this.date.setMinutes(this.minutes);
+        this.date.setHours(this.getHour);
+        this.date.setMinutes(this.getMinutes);
         console.log('111', this.date);
       }
       this.year = this.date.getFullYear();
@@ -5507,7 +5491,7 @@ var prefixCls = 'ct-date-picker';
       this.day = day;
 
       if (this.type === 'datetime') {
-        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hhmm;
       } else {
         this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay;
       }
@@ -5559,15 +5543,15 @@ var prefixCls = 'ct-date-picker';
     },
     handleHourChange: function handleHourChange(val) {
       if (this.$ready) {
-        this.hour = val;
-        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
+        this.hhmm = val + ':' + this.hhmm.split(':')[1];
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hhmm;
         this.dateTimeEmit();
       }
     },
     handleMinutesChange: function handleMinutesChange(val) {
       if (this.$ready) {
-        this.minutes = val;
-        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hour + ':' + this.minutes;
+        this.hhmm = this.hhmm.split(':')[0] + ':' + val;
+        this.currentValue = this.year + '-' + this.getMonth + '-' + this.getDay + ' ' + this.hhmm;
         this.dateTimeEmit();
       }
     },
@@ -7510,10 +7494,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__select__ = __webpack_require__(38);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__select__ = __webpack_require__(38);
 
 
 
@@ -7523,30 +7504,31 @@ var prefixCls = 'ct-time-picker';
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ctTimePicker',
   props: {
-    hourList: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
+    value: {
+      type: String,
+      default: '00:00'
     },
-    minutesList: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
+    start: {
+      type: Number,
+      default: 0
     },
-    hour: {
-      type: [String, Number],
-      default: '00'
+    end: {
+      type: Number,
+      default: 23
     },
-    minutes: {
-      type: [String, Number],
-      default: '00'
+    range: {
+      type: Number,
+      default: 30
+    },
+    split: Boolean,
+    place: {
+      type: String,
+      default: 'top'
     }
   },
   components: {
-    ctSelect: __WEBPACK_IMPORTED_MODULE_1__select__["ctSelect"],
-    ctOption: __WEBPACK_IMPORTED_MODULE_1__select__["ctOption"]
+    ctSelect: __WEBPACK_IMPORTED_MODULE_0__select__["ctSelect"],
+    ctOption: __WEBPACK_IMPORTED_MODULE_0__select__["ctOption"]
   },
   computed: {
     getHour: function getHour() {
@@ -7564,24 +7546,13 @@ var prefixCls = 'ct-time-picker';
       return minutes;
     },
     getHourList: function getHourList() {
-      if (this.hourList.length > 0) {
-        return this.hourList;
-      }
-
-      var _hourItem = {
-        key: '',
-        label: ''
-      };
-
       var _hourList = [];
-      for (var i = 0; i < 24; ++i) {
-        var item = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(_hourItem);
+      for (var i = this.start; i < this.end; ++i) {
+        var item = void 0;
         if (i < 10) {
-          item.key = '0' + i;
-          item.label = '0' + i;
+          item = '0' + i;
         } else {
-          item.key = i;
-          item.label = i;
+          item = i.toString();
         }
         _hourList.push(item);
       }
@@ -7589,52 +7560,84 @@ var prefixCls = 'ct-time-picker';
       return _hourList;
     },
     getMinutesList: function getMinutesList() {
-      if (this.minutesList.length > 0) {
-        return this.minutesList;
-      }
-
-      var _minutesItem = {
-        key: '',
-        label: ''
-      };
-
       var _minutesList = [];
-      for (var i = 0; i < 60; ++i) {
-        var item = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(_minutesItem);
+      var i = 0;
+      while (i < 60) {
+        var item = void 0;
         if (i < 10) {
-          item.key = '0' + i;
-          item.label = '0' + i;
+          item = '0' + i;
         } else {
-          item.key = i;
-          item.label = i;
+          item = i.toString();
         }
         _minutesList.push(item);
+        i += this.range;
       }
 
       return _minutesList;
+    },
+    currentValue: function currentValue() {
+      return this.getHour + ':' + this.getMinutes;
     }
   },
   watch: {
-    hour: function hour(val) {
-      this.currentHour = val;
+    value: function value(newVal, oldVal) {
+      if (newVal === oldVal) return false;
+      this.setCurrentValue();
     },
-    minutes: function minutes(val) {
-      this.currentMinutes = val;
-    },
-    currentHour: function currentHour(val) {
+    currentHour: function currentHour(newVal, oldVal) {
+      if (newVal === oldVal) return false;
       this.$emit('on-hour-change', this.getHour);
+      this.update();
     },
-    currentMinutes: function currentMinutes(val) {
-      console.log(this.getMinutes);
+    currentMinutes: function currentMinutes(newVal, oldVal) {
+      if (newVal === oldVal) return false;
       this.$emit('on-minutes-change', this.getMinutes);
+      this.update();
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    if (!this.currentHour && !(this.currentHour in this.getHourList)) {
+      this.currentHour = this.getHourList[0];
+    }
+    if (!this.currentMinutes && !(this.currentMinutes in this.getMinutesList)) {
+      this.currentMinutes = this.getMinutesList[0];
+    }
+
+    this.setCurrentValue();
+
+    this.$nextTick(function () {
+      _this.init();
+    });
   },
   data: function data() {
     return {
       prefixCls: '' + prefixCls,
       currentHour: this.hour,
-      currentMinutes: this.minutes
+      currentMinutes: this.minutes,
+      _ready: false
     };
+  },
+
+  methods: {
+    init: function init() {
+      this._ready = true;
+
+      if (!this.value) {
+        this.update();
+      }
+    },
+    setCurrentValue: function setCurrentValue() {
+      if (this.value) {
+        this.currentHour = this.value.split(':')[0];
+        this.currentMinutes = this.value.split(':')[1];
+      }
+    },
+    update: function update() {
+      if (!this._ready) return false;
+      this.$emit('input', this.currentValue);
+    }
   }
 });
 
@@ -10294,7 +10297,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "54px",
       "noFormEmit": "",
-      "place": "top"
+      "place": _vm.place
     },
     model: {
       value: (_vm.currentHour),
@@ -10305,10 +10308,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, _vm._l((_vm.getHourList), function(item) {
     return _c('ctOption', {
-      key: item.id,
+      key: item,
       attrs: {
-        "label": item.label,
-        "value": item.key
+        "label": item,
+        "value": item
       }
     })
   })), _vm._v(" "), _c('ctSelect', {
@@ -10316,7 +10319,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "54px",
       "noFormEmit": "",
-      "place": "top"
+      "place": _vm.place
     },
     model: {
       value: (_vm.currentMinutes),
@@ -10327,10 +10330,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, _vm._l((_vm.getMinutesList), function(item) {
     return _c('ctOption', {
-      key: item.id,
+      key: item,
       attrs: {
-        "label": item.label,
-        "value": item.key
+        "label": item,
+        "value": item
       }
     })
   }))], 1)
@@ -11259,14 +11262,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.type === 'datetime') ? _c('ctTimePicker', {
     staticClass: "left",
     attrs: {
-      "hour": _vm.hour,
-      "minutes": _vm.minutes,
-      "hourList": _vm.hourList,
-      "minutesList": _vm.minutesList
+      "place": _vm.top,
+      "start": _vm.start,
+      "end": _vm.end,
+      "range": _vm.range
     },
     on: {
       "on-hour-change": _vm.handleHourChange,
       "on-minutes-change": _vm.handleMinutesChange
+    },
+    model: {
+      value: (_vm.hhmm),
+      callback: function($$v) {
+        _vm.hhmm = $$v
+      },
+      expression: "hhmm"
     }
   }) : _vm._e(), _vm._v(" "), _c('ctButton', {
     staticClass: "right",

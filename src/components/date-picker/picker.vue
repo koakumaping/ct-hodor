@@ -70,12 +70,13 @@
           <ctTimePicker
             v-if="type === 'datetime'"
             class="left"
-            :hour="hour"
-            :minutes="minutes"
-            :hourList="hourList"
-            :minutesList="minutesList"
+            v-model="hhmm"
             v-on:on-hour-change="handleHourChange"
             v-on:on-minutes-change="handleMinutesChange"
+            :place="top"
+            :start="start"
+            :end="end"
+            :range="range"
           ></ctTimePicker>
           <ctButton class="right" type="primary" @click="hidePicker">确定</ctButton>
         </div>
@@ -129,13 +130,17 @@ export default {
     },
     // 可以清空
     clearable: Boolean,
-    hourList: {
-      type: Array,
-      default: () => [],
+    start: {
+      type: Number,
+      default: 0,
     },
-    minutesList: {
-      type: Array,
-      default: () => [],
+    end: {
+      type: Number,
+      default: 23,
+    },
+    range: {
+      type: Number,
+      default: 30,
     },
   },
   directives: { clickoutside },
@@ -150,8 +155,7 @@ export default {
       year: '',
       month: '',
       day: '',
-      hour: '00',
-      minutes: '00',
+      hhmm: '00:00',
       cells: [],
       visiable: false,
       topCls: '',
@@ -175,21 +179,13 @@ export default {
       return this.day
     },
     getHour() {
-      if (this.date) {
-        const hour = this.date.getHours()
-        if (hour.toString().length === 1) {
-          return `0${hour}`
-        }
-        return hour
+      if (this.hhmm) {
+        return this.hhmm.split(':')[0]
       }
     },
     getMinutes() {
-      if (this.date) {
-        const minutes = this.date.getMinutes()
-        if (minutes.toString().length === 1) {
-          return `0${minutes}`
-        }
-        return minutes
+      if (this.hhmm) {
+        return this.hhmm.split(':')[1]
       }
     },
     listOverflow() {
@@ -219,16 +215,6 @@ export default {
     },
   },
   mounted() {
-    // 用于解决小时分钟列表改变后，初始化值的问题
-    if (this.type === 'datetime') {
-      if (this.hourList.length > 0) {
-        this.hour = this.hourList[0].key
-      }
-      if (this.minutesList.length > 0) {
-        this.minutes = this.minutesList[0].key
-      }
-    }
-
     this.init(true)
   },
   methods: {
@@ -268,6 +254,8 @@ export default {
         if (this.type === 'datetime') {
           if (!dateTimeReg.test(this.currentValue)) {
             console.error('ctDatePicker: date value error!')
+          } else {
+            this.hhmm = this.currentValue.split(' ')[1]
           }
         } else {
           if (!dateReg.test(this.currentValue)) {
@@ -278,8 +266,8 @@ export default {
         this.date = new Date(this.currentValue)
       } else {
         this.date = new Date()
-        this.date.setHours(this.hour)
-        this.date.setMinutes(this.minutes)
+        this.date.setHours(this.getHour)
+        this.date.setMinutes(this.getMinutes)
         console.log('111', this.date)
       }
       this.year = this.date.getFullYear()
@@ -385,7 +373,7 @@ export default {
       this.day = day
 
       if (this.type === 'datetime') {
-        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hhmm}`
       } else {
         this.currentValue = `${this.year}-${this.getMonth}-${this.getDay}`
       }
@@ -445,15 +433,15 @@ export default {
     },
     handleHourChange(val) {
       if (this.$ready) {
-        this.hour = val
-        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
+        this.hhmm = `${val}:${this.hhmm.split(':')[1]}`
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hhmm}`
         this.dateTimeEmit()
       }
     },
     handleMinutesChange(val) {
       if (this.$ready) {
-        this.minutes = val
-        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hour}:${this.minutes}`
+        this.hhmm = `${this.hhmm.split(':')[0]}:${val}`
+        this.currentValue = `${this.year}-${this.getMonth}-${this.getDay} ${this.hhmm}`
         this.dateTimeEmit()
       }
     },

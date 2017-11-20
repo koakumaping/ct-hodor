@@ -1,16 +1,15 @@
 <template>
   <div :class="[prefixCls, 'clear']">
-    <ctSelect v-model="currentHour" width="54px" class="left" style="margin-right: 8px;" noFormEmit place="top">
-      <ctOption v-for="item in getHourList" :key="item.id" :label="item.label" :value="item.key"></ctOption>
+    <ctSelect v-model="currentHour" width="54px" class="left" style="margin-right: 8px;" noFormEmit :place="place">
+      <ctOption v-for="item in getHourList" :key="item" :label="item" :value="item"></ctOption>
     </ctSelect>
-    <ctSelect v-model="currentMinutes" width="54px" class="left" noFormEmit place="top">
-      <ctOption v-for="item in getMinutesList" :key="item.id" :label="item.label" :value="item.key"></ctOption>
+    <ctSelect v-model="currentMinutes" width="54px" class="left" noFormEmit :place="place">
+      <ctOption v-for="item in getMinutesList" :key="item" :label="item" :value="item"></ctOption>
     </ctSelect>
   </div>
 </template>
 
 <script>
-import { clone } from 'ct-util'
 import { ctSelect, ctOption } from '../select'
 
 const prefixCls = 'ct-time-picker'
@@ -18,21 +17,26 @@ const prefixCls = 'ct-time-picker'
 export default {
   name: 'ctTimePicker',
   props: {
-    hourList: {
-      type: Array,
-      default: () => [],
+    value: {
+      type: String,
+      default: '00:00',
     },
-    minutesList: {
-      type: Array,
-      default: () => [],
+    start: {
+      type: Number,
+      default: 0,
     },
-    hour: {
-      type: [String, Number],
-      default: '00',
+    end: {
+      type: Number,
+      default: 23,
     },
-    minutes: {
-      type: [String, Number],
-      default: '00',
+    range: {
+      type: Number,
+      default: 30,
+    },
+    split: Boolean,
+    place: {
+      type: String,
+      default: 'top',
     },
   },
   components: {
@@ -55,24 +59,13 @@ export default {
       return minutes
     },
     getHourList() {
-      if (this.hourList.length > 0) {
-        return this.hourList
-      }
-
-      const _hourItem = {
-        key: '',
-        label: '',
-      }
-
       const _hourList = []
-      for (let i = 0; i < 24; ++i) {
-        const item = clone(_hourItem)
+      for (let i = this.start; i < this.end; ++i) {
+        let item
         if (i < 10) {
-          item.key = `0${i}`
-          item.label = `0${i}`
+          item = `0${i}`
         } else {
-          item.key = i
-          item.label = i
+          item = i.toString()
         }
         _hourList.push(item)
       }
@@ -80,52 +73,82 @@ export default {
       return _hourList
     },
     getMinutesList() {
-      if (this.minutesList.length > 0) {
-        return this.minutesList
-      }
-
-      const _minutesItem = {
-        key: '',
-        label: '',
-      }
-
       const _minutesList = []
-      for (let i = 0; i < 60; ++i) {
-        const item = clone(_minutesItem)
+      let i = 0
+      while (i < 60) {
+        let item
         if (i < 10) {
-          item.key = `0${i}`
-          item.label = `0${i}`
+          item = `0${i}`
         } else {
-          item.key = i
-          item.label = i
+          item = i.toString()
         }
         _minutesList.push(item)
+        i += this.range
       }
-
+      // 初始化默认值
       return _minutesList
+    },
+    currentValue() {
+      return `${this.getHour}:${this.getMinutes}`
     },
   },
   watch: {
-    hour(val) {
-      this.currentHour = val
+    value(newVal, oldVal) {
+      if (newVal === oldVal) return false
+      this.setCurrentValue()
     },
-    minutes(val) {
-      this.currentMinutes = val
-    },
-    currentHour(val) {
+    currentHour(newVal, oldVal) {
+      if (newVal === oldVal) return false
       this.$emit('on-hour-change', this.getHour)
+      this.update()
     },
-    currentMinutes(val) {
-      console.log(this.getMinutes)
+    currentMinutes(newVal, oldVal) {
+      if (newVal === oldVal) return false
       this.$emit('on-minutes-change', this.getMinutes)
+      this.update()
     },
+  },
+  mounted() {
+    // 初始化默认值
+    if (!this.currentHour && !(this.currentHour in this.getHourList)) {
+      this.currentHour = this.getHourList[0]
+    }
+    if (!this.currentMinutes && !(this.currentMinutes in this.getMinutesList)) {
+      this.currentMinutes = this.getMinutesList[0]
+    }
+    // 如果有默认值，取默认值
+    this.setCurrentValue()
+
+    this.$nextTick(() => {
+      this.init()
+    })
   },
   data() {
     return {
       prefixCls: `${prefixCls}`,
       currentHour: this.hour,
       currentMinutes: this.minutes,
+      _ready: false,
     }
+  },
+  methods: {
+    init() {
+      this._ready = true
+      // 如果默认值为空，则触发一次数据更新
+      if (!this.value) {
+        this.update()
+      }
+    },
+    setCurrentValue() {
+      if (this.value) {
+        this.currentHour = this.value.split(':')[0]
+        this.currentMinutes = this.value.split(':')[1]
+      }
+    },
+    update() {
+      if (!this._ready) return false
+      this.$emit('input', this.currentValue)
+    },
   },
 }
 </script>
