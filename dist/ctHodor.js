@@ -4944,10 +4944,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     doSearch: function doSearch() {
-      this.$emit('on-search', this.showExtra);
+      this.$emit('on-search');
     },
     doClear: function doClear() {
-      this.$emit('on-clear', this.showExtra);
+      this.$emit('on-clear');
     },
     toggle: function toggle() {
       var _this = this;

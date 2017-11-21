@@ -52,10 +52,10 @@ export default {
   },
   methods: {
     doSearch() {
-      this.$emit('on-search', this.showExtra)
+      this.$emit('on-search')
     },
     doClear() {
-      this.$emit('on-clear', this.showExtra)
+      this.$emit('on-clear')
     },
     toggle() {
       this.$refs.filterbar.show()
