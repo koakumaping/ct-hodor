@@ -10571,17 +10571,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "ct-action-bar__right-content"
   }, [_vm._t("right"), _vm._v(" "), (_vm.$slots.extra) ? _c('ctButton', {
+    attrs: {
+      "icon": "cogs"
+    },
     on: {
       "click": _vm.toggle
     }
-  }, [_vm._v("高级搜索")]) : _vm._e(), _vm._v(" "), (!_vm.hiddenSearchBtn && _vm.$slots.right) ? _c('ctButton', {
+  }) : _vm._e(), _vm._v(" "), (!_vm.hiddenSearchBtn && _vm.$slots.right) ? _c('ctButton', {
     attrs: {
-      "type": "primary"
+      "type": "primary",
+      "icon": "search"
     },
     on: {
       "click": _vm.doSearch
     }
-  }, [_vm._v("搜索")]) : _vm._e()], 2), _vm._v(" "), _c('div', {
+  }) : _vm._e()], 2), _vm._v(" "), _c('div', {
     staticClass: "ct-action-bar__right-action"
   }, [_vm._t("btn")], 2)]), _vm._v(" "), _c('ctFilterbar', {
     ref: "filterbar",
