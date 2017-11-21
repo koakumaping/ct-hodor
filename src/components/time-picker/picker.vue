@@ -60,7 +60,7 @@ export default {
     },
     getHourList() {
       const _hourList = []
-      for (let i = this.start; i < this.end; ++i) {
+      for (let i = this.start; i <= this.end; ++i) {
         let item
         if (i < 10) {
           item = `0${i}`
@@ -110,10 +110,12 @@ export default {
   },
   mounted() {
     // 初始化默认值
-    if (!this.currentHour && !(this.currentHour in this.getHourList)) {
+    if (!this.currentHour && !(this.getHourList.includes(this.currentHour))) {
       this.currentHour = this.getHourList[0]
     }
-    if (!this.currentMinutes && !(this.currentMinutes in this.getMinutesList)) {
+    if (!this.currentMinutes &&
+      !(this.getMinutesList.includes(this.currentMinutes))
+    ) {
       this.currentMinutes = this.getMinutesList[0]
     }
     // 如果有默认值，取默认值
@@ -134,15 +136,16 @@ export default {
   methods: {
     init() {
       this._ready = true
-      // 如果默认值为空，则触发一次数据更新
-      if (!this.value) {
-        this.update()
-      }
+      this.update()
     },
     setCurrentValue() {
       if (this.value) {
-        this.currentHour = this.value.split(':')[0]
-        this.currentMinutes = this.value.split(':')[1]
+        const _hour = this.value.split(':')[0]
+        const _minutes = this.value.split(':')[1]
+
+        this.currentHour = this.getHourList.includes(_hour) ? _hour : this.getHourList[0]
+        this.currentMinutes = this.getMinutesList.includes(_minutes) ?
+          _minutes : this.getMinutesList[0]
       }
     },
     update() {

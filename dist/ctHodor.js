@@ -7547,7 +7547,7 @@ var prefixCls = 'ct-time-picker';
     },
     getHourList: function getHourList() {
       var _hourList = [];
-      for (var i = this.start; i < this.end; ++i) {
+      for (var i = this.start; i <= this.end; ++i) {
         var item = void 0;
         if (i < 10) {
           item = '0' + i;
@@ -7598,10 +7598,10 @@ var prefixCls = 'ct-time-picker';
   mounted: function mounted() {
     var _this = this;
 
-    if (!this.currentHour && !(this.currentHour in this.getHourList)) {
+    if (!this.currentHour && !this.getHourList.includes(this.currentHour)) {
       this.currentHour = this.getHourList[0];
     }
-    if (!this.currentMinutes && !(this.currentMinutes in this.getMinutesList)) {
+    if (!this.currentMinutes && !this.getMinutesList.includes(this.currentMinutes)) {
       this.currentMinutes = this.getMinutesList[0];
     }
 
@@ -7623,15 +7623,15 @@ var prefixCls = 'ct-time-picker';
   methods: {
     init: function init() {
       this._ready = true;
-
-      if (!this.value) {
-        this.update();
-      }
+      this.update();
     },
     setCurrentValue: function setCurrentValue() {
       if (this.value) {
-        this.currentHour = this.value.split(':')[0];
-        this.currentMinutes = this.value.split(':')[1];
+        var _hour = this.value.split(':')[0];
+        var _minutes = this.value.split(':')[1];
+
+        this.currentHour = this.getHourList.includes(_hour) ? _hour : this.getHourList[0];
+        this.currentMinutes = this.getMinutesList.includes(_minutes) ? _minutes : this.getMinutesList[0];
       }
     },
     update: function update() {
