@@ -29,7 +29,7 @@
       <section :style="{ width: bodyWidth }" class="ct-table-empty" v-if="(!data || data.length === 0) && !loading">
         <div class="ct-table-empty-text relative text-center">
           <slot name="empty">
-            <img src="../../assets/img/empty_state.jpg" alt="empty_state">
+            <img src="../../assets/img/empty_state.jpg" alt="empty_state" v-if="!noEmptyPic">
             <div>{{ emptyText }}</div>
           </slot>
         </div>
@@ -173,6 +173,8 @@ export default {
     stripe: Boolean,
     // 边框,默认没有
     border: Boolean,
+    // 禁止显示没有数据时的图片
+    noEmptyPic: Boolean,
   },
   data() {
     // 用于表格的数据共享
