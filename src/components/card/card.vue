@@ -1,10 +1,11 @@
 <template>
   <div class="ct-card">
-    <div class="ct-card-head clear" v-if="label || $slots.title">
+    <div class="ct-card-head clear" v-if="label || $slots.label || $slots.title">
       <div class="ct-card-head-warp">
         <div class="ct-card-head-title">
           {{label}}
-          <div class="ct-card-head-title-slot">
+          <slot name="label"></slot>
+          <div class="ct-card-head__title-slot">
             <slot name="title"></slot>
           </div>
         </div>
@@ -60,8 +61,9 @@ export default {
         font-weight: 500
         display: inline-block
         flex: 1
-        .ct-card-head-title-slot
-          display block
+        .ct-card-head__title-slot
+          display: inline-block
+          padding-left: 16px
   .ct-card-body
     color: #000
     padding: 24px

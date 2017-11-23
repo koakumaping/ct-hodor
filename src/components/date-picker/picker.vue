@@ -491,6 +491,7 @@ export default {
   &:hover
     border-color: $color-main
   ^[0]-input
+    font-size: $font-size
     width: 100%
     position: relative
     height: 32px
@@ -503,19 +504,21 @@ export default {
       right: 10px
       top: 10px
       color: #ccc
+      font-size: 12px
     &::before
       cursor: pointer!important
     .placeholder
       color: $color-placeholder
   ^[0]-warpper
     background-color: #fff
-    border-radius: 4px
+    border-radius: 2px
     position: absolute
-    top: 34px
+    top: -1px
+    left: -1px
     z-index: 3
     box-shadow: $box-shadow
     &^[0]-top
-      top: -344px
+      top: -307px
     ^[0]-header
       height: 32px
       line-height: 32px

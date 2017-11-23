@@ -117,13 +117,15 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 
 .ct-input
   display: inline-block
   vertical-align: top
   width: 100%
-  position relative
+  position: relative
+  font-size: $font-size
   &.active,
   &:hover
     > input,
@@ -145,7 +147,6 @@ export default {
 
 .ct-input > input
   color: #000
-  font-size: 12px
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
              "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
              SimSun, sans-serif

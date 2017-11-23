@@ -325,6 +325,7 @@ export default {
 <style lang="stylus">
 @import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
+
 .ct-select[readonly=readonly]
   position: relative
   &:before
@@ -340,7 +341,7 @@ export default {
 .ct-select
   display: inline-block
   vertical-align: top
-  font-size: 12px
+  font-size: $font-size
   width: 100%
 
   // z-index: 2
@@ -408,7 +409,7 @@ export default {
       border-radius: 4px
       li
         background-color: #fff
-        padding: 7px 8px
+        padding: 5px 8px 6px 8px
         line-height: 1.5
         cursor: pointer
         white-space: nowrap

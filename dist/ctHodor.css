@@ -1,6 +1,6 @@
 
 html {
-  font-size: 12px;
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif, "NSimSun", "SimSun";
   touch-action: manipulation;
@@ -925,6 +925,7 @@ body {
   vertical-align: top;
   width: 100%;
   position: relative;
+  font-size: 14px;
 }
 .ct-input.active > input,
 .ct-input:hover > input,
@@ -946,7 +947,6 @@ body {
 }
 .ct-input > input {
   color: #000;
-  font-size: 12px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif, "NSimSun", "SimSun";
   padding: 4px 8px;
@@ -1037,8 +1037,8 @@ body {
   outline: none;
   margin: 0;
   user-select: none;
-  padding: 9px 16px;
-  font-size: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
   border-radius: 4px;
   position: relative;
 }
@@ -1087,7 +1087,6 @@ body {
 .ct-button.ct-button-primary {
   color: #fff;
   background-color: #ee6b5d;
-  border-color: #ee6b5d;
 }
 .ct-button.ct-button-primary.ct-button.is-disabled,
 .ct-button.ct-button-primary.ct-button.is-disabled:hover,
@@ -1216,7 +1215,7 @@ body {
 .ct-select {
   display: inline-block;
   vertical-align: top;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
 }
 .ct-select:hover > .ct-select-name {
@@ -1289,7 +1288,7 @@ body {
 }
 .ct-select .ct-select-list ul li {
   background-color: #fff;
-  padding: 7px 8px;
+  padding: 5px 8px 6px 8px;
   line-height: 1.5;
   cursor: pointer;
   white-space: nowrap;
@@ -1441,6 +1440,7 @@ body {
 .ct-table {
   position: relative;
   width: 100%;
+  font-size: 14px;
 }
 .ct-table.ct-table-border {
   border-top: 1px solid #e5e7ea;
@@ -1558,7 +1558,6 @@ body {
   background-color: #f1f1f1;
   height: 40px;
   text-transform: uppercase;
-  font-size: 12px;
   letter-spacing: 1px;
 }
 .ct-table table > thead > tr > th > .cell {
@@ -1768,6 +1767,7 @@ body {
   border-color: #ee6b5d;
 }
 .ct-date-picker-input {
+  font-size: 14px;
   width: 100%;
   position: relative;
   height: 32px;
@@ -1781,6 +1781,7 @@ body {
   right: 10px;
   top: 10px;
   color: #ccc;
+  font-size: 12px;
 }
 .ct-date-picker-input::before {
   cursor: pointer !important;
@@ -1790,14 +1791,15 @@ body {
 }
 .ct-date-picker-warpper {
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 2px;
   position: absolute;
-  top: 34px;
+  top: -1px;
+  left: -1px;
   z-index: 3;
   box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
 }
 .ct-date-picker-warpper.ct-date-picker-top {
-  top: -344px;
+  top: -307px;
 }
 .ct-date-picker-header {
   height: 32px;
@@ -5276,15 +5278,16 @@ body {
 }
 
 .ct-pagination {
+  font-size: 14px;
   margin: 16px 0;
 }
 .ct-pagination > ul {
   float: right;
 }
 .ct-pagination > ul > li {
-  height: 32px;
-  line-height: 30px;
-  min-width: 28px;
+  height: 30px;
+  line-height: 28px;
+  min-width: 30px;
   display: block;
   padding: 0 8px;
   float: left;
@@ -5575,6 +5578,7 @@ body {
   overflow: hidden;
 }
 .side nav .side-menu-item a {
+  font-size: 12px;
   line-height: 37px;
   padding: 0;
   padding-left: 58px;
@@ -5711,8 +5715,9 @@ body {
   display: inline-block;
   flex: 1;
 }
-.ct-card .ct-card-head .ct-card-head-warp .ct-card-head-title .ct-card-head-title-slot {
-  display: block;
+.ct-card .ct-card-head .ct-card-head-warp .ct-card-head-title .ct-card-head__title-slot {
+  display: inline-block;
+  padding-left: 16px;
 }
 .ct-card .ct-card-body {
   color: #000;

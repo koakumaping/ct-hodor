@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 
 .ct-button
@@ -106,8 +107,8 @@ export default {
   outline: none
   margin: 0
   user-select: none
-  padding: 9px 16px
-  font-size: 12px
+  padding: 8px 16px
+  font-size: $font-size
   border-radius: 4px
   position: relative
   &.ct-button-small
@@ -149,7 +150,7 @@ export default {
   &^[0]-primary
     color: #fff
     background-color: $color-main
-    border-color: $color-main
+    // border-color: $color-main
     &^[0].is-disabled,
     &^[0].is-disabled:hover,
     &^[0].is-disabled:active

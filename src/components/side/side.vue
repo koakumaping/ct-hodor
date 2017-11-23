@@ -172,6 +172,7 @@ $menu-bg-color = #2B3654
       display: block
       overflow: hidden
       a
+        font-size: 12px
         line-height: 37px
         padding: 0
         padding-left: 58px

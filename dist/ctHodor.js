@@ -10625,15 +10625,15 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "ct-card"
-  }, [(_vm.label || _vm.$slots.title) ? _c('div', {
+  }, [(_vm.label || _vm.$slots.label || _vm.$slots.title) ? _c('div', {
     staticClass: "ct-card-head clear"
   }, [_c('div', {
     staticClass: "ct-card-head-warp"
   }, [_c('div', {
     staticClass: "ct-card-head-title"
-  }, [_vm._v("\n        " + _vm._s(_vm.label) + "\n        "), _c('div', {
-    staticClass: "ct-card-head-title-slot"
-  }, [_vm._t("title")], 2)])])]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n        " + _vm._s(_vm.label) + "\n        "), _vm._t("label"), _vm._v(" "), _c('div', {
+    staticClass: "ct-card-head__title-slot"
+  }, [_vm._t("title")], 2)], 2)])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "ct-card-body clear"
   }, [_c('div', [_vm._t("default")], 2)])])
 },staticRenderFns: []}

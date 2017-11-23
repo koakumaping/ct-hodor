@@ -156,16 +156,18 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 
 .ct-pagination
+  font-size: $font-size
   margin: 16px 0
   & > ul
     float: right
     & > li
-      height: 32px
-      line-height: 30px
-      min-width: 28px
+      height: 30px
+      line-height: 28px
+      min-width: 30px
       display: block
       padding: 0 8px
       float: left
