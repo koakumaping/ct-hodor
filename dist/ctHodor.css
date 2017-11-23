@@ -5716,6 +5716,7 @@ body {
   padding-left: 16px;
 }
 .ct-card .ct-card-body {
+  color: #000;
   padding: 24px;
   zoom: 1;
 }
