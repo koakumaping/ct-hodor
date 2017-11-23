@@ -1,6 +1,6 @@
 <template>
   <div class="ct-card">
-    <div class="ct-card-head clear" v-if="label">
+    <div class="ct-card-head clear" v-if="label || $slots.title">
       <div class="ct-card-head-warp">
         <div class="ct-card-head-title">
           {{label}}
