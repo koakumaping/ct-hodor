@@ -5712,8 +5712,7 @@ body {
   flex: 1;
 }
 .ct-card .ct-card-head .ct-card-head-warp .ct-card-head-title .ct-card-head-title-slot {
-  display: inline-block;
-  padding-left: 16px;
+  display: block;
 }
 .ct-card .ct-card-body {
   color: #000;

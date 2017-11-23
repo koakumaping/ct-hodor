@@ -61,8 +61,7 @@ export default {
         display: inline-block
         flex: 1
         .ct-card-head-title-slot
-          display inline-block
-          padding-left 16px
+          display block
   .ct-card-body
     color: #000
     padding: 24px
