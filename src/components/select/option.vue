@@ -1,7 +1,7 @@
 <template>
   <li
     v-on:click="setCurrentValue(value)"
-    :class="{ 'current': selected }"
+    :class="{ 'current': selected, 'is-disabled': disabled }"
   >{{label}}</li>
 </template>
 
@@ -20,6 +20,7 @@ export default {
     label: {
       type: [String, Number],
     },
+    disabled: Boolean,
   },
   data() {
     return {
@@ -41,9 +42,11 @@ export default {
         label: this.label,
         value: this.value,
         selected: false,
+        disabled: this.disabled,
       })
     },
     setCurrentValue() {
+      if (this.disabled) return false
       // 通知select组件，该选项被点击了
       this.dispatch('ctSelect', 'selected', this.value)
       if (this.parent.multiple) return

@@ -1300,6 +1300,13 @@ body {
   transition: background 0.3s ease;
   position: relative;
 }
+.ct-select .ct-select-list ul li.is-disabled {
+  background-color: #f0f2f5;
+}
+.ct-select .ct-select-list ul li.is-disabled:hover {
+  cursor: not-allowed;
+  background-color: #f0f2f5;
+}
 .ct-select .ct-select-list ul li.current {
   color: #fff;
   background-color: #ee6b5d;
@@ -5228,7 +5235,7 @@ body {
 }
 .form section.is-error .form-content > .ct-input > input,
 .form section.is-error .form-content > .ct-input > textarea,
-.form section.is-error .form-content > .ct-date-picker > .ct-date-picker-input > .ct-input > input,
+.form section.is-error .form-content > .ct-date-picker,
 .form section.is-error .form-content > .ct-select > .ct-select-name {
   border-color: #ed3f14;
 }

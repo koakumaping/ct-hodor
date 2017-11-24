@@ -361,6 +361,9 @@ export default {
     text-align: left
     background-color: #fff
     position: relative
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
     &:hover,
     &.is-active
       border-color $color-main
@@ -416,6 +419,11 @@ export default {
         overflow: hidden
         transition: background .3s ease
         position: relative
+        &.is-disabled
+          background-color: $background-main
+          &:hover
+            cursor: not-allowed
+            background-color: $background-main
         &.current
           color #fff
           background-color $color-main

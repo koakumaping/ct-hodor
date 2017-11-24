@@ -6731,7 +6731,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     label: {
       type: [String, Number]
-    }
+    },
+    disabled: Boolean
   },
   data: function data() {
     return {
@@ -6753,10 +6754,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.parent.optionList.push({
         label: this.label,
         value: this.value,
-        selected: false
+        selected: false,
+        disabled: this.disabled
       });
     },
     setCurrentValue: function setCurrentValue() {
+      if (this.disabled) return false;
+
       this.dispatch('ctSelect', 'selected', this.value);
       if (this.parent.multiple) return;
       this.parent.hideList();
@@ -10930,7 +10934,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
     class: {
-      'current': _vm.selected
+      'current': _vm.selected, 'is-disabled': _vm.disabled
     },
     on: {
       "click": function($event) {
