@@ -146,6 +146,7 @@ export default {
   //   display: block
 
 .ct-input > input
+  font-size: $font-size
   color: #000
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
              "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
@@ -157,7 +158,7 @@ export default {
   background-color: #fff
   display: block
   height: 32px
-  line-height: 1
+  line-height: 32px
   width: 100%
   border: 1px solid $border-color
   // border-top: 1px solid #c0c0c0
