@@ -191,10 +191,11 @@ export default {
     listOverflow() {
       const windowHeight = getWindowHeight()
       const elRect = this.$refs.ctDatePicker.getBoundingClientRect()
+      const elToTop = elRect.top
       const elToBottom = elRect.bottom
       // const maxHeight = elRect.bottom - elRect.top
 
-      if (windowHeight - elToBottom - (340 + 8) <= 0) {
+      if (windowHeight - elToBottom - (340 + 8) <= 0 && elToTop > 340) {
         return true
       }
       return false
