@@ -41,7 +41,17 @@
       </section>
     </div>
     <!-- 表格底部 -->
-    <div class="ct-table-footer-warp" ref="footerWrapper"></div>
+    <div class="ct-table-footer-warp" ref="footerWrapper" v-if="showSummary" v-show="data && data.length > 0">
+      <ctTableFooter
+        :store="store"
+        :layout="layout"
+        :border="border"
+        :sum-text="sumText"
+        :summary-method="summaryMethod"
+        :default-sort="defaultSort"
+        :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }">
+      </ctTableFooter>
+    </div>
 
     <!-- 左侧固定 -->
     <div class="ct-table-fixed"
@@ -75,6 +85,17 @@
           :highlight="highlightCurrentRow"
           :stripe="stripe"
         ></ctTableBody>
+      </div>
+      <div class="ct-table-fixed-footer-warp" ref="fixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
+        <ctTableFooter
+          fixed="left"
+          :border="border"
+          :sum-text="sumText"
+          :summary-method="summaryMethod"
+          :store="store"
+          :layout="layout"
+          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"
+        ></ctTableFooter>
       </div>
     </div>
     <!-- 左侧固定 end -->
@@ -112,6 +133,17 @@
           :stripe="stripe"
         ></ctTableBody>
       </div>
+      <div class="ct-table-fixed-footer-warp" ref="rightFixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
+        <ctTableFooter
+          fixed="left"
+          :border="border"
+          :sum-text="sumText"
+          :summary-method="summaryMethod"
+          :store="store"
+          :layout="layout"
+          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"
+        ></ctTableFooter>
+      </div>
     </div>
     <!-- 右侧固定 end -->
     <!-- 修正右侧滚动条的宽度 -->
@@ -133,6 +165,7 @@ import {
 import TableStore from './store'
 import ctTableHeader from './head'
 import ctTableBody from './body'
+import ctTableFooter from './footer'
 import TableLayout from './layout'
 
 const seed = 0
@@ -142,6 +175,7 @@ export default {
   components: {
     ctTableHeader,
     ctTableBody,
+    ctTableFooter,
   },
   props: {
     // 传入的列表数据
@@ -159,6 +193,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    // 是否显示统计
+    showSummary: Boolean,
+    sumText: String,
+    summaryMethod: Function,
+    defaultSort: Object,
     emptyText: {
       default: '暂无数据',
     },

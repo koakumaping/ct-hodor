@@ -211,7 +211,6 @@ export default {
   },
   watch: {
     value(val) {
-      console.log('watch value')
       this.setCurrentValue(val)
     },
   },
@@ -229,13 +228,11 @@ export default {
       }
       this.$nextTick(() => {
         this.$ready = true
-        console.log('init over')
       })
     },
     setCurrentValue(value, init = false) {
       if (value !== this.currentValue) {
         this.currentValue = value
-        console.log('setCurrentValue', this.currentValue)
         this.set()
         // 清空时重新渲染下拉内容
         if (value === '') {
@@ -247,7 +244,6 @@ export default {
     },
     // 设置初始化时间
     set() {
-      console.log('set time')
       if (this.currentValue) {
         const dateReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])$/
         const dateTimeReg = /^\d{4}-(0\d|1[0-2])-([0-2]\d|3[01])( ([01]\d|2[0-3]):[0-5]\d)$/
@@ -269,7 +265,6 @@ export default {
         this.date = new Date()
         this.date.setHours(this.getHour)
         this.date.setMinutes(this.getMinutes)
-        console.log('111', this.date)
       }
       this.year = this.date.getFullYear()
       this.month = this.date.getMonth()
