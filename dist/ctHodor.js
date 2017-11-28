@@ -7473,7 +7473,9 @@ var seed = 0;
 
     border: Boolean,
 
-    noEmptyPic: Boolean
+    noEmptyPic: Boolean,
+
+    rowClassName: [String, Function]
   },
   data: function data() {
     var store = new __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */](this, {
@@ -11167,7 +11169,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "store": _vm.store,
       "layout": _vm.layout,
       "highlight": _vm.highlightCurrentRow,
-      "stripe": _vm.stripe
+      "stripe": _vm.stripe,
+      "rowClassName": _vm.rowClassName
     }
   }), _vm._v(" "), ((!_vm.data || _vm.data.length === 0) && !_vm.loading) ? _c('section', {
     staticClass: "ct-table-empty",
@@ -11247,7 +11250,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "layout": _vm.layout,
       "fixed": "left",
       "highlight": _vm.highlightCurrentRow,
-      "stripe": _vm.stripe
+      "stripe": _vm.stripe,
+      "rowClassName": _vm.rowClassName
     }
   })], 1), _vm._v(" "), (_vm.showSummary) ? _c('div', {
     directives: [{
@@ -11310,7 +11314,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "layout": _vm.layout,
       "fixed": "right",
       "highlight": _vm.highlightCurrentRow,
-      "stripe": _vm.stripe
+      "stripe": _vm.stripe,
+      "rowClassName": _vm.rowClassName
     }
   })], 1), _vm._v(" "), (_vm.showSummary) ? _c('div', {
     directives: [{

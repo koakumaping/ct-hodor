@@ -25,6 +25,8 @@
         :style="{ width: bodyWidth }"
         :highlight="highlightCurrentRow"
         :stripe="stripe"
+        :rowClassName="rowClassName"
+        :rowStyle="rowStyle"
       ></ctTableBody>
       <section :style="{ width: bodyWidth }" class="ct-table-empty" v-if="(!data || data.length === 0) && !loading">
         <div class="ct-table-empty-text relative text-center">
@@ -84,6 +86,8 @@
           :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"
           :highlight="highlightCurrentRow"
           :stripe="stripe"
+          :rowClassName="rowClassName"
+          :rowStyle="rowStyle"
         ></ctTableBody>
       </div>
       <div class="ct-table-fixed-footer-warp" ref="fixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
@@ -131,6 +135,8 @@
           :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"
           :highlight="highlightCurrentRow"
           :stripe="stripe"
+          :rowClassName="rowClassName"
+          :rowStyle="rowStyle"
         ></ctTableBody>
       </div>
       <div class="ct-table-fixed-footer-warp" ref="rightFixedFooterWrapper" v-if="showSummary" v-show="data && data.length > 0">
@@ -214,6 +220,10 @@ export default {
     border: Boolean,
     // 禁止显示没有数据时的图片
     noEmptyPic: Boolean,
+    // 行的class设置
+    rowClassName: [String, Function],
+    // 行的style设置
+    rowStyle: [String, Function],
   },
   data() {
     // 用于表格的数据共享
