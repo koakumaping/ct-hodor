@@ -112,7 +112,8 @@ export default {
   border-radius: 4px
   position: relative
   &.ct-button-small
-    padding: 5px 8px
+    padding: 2px 7px
+    font-size: 12px
   // 用于列表显示
   ul
     > li
@@ -184,7 +185,7 @@ export default {
       color: #687f8e
       border-color: #687f8e
   &^[0]-text
-    color: $color-main
+    color: #000
     border-color: transparent
     background-color: transparent
     &^[0].is-disabled,

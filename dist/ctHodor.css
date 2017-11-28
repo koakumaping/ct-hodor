@@ -1043,7 +1043,8 @@ body {
   position: relative;
 }
 .ct-button.ct-button-small {
-  padding: 5px 8px;
+  padding: 2px 7px;
+  font-size: 12px;
 }
 .ct-button ul > li {
   padding: 2px 0;
@@ -1130,7 +1131,7 @@ body {
   border-color: #687f8e;
 }
 .ct-button.ct-button-text {
-  color: #ee6b5d;
+  color: #000;
   border-color: transparent;
   background-color: transparent;
 }
