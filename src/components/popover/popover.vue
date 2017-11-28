@@ -4,6 +4,7 @@
       :style="popStyle"
       :class="[`${prefixCls}-${place}`]"
       aria-hidden="true"
+      v-clickoutside
     >
       <div class="ct-popover-warp">
         <slot></slot>
@@ -28,6 +29,7 @@ export default {
       default: 'hover',
       validator: value => ['hover', 'click'].indexOf(value) > -1,
     },
+    inbody: Boolean,
   },
   data() {
     return {
@@ -70,7 +72,8 @@ export default {
         this.setClick()
       }
     },
-    show() {
+    show(el) {
+      if (el) this.el = el
       window.clearTimeout(this._timer)
       if (this.openDelay) {
         this._timer = setTimeout(() => {
@@ -113,7 +116,7 @@ export default {
     set() {
       this.ret = popover(this.el, this, {
         place: this.place,
-      })
+      }, this.inbody)
       // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
       this.ret.visibility = 'visible'
     },
