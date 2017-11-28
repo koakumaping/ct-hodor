@@ -1,9 +1,9 @@
 <template>
   <div :class="[prefixCls, 'clear']">
-    <ctSelect v-model="currentHour" width="54px" class="left" style="margin-right: 8px;" noFormEmit :place="place">
+    <ctSelect v-model="currentHour" width="54px" style="margin-right: 8px;" noFormEmit :place="place">
       <ctOption v-for="item in getHourList" :key="item" :label="item" :value="item"></ctOption>
     </ctSelect>
-    <ctSelect v-model="currentMinutes" width="54px" class="left" noFormEmit :place="place">
+    <ctSelect v-model="currentMinutes" width="54px" noFormEmit :place="place">
       <ctOption v-for="item in getMinutesList" :key="item" :label="item" :value="item"></ctOption>
     </ctSelect>
   </div>
@@ -155,3 +155,19 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus">
+.ct-time-picker
+  position: relative
+  font-size: 0
+  &[readonly=readonly]:before
+    content: ''
+    display block
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 1
+    cursor: not-allowed
+</style>

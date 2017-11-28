@@ -1763,6 +1763,22 @@ body {
 }
 }
 
+.ct-time-picker {
+  position: relative;
+  font-size: 0;
+}
+.ct-time-picker[readonly=readonly]:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: not-allowed;
+}
+
 .ct-date-picker {
   position: relative;
   background-color: #fff;
@@ -1776,6 +1792,16 @@ body {
 }
 .ct-date-picker:hover {
   border-color: #ee6b5d;
+}
+.ct-date-picker[readonly=readonly]:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: not-allowed;
 }
 .ct-date-picker-input {
   font-size: 14px;
