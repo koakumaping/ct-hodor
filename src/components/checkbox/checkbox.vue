@@ -175,7 +175,7 @@ export default {
       width 0
       user-select none
       position absolute
-      left -999px
+      left -9999px
   &.ct-checkbox-indeterminate
     label > span
       border-color: $color-main
