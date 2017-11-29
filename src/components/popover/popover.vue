@@ -28,10 +28,14 @@ export default {
         'right',
         'top',
         'bottom',
+        'right-top',
+        'left-top',
         'top-right',
         'top-left',
         'bottom-right',
         'bottom-left',
+        'right-bottom',
+        'left-bottom',
       ].indexOf(value) > -1,
     },
     trigger: {
@@ -227,27 +231,26 @@ export default {
       top: 50%
       margin-top: -5px
       transform: rotateZ(-45deg)
-  &.ct-popover-top
-  padding-bottom: 8px
-  .ct-popover-warp:before
-    bottom: -4px
-    left: 50%
-    margin-left: -5px
-    transform: rotateZ(-135deg)
 
-  &.ct-popover-top-left
+  &.ct-popover-top
+    padding-bottom: 8px
+    .ct-popover-warp:before
+      bottom: -4px
+      left: 50%
+      margin-left: -5px
+      transform: rotateZ(-135deg)
+
+  &.ct-popover-left-top
     padding-right: 8px
     .ct-popover-warp:before
       right: -4px
       top: 12px
-      margin-top: -5px
       transform: rotateZ(135deg)
-  &.ct-popover-top-right
+  &.ct-popover-right-top
     padding-left: 8px
     .ct-popover-warp:before
       left: -4px
       top: 12px
-      margin-top: -5px
       transform: rotateZ(-45deg)
 
   &.ct-popover-bottom
@@ -257,18 +260,18 @@ export default {
       left: 50%
       margin-left: -5px
       transform: rotateZ(45deg)
+
   &.ct-popover-bottom-left
     padding-top: 8px
     .ct-popover-warp:before
       top: -4px
       left: 12px
-      margin-left: -5px
       transform: rotateZ(45deg)
   &.ct-popover-bottom-right
     padding-top: 8px
     .ct-popover-warp:before
       top: -4px
-      left: 12px
-      margin-left: -5px
+      right: 12px
       transform: rotateZ(45deg)
+
 </style>

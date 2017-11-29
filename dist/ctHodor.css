@@ -2021,30 +2021,29 @@ body {
   margin-top: -5px;
   transform: rotateZ(-45deg);
 }
-.ct-popover.ct-popover-top,
-.ct-popover padding-bottom: 8px,
-.ct-popover .ct-popover-warp:before {
+.ct-popover.ct-popover-top {
+  padding-bottom: 8px;
+}
+.ct-popover.ct-popover-top .ct-popover-warp:before {
   bottom: -4px;
   left: 50%;
   margin-left: -5px;
   transform: rotateZ(-135deg);
 }
-.ct-popover.ct-popover-top-left {
+.ct-popover.ct-popover-left-top {
   padding-right: 8px;
 }
-.ct-popover.ct-popover-top-left .ct-popover-warp:before {
+.ct-popover.ct-popover-left-top .ct-popover-warp:before {
   right: -4px;
   top: 12px;
-  margin-top: -5px;
   transform: rotateZ(135deg);
 }
-.ct-popover.ct-popover-top-right {
+.ct-popover.ct-popover-right-top {
   padding-left: 8px;
 }
-.ct-popover.ct-popover-top-right .ct-popover-warp:before {
+.ct-popover.ct-popover-right-top .ct-popover-warp:before {
   left: -4px;
   top: 12px;
-  margin-top: -5px;
   transform: rotateZ(-45deg);
 }
 .ct-popover.ct-popover-bottom {
@@ -2062,7 +2061,6 @@ body {
 .ct-popover.ct-popover-bottom-left .ct-popover-warp:before {
   top: -4px;
   left: 12px;
-  margin-left: -5px;
   transform: rotateZ(45deg);
 }
 .ct-popover.ct-popover-bottom-right {
@@ -2070,8 +2068,7 @@ body {
 }
 .ct-popover.ct-popover-bottom-right .ct-popover-warp:before {
   top: -4px;
-  left: 12px;
-  margin-left: -5px;
+  right: 12px;
   transform: rotateZ(45deg);
 }
 
