@@ -1045,6 +1045,8 @@ body {
 .ct-button.ct-button-small {
   padding: 2px 7px;
   font-size: 12px;
+}
+.ct-button.ct-button-small:hover {
   border-color: #ee6b5d;
 }
 .ct-button ul > li {

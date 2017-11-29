@@ -114,7 +114,8 @@ export default {
   &.ct-button-small
     padding: 2px 7px
     font-size: 12px
-    border-color: $color-main
+    &:hover
+      border-color: $color-main
   // 用于列表显示
   ul
     > li
