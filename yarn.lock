@@ -1630,8 +1630,8 @@ csso@~2.3.1:
     source-map "^0.5.3"
 
 ct-util@^1.0.5:
-  version "1.0.36"
-  resolved "https://registry.yarnpkg.com/ct-util/-/ct-util-1.0.36.tgz#5d44b0d47f47835e6172cc351dfeeec02cd573fa"
+  version "1.0.38"
+  resolved "https://registry.yarnpkg.com/ct-util/-/ct-util-1.0.38.tgz#fa8b6b64005a5728413b34ae3013bd765863512a"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"

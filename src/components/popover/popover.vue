@@ -23,7 +23,16 @@ export default {
   props: {
     place: {
       default: 'left',
-      validator: value => ['left', 'right', 'top', 'bottom', 'top-right', 'top-left'].indexOf(value) > -1,
+      validator: value => [
+        'left',
+        'right',
+        'top',
+        'bottom',
+        'top-right',
+        'top-left',
+        'bottom-right',
+        'bottom-left',
+      ].indexOf(value) > -1,
     },
     trigger: {
       default: 'hover',
@@ -218,32 +227,48 @@ export default {
       top: 50%
       margin-top: -5px
       transform: rotateZ(-45deg)
+  &.ct-popover-top
+  padding-bottom: 8px
+  .ct-popover-warp:before
+    bottom: -4px
+    left: 50%
+    margin-left: -5px
+    transform: rotateZ(-135deg)
+
   &.ct-popover-top-left
     padding-right: 8px
     .ct-popover-warp:before
       right: -4px
-      top: 16px
+      top: 12px
       margin-top: -5px
       transform: rotateZ(135deg)
   &.ct-popover-top-right
     padding-left: 8px
     .ct-popover-warp:before
       left: -4px
-      top: 16px
+      top: 12px
       margin-top: -5px
       transform: rotateZ(-45deg)
-  &.ct-popover-top
-    padding-bottom: 8px
-    .ct-popover-warp:before
-      bottom: -4px
-      left: 50%
-      margin-left: -5px
-      transform: rotateZ(-135deg)
+
   &.ct-popover-bottom
     padding-top: 8px
     .ct-popover-warp:before
       top: -4px
       left: 50%
+      margin-left: -5px
+      transform: rotateZ(45deg)
+  &.ct-popover-bottom-left
+    padding-top: 8px
+    .ct-popover-warp:before
+      top: -4px
+      left: 12px
+      margin-left: -5px
+      transform: rotateZ(45deg)
+  &.ct-popover-bottom-right
+    padding-top: 8px
+    .ct-popover-warp:before
+      top: -4px
+      left: 12px
       margin-left: -5px
       transform: rotateZ(45deg)
 </style>
