@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { popover, handleEvent } from 'ct-util'
+import { popover, handleEvent, toNumber } from 'ct-util'
 
 const prefixCls = 'ct-popover'
 
@@ -43,6 +43,15 @@ export default {
       validator: value => ['hover', 'click'].indexOf(value) > -1,
     },
     inbody: Boolean,
+    // 样式微调用
+    top: {
+      type: Number,
+      default: 0,
+    },
+    left: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -127,11 +136,15 @@ export default {
       }
     },
     set() {
-      this.ret = popover(this.el, this, {
+      const _ret = popover(this.el, this, {
         place: this.place,
       }, this.inbody)
       // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
-      this.ret.visibility = 'visible'
+      _ret.visibility = 'visible'
+      _ret.left = `${toNumber(_ret.left.replace('px', '')) + this.left}px`
+      _ret.top = `${toNumber(_ret.top.replace('px', '')) + this.top}px`
+
+      this.ret = _ret
     },
     setHover() {
       this.handleFocus = handleEvent('mouseenter', {
@@ -240,6 +253,19 @@ export default {
       margin-left: -5px
       transform: rotateZ(-135deg)
 
+  &.ct-popover-top-left
+    padding-bottom: 8px
+    .ct-popover-warp:before
+      bottom: -4px
+      left: 12px
+      transform: rotateZ(-135deg)
+  &.ct-popover-top-right
+    padding-bottom: 8px
+    .ct-popover-warp:before
+      bottom: -4px
+      right: 12px
+      transform: rotateZ(-135deg)
+
   &.ct-popover-left-top
     padding-right: 8px
     .ct-popover-warp:before
@@ -252,6 +278,19 @@ export default {
       left: -4px
       top: 12px
       transform: rotateZ(-45deg)
+
+  &.ct-popover-left-bottom
+    padding-right: 8px
+    .ct-popover-warp:before
+      right: -4px
+      bottom: 12px
+      transform: rotateZ(-45deg)
+  &.ct-popover-right-bottom
+    padding-left: 8px
+    .ct-popover-warp:before
+      left: -4px
+      bottom: 12px
+      transform: rotateZ(-135deg)
 
   &.ct-popover-bottom
     padding-top: 8px

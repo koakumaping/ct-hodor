@@ -2032,6 +2032,22 @@ body {
   margin-left: -5px;
   transform: rotateZ(-135deg);
 }
+.ct-popover.ct-popover-top-left {
+  padding-bottom: 8px;
+}
+.ct-popover.ct-popover-top-left .ct-popover-warp:before {
+  bottom: -4px;
+  left: 12px;
+  transform: rotateZ(-135deg);
+}
+.ct-popover.ct-popover-top-right {
+  padding-bottom: 8px;
+}
+.ct-popover.ct-popover-top-right .ct-popover-warp:before {
+  bottom: -4px;
+  right: 12px;
+  transform: rotateZ(-135deg);
+}
 .ct-popover.ct-popover-left-top {
   padding-right: 8px;
 }
@@ -2047,6 +2063,22 @@ body {
   left: -4px;
   top: 12px;
   transform: rotateZ(-45deg);
+}
+.ct-popover.ct-popover-left-bottom {
+  padding-right: 8px;
+}
+.ct-popover.ct-popover-left-bottom .ct-popover-warp:before {
+  right: -4px;
+  bottom: 12px;
+  transform: rotateZ(-45deg);
+}
+.ct-popover.ct-popover-right-bottom {
+  padding-left: 8px;
+}
+.ct-popover.ct-popover-right-bottom .ct-popover-warp:before {
+  left: -4px;
+  bottom: 12px;
+  transform: rotateZ(-135deg);
 }
 .ct-popover.ct-popover-bottom {
   padding-top: 8px;
