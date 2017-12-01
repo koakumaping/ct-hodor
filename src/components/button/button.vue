@@ -114,7 +114,6 @@ export default {
   &.ct-button-small
     padding: 2px 7px
     font-size: 12px
-    border-color: $color-main
     &:hover
       border-color: $color-main
   // 用于列表显示
@@ -163,6 +162,8 @@ export default {
       background-image: none
       background-color: #eef1f6
       border-color: #d1dbe5
+    &.ct-button-small
+      border-color: $color-main
     &:hover
       background-color: #687f8e
       border-color: #687f8e
