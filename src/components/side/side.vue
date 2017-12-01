@@ -63,7 +63,7 @@ $bg-color = #323D59
 $menu-bg-color = #2B3654
 
 .side
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   overflow: hidden

@@ -16,5 +16,5 @@ export default {
   .warpper
     min-height: 100%
     height: 100%
-    overflow: auto
+    // overflow: auto
 </style>

@@ -676,14 +676,12 @@ body {
 .warp {
   padding: 16px 16px 0 16px;
   height: 100%;
-  overflow: auto;
 }
 .index {
   padding-top: 0;
   padding-left: 50px;
   height: 100%;
   transition: all 0.3s;
-  overflow: hidden;
 }
 .index.index-has-menu {
   padding-left: 200px;
@@ -916,7 +914,6 @@ body {
 .warpper {
   min-height: 100%;
   height: 100%;
-  overflow: auto;
 }
 
 .ct-input {
@@ -5550,7 +5547,7 @@ body {
 }
 
 .side {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   overflow: hidden;
