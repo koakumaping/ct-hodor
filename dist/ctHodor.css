@@ -1045,6 +1045,7 @@ body {
 .ct-button.ct-button-small {
   padding: 2px 7px;
   font-size: 12px;
+  border-color: #ee6b5d;
 }
 .ct-button.ct-button-small:hover {
   border-color: #ee6b5d;
@@ -1137,6 +1138,7 @@ body {
   color: #000;
   border-color: transparent;
   background-color: transparent;
+  border: 0;
 }
 .ct-button.ct-button-text.ct-button.is-disabled,
 .ct-button.ct-button-text.ct-button.is-disabled:hover,
@@ -1148,8 +1150,12 @@ body {
   border-color: transparent;
   transform: translateY(0);
 }
+.ct-button.ct-button-text.ct-button-small {
+  border: 0;
+}
 .ct-button.ct-button-text:hover {
   color: #687f8e;
+  border: 0;
 }
 .ct-button.ct-button.is-disabled,
 .ct-button.ct-button.is-disabled:hover,

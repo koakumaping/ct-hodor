@@ -114,6 +114,7 @@ export default {
   &.ct-button-small
     padding: 2px 7px
     font-size: 12px
+    border-color: $color-main
     &:hover
       border-color: $color-main
   // 用于列表显示
@@ -190,6 +191,7 @@ export default {
     color: #000
     border-color: transparent
     background-color: transparent
+    border: 0
     &^[0].is-disabled,
     &^[0].is-disabled:hover,
     &^[0].is-disabled:active
@@ -199,8 +201,11 @@ export default {
       background-color: transparent
       border-color: transparent
       transform: translateY(0)
+    &.ct-button-small
+      border: 0
     &:hover
       color: #687f8e
+      border: 0
   &^[0].is-disabled,
   &^[0].is-disabled:hover,
   &^[0].is-disabled:active

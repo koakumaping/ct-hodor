@@ -4,7 +4,6 @@
       :style="popStyle"
       :class="[`${prefixCls}-${place}`]"
       aria-hidden="true"
-      v-clickoutside
     >
       <div class="ct-popover-warp">
         <slot></slot>

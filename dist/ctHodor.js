@@ -10741,10 +10741,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "mode": "out-in"
     }
   }, [_c('div', {
-    directives: [{
-      name: "clickoutside",
-      rawName: "v-clickoutside"
-    }],
     staticClass: "ct-popover",
     class: [(_vm.prefixCls + "-" + _vm.place)],
     style: (_vm.popStyle),
