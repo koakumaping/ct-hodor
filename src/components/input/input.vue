@@ -158,7 +158,7 @@ export default {
   background-color: #fff
   display: block
   height: 32px
-  line-height: 32px
+  line-height: 1
   width: 100%
   border: 1px solid $border-color
   // border-top: 1px solid #c0c0c0
