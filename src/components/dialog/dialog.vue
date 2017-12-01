@@ -1,34 +1,36 @@
 <template>
-  <div class="ct-dialog" v-show="visible" :class="sizeCls" aria-hidden="true" ref="ctDialog">
-    <div class="ct-dialog-bg" @click="shark"></div>
-    <div class="ct-dialog-warp">
-      <div class="ct-dialog-container" :style="customWidthStyle">
-        <div class="ct-dialog-box clear"
-          :style="customHeightStyle"
-          :class="boxCls"
-          ref="container"
-        >
-          <div class="ct-dialog-close" @click="handleClose" v-if="canClose">
-            <iconFont name="close"></iconFont>
-          </div>
-          <div class="ct-dialog-title">{{title}}</div>
-          <div class="ct-dialog-content"
-            :class="[$slots.footer ? 'has-footer' : '', fullScreen ? 'fullscreen' : '']"
-            :style="contentStyle"
-            ref="dialogContent"
+  <span>
+    <div class="ct-dialog" v-show="visible" :class="sizeCls" aria-hidden="true" ref="ctDialog">
+      <div class="ct-dialog-bg" @click="shark"></div>
+      <div class="ct-dialog-warp">
+        <div class="ct-dialog-container" :style="customWidthStyle">
+          <div class="ct-dialog-box clear"
+            :style="customHeightStyle"
+            :class="boxCls"
+            ref="container"
           >
-            <slot v-if="visible"></slot>
-          </div>
-          <div class="ct-dialog-footer clear" v-if="$slots.footer">
-            <div class="right">
-              <slot name="footer"></slot>
+            <div class="ct-dialog-close" @click="handleClose" v-if="canClose">
+              <iconFont name="close"></iconFont>
+            </div>
+            <div class="ct-dialog-title">{{title}}</div>
+            <div class="ct-dialog-content"
+              :class="[$slots.footer ? 'has-footer' : '', fullScreen ? 'fullscreen' : '']"
+              :style="contentStyle"
+              ref="dialogContent"
+            >
+              <slot v-if="visible"></slot>
+            </div>
+            <div class="ct-dialog-footer clear" v-if="$slots.footer">
+              <div class="right">
+                <slot name="footer"></slot>
+              </div>
             </div>
           </div>
-          <!-- <div class="ct-dialog-clear"></div> -->
         </div>
       </div>
     </div>
-  </div>
+    <slot name="reference"></slot>
+  </span>
 </template>
 
 <script>
@@ -138,9 +140,9 @@ export default {
       // this.$emit('update:visible', true)
       this.$emit('on-open', true)
       this.visible = true
+      document.body.appendChild(this.$refs.ctDialog)
     },
     hide() {
-      // this.$emit('update:visible', false)
       this.$emit('on-close', false)
       this.visible = false
     },
@@ -180,11 +182,19 @@ export default {
       ret.marginTop = `${marginTop}${isNumber(marginTop) ? 'px' : ''}`
       this.customHeightStyle = ret
     },
+    doDestroy() {
+      try {
+        document.body.removeChild(this.$refs.ctDialog)
+      } catch (error) {
+        (() => {})()
+      }
+    },
   },
   beforeDestroy() {
     if (this.resizeHandleEvent) {
       removeResizeListener(this.$refs.dialogContent, this.resizeHandleEvent)
     }
+    this.doDestroy()
   },
 }
 </script>

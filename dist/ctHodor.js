@@ -5857,6 +5857,7 @@ var prefixCls = 'ct-dialog';
     show: function show() {
       this.$emit('on-open', true);
       this.visible = true;
+      document.body.appendChild(this.$refs.ctDialog);
     },
     hide: function hide() {
       this.$emit('on-close', false);
@@ -5898,12 +5899,20 @@ var prefixCls = 'ct-dialog';
 
       ret.marginTop = '' + marginTop + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(marginTop) ? 'px' : '');
       this.customHeightStyle = ret;
+    },
+    doDestroy: function doDestroy() {
+      try {
+        document.body.removeChild(this.$refs.ctDialog);
+      } catch (error) {
+        (function () {})();
+      }
     }
   },
   beforeDestroy: function beforeDestroy() {
     if (this.resizeHandleEvent) {
       __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["removeResizeListener"])(this.$refs.dialogContent, this.resizeHandleEvent);
     }
+    this.doDestroy();
   }
 });
 
@@ -11848,7 +11857,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('span', [_c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -11896,7 +11905,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-dialog-footer clear"
   }, [_c('div', {
     staticClass: "right"
-  }, [_vm._t("footer")], 2)]) : _vm._e()])])])])
+  }, [_vm._t("footer")], 2)]) : _vm._e()])])])]), _vm._v(" "), _vm._t("reference")], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
