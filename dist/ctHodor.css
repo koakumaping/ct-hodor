@@ -1815,8 +1815,8 @@ body {
   font-size: 14px;
   width: 100%;
   position: relative;
-  height: 32px;
-  line-height: 32px;
+  height: 30px;
+  line-height: 30px;
   padding-left: 8px;
   padding-right: 24px;
   text-align: left;
@@ -5442,7 +5442,7 @@ body {
 .ct-action-bar > .ct-action-bar__left > div > *,
 .ct-action-bar > .ct-action-bar__right > div > * {
   display: inline-block !important;
-  vertical-align: top;
+  vertical-align: middle;
   margin-bottom: 8px;
 }
 .ct-action-bar > .ct-action-bar__left > * {

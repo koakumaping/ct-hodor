@@ -499,8 +499,8 @@ export default {
     font-size: $font-size
     width: 100%
     position: relative
-    height: 32px
-    line-height: 32px
+    height: 30px
+    line-height: 30px
     padding-left: 8px
     padding-right: 24px
     text-align: left

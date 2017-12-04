@@ -83,7 +83,7 @@ export default {
   > .ct-action-bar__left > div > *,
   > .ct-action-bar__right > div > *
     display inline-block!important
-    vertical-align top
+    vertical-align middle
     margin-bottom 8px
 
   > .ct-action-bar__left > *
