@@ -6468,7 +6468,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ctRow',
   props: {
-    gutter: [String, Number]
+    gutter: {
+      type: Number,
+      default: 16
+    }
   },
   computed: {
     gutterStyle: function gutterStyle() {

@@ -8,7 +8,10 @@
 export default {
   name: 'ctRow',
   props: {
-    gutter: [String, Number],
+    gutter: {
+      type: Number,
+      default: 16,
+    },
   },
   computed: {
     gutterStyle() {
