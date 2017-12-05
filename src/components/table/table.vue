@@ -189,7 +189,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    // 是否自适应宽度
+    // 列的宽度是否自撑开	
     fit: {
       type: Boolean,
       default: true,
