@@ -28,6 +28,11 @@
     >
       <ul ref="ctSelectUlList">
         <slot></slot>
+        <li class="useless"
+          v-for="item in maxItem - 1"
+          :key="item" 
+          v-if="optionList.length > maxItem"
+        >{{item}}</li>
       </ul>
     </div>
 
@@ -433,6 +438,15 @@ export default {
         &:hover
           color #000
           background-color: $color-hover
+        &.useless
+          color #fff
+          user-select none
+          cursor default
+          &:hover
+            cursor default
+            color #fff
+            background-color #fff
+
   &.is-multiple
     .ct-select-list
       li.current

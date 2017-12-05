@@ -11845,7 +11845,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     style: (_vm.listStyle)
   }, [_c('ul', {
     ref: "ctSelectUlList"
-  }, [_vm._t("default")], 2)])])
+  }, [_vm._t("default"), _vm._v(" "), _vm._l((_vm.maxItem - 1), function(item) {
+    return (_vm.optionList.length > _vm.maxItem) ? _c('li', {
+      key: item,
+      staticClass: "useless"
+    }, [_vm._v(_vm._s(item))]) : _vm._e()
+  })], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
