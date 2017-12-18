@@ -41,7 +41,7 @@ export default {
       this.parent.optionList.push({
         label: this.label,
         value: this.value,
-        selected: false,
+        selected: this.selected,
         disabled: this.disabled,
       })
     },

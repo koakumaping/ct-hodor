@@ -6944,7 +6944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.parent.optionList.push({
         label: this.label,
         value: this.value,
-        selected: false,
+        selected: this.selected,
         disabled: this.disabled
       });
     },

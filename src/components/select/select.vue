@@ -30,8 +30,8 @@
         <slot></slot>
         <li class="useless"
           v-for="item in maxItem - 1"
-          :key="item" 
-          v-if="optionList.length > maxItem"
+          :key="item"
+          v-show="optionList.length > maxItem"
         >{{item}}</li>
       </ul>
     </div>
