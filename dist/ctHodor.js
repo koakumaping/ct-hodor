@@ -11846,10 +11846,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ul', {
     ref: "ctSelectUlList"
   }, [_vm._t("default"), _vm._v(" "), _vm._l((_vm.maxItem - 1), function(item) {
-    return (_vm.optionList.length > _vm.maxItem) ? _c('li', {
+    return _c('li', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.optionList.length > _vm.maxItem),
+        expression: "optionList.length > maxItem"
+      }],
       key: item,
       staticClass: "useless"
-    }, [_vm._v(_vm._s(item))]) : _vm._e()
+    }, [_vm._v(_vm._s(item))])
   })], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

@@ -25,6 +25,7 @@ export default {
   bottom: 0
   background-color: rgba(255, 255, 255, 0.6)
   filter: blur(.5px)
+  z-index: 9
   span
     position: absolute
     top: 50%

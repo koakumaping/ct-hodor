@@ -5834,6 +5834,7 @@ body {
   bottom: 0;
   background-color: rgba(255,255,255,0.6);
   filter: blur(0.5px);
+  z-index: 9;
 }
 .spin span {
   position: absolute;
