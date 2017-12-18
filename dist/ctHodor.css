@@ -1231,7 +1231,7 @@ body {
   border-color: #ee6b5d;
 }
 .ct-select .ct-select-name {
-  padding: 0 8px 0 8px;
+  padding: 0 24px 0 8px;
   vertical-align: top;
   display: inline-block;
   width: 100%;

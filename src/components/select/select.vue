@@ -353,7 +353,7 @@ export default {
   &:hover > .ct-select-name
     border-color $color-main
   .ct-select-name
-    padding: 0 8px 0 8px
+    padding: 0 24px 0 8px
     vertical-align: top
     display: inline-block
     width: 100%
