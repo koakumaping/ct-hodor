@@ -161,13 +161,13 @@ export default {
 
 .ct-pagination
   font-size: $font-size
-  margin: 16px 0
+  margin-top: 16px
   & > ul
     float: right
     & > li
-      height: 30px
-      line-height: 28px
-      min-width: 30px
+      height: 32px
+      line-height: 30px
+      min-width: 32px
       display: block
       padding: 0 8px
       float: left
