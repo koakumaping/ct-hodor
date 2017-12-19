@@ -3625,7 +3625,7 @@ function getDefaultColumn(type, options) {
   }
 
   if (!column.minWidth) {
-    column.minWidth = 80;
+    column.minWidth = 120;
   }
 
   return column;
@@ -3718,7 +3718,7 @@ function DEFAULT_RENDER_CELL(h, _ref5) {
     property: String,
     prop: String,
     width: null,
-    minWidth: 80,
+    minWidth: 120,
     renderHeader: Function,
     resizable: {
       type: Boolean,

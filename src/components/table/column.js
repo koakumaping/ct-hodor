@@ -55,7 +55,7 @@ function getDefaultColumn(type, options) {
   }
 
   if (!column.minWidth) {
-    column.minWidth = 80
+    column.minWidth = 120
   }
 
   return column
@@ -119,7 +119,7 @@ export default {
     property: String,
     prop: String,
     width: null,
-    minWidth: 80,
+    minWidth: 120,
     renderHeader: Function,
     resizable: {
       type: Boolean,
