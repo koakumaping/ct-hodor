@@ -3452,7 +3452,7 @@ var getRowIdentity = function getRowIdentity(row, rowKey) {
               return [h(
                 'td',
                 {
-                  'class': [column.id, column.align, column.className || '', columnsHidden[cellIndex] ? 'is-hidden' : ''],
+                  'class': [column.id, 'align-' + column.align, column.className || '', columnsHidden[cellIndex] ? 'is-hidden' : ''],
                   on: {
                     'mouseenter': function mouseenter($event) {
                       return _this.handleCellMouseEnter($event, row);
@@ -3718,7 +3718,10 @@ function DEFAULT_RENDER_CELL(h, _ref5) {
     property: String,
     prop: String,
     width: null,
-    minWidth: 120,
+    minWidth: {
+      type: Number,
+      default: 120
+    },
     renderHeader: Function,
     resizable: {
       type: Boolean,
@@ -4153,7 +4156,8 @@ var convertToRows = function convertToRows(originColumns) {
                 {
                   attrs: {
                     colspan: column.colSpan,
-                    rowspan: column.rowSpan
+                    rowspan: column.rowSpan,
+                    prop: column.prop
                   },
                   'class': [column.id, column.order, column.headerAlign, column.className || '', rowIndex === 0 && _this.isCellHidden(cellIndex, columns) ? 'is-hidden' : '', !column.children ? 'is-leaf' : '', column.labelClassName]
                 },

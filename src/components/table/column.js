@@ -119,7 +119,10 @@ export default {
     property: String,
     prop: String,
     width: null,
-    minWidth: 120,
+    minWidth: {
+      type: Number,
+      default: 120,
+    },
     renderHeader: Function,
     resizable: {
       type: Boolean,
