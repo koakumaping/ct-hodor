@@ -10849,7 +10849,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-card-head__title-slot"
   }, [_vm._t("title")], 2)], 2)])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "ct-card-body clear"
-  }, [_c('div', [_vm._t("default")], 2)])])
+  }, [_vm._t("default")], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

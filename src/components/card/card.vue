@@ -12,9 +12,7 @@
       </div>
     </div>
     <div class="ct-card-body clear">
-      <div>
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -68,4 +66,6 @@ export default {
     color: #000
     padding: 24px
     zoom: 1
+    & > .ct-row:last-child
+      margin-bottom: -12px
 </style>

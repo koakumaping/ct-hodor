@@ -5825,6 +5825,9 @@ body {
   padding: 24px;
   zoom: 1;
 }
+.ct-card .ct-card-body > .ct-row:last-child {
+  margin-bottom: -12px;
+}
 
 .spin {
   position: absolute;
