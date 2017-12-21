@@ -26,6 +26,16 @@
       class="ct-select-list"
       :style="listStyle"
     >
+      <ctInput
+        v-model="searchName"
+        placeholder="请输入搜索内容"
+        v-if="filterable"
+        v-focus="focused"
+        @focus="focused = true"
+        @blur="focused = false"
+        ref="filterInput"
+        style="margin-bottom: 4px;"
+      />
       <ul ref="ctSelectUlList">
         <slot></slot>
         <li class="useless"
@@ -76,6 +86,10 @@ export default {
       validator: value => ['left', 'right', 'top', 'bottom'].indexOf(value) > -1,
     },
     noFormEmit: Boolean,
+    // 搜索
+    filterable: Boolean,
+    // 调用远程接口
+    remote: Boolean,
   },
   data() {
     return {
@@ -90,6 +104,9 @@ export default {
       ret: {
         left: '-9999px',
       },
+      searchName: '',
+      unwatch: null,
+      focused: false,
     }
   },
   computed: {
@@ -103,11 +120,17 @@ export default {
       const _ret = this.ret
       _ret.maxHeight = `${this.maxItem * 32}px`
       // 保证有一定的高度
-      if (this.optionList.length < this.maxItem) {
-        _ret.height = `${this.optionList.length * 32}px`
-      } else {
-        _ret.height = `${this.maxItem * 32}px`
-      }
+      let length =
+        this.optionList.length < this.maxItem ?
+        this.optionList.length :
+        this.maxItem
+
+      if (this.filterable) length += 1
+
+      let height = length * 32
+      if (this.filterable) height += 4
+
+      _ret.height = `${height}px`
       return _ret
     },
     showClearBtn() {
@@ -181,10 +204,22 @@ export default {
   methods: {
     toggleList() {
       this.visible = !this.visible
+      if (this.filterable && this.visible) {
+        this.unwatch = this.$watch('searchName', (val) => {
+          console.log('emit remote', val)
+          this.$emit('remote', val)
+        })
+      }
       this.updateOptionPosition()
       this.scrollToCurrent()
     },
     hideList() {
+      if (!this.visible) return
+      if (this.filterable && this.unwatch) {
+        this.unwatch()
+        this.unwatch = null
+        this.searchName = ''
+      }
       this.visible = false
       this.updateOptionPosition()
     },
@@ -218,6 +253,7 @@ export default {
           this.currentValue = this.value
         }
       }
+
       // chang回调
       this.$emit('on-change', this.value)
     },
@@ -305,6 +341,7 @@ export default {
         // display: none时无法获得元素宽度,高度,所以这边用visible: hidden
         this.ret.visibility = 'visible'
         this.ret.minWidth = `${this.$el.offsetWidth}px`
+        if (this.filterable) this.focused = true
       } else {
         this.ret = {
           left: '-9999px',
@@ -408,13 +445,14 @@ export default {
     overflow auto
     z-index: 2
     visibility: hidden
-    box-shadow: $box-shadow
     &.ct-select-list-top
       bottom: 34px
       top: inherit
     ul
       background-color: #fff
       border-radius: 4px
+      box-shadow: $box-shadow
+      overflow: auto
       li
         background-color: #fff
         padding: 5px 8px 6px 8px

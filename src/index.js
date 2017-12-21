@@ -83,6 +83,7 @@ const {
   popover,
   clickoutside,
   waves,
+  focus,
 } = require('./directives')
 
 // const util = require('ct-util')
@@ -103,6 +104,7 @@ const install = function _install(Vue, opts = {}) {
   Vue.directive('popover', popover)
   Vue.directive('clickoutside', clickoutside)
   Vue.directive('waves', waves)
+  Vue.directive('focus', focus)
 }
 
 // auto install
