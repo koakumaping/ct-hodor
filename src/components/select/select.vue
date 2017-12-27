@@ -445,13 +445,13 @@ export default {
     overflow auto
     z-index: 2
     visibility: hidden
+    box-shadow: $box-shadow
     &.ct-select-list-top
       bottom: 34px
       top: inherit
     ul
       background-color: #fff
       border-radius: 4px
-      box-shadow: $box-shadow
       overflow: auto
       li
         background-color: #fff

@@ -1288,6 +1288,7 @@ body {
   overflow: auto;
   z-index: 2;
   visibility: hidden;
+  box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
 }
 .ct-select .ct-select-list.ct-select-list-top {
   bottom: 34px;
@@ -1296,7 +1297,6 @@ body {
 .ct-select .ct-select-list ul {
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
   overflow: auto;
 }
 .ct-select .ct-select-list ul li {
