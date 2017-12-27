@@ -145,7 +145,10 @@ export default {
     reserveSelection: Boolean,
     className: String,
     labelClassName: String,
-    align: String,
+    align: {
+      type: String,
+      default: 'left',
+    },
     headerAlign: String,
   },
   data() {

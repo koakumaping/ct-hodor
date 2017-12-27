@@ -3747,7 +3747,10 @@ function DEFAULT_RENDER_CELL(h, _ref5) {
     reserveSelection: Boolean,
     className: String,
     labelClassName: String,
-    align: String,
+    align: {
+      type: String,
+      default: 'left'
+    },
     headerAlign: String
   },
   data: function data() {
