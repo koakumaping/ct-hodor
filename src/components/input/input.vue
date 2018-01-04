@@ -1,8 +1,11 @@
 <template>
   <div class="ct-input"
     :style="{ width: currentWidth }"
-    :class="{ 'active': active }"
+    :class="{ 'active': active, 'has-addon-prepend': $slots.prepend, 'has-addon-append': $slots.append }"
   >
+    <span class="ct-input-addon" v-if="$slots.prepend">
+      <slot name="prepend" />
+    </span>
     <input v-if="type === 'text'" type="text"
       :value="currentValue" 
       @input="handleInput"
@@ -35,8 +38,10 @@
       :name="name"
       spellcheck="false"
       v-on:keyup.enter="enter"
-    ></textarea>
-    <slot></slot>
+    />
+    <span class="ct-input-addon" v-if="$slots.append">
+      <slot name="append" />
+    </span>
   </div>
 </template>
 
@@ -125,7 +130,6 @@ export default {
   vertical-align: top
   width: 100%
   position: relative
-  font-size: $font-size
   &.active,
   &:hover
     > input,
@@ -133,6 +137,36 @@ export default {
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3)
       outline: none
       border: 1px solid $color-main
+  &.has-addon-prepend,
+  &.has-addon-append
+    display: inline-table
+    border-collapse: separate
+    line-height: normal
+  &.has-addon-prepend > input
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+    display: table-cell
+  &.has-addon-append > input
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+    display: table-cell
+  .ct-input-addon
+    font-size: $font-size
+    text-align: center
+    position: relative
+    display: table-cell
+    padding: 0 11px
+    vertical-align: middle
+    border: 1px solid $border-color
+    border-radius: 4px
+    &:first-child
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
+      border-right: 0
+    &:last-child
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+      border-left: 0
 .ct-input[readonly=readonly]:before
   content: ''
   position: absolute
@@ -156,7 +190,7 @@ export default {
              SimSun, sans-serif, "NSimSun", "SimSun"
   padding: 4px 8px
   background-color: #fff
-  display: block
+  display: inline-block
   height: 32px
   line-height: 1
   width: 100%

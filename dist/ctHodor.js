@@ -10627,12 +10627,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "ct-input",
     class: {
-      'active': _vm.active
+      'active': _vm.active, 'has-addon-prepend': _vm.$slots.prepend, 'has-addon-append': _vm.$slots.append
     },
     style: ({
       width: _vm.currentWidth
     })
-  }, [(_vm.type === 'text') ? _c('input', {
+  }, [(_vm.$slots.prepend) ? _c('span', {
+    staticClass: "ct-input-addon"
+  }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.type === 'text') ? _c('input', {
     attrs: {
       "type": "text",
       "placeholder": _vm.placeholder,
@@ -10692,7 +10694,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.enter($event)
       }
     }
-  }) : _vm._e(), _vm._v(" "), _vm._t("default")], 2)
+  }) : _vm._e(), _vm._v(" "), (_vm.$slots.append) ? _c('span', {
+    staticClass: "ct-input-addon"
+  }, [_vm._t("append")], 2) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
