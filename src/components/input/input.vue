@@ -155,6 +155,7 @@ export default {
     text-align: center
     position: relative
     display: table-cell
+    width: 1px
     padding: 0 11px
     vertical-align: middle
     border: 1px solid $border-color
