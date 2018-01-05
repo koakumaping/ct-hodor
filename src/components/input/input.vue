@@ -191,7 +191,7 @@ export default {
              SimSun, sans-serif, "NSimSun", "SimSun"
   padding: 4px 8px
   background-color: #fff
-  display: inline-block
+  display: block
   height: 32px
   line-height: 1
   width: 100%
