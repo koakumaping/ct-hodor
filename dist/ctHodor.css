@@ -1333,7 +1333,6 @@ body {
 .ct-select .ct-select-list ul {
   background-color: #fff;
   border-radius: 4px;
-  overflow: auto;
 }
 .ct-select .ct-select-list ul li {
   background-color: #fff;

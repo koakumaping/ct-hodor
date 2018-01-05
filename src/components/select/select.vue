@@ -452,7 +452,7 @@ export default {
     ul
       background-color: #fff
       border-radius: 4px
-      overflow: auto
+      // overflow: auto
       li
         background-color: #fff
         padding: 5px 8px 6px 8px
