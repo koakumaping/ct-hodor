@@ -41,7 +41,7 @@
         <li class="useless"
           v-for="item in maxItem - 1"
           :key="item"
-          v-show="optionList.length > maxItem"
+          v-show="optionList.length > maxItem && place === 'bottom'"
         >{{item}}</li>
       </ul>
     </div>
@@ -83,7 +83,7 @@ export default {
     },
     place: {
       default: 'bottom',
-      validator: value => ['left', 'right', 'top', 'bottom'].indexOf(value) > -1,
+      validator: value => ['top', 'bottom'].indexOf(value) > -1,
     },
     noFormEmit: Boolean,
     // 搜索

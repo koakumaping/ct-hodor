@@ -7065,7 +7065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     place: {
       default: 'bottom',
       validator: function validator(value) {
-        return ['left', 'right', 'top', 'bottom'].indexOf(value) > -1;
+        return ['top', 'bottom'].indexOf(value) > -1;
       }
     },
     noFormEmit: Boolean,
@@ -11940,8 +11940,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.optionList.length > _vm.maxItem),
-        expression: "optionList.length > maxItem"
+        value: (_vm.optionList.length > _vm.maxItem && _vm.place === 'bottom'),
+        expression: "optionList.length > maxItem && place === 'bottom'"
       }],
       key: item,
       staticClass: "useless"
