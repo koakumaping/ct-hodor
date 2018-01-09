@@ -135,7 +135,7 @@ export default {
     formatter: {
       type: Function,
       default: (row, column, cellValue) => {
-        if (!cellValue) return '--'
+        if (!cellValue && cellValue !== 0) return '--'
         return cellValue
       },
     },

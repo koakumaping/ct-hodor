@@ -3737,7 +3737,7 @@ function DEFAULT_RENDER_CELL(h, _ref5) {
     formatter: {
       type: Function,
       default: function _default(row, column, cellValue) {
-        if (!cellValue) return '--';
+        if (!cellValue && cellValue !== 0) return '--';
         return cellValue;
       }
     },
