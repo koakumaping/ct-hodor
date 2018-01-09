@@ -131,6 +131,7 @@ export default {
       if (this.filterable) height += 4
 
       _ret.height = `${height}px`
+      _ret.zIndex = 10
       return _ret
     },
     showClearBtn() {

@@ -7109,6 +7109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.filterable) height += 4;
 
       _ret.height = height + 'px';
+      _ret.zIndex = 10;
       return _ret;
     },
     showClearBtn: function showClearBtn() {
