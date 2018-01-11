@@ -520,7 +520,7 @@ export default {
     position: absolute
     top: -1px
     left: -1px
-    z-index: 3
+    z-index: 10
     box-shadow: $box-shadow
     &^[0]-top
       top: -307px

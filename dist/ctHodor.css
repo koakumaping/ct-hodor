@@ -1887,7 +1887,7 @@ body {
   position: absolute;
   top: -1px;
   left: -1px;
-  z-index: 3;
+  z-index: 10;
   box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
 }
 .ct-date-picker-warpper.ct-date-picker-top {
