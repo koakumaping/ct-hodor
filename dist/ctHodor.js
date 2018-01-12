@@ -4426,14 +4426,25 @@ function toggleRowSelection(states, row, selected) {
   var changed = false;
   var selection = states.selection;
   var index = selection.indexOf(row);
-  if (index === -1) {
-    selection.push(row);
-    changed = true;
-  } else {
-    selection.splice(index, 1);
-    changed = true;
-  }
 
+  if (typeof selected === 'undefined') {
+    if (index === -1) {
+      selection.push(row);
+      changed = true;
+    } else {
+      selection.splice(index, 1);
+      changed = true;
+    }
+  } else {
+    if (selected && index === -1) {
+      selection.push(row);
+      changed = true;
+    } else if (!selected && index > -1) {
+      selection.splice(index, 1);
+      changed = true;
+    }
+  }
+  console.log('toggleRowSelection changed', changed);
   return changed;
 }
 
@@ -4669,10 +4680,10 @@ TableStore.prototype.isSelected = function isSelected(row) {
   return (this.states.selection || []).indexOf(row) > -1;
 };
 
-TableStore.prototype.toggleRowSelection = function tRS(row) {
-  var changed = toggleRowSelection(this.states, row);
+TableStore.prototype.toggleRowSelection = function tRS(row, selected) {
+  var changed = toggleRowSelection(this.states, row, selected);
   if (changed) {
-    this.table.$emit('selection-change', this.states.selection);
+    this.table.$emit('toggle-selection-change', this.states.selection);
   }
 };
 
@@ -4759,6 +4770,60 @@ TableStore.prototype.updateCurrentRow = function _updateCurrentRow() {
       table.$emit('current-change', null, oldCurrentRow);
     }
   }
+};
+
+TableStore.prototype.updateAllSelected = function uAS() {
+  var states = this.states;
+  var selection = states.selection,
+      rowKey = states.rowKey,
+      selectable = states.selectable,
+      data = states.data;
+
+  if (!data || data.length === 0) {
+    states.isAllSelected = false;
+    return;
+  }
+
+  var selectedMap = void 0;
+  if (rowKey) {
+    selectedMap = getKeysMap(states.selection, rowKey);
+    console.log(rowKey, selectedMap);
+  }
+
+  var isSelected = function isSelected(row) {
+    if (selectedMap) {
+      return !!selectedMap[getRowIdentity(row, rowKey)];
+    }
+    return selection.indexOf(row) !== -1;
+  };
+
+  var isAllSelected = true;
+  var selectedCount = 0;
+  for (var i = 0, j = data.length; i < j; i++) {
+    var item = data[i];
+    if (selectable) {
+      var isRowSelectable = selectable.call(null, item, i);
+      if (isRowSelectable) {
+        if (!isSelected(item)) {
+          isAllSelected = false;
+          break;
+        } else {
+          selectedCount++;
+        }
+      }
+    } else {
+      if (!isSelected(item)) {
+        isAllSelected = false;
+        break;
+      } else {
+        selectedCount++;
+      }
+    }
+  }
+
+  if (selectedCount === 0) isAllSelected = false;
+
+  states.isAllSelected = isAllSelected;
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (TableStore);
@@ -7673,6 +7738,11 @@ var seed = 0;
     }
   },
   methods: {
+    toggleRowSelection: function toggleRowSelection(row, selected) {
+      this.store.toggleRowSelection(row, selected);
+      this.store.updateAllSelected();
+      this.doLayout();
+    },
     bindEvents: function bindEvents() {
       var _this = this;
 

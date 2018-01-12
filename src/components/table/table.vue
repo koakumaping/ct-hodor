@@ -335,6 +335,11 @@ export default {
     },
   },
   methods: {
+    toggleRowSelection(row, selected) {
+      this.store.toggleRowSelection(row, selected)
+      this.store.updateAllSelected()
+      this.doLayout()
+    },
     bindEvents() {
       const { headerWrapper, bodyWrapper, footerWrapper } = this.$refs
       const refs = this.$refs

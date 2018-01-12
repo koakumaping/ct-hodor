@@ -5,14 +5,25 @@ function toggleRowSelection(states, row, selected) {
   let changed = false
   const selection = states.selection
   const index = selection.indexOf(row)
-  if (index === -1) {
-    selection.push(row)
-    changed = true
-  } else {
-    selection.splice(index, 1)
-    changed = true
-  }
 
+  if (typeof selected === 'undefined') {
+    if (index === -1) {
+      selection.push(row)
+      changed = true
+    } else {
+      selection.splice(index, 1)
+      changed = true
+    }
+  } else {
+    if (selected && index === -1) {
+      selection.push(row)
+      changed = true
+    } else if (!selected && index > -1) {
+      selection.splice(index, 1)
+      changed = true
+    }
+  }
+  console.log('toggleRowSelection changed', changed)
   return changed
 }
 
@@ -235,10 +246,10 @@ TableStore.prototype.isSelected = function isSelected(row) {
 }
 
 // 选中，取消选中操作
-TableStore.prototype.toggleRowSelection = function tRS(row) {
-  const changed = toggleRowSelection(this.states, row)
+TableStore.prototype.toggleRowSelection = function tRS(row, selected) {
+  const changed = toggleRowSelection(this.states, row, selected)
   if (changed) {
-    this.table.$emit('selection-change', this.states.selection)
+    this.table.$emit('toggle-selection-change', this.states.selection)
   }
 }
 
@@ -323,6 +334,56 @@ TableStore.prototype.updateCurrentRow = function _updateCurrentRow() {
       table.$emit('current-change', null, oldCurrentRow)
     }
   }
+}
+
+TableStore.prototype.updateAllSelected = function uAS() {
+  const states = this.states
+  const { selection, rowKey, selectable, data } = states
+  if (!data || data.length === 0) {
+    states.isAllSelected = false
+    return
+  }
+
+  let selectedMap
+  if (rowKey) {
+    selectedMap = getKeysMap(states.selection, rowKey)
+    console.log(rowKey, selectedMap)
+  }
+
+  const isSelected = function isSelected(row) {
+    if (selectedMap) {
+      return !!selectedMap[getRowIdentity(row, rowKey)]
+    }
+    return selection.indexOf(row) !== -1
+  }
+
+  let isAllSelected = true
+  let selectedCount = 0
+  for (let i = 0, j = data.length; i < j; i++) {
+    const item = data[i]
+    if (selectable) {
+      const isRowSelectable = selectable.call(null, item, i)
+      if (isRowSelectable) {
+        if (!isSelected(item)) {
+          isAllSelected = false
+          break
+        } else {
+          selectedCount++
+        }
+      }
+    } else {
+      if (!isSelected(item)) {
+        isAllSelected = false
+        break
+      } else {
+        selectedCount++
+      }
+    }
+  }
+
+  if (selectedCount === 0) isAllSelected = false
+
+  states.isAllSelected = isAllSelected
 }
 
 export default TableStore
