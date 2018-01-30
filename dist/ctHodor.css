@@ -586,6 +586,9 @@ textarea {
 .text-red {
   color: #f00;
 }
+.text-gray {
+  color: #ddd;
+}
 .background-main {
   background-color: #ee6b5d;
 }
