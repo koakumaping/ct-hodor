@@ -5406,7 +5406,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     indeterminate: {
       type: Boolean,
       default: false
-    }
+    },
+    readonly: Boolean,
+    disabled: Boolean
   },
   data: function data() {
     return {
@@ -5456,6 +5458,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    prevent: function prevent(e) {
+      if (this.readonly || this.disabled) e.preventDefault();
+    },
     setCurrentValue: function setCurrentValue(value) {
       if (value === this.currentValue) return;
       this.currentValue = value;
@@ -11806,9 +11811,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "ct-checkbox",
     class: {
-      'ct-checkbox-indeterminate': _vm.indeterminate
+      'ct-checkbox-indeterminate': _vm.indeterminate, 'readonly': _vm.readonly, 'disabled': _vm.disabled
     }
-  }, [_c('label', [_c('span', {
+  }, [_c('label', {
+    on: {
+      "click": _vm.prevent
+    }
+  }, [_c('span', {
     class: {
       'checked': _vm.getChecked, 'radio': _vm.type === 'radio'
     }

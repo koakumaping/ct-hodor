@@ -1,6 +1,8 @@
 <template>
-  <div class="ct-checkbox" :class="{ 'ct-checkbox-indeterminate': indeterminate }">
-    <label>
+  <div class="ct-checkbox"
+    :class="{ 'ct-checkbox-indeterminate': indeterminate, 'readonly': readonly, 'disabled': disabled }"
+  >
+    <label @click="prevent">
       <span :class="{ 'checked': getChecked, 'radio': type === 'radio' }">
         <input v-if="type === 'checkbox'" type="checkbox" :value="content" v-model="currentValue">
         <input v-else type="radio" :value="content" v-model="currentValue">
@@ -35,6 +37,8 @@ export default {
       type: Boolean,
       default: false,
     },
+    readonly: Boolean,
+    disabled: Boolean,
   },
   data() {
     return {
@@ -86,6 +90,9 @@ export default {
     },
   },
   methods: {
+    prevent(e) {
+      if (this.readonly || this.disabled) e.preventDefault()
+    },
     setCurrentValue(value) {
       if (value === this.currentValue) return
       this.currentValue = value
@@ -104,7 +111,8 @@ export default {
   height: 16px
   line-height: 16px
   font-size: 12px
-  &[readonly=readonly]:before
+  &.readonly:before,
+  &.disabled:before
     content: ''
     position: absolute
     left: 0
@@ -112,7 +120,16 @@ export default {
     top: 0
     bottom: 0
     z-index: 1
+    cursor: default
+  &.readonly label
+    cursor: default
+  &.disabled:before
     cursor: not-allowed
+  &.disabled label
+    cursor: not-allowed
+    & > span
+      border-color: #cccccc
+      background-color: #d3d3d3
   label
     display block
     position: relative

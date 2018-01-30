@@ -1403,7 +1403,8 @@ body {
   line-height: 16px;
   font-size: 12px;
 }
-.ct-checkbox[readonly=readonly]:before {
+.ct-checkbox.readonly:before,
+.ct-checkbox.disabled:before {
   content: '';
   position: absolute;
   left: 0;
@@ -1411,7 +1412,20 @@ body {
   top: 0;
   bottom: 0;
   z-index: 1;
+  cursor: default;
+}
+.ct-checkbox.readonly label {
+  cursor: default;
+}
+.ct-checkbox.disabled:before {
   cursor: not-allowed;
+}
+.ct-checkbox.disabled label {
+  cursor: not-allowed;
+}
+.ct-checkbox.disabled label > span {
+  border-color: #ccc;
+  background-color: #d3d3d3;
 }
 .ct-checkbox label {
   display: block;
