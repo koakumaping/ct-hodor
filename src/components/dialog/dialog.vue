@@ -113,9 +113,10 @@ export default {
 
         if (this.width) {
           ret.width = `${this.width}${isNumber(this.width) ? 'px' : ''}`
-          ret.marginLeft = isNumber(this.width) ?
-            `${this.windowWidth / 2 - this.width / 2}px` :
-            `${(100 - this.width.replace('%', '')) / 2}%`
+          ret.margin = '0 auto'
+          // ret.marginLeft = isNumber(this.width) ?
+          //   `${this.windowWidth / 2 - this.width / 2}px` :
+          //   `${(100 - this.width.replace('%', '')) / 2}%`
         }
         return ret
       },

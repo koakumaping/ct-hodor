@@ -5932,7 +5932,7 @@ var prefixCls = 'ct-dialog';
 
         if (this.width) {
           ret.width = '' + this.width + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? 'px' : '');
-          ret.marginLeft = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? this.windowWidth / 2 - this.width / 2 + 'px' : (100 - this.width.replace('%', '')) / 2 + '%';
+          ret.margin = '0 auto';
         }
         return ret;
       }
