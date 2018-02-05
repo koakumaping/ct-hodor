@@ -38,6 +38,7 @@
       :name="name"
       spellcheck="false"
       v-on:keyup.enter="enter"
+      :rows="rows"
     />
     <span class="ct-input-addon" v-if="$slots.append">
       <slot name="append" />
@@ -56,6 +57,10 @@ export default {
     value: {
       type: [String, Number, Boolean],
       default: '',
+    },
+    rows: {
+      type: Number,
+      default: 5,
     },
     type: {
       default: 'text',

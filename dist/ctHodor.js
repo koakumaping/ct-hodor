@@ -6457,6 +6457,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: [String, Number, Boolean],
       default: ''
     },
+    rows: {
+      type: Number,
+      default: 5
+    },
     type: {
       default: 'text'
     },
@@ -10756,7 +10760,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "placeholder": _vm.placeholder,
       "name": _vm.name,
-      "spellcheck": "false"
+      "spellcheck": "false",
+      "rows": _vm.rows
     },
     domProps: {
       "value": _vm.currentValue
