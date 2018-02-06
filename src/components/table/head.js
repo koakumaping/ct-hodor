@@ -128,7 +128,7 @@ export default {
                       colspan={column.colSpan}
                       rowspan={column.rowSpan}
                       prop={column.prop}
-                      class={ [column.id, column.order, column.headerAlign, column.className || '',
+                      class={ [column.id, column.order, `text-${column.headerAlign}`, column.className || '',
                         rowIndex === 0 && this.isCellHidden(cellIndex, columns) ? 'is-hidden' : '',
                         !column.children ? 'is-leaf' : '',
                         column.labelClassName] }
