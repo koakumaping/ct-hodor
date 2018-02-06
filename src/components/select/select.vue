@@ -30,9 +30,6 @@
         v-model="searchName"
         placeholder="请输入搜索内容"
         v-if="filterable"
-        v-focus="focused"
-        @focus="focused = true"
-        @blur="focused = false"
         ref="filterInput"
         style="margin-bottom: 4px;"
       />

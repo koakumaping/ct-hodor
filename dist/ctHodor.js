@@ -11990,26 +11990,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-select-list",
     style: (_vm.listStyle)
   }, [(_vm.filterable) ? _c('ctInput', {
-    directives: [{
-      name: "focus",
-      rawName: "v-focus",
-      value: (_vm.focused),
-      expression: "focused"
-    }],
     ref: "filterInput",
     staticStyle: {
       "margin-bottom": "4px"
     },
     attrs: {
       "placeholder": "请输入搜索内容"
-    },
-    on: {
-      "focus": function($event) {
-        _vm.focused = true
-      },
-      "blur": function($event) {
-        _vm.focused = false
-      }
     },
     model: {
       value: (_vm.searchName),
