@@ -1,3 +1,4 @@
+import isEmpty from 'ct-util'
 let seed = 0
 
 // 不同类型下的默认数据
@@ -135,7 +136,7 @@ export default {
     formatter: {
       type: Function,
       default: (row, column, cellValue) => {
-        if (!cellValue && cellValue !== 0) return '--'
+        if (isEmpty(cellValue)) return '--'
         return cellValue
       },
     },

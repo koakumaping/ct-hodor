@@ -3573,6 +3573,9 @@ var getRowIdentity = function getRowIdentity(row, rowKey) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+
 var seed = 0;
 
 var defaults = {
@@ -3737,7 +3740,7 @@ function DEFAULT_RENDER_CELL(h, _ref5) {
     formatter: {
       type: Function,
       default: function _default(row, column, cellValue) {
-        if (!cellValue && cellValue !== 0) return '--';
+        if (__WEBPACK_IMPORTED_MODULE_0_ct_util___default()(cellValue)) return '--';
         return cellValue;
       }
     },
