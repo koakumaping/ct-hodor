@@ -6,7 +6,7 @@
       'is-required': isRequired || required,
     }"
   >
-    <label v-if="label || $slots.label" :style="labelStyle">
+    <label v-if="hasLabel" :style="labelStyle">
       {{getLabel}}
       <slot name="label"></slot>
     </label>
@@ -106,6 +106,9 @@ export default {
 
       return this.label
     },
+    hasLabel() {
+      return !!this.label || !!this.$slots.label
+    },
     labelStyle() {
       const ret = {}
       // 如果label位置为top，则返回空
@@ -125,6 +128,7 @@ export default {
       // 如果label位置为top，则返回空
       if (this.form.labelPosition !== 'top') {
         ret.marginLeft = this.form.labelWidth
+        if (!this.hasLabel) ret.marginLeft = 0
       } else {
         ret.lineHeight = '1.5'
       }

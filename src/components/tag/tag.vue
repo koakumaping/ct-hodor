@@ -20,7 +20,10 @@ export default {
   name: 'ctTag',
   props: {
     closeable: Boolean,
-    type: String,
+    type: {
+      type: String,
+      default: 'primary',
+    },
     hit: Boolean,
     color: String,
   },

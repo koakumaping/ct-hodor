@@ -64,8 +64,21 @@ export default {
     },
     validate(callback) {
       if (!this.model) {
-        console.warn('[Form]model is required for validate to work!')
-        return
+        console.warn('[Element Warn][Form]model is required for validate to work!')
+        return false
+      }
+      let promise
+      // if no callback, return promise
+      if (typeof callback !== 'function' && window.Promise) {
+        promise = new window.Promise((resolve, reject) => {
+          callback = function cb(valid) {
+            if (valid) {
+              resolve(valid)
+            } else {
+              reject(valid)
+            }
+          }
+        })
       }
       let valid = true
       let count = 0
@@ -83,6 +96,9 @@ export default {
           }
         })
       })
+      if (promise) {
+        return promise
+      }
     },
     validateField(prop, cb) {
       const field = this.fields.filter((_field) => _field.prop === prop)[0]

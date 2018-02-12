@@ -1,4 +1,5 @@
-import isEmpty from 'ct-util'
+import { isEmpty } from 'ct-util'
+
 let seed = 0
 
 // 不同类型下的默认数据
