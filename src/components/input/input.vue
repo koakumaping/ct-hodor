@@ -113,13 +113,13 @@ export default {
       // 通过emit一个input事件来更新v-model数据
       this.$emit('input', this.currentValue)
       // chang回调
-      this.$emit('on-change', event)
+      this.$emit('change', event)
     },
     handleFocus(event) {
-      this.$emit('on-focus', event)
+      this.$emit('focus', event)
     },
     handleBlur(event) {
-      this.$emit('on-blur', event)
+      this.$emit('blur', event)
       this.dispatch('ctFormLine', 'ct.form.blur', this.currentValue)
     },
   },
@@ -165,6 +165,7 @@ export default {
     vertical-align: middle
     border: 1px solid $border-color
     border-radius: 4px
+    background: #ffffff
     &:first-child
       border-top-right-radius: 0
       border-bottom-right-radius: 0

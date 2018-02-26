@@ -187,6 +187,7 @@ export default {
   .form-content
     > .ct-input > input,
     > .ct-input > textarea,
+    > .ct-input > .ct-input-addon,
     > .ct-date-picker,
     > .ct-select > .ct-select-name
       border-color: $color-red
