@@ -5547,11 +5547,13 @@ var prefixCls = 'ct-date-picker';
       day: '',
       hhmm: '00:00',
       cells: [],
-      visiable: false,
       topCls: '',
       currentValue: '',
       hover: false,
-      $ready: false
+      $ready: false,
+      ret: {
+        visibility: 'hidden'
+      }
     };
   },
 
@@ -5601,8 +5603,12 @@ var prefixCls = 'ct-date-picker';
     }
   },
   watch: {
-    value: function value(val) {
-      this.setCurrentValue(val);
+    value: {
+      immediate: true,
+      handler: function handler(val) {
+        this.setCurrentValue(val);
+        this.$emit('input', val);
+      }
     }
   },
   mounted: function mounted() {
@@ -5825,16 +5831,22 @@ var prefixCls = 'ct-date-picker';
       }
     },
     showPicker: function showPicker() {
-      if (this.listOverflow) {
-        this.topCls = prefixCls + '-top';
-      } else {
-        this.topCls = '';
-      }
-      this.visiable = true;
+      console.log('show-picker');
       this.getCells();
+      var base = this.$refs.ctDatePicker;
+      var _ret = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["popover"])(base, this.$refs.ctDatePickerWarpper, {
+        place: 'bottom-left'
+      }, true);
+      _ret.visibility = 'visible';
+      _ret.position = 'absolute';
+      _ret.top = _ret.top.replace('px', '') - 30 + 'px';
+      _ret.zIndex = '9999';
+      this.ret = _ret;
+
+      document.body.appendChild(this.$refs.ctDatePickerWarpper);
     },
     hidePicker: function hidePicker() {
-      this.visiable = false;
+      this.ret.visibility = 'hidden';
     },
     handleMouseIn: function handleMouseIn() {
       if (!this.clearable) return;
@@ -5848,7 +5860,17 @@ var prefixCls = 'ct-date-picker';
       this.$emit('input', '');
 
       this.$emit('on-change', this.value);
+    },
+    doDestroy: function doDestroy() {
+      try {
+        document.body.removeChild(this.$refs.ctDatePickerWarpper);
+      } catch (error) {
+        (function () {})();
+      }
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.doDestroy();
   }
 });
 
@@ -6537,13 +6559,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$emit('input', this.currentValue);
 
-      this.$emit('on-change', event);
+      this.$emit('change', event);
     },
     handleFocus: function handleFocus(event) {
-      this.$emit('on-focus', event);
+      this.$emit('focus', event);
     },
     handleBlur: function handleBlur(event) {
-      this.$emit('on-blur', event);
+      this.$emit('blur', event);
       this.dispatch('ctFormLine', 'ct.form.blur', this.currentValue);
     }
   }
@@ -11630,23 +11652,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "times-circle"
     }
-  })], 1)], 1), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "fade-in-linear",
-      "mode": "out-in"
-    }
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.visiable),
-      expression: "visiable"
-    }],
-    class: [_vm.prefixCls + '-warpper', _vm.topCls]
-  }, [_c('div', {
-    class: [_vm.prefixCls + '-float']
-  }, [_c('div', {
-    class: [_vm.prefixCls + '-float', 'left']
+  })], 1)], 1), _vm._v(" "), _c('div', {
+    ref: "ctDatePickerWarpper",
+    class: [_vm.prefixCls + '-warpper', _vm.topCls],
+    style: (_vm.ret)
   }, [_c('div', {
     class: [_vm.prefixCls + '-header', 'clear']
   }, [_c('span', {
@@ -11741,7 +11750,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.hidePicker
     }
-  }, [_vm._v("确定")])], 1)])])])])], 1)
+  }, [_vm._v("确定")])], 1)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

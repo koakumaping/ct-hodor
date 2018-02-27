@@ -18,10 +18,10 @@
       </dl>
     </div>
 
-    <transition name="fade-in-linear" mode="out-in">
-    <div :class="[prefixCls + '-warpper', topCls]" v-show="visiable">
-      <div :class="[prefixCls + '-float']">
-      <div :class="[prefixCls + '-float', 'left']">
+    <!-- <transition name="fade-in-linear" mode="out-in"> -->
+    <div :class="[prefixCls + '-warpper', topCls]" :style="ret" ref="ctDatePickerWarpper">
+      <!-- <div :class="[prefixCls + '-float']">
+      <div :class="[prefixCls + '-float', 'left']"> -->
         <div :class="[prefixCls + '-header', 'clear']">
           <span class="pointer left" :class="[prefixCls + '-header-prev-year']"
             @click="setPrevYear"
@@ -80,10 +80,10 @@
           ></ctTimePicker>
           <ctButton class="right" type="primary" @click="hidePicker">确定</ctButton>
         </div>
-      </div>
-      </div>
+      <!-- </div>
+      </div> -->
     </div>
-    </transition>
+    <!-- </transition> -->
 
   </div>
 </template>
@@ -92,6 +92,7 @@
 import {
   getWindowHeight,
   clone,
+  popover,
 } from 'ct-util'
 
 import Emitter from '../../mixins/emitter'
@@ -157,11 +158,13 @@ export default {
       day: '',
       hhmm: '00:00',
       cells: [],
-      visiable: false,
       topCls: '',
       currentValue: '',
       hover: false,
       $ready: false,
+      ret: {
+        visibility: 'hidden',
+      },
     }
   },
   computed: {
@@ -210,9 +213,24 @@ export default {
     },
   },
   watch: {
-    value(val) {
-      this.setCurrentValue(val)
+    // value(val) {
+    //   this.setCurrentValue(val)
+    // },
+    value: {
+      immediate: true,
+      handler(val) {
+        this.setCurrentValue(val)
+        this.$emit('input', val)
+      },
     },
+    // currentValue(val) {
+    //   if (val) {
+    //     this.showPopover()
+    //   } else {
+    //     this.hidePopover()
+    //   }
+    //   this.$emit('input', val)
+    // },
   },
   mounted() {
     this.init(true)
@@ -442,16 +460,27 @@ export default {
       }
     },
     showPicker() {
-      if (this.listOverflow) {
-        this.topCls = `${prefixCls}-top`
-      } else {
-        this.topCls = ''
-      }
-      this.visiable = true
+      // if (this.listOverflow) {
+      //   this.topCls = `${prefixCls}-top`
+      // } else {
+      //   this.topCls = ''
+      // }
+      console.log('show-picker')
       this.getCells()
+      const base = this.$refs.ctDatePicker
+      const _ret = popover(base, this.$refs.ctDatePickerWarpper, {
+        place: 'bottom-left',
+      }, true)
+      _ret.visibility = 'visible'
+      _ret.position = 'absolute'
+      _ret.top = `${_ret.top.replace('px', '') - 30}px`
+      _ret.zIndex = '9999'
+      this.ret = _ret
+
+      document.body.appendChild(this.$refs.ctDatePickerWarpper)
     },
     hidePicker() {
-      this.visiable = false
+      this.ret.visibility = 'hidden'
     },
     handleMouseIn() {
       if (!this.clearable) return
@@ -466,6 +495,16 @@ export default {
       // chang回调
       this.$emit('on-change', this.value)
     },
+    doDestroy() {
+      try {
+        document.body.removeChild(this.$refs.ctDatePickerWarpper)
+      } catch (error) {
+        (() => {})()
+      }
+    },
+  },
+  beforeDestroy() {
+    this.doDestroy()
   },
 }
 </script>
@@ -483,7 +522,7 @@ export default {
   display: inline-block
   vertical-align: top
   width: 100%
-  font-size: 12px
+  font-size: 14px
   &:hover
     border-color: $color-main
   &[readonly=readonly]:before
@@ -517,10 +556,10 @@ export default {
   ^[0]-warpper
     background-color: #fff
     border-radius: 2px
-    position: absolute
-    top: -1px
-    left: -1px
-    z-index: 10
+    visibility: hidden
+    position: fixed
+    left: -9999px
+    z-index: 9999
     box-shadow: $box-shadow
     &^[0]-top
       top: -307px
