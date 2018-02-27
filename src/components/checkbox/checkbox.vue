@@ -110,7 +110,7 @@ export default {
   user-select: none
   height: 16px
   line-height: 16px
-  font-size: 12px
+  font-size: 14px
   &.readonly:before,
   &.disabled:before
     content: ''
@@ -120,13 +120,15 @@ export default {
     top: 0
     bottom: 0
     z-index: 1
-    cursor: default
+    cursor: not-allowed
   &.readonly label
     cursor: default
+    color: #ccc
   &.disabled:before
     cursor: not-allowed
   &.disabled label
     cursor: not-allowed
+    color: #ccc
     & > span
       border-color: #cccccc
       background-color: #d3d3d3
