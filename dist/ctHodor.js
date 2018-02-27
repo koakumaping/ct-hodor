@@ -5839,7 +5839,7 @@ var prefixCls = 'ct-date-picker';
       }, true);
       _ret.visibility = 'visible';
       _ret.position = 'absolute';
-      _ret.top = _ret.top.replace('px', '') - 30 + 'px';
+      _ret.top = _ret.top.replace('px', '') - 32 + 'px';
       _ret.zIndex = '9999';
       this.ret = _ret;
 
