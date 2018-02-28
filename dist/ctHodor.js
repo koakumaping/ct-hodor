@@ -4448,7 +4448,7 @@ function toggleRowSelection(states, row, selected) {
       changed = true;
     }
   }
-  console.log('toggleRowSelection changed', changed);
+
   return changed;
 }
 
@@ -4594,13 +4594,12 @@ TableStore.prototype.mutations = {
       table.$emit('selection-change', selection);
       table.$emit('select', selection, row);
     }
-    console.log('rowSelectedChanged');
+
     this.updateSelection();
   },
   toggleAllSelection: function toggleAllSelection(states) {
     var _this2 = this;
 
-    console.log('toggleAllSelection');
     var selection = states.selection,
         data = states.data;
 
@@ -4730,7 +4729,6 @@ TableStore.prototype.clearSelection = function clearSelection() {
   if (oldSelection.length > 0) {
     this.table.$emit('selection-change', states.selection);
   }
-  console.log('clearSelection');
 };
 
 TableStore.prototype.updateSelection = function updateSelection() {
@@ -4791,7 +4789,6 @@ TableStore.prototype.updateAllSelected = function uAS() {
   var selectedMap = void 0;
   if (rowKey) {
     selectedMap = getKeysMap(states.selection, rowKey);
-    console.log(rowKey, selectedMap);
   }
 
   var isSelected = function isSelected(row) {

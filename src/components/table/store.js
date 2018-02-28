@@ -23,7 +23,7 @@ function toggleRowSelection(states, row, selected) {
       changed = true
     }
   }
-  console.log('toggleRowSelection changed', changed)
+  // console.log('toggleRowSelection changed', changed)
   return changed
 }
 
@@ -165,11 +165,11 @@ TableStore.prototype.mutations = {
       table.$emit('selection-change', selection)
       table.$emit('select', selection, row)
     }
-    console.log('rowSelectedChanged')
+    // console.log('rowSelectedChanged')
     this.updateSelection()
   },
   toggleAllSelection(states) {
-    console.log('toggleAllSelection')
+    // console.log('toggleAllSelection')
     const { selection, data } = states
 
     if (!this.states.isAllSelected) {
@@ -292,7 +292,7 @@ TableStore.prototype.clearSelection = function clearSelection() {
   if (oldSelection.length > 0) {
     this.table.$emit('selection-change', states.selection)
   }
-  console.log('clearSelection')
+  // console.log('clearSelection')
 }
 
 // 更新所有选中项
@@ -347,7 +347,7 @@ TableStore.prototype.updateAllSelected = function uAS() {
   let selectedMap
   if (rowKey) {
     selectedMap = getKeysMap(states.selection, rowKey)
-    console.log(rowKey, selectedMap)
+    // console.log(rowKey, selectedMap)
   }
 
   const isSelected = function isSelected(row) {
