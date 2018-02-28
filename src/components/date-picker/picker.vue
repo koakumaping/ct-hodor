@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls" v-clickoutside="hidePicker"
+  <div :class="prefixCls"
     ref="ctDatePicker"
     :style="{width: width}"
     @mouseover="handleMouseIn"
@@ -18,10 +18,12 @@
       </dl>
     </div>
 
-    <!-- <transition name="fade-in-linear" mode="out-in"> -->
-    <div :class="[prefixCls + '-warpper', topCls]" :style="ret" ref="ctDatePickerWarpper">
-      <!-- <div :class="[prefixCls + '-float']">
-      <div :class="[prefixCls + '-float', 'left']"> -->
+    <transition name="fade-in-linear" mode="out-in">
+    <div
+      :class="[prefixCls + '-warpper', topCls]"
+      :style="ret"
+      ref="ctDatePickerWarpper"
+      v-clickoutside="hidePicker">
         <div :class="[prefixCls + '-header', 'clear']">
           <span class="pointer left" :class="[prefixCls + '-header-prev-year']"
             @click="setPrevYear"
@@ -80,10 +82,8 @@
           ></ctTimePicker>
           <ctButton class="right" type="primary" @click="hidePicker">确定</ctButton>
         </div>
-      <!-- </div>
-      </div> -->
     </div>
-    <!-- </transition> -->
+    </transition>
 
   </div>
 </template>

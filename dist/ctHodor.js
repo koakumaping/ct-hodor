@@ -11600,12 +11600,6 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    directives: [{
-      name: "clickoutside",
-      rawName: "v-clickoutside",
-      value: (_vm.hidePicker),
-      expression: "hidePicker"
-    }],
     ref: "ctDatePicker",
     class: _vm.prefixCls,
     style: ({
@@ -11652,7 +11646,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "times-circle"
     }
-  })], 1)], 1), _vm._v(" "), _c('div', {
+  })], 1)], 1), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "fade-in-linear",
+      "mode": "out-in"
+    }
+  }, [_c('div', {
+    directives: [{
+      name: "clickoutside",
+      rawName: "v-clickoutside",
+      value: (_vm.hidePicker),
+      expression: "hidePicker"
+    }],
     ref: "ctDatePickerWarpper",
     class: [_vm.prefixCls + '-warpper', _vm.topCls],
     style: (_vm.ret)
@@ -11750,7 +11755,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.hidePicker
     }
-  }, [_vm._v("确定")])], 1)])])
+  }, [_vm._v("确定")])], 1)])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
