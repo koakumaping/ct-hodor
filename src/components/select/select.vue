@@ -154,11 +154,22 @@ export default {
     },
   },
   watch: {
-    value(newVal, oldVal) {
-      this.update()
-    },
+    // value(newVal, oldVal) {
+    //   this.update()
+    // },
     optionList(newVal, oldVal) {
       this.update()
+    },
+    value: {
+      immediate: true,
+      handler(val) {
+        // this.currentValue = val
+        this.$emit('input', val)
+        this.update()
+      },
+    },
+    currentValue(val) {
+      this.$emit('input', val)
     },
   },
   mounted() {

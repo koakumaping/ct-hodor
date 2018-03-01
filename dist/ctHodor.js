@@ -7260,11 +7260,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   watch: {
-    value: function value(newVal, oldVal) {
-      this.update();
-    },
     optionList: function optionList(newVal, oldVal) {
       this.update();
+    },
+
+    value: {
+      immediate: true,
+      handler: function handler(val) {
+        this.$emit('input', val);
+        this.update();
+      }
+    },
+    currentValue: function currentValue(val) {
+      this.$emit('input', val);
     }
   },
   mounted: function mounted() {
