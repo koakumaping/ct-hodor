@@ -5845,6 +5845,10 @@ var prefixCls = 'ct-date-picker';
     hidePicker: function hidePicker() {
       this.ret.visibility = 'hidden';
     },
+    clickoutside: function clickoutside() {
+      if (this.type === 'datetime') return false;
+      this.hidePicker();
+    },
     handleMouseIn: function handleMouseIn() {
       if (!this.clearable) return;
       this.hover = true;
@@ -11597,6 +11601,12 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    directives: [{
+      name: "clickoutside",
+      rawName: "v-clickoutside",
+      value: (_vm.clickoutside),
+      expression: "clickoutside"
+    }],
     ref: "ctDatePicker",
     class: _vm.prefixCls,
     style: ({
@@ -11649,12 +11659,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "mode": "out-in"
     }
   }, [_c('div', {
-    directives: [{
-      name: "clickoutside",
-      rawName: "v-clickoutside",
-      value: (_vm.hidePicker),
-      expression: "hidePicker"
-    }],
     ref: "ctDatePickerWarpper",
     class: [_vm.prefixCls + '-warpper', _vm.topCls],
     style: (_vm.ret)
@@ -11723,9 +11727,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(_vm._s(cell.day))])
-  })], 2)]), _vm._v(" "), _c('div', {
+  })], 2)]), _vm._v(" "), (_vm.type === 'datetime') ? _c('div', {
     class: [_vm.prefixCls + '-actions', 'clear']
-  }, [(_vm.type === 'datetime') ? _c('ctTimePicker', {
+  }, [_c('ctTimePicker', {
     staticClass: "left",
     attrs: {
       "place": "top",
@@ -11744,7 +11748,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "hhmm"
     }
-  }) : _vm._e(), _vm._v(" "), _c('ctButton', {
+  }), _vm._v(" "), _c('ctButton', {
     staticClass: "right",
     attrs: {
       "type": "primary"
@@ -11752,7 +11756,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.hidePicker
     }
-  }, [_vm._v("确定")])], 1)])])], 1)
+  }, [_vm._v("确定")])], 1) : _vm._e()])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

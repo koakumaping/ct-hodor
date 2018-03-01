@@ -4,6 +4,7 @@
     :style="{width: width}"
     @mouseover="handleMouseIn"
     @mouseout="handleMouseOut"
+    v-clickoutside="clickoutside"
   >
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
       <span v-if="currentValue">{{currentValue}}</span>
@@ -23,7 +24,7 @@
       :class="[prefixCls + '-warpper', topCls]"
       :style="ret"
       ref="ctDatePickerWarpper"
-      v-clickoutside="hidePicker">
+    >
         <div :class="[prefixCls + '-header', 'clear']">
           <span class="pointer left" :class="[prefixCls + '-header-prev-year']"
             @click="setPrevYear"
@@ -68,9 +69,8 @@
               >{{cell.day}}</span>
           </div>
         </div>
-        <div :class="[prefixCls + '-actions', 'clear']">
+        <div :class="[prefixCls + '-actions', 'clear']" v-if="type === 'datetime'">
           <ctTimePicker
-            v-if="type === 'datetime'"
             class="left"
             v-model="hhmm"
             v-on:on-hour-change="handleHourChange"
@@ -481,6 +481,10 @@ export default {
     },
     hidePicker() {
       this.ret.visibility = 'hidden'
+    },
+    clickoutside() {
+      if (this.type === 'datetime') return false
+      this.hidePicker()
     },
     handleMouseIn() {
       if (!this.clearable) return
