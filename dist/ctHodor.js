@@ -5606,6 +5606,9 @@ var prefixCls = 'ct-date-picker';
         this.setCurrentValue(val);
         this.$emit('input', val);
       }
+    },
+    currentValue: function currentValue(val) {
+      this.$emit('input', val);
     }
   },
   mounted: function mounted() {
@@ -5859,8 +5862,9 @@ var prefixCls = 'ct-date-picker';
     },
     clearValue: function clearValue() {
       this.$emit('input', '');
+      this.currentValue = '';
 
-      this.$emit('on-change', this.value);
+      this.$emit('change', '');
     },
     doDestroy: function doDestroy() {
       try {

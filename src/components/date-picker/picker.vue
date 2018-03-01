@@ -223,14 +223,9 @@ export default {
         this.$emit('input', val)
       },
     },
-    // currentValue(val) {
-    //   if (val) {
-    //     this.showPopover()
-    //   } else {
-    //     this.hidePopover()
-    //   }
-    //   this.$emit('input', val)
-    // },
+    currentValue(val) {
+      this.$emit('input', val)
+    },
   },
   mounted() {
     this.init(true)
@@ -496,8 +491,9 @@ export default {
     },
     clearValue() {
       this.$emit('input', '')
+      this.currentValue = ''
       // chang回调
-      this.$emit('on-change', this.value)
+      this.$emit('change', '')
     },
     doDestroy() {
       try {
