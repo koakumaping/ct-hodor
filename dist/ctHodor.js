@@ -7277,6 +7277,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     currentValue: function currentValue(val) {
       this.$emit('input', val);
+      this.$emit('change', val);
     }
   },
   mounted: function mounted() {
