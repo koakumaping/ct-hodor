@@ -85,8 +85,13 @@ export default {
         if (!this.isGroup) this.dispatch('ctFormLine', 'ct.form.change', val)
       }
     },
-    value(val) {
-      this.setCurrentValue(val)
+    value: {
+      immediate: true,
+      handler(val) {
+        // this.currentValue = val
+        this.$emit('input', val)
+        this.setCurrentValue(val)
+      },
     },
   },
   methods: {
