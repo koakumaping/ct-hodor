@@ -5450,12 +5450,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (val === this.value) return false;
 
         this.$emit('input', val);
-        this.$emit('on-change', val);
+        this.$emit('change', val);
         if (!this.isGroup) this.dispatch('ctFormLine', 'ct.form.change', val);
       }
     },
-    value: function value(val) {
-      this.setCurrentValue(val);
+
+    value: {
+      immediate: true,
+      handler: function handler(val) {
+        this.setCurrentValue(val);
+      }
     }
   },
   methods: {

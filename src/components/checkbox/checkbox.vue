@@ -81,15 +81,18 @@ export default {
         if (val === this.value) return false
         // 通过emit一个input事件来更新v-model数据
         this.$emit('input', val)
-        this.$emit('on-change', val)
+        this.$emit('change', val)
         if (!this.isGroup) this.dispatch('ctFormLine', 'ct.form.change', val)
       }
     },
+    // value(val) {
+    //   this.setCurrentValue(val)
+    // },
     value: {
       immediate: true,
       handler(val) {
         // this.currentValue = val
-        this.$emit('input', val)
+        // this.$emit('input', val)
         this.setCurrentValue(val)
       },
     },
