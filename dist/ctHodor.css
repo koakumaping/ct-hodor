@@ -1652,6 +1652,9 @@ body {
   overflow: hidden;
   color: #909399;
 }
+.ct-table table > thead.is-group th {
+  background: #f5f7fa;
+}
 .ct-table table > thead > tr > th {
   background-color: #fff;
   padding: 12px 0;

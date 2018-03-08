@@ -2,7 +2,8 @@
   <div class="ct-table"
     :class="{
       'ct-table-stripe': stripe,
-      'ct-table-border': border,
+      'ct-table-border': border || isGroup,
+      'ct-table-group': isGroup,
     }"
   >
     <!-- 容纳 table 内容 -->
@@ -245,6 +246,8 @@ export default {
       windowResizeListener: '',
       resizehandleEvent: null,
       $ready: false,
+      // 是否拥有多级表头
+      isGroup: false,
     }
   },
   watch: {

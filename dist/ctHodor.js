@@ -4130,6 +4130,8 @@ var convertToRows = function convertToRows(originColumns) {
     var originColumns = this.store.states.originColumns;
     var columnRows = convertToRows(originColumns, this.columns);
 
+    var isGroup = columnRows.length > 1;
+    if (isGroup) this.$parent.isGroup = true;
     return h(
       'table',
       {
@@ -4155,7 +4157,7 @@ var convertToRows = function convertToRows(originColumns) {
         })]
       ), h(
         'thead',
-        null,
+        { 'class': [{ 'is-group': isGroup }] },
         [this._l(columnRows, function (columns, rowIndex) {
           return h(
             'tr',
@@ -7720,7 +7722,9 @@ var seed = 0;
       tableId: '',
       windowResizeListener: '',
       resizehandleEvent: null,
-      $ready: false
+      $ready: false,
+
+      isGroup: false
     };
   },
 
@@ -11383,7 +11387,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-table",
     class: {
       'ct-table-stripe': _vm.stripe,
-      'ct-table-border': _vm.border,
+      'ct-table-border': _vm.border || _vm.isGroup,
+        'ct-table-group': _vm.isGroup,
     }
   }, [_c('div', {
     ref: "hiddenColumns",

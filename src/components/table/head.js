@@ -102,7 +102,9 @@ export default {
   render(h) {
     const originColumns = this.store.states.originColumns
     const columnRows = convertToRows(originColumns, this.columns)
-
+    // 是否拥有多级表头
+    const isGroup = columnRows.length > 1
+    if (isGroup) this.$parent.isGroup = true
     return (
       <table
         class="ct-table-header"
@@ -118,7 +120,7 @@ export default {
               />)
           }
         </colgroup>
-        <thead>
+        <thead class={ [{ 'is-group': isGroup }] }>
           {
             this._l(columnRows, (columns, rowIndex) =>
               <tr>
