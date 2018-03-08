@@ -4,7 +4,6 @@
     :style="{width: width}"
     @mouseover="handleMouseIn"
     @mouseout="handleMouseOut"
-    v-clickoutside="clickoutside"
   >
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
       <span v-if="currentValue">{{currentValue}}</span>
@@ -69,8 +68,9 @@
               >{{cell.day}}</span>
           </div>
         </div>
-        <div :class="[prefixCls + '-actions', 'clear']" v-if="type === 'datetime'">
+        <div :class="[prefixCls + '-actions', 'clear']">
           <ctTimePicker
+            v-if="type === 'datetime'"
             class="left"
             v-model="hhmm"
             v-on:on-hour-change="handleHourChange"

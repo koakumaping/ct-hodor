@@ -11618,12 +11618,6 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    directives: [{
-      name: "clickoutside",
-      rawName: "v-clickoutside",
-      value: (_vm.clickoutside),
-      expression: "clickoutside"
-    }],
     ref: "ctDatePicker",
     class: _vm.prefixCls,
     style: ({
@@ -11744,9 +11738,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(_vm._s(cell.day))])
-  })], 2)]), _vm._v(" "), (_vm.type === 'datetime') ? _c('div', {
+  })], 2)]), _vm._v(" "), _c('div', {
     class: [_vm.prefixCls + '-actions', 'clear']
-  }, [_c('ctTimePicker', {
+  }, [(_vm.type === 'datetime') ? _c('ctTimePicker', {
     staticClass: "left",
     attrs: {
       "place": "top",
@@ -11765,7 +11759,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "hhmm"
     }
-  }), _vm._v(" "), _c('ctButton', {
+  }) : _vm._e(), _vm._v(" "), _c('ctButton', {
     staticClass: "right",
     attrs: {
       "type": "primary"
@@ -11773,7 +11767,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.hidePicker
     }
-  }, [_vm._v("确定")])], 1) : _vm._e()])])], 1)
+  }, [_vm._v("确定")])], 1)])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
