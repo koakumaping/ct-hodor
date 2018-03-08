@@ -1032,6 +1032,10 @@ body {
   border: 1px solid transparent;
   white-space: nowrap;
 }
+.ct-tag.ct-tag-size__small {
+  height: 28px;
+  line-height: 26px;
+}
 .ct-tag .ct-tag-close {
   display: inline;
   cursor: pointer;

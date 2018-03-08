@@ -1,7 +1,7 @@
 <template>
   <span
     class="ct-tag"
-    :class="[type ? 'ct-tag-' + type : '', {'is-hit': hit}]"
+    :class="[type ? 'ct-tag-' + type : '', {'is-hit': hit}, 'ct-tag-size__' + size]"
     :style="{backgroundColor: color}"
   >
     <slot></slot>
@@ -25,6 +25,10 @@ export default {
     },
     hit: Boolean,
     color: String,
+    size: {
+      type: String,
+      default: 'normal',
+    },
   },
   methods: {
     handleClose(event) {
@@ -40,12 +44,15 @@ export default {
   padding: 0 5px
   height: 32px
   line-height: 30px
-  font-size: 14px
+  font-size: 12px
   color: #fff
   border-radius: 4px
   box-sizing: border-box
   border: 1px solid transparent
   white-space: nowrap
+  &.ct-tag-size__small
+    height: 28px
+    line-height: 26px
   .ct-tag-close
     display: inline
     cursor: pointer

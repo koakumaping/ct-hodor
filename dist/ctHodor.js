@@ -7891,7 +7891,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: 'primary'
     },
     hit: Boolean,
-    color: String
+    color: String,
+    size: {
+      type: String,
+      default: 'normal'
+    }
   },
   methods: {
     handleClose: function handleClose(event) {
@@ -12170,7 +12174,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-tag",
     class: [_vm.type ? 'ct-tag-' + _vm.type : '', {
       'is-hit': _vm.hit
-    }],
+    }, 'ct-tag-size__' + _vm.size],
     style: ({
       backgroundColor: _vm.color
     })
