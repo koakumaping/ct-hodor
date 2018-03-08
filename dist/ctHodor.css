@@ -1087,6 +1087,7 @@ body {
   font-size: 14px;
   border-radius: 4px;
   position: relative;
+  transition: 0.2s all ease-in;
 }
 .ct-button.ct-button-small {
   padding: 2px 7px;
@@ -1535,6 +1536,7 @@ body {
   position: relative;
   width: 100%;
   font-size: 14px;
+  overflow: hidden;
 }
 .ct-table.ct-table-border {
   border-top: 1px solid #e5e7ea;
@@ -1559,6 +1561,7 @@ body {
   text-align: center;
   background: #fff;
   padding: 20px;
+  color: #909399;
 }
 .ct-table .ct-table-empty img[alt=empty_state] {
   display: inline-block;
@@ -1584,7 +1587,7 @@ body {
   top: 0;
   z-index: 1;
   overflow-x: hidden;
-  box-shadow: 0 0 8px #d3d4d6;
+  box-shadow: 0 0 10px rgba(0,0,0,0.12);
 }
 .ct-table .ct-table-fixed .ct-table-fixed-header-warp {
   position: absolute;
@@ -1647,17 +1650,21 @@ body {
 .ct-table table > thead {
   border-radius: 4px 4px 0 0;
   overflow: hidden;
+  color: #909399;
 }
 .ct-table table > thead > tr > th {
-  background-color: #e8e8e8;
-  height: 40px;
+  background-color: #fff;
+  padding: 12px 0;
+  text-overflow: ellipsis;
   text-transform: uppercase;
   letter-spacing: 1px;
+  vertical-align: middle;
+  position: relative;
 }
 .ct-table table > thead > tr > th > .cell {
-  line-height: 24px;
-  padding-left: 16px;
-  padding-right: 16px;
+  line-height: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .ct-table table > tbody > tr {
   padding: 5px;
@@ -1684,9 +1691,12 @@ body {
   visibility: hidden;
 }
 .ct-table table > tbody > tr > td > .cell {
-  line-height: 24px;
-  padding-left: 16px;
-  padding-right: 16px;
+  line-height: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
   word-break: break-all;
 }
 
