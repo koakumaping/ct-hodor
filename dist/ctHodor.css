@@ -1140,6 +1140,7 @@ body {
 .ct-button.ct-button-primary {
   color: #fff;
   background-color: #15a4fa;
+  border-color: #15a4fa;
 }
 .ct-button.ct-button-primary.ct-button.is-disabled,
 .ct-button.ct-button-primary.ct-button.is-disabled:hover,

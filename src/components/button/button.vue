@@ -154,7 +154,7 @@ export default {
   &^[0]-primary
     color: #fff
     background-color: $color-main
-    // border-color: $color-main
+    border-color: $color-main
     &^[0].is-disabled,
     &^[0].is-disabled:hover,
     &^[0].is-disabled:active
