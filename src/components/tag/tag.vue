@@ -10,8 +10,7 @@
       v-if="closeable"
       @click="handleClose"
     >
-      <iconFont name="close"
-      ></iconFont>
+      <iconFont name="close"/>
     </div>
   </span>
 </template>
@@ -39,14 +38,18 @@ export default {
 .ct-tag
   display: inline-block
   padding: 0 5px
-  height: 24px
-  line-height: 22px
-  font-size: 12px
+  height: 32px
+  line-height: 30px
+  font-size: 14px
   color: #fff
   border-radius: 4px
   box-sizing: border-box
   border: 1px solid transparent
   white-space: nowrap
+  .ct-tag-close
+    display: inline
+    cursor: pointer
+    line-height: 1
   &.ct-tag-success
     background-color: rgba(18,206,102,.1)
     border-color: rgba(18,206,102,.2)
