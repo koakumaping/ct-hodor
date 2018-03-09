@@ -93,6 +93,7 @@ import {
   getWindowHeight,
   clone,
   popover,
+  randomString,
 } from 'ct-util'
 
 import Emitter from '../../mixins/emitter'
@@ -165,6 +166,8 @@ export default {
       ret: {
         visibility: 'hidden',
       },
+      id: randomString(12),
+      modal: null,
     }
   },
   computed: {
@@ -469,13 +472,27 @@ export default {
       _ret.visibility = 'visible'
       _ret.position = 'absolute'
       _ret.top = `${_ret.top.replace('px', '') - 32}px`
-      _ret.zIndex = '9999'
+      _ret.zIndex = '7'
       this.ret = _ret
 
+      this.appendModal()
       document.body.appendChild(this.$refs.ctDatePickerWarpper)
     },
     hidePicker() {
       this.ret.visibility = 'hidden'
+      this.removeModal()
+    },
+    appendModal() {
+      if (!this.modal) {
+        this.modal = document.createElement('div')
+        this.modal.setAttribute('id', this.id)
+        this.modal.setAttribute('class', 'v-modal')
+        this.modal.addEventListener('click', this.hidePicker)
+      }
+      window.document.body.appendChild(this.modal)
+    },
+    removeModal() {
+      if (this.modal) window.document.body.removeChild(this.modal)
     },
     clickoutside() {
       if (this.type === 'datetime') return false
@@ -497,6 +514,7 @@ export default {
     },
     doDestroy() {
       try {
+        this.removeModal()
         document.body.removeChild(this.$refs.ctDatePickerWarpper)
       } catch (error) {
         (() => {})()
@@ -559,7 +577,7 @@ export default {
     visibility: hidden
     position: fixed
     left: -9999px
-    z-index: 9999
+    z-index: 7
     box-shadow: $box-shadow
     &^[0]-top
       top: -307px
@@ -588,7 +606,7 @@ export default {
     ^[0]-body
       ^[0]-cells
         width: 196px
-        margin: 10px 10px 0 10px
+        margin: 10px
         white-space: normal
         font-size: 0
         span

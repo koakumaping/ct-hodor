@@ -5556,7 +5556,9 @@ var prefixCls = 'ct-date-picker';
       $ready: false,
       ret: {
         visibility: 'hidden'
-      }
+      },
+      id: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["randomString"])(12),
+      modal: null
     };
   },
 
@@ -5846,13 +5848,27 @@ var prefixCls = 'ct-date-picker';
       _ret.visibility = 'visible';
       _ret.position = 'absolute';
       _ret.top = _ret.top.replace('px', '') - 32 + 'px';
-      _ret.zIndex = '9999';
+      _ret.zIndex = '7';
       this.ret = _ret;
 
+      this.appendModal();
       document.body.appendChild(this.$refs.ctDatePickerWarpper);
     },
     hidePicker: function hidePicker() {
       this.ret.visibility = 'hidden';
+      this.removeModal();
+    },
+    appendModal: function appendModal() {
+      if (!this.modal) {
+        this.modal = document.createElement('div');
+        this.modal.setAttribute('id', this.id);
+        this.modal.setAttribute('class', 'v-modal');
+        this.modal.addEventListener('click', this.hidePicker);
+      }
+      window.document.body.appendChild(this.modal);
+    },
+    removeModal: function removeModal() {
+      if (this.modal) window.document.body.removeChild(this.modal);
     },
     clickoutside: function clickoutside() {
       if (this.type === 'datetime') return false;
@@ -5874,6 +5890,7 @@ var prefixCls = 'ct-date-picker';
     },
     doDestroy: function doDestroy() {
       try {
+        this.removeModal();
         document.body.removeChild(this.$refs.ctDatePickerWarpper);
       } catch (error) {
         (function () {})();

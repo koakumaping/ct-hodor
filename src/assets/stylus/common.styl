@@ -325,10 +325,6 @@ body
   height: 100%
   background-color: $background-main
 
-#root
-  position: relative
-  min-height: 100%
-  height: 100%
 .warp
   padding: 16px
   // position: relative
@@ -374,3 +370,13 @@ body
 // 移动端适配
 // @media screen and ( max-width: 760px )
 //   @import './mobile/login.styl'
+
+.v-modal
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  opacity: 0
+  background-color: #000
+  z-index: 7
