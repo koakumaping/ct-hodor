@@ -11256,7 +11256,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "ct-notice-content"
     }, [_c('div', {
       staticClass: "ct-notice-tittle hidden"
-    }, [_vm._v(_vm._s(item.title))]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(item.title ? item.title : '提示'))]), _vm._v(" "), _c('div', {
       staticClass: "ct-notice-html",
       domProps: {
         "innerHTML": _vm._s(item.content)

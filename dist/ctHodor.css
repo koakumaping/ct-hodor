@@ -1601,7 +1601,7 @@ body {
   left: 0;
   top: 0;
   z-index: 1;
-  overflow-x: hidden;
+  overflow: hidden;
   box-shadow: 0 0 10px rgba(0,0,0,0.12);
 }
 .ct-table .ct-table-fixed .ct-table-fixed-header-warp {
