@@ -6,12 +6,18 @@
   width: 100%
   font-size: $font-size
   overflow: hidden
+  > .ct-table-body-warp
+    > table > tbody > tr:last-child > td
+      border-bottom: 0px solid $border-color
   &.ct-table-border
     border-top: 1px solid $border-color
     border-left: 1px solid $border-color
     > .ct-table-body-warp
-      > table > tbody > tr > td
-        border-right: 1px solid $border-color
+      > table > tbody > tr
+        &:last-child > td
+          border-bottom: 1px solid $border-color
+        > td
+          border-right: 1px solid $border-color
       .ct-table-empty
         border-right: 1px solid $border-color
         border-bottom: 1px solid $border-color
@@ -49,7 +55,7 @@
     left: 0
     top: 0
     z-index: 1
-    overflow-x: hidden
+    overflow: hidden
     box-shadow: 0 0 10px rgba(0,0,0,.12)
     .ct-table-fixed-header-warp
       position: absolute
@@ -135,8 +141,6 @@
         background-color: #eef1f6
       &:hover > td
         background-color: #eef1f6
-      &:last-child > td
-        border-bottom: 0px solid $border-color
       > td
         border-bottom: 1px solid $border-color
         // height: 40px
