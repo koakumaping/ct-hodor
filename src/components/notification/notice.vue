@@ -6,7 +6,7 @@
       :class="[`${prefixCls}-${item.type}`]"
     >
       <div class="ct-notice-content">
-        <div class="ct-notice-tittle hidden">{{item.title}}</div>
+        <div class="ct-notice-tittle hidden">{{item.title ? item.title : '提示'}}</div>
         <div class="ct-notice-html" v-html="item.content"></div>
       </div>
       <faFont name="info-circle" v-if="item.type === 'info'"></faFont>
