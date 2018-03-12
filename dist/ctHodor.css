@@ -1547,9 +1547,15 @@ body {
   font-size: 14px;
   overflow: hidden;
 }
+.ct-table > .ct-table-body-warp > table > tbody > tr:last-child > td {
+  border-bottom: 0px solid #eee;
+}
 .ct-table.ct-table-border {
   border-top: 1px solid #eee;
   border-left: 1px solid #eee;
+}
+.ct-table.ct-table-border > .ct-table-body-warp > table > tbody > tr:last-child > td {
+  border-bottom: 1px solid #eee;
 }
 .ct-table.ct-table-border > .ct-table-body-warp > table > tbody > tr > td {
   border-right: 1px solid #eee;
@@ -1693,9 +1699,6 @@ body {
 }
 .ct-table table > tbody > tr:hover > td {
   background-color: #eef1f6;
-}
-.ct-table table > tbody > tr:last-child > td {
-  border-bottom: 0px solid #eee;
 }
 .ct-table table > tbody > tr > td {
   border-bottom: 1px solid #eee;
@@ -2218,7 +2221,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 12;
+  z-index: 7;
 }
 .ct-dialog-bg {
   position: fixed;
@@ -2237,7 +2240,6 @@ body {
 .ct-dialog .ct-dialog-warp {
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
   position: relative;
   z-index: 1;
 }
@@ -5649,7 +5651,7 @@ body {
 }
 
 .side {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   overflow: hidden;
@@ -5658,7 +5660,8 @@ body {
   background: #323d59;
   box-shadow: 2px 0 6px rgba(0,21,41,0.35);
   height: 100%;
-  z-index: 9;
+  padding-top: 50px;
+  z-index: 7;
   transition: all 0.3s;
 }
 .side .side-collapse {

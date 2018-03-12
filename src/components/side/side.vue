@@ -63,7 +63,7 @@ $bg-color = #323D59
 $menu-bg-color = #2B3654
 
 .side
-  position: fixed
+  position: absolute
   top: 0
   left: 0
   overflow: hidden
@@ -73,7 +73,8 @@ $menu-bg-color = #2B3654
   // box-shadow: 0 0 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.24)
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35)
   height: 100%
-  z-index: 9
+  padding-top: 50px
+  z-index: 7
   transition: all 0.3s
 
   .side-collapse

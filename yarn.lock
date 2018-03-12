@@ -1629,9 +1629,9 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-ct-util@^1.0.5:
-  version "1.0.57"
-  resolved "https://registry.yarnpkg.com/ct-util/-/ct-util-1.0.57.tgz#e9a728f6604f9bfd9542d55beb2ac04ec7cacd26"
+ct-util@^1.0.60:
+  version "1.0.60"
+  resolved "http://registry.npm.taobao.org/ct-util/download/ct-util-1.0.60.tgz#924264a871635d15f63717945748d1a907c931d9"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"

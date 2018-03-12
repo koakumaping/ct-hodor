@@ -97,8 +97,8 @@ export default {
     contentStyle() {
       const ret = {}
       if (this.fullScreen) {
-        ret.height = this.windowHeight ? `${this.windowHeight - 52}px` :
-          isNumber(this.dialogHeight) ? `${this.dialogHeight - 52}px` : ''
+        ret.height = this.windowHeight ? `${this.windowHeight - 60}px` :
+          isNumber(this.dialogHeight) ? `${this.dialogHeight - 60}px` : ''
       }
       return ret
     },
@@ -109,6 +109,7 @@ export default {
         if (this.fullScreen) {
           ret.width = '90%'
           ret.marginLeft = '5%'
+          ret.paddingTop = '58px'
         }
 
         if (this.width) {

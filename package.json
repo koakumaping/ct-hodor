@@ -1,6 +1,6 @@
 {
   "name": "ct-hodor",
-  "version": "1.5.67",
+  "version": "1.5.72",
   "description": "hodor",
   "main": "dist/ctHodor.js",
   "files": [
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "async-validator": "^1.8.0",
-    "ct-util": "^1.0.5",
+    "ct-util": "^1.0.60",
     "vue": "^2.5.2"
   },
   "devDependencies": {
