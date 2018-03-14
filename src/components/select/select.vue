@@ -163,12 +163,12 @@ export default {
     value: {
       immediate: true,
       handler(val) {
-        // this.currentValue = val
+        this.setCurrentValue(val)
         this.$emit('input', val)
-        this.update()
       },
     },
     currentValue(val) {
+      this.update()
       this.$emit('input', val)
       this.$emit('change', val)
     },
@@ -183,16 +183,18 @@ export default {
         } else {
           this.currentValue.splice(_index, 1)
         }
-        this.$emit('input', this.currentValue)
-        return false
+      } else {
+        this.currentValue = payload
       }
-      this.$emit('input', payload)
+      // this.update()
+      // this.$emit('input', this.currentValue)
     })
+
     this.$on('remove-option', (payload) => {
       if (this.multiple) {
         this.currentValue = this.currentValue.filter(
           (element) => element.value !== payload)
-        this.$emit('input', this.currentValue)
+        // this.$emit('input', this.currentValue)
         return false
       }
 
@@ -206,9 +208,8 @@ export default {
       })
       if (hasCurrentValue) {
         this.update()
-        return
       }
-      this.$emit('input', '')
+      // this.$emit('input', '')
     })
   },
   methods: {
@@ -247,25 +248,25 @@ export default {
         }
       })
     },
-    setCurrentValue() {
+    setCurrentValue(payload = this.value) {
       if (this.multiple) {
-        if (!isArray(this.value)) {
-          console.warn('multiple select v-model must be Array.')
+        if (!isArray(payload)) {
+          // console.warn('multiple select v-model must be Array.')
           this.currentValue = []
         } else {
-          this.currentValue = this.value
+          this.currentValue = payload
         }
       } else {
-        if (isArray(this.value)) {
-          console.warn('multiple select v-model can not Array.')
+        if (isArray(payload)) {
+          // console.warn('multiple select v-model can not Array.')
           this.currentValue = ''
         } else {
-          this.currentValue = this.value
+          this.currentValue = payload
         }
       }
 
       // chang回调
-      this.$emit('on-change', this.value)
+      // this.$emit('change', this.value)
     },
     clearAllSelected() {
       for (let i = 0, l = this.optionList.length; i < l; ++i) {
@@ -317,7 +318,7 @@ export default {
       if (!this.noFormEmit) this.dispatch('ctFormLine', 'ct.form.change', this.currentValue)
     },
     update() {
-      this.setCurrentValue()
+      // this.setCurrentValue()
       if (!this.multiple) {
         this.singleSelect()
       } else {
@@ -364,9 +365,9 @@ export default {
       } else {
         this.currentValue = ''
       }
-      this.$emit('input', this.currentValue)
+      // this.$emit('input', this.currentValue)
       // chang回调
-      this.$emit('on-change', this.value)
+      // this.$emit('change', this.value)
       this.updateEmptyName()
       this.updateSelectStatus()
     },

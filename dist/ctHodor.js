@@ -7291,11 +7291,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     value: {
       immediate: true,
       handler: function handler(val) {
+        this.setCurrentValue(val);
         this.$emit('input', val);
-        this.update();
       }
     },
     currentValue: function currentValue(val) {
+      this.update();
       this.$emit('input', val);
       this.$emit('change', val);
     }
@@ -7312,17 +7313,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         } else {
           _this.currentValue.splice(_index, 1);
         }
-        _this.$emit('input', _this.currentValue);
-        return false;
+      } else {
+        _this.currentValue = payload;
       }
-      _this.$emit('input', payload);
     });
+
     this.$on('remove-option', function (payload) {
       if (_this.multiple) {
         _this.currentValue = _this.currentValue.filter(function (element) {
           return element.value !== payload;
         });
-        _this.$emit('input', _this.currentValue);
+
         return false;
       }
 
@@ -7334,9 +7335,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
       if (hasCurrentValue) {
         _this.update();
-        return;
       }
-      _this.$emit('input', '');
     });
   },
 
@@ -7381,23 +7380,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     setCurrentValue: function setCurrentValue() {
+      var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.value;
+
       if (this.multiple) {
-        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(this.value)) {
-          console.warn('multiple select v-model must be Array.');
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(payload)) {
           this.currentValue = [];
         } else {
-          this.currentValue = this.value;
+          this.currentValue = payload;
         }
       } else {
-        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(this.value)) {
-          console.warn('multiple select v-model can not Array.');
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(payload)) {
           this.currentValue = '';
         } else {
-          this.currentValue = this.value;
+          this.currentValue = payload;
         }
       }
-
-      this.$emit('on-change', this.value);
     },
     clearAllSelected: function clearAllSelected() {
       for (var i = 0, l = this.optionList.length; i < l; ++i) {
@@ -7448,7 +7445,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!this.noFormEmit) this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
     },
     update: function update() {
-      this.setCurrentValue();
       if (!this.multiple) {
         this.singleSelect();
       } else {
@@ -7495,9 +7491,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         this.currentValue = '';
       }
-      this.$emit('input', this.currentValue);
 
-      this.$emit('on-change', this.value);
       this.updateEmptyName();
       this.updateSelectStatus();
     }
