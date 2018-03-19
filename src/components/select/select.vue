@@ -171,7 +171,6 @@ export default {
       this.update()
       this.$emit('input', val)
       this.$emit('change', val)
-      this.updateSelectStatus()
     },
   },
   mounted() {
@@ -263,7 +262,6 @@ export default {
           this.currentValue = payload
         }
       }
-
       // chang回调
       // this.$emit('change', this.value)
     },
@@ -280,12 +278,12 @@ export default {
           this.optionList[i].selected = true
           // this.name = this.optionList[i].label
           this.updateEmptyName(this.optionList[i].label)
-          // this.updateSelectStatus()
+          this.updateSelectStatus()
           hasSelectedOption = true
         }
       }
       // 防止optionList更新后，name显示不正确
-      if (!hasSelectedOption) this.updateEmptyName()
+      if (hasSelectedOption === false) this.updateEmptyName()
     },
     multipleSelect() {
       for (let i = 0, l = this.optionList.length; i < l; ++i) {
@@ -296,7 +294,7 @@ export default {
         }
       }
 
-      // this.updateSelectStatus()
+      this.updateSelectStatus()
       // 更新name
       const _length = this.currentValue.length
       if (_length) {

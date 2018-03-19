@@ -7306,7 +7306,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.update();
       this.$emit('input', val);
       this.$emit('change', val);
-      this.updateSelectStatus();
     }
   },
   mounted: function mounted() {
@@ -7417,12 +7416,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.optionList[i].selected = true;
 
           this.updateEmptyName(this.optionList[i].label);
-
+          this.updateSelectStatus();
           hasSelectedOption = true;
         }
       }
 
-      if (!hasSelectedOption) this.updateEmptyName();
+      if (hasSelectedOption === false) this.updateEmptyName();
     },
     multipleSelect: function multipleSelect() {
       for (var i = 0, l = this.optionList.length; i < l; ++i) {
@@ -7432,6 +7431,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.optionList[i].selected = false;
         }
       }
+
+      this.updateSelectStatus();
 
       var _length = this.currentValue.length;
       if (_length) {
