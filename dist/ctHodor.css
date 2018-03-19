@@ -1706,7 +1706,7 @@ body {
   font-weight: normal;
 }
 .ct-table table > tbody > tr > td.is-hidden > .cell {
-  visibility: hidden;
+  visibility: visible;
 }
 .ct-table table > tbody > tr > td > .cell {
   line-height: 23px;
