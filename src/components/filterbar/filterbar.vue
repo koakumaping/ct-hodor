@@ -30,11 +30,11 @@ export default {
   methods: {
     show() {
       this.visible = true
-      this.$emit('on-show')
+      this.$emit('show')
     },
     hide() {
       this.visible = false
-      this.$emit('on-hide')
+      this.$emit('hide')
     },
   },
 }
@@ -55,7 +55,7 @@ export default {
   width: 0
   overflow: hidden
   &.ct-filterbar-visible
-    z-index: 8
+    z-index: 7
     visibility: visible
     height: auto
     width: auto
@@ -72,12 +72,11 @@ export default {
     transition: all 0.3s
   .ct-filterbar
     height: 100%
-    width: 240px
-    padding-top: 56px
+    width: 400px
     position: absolute
     right: 0
     top: 0
-    z-index: 9
+    z-index: 7
     background-color: #fff
     box-shadow: $box-shadow
     transform: translate3d(240px, 0, 0)
@@ -87,7 +86,7 @@ export default {
       font-size: 16px
       position: absolute
       background: #fff
-      top: 0
+      top: 50px
       left: 0
       width: 100%
       z-index: 2
@@ -95,7 +94,7 @@ export default {
       padding: 0 8px 8px 8px
       overflow: auto
       position: absolute
-      top: 56px
+      top: 110px
       left: 0
       right: 0
       bottom: 0

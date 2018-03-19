@@ -14,7 +14,7 @@
         <slot name="btn"></slot>
       </div>
     </div>
-    <ctFilterbar ref="filterbar" @on-show="showExtra = true" @on-hide="showExtra = false">
+    <ctFilterbar ref="filterbar" @show="showExtra = true" @hide="showExtra = false">
       <ctFormSearch>
         <slot name="extra"></slot>
         <ctFormSearchLine>
@@ -60,7 +60,7 @@ export default {
     toggle() {
       this.$refs.filterbar.show()
       this.$nextTick(() => {
-        this.$emit('on-change', this.showExtra)
+        this.$emit('change', this.showExtra)
       })
     },
   },

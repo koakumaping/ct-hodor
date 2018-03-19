@@ -5221,7 +5221,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$refs.filterbar.show();
       this.$nextTick(function () {
-        _this.$emit('on-change', _this.showExtra);
+        _this.$emit('change', _this.showExtra);
       });
     }
   }
@@ -6097,11 +6097,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     show: function show() {
       this.visible = true;
-      this.$emit('on-show');
+      this.$emit('show');
     },
     hide: function hide() {
       this.visible = false;
-      this.$emit('on-hide');
+      this.$emit('hide');
     }
   }
 });
@@ -6561,8 +6561,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   watch: {
-    value: function value(val) {
-      this.setCurrentValue(val);
+    value: {
+      immediate: true,
+      handler: function handler(val) {
+        this.setCurrentValue(val);
+        this.$emit('input', val);
+      }
+    },
+    currentValue: function currentValue(val) {
+      this.$emit('input', val);
     }
   },
   computed: {
@@ -7299,6 +7306,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.update();
       this.$emit('input', val);
       this.$emit('change', val);
+      this.updateSelectStatus();
     }
   },
   mounted: function mounted() {
@@ -7409,7 +7417,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.optionList[i].selected = true;
 
           this.updateEmptyName(this.optionList[i].label);
-          this.updateSelectStatus();
+
           hasSelectedOption = true;
         }
       }
@@ -7424,8 +7432,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.optionList[i].selected = false;
         }
       }
-
-      this.updateSelectStatus();
 
       var _length = this.currentValue.length;
       if (_length) {
@@ -11033,10 +11039,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._t("btn")], 2)]), _vm._v(" "), _c('ctFilterbar', {
     ref: "filterbar",
     on: {
-      "on-show": function($event) {
+      "show": function($event) {
         _vm.showExtra = true
       },
-      "on-hide": function($event) {
+      "hide": function($event) {
         _vm.showExtra = false
       }
     }

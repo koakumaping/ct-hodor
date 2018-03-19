@@ -171,6 +171,7 @@ export default {
       this.update()
       this.$emit('input', val)
       this.$emit('change', val)
+      this.updateSelectStatus()
     },
   },
   mounted() {
@@ -186,8 +187,6 @@ export default {
       } else {
         this.currentValue = payload
       }
-      // this.update()
-      // this.$emit('input', this.currentValue)
     })
 
     this.$on('remove-option', (payload) => {
@@ -281,7 +280,7 @@ export default {
           this.optionList[i].selected = true
           // this.name = this.optionList[i].label
           this.updateEmptyName(this.optionList[i].label)
-          this.updateSelectStatus()
+          // this.updateSelectStatus()
           hasSelectedOption = true
         }
       }
@@ -297,7 +296,7 @@ export default {
         }
       }
 
-      this.updateSelectStatus()
+      // this.updateSelectStatus()
       // 更新name
       const _length = this.currentValue.length
       if (_length) {

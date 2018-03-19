@@ -5577,7 +5577,7 @@ body {
   overflow: hidden;
 }
 .ct-filterbar-warp.ct-filterbar-visible {
-  z-index: 8;
+  z-index: 7;
   visibility: visible;
   height: auto;
   width: auto;
@@ -5598,12 +5598,11 @@ body {
 }
 .ct-filterbar-warp .ct-filterbar {
   height: 100%;
-  width: 240px;
-  padding-top: 56px;
+  width: 400px;
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 9;
+  z-index: 7;
   background-color: #fff;
   box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
   transform: translate3d(240px, 0, 0);
@@ -5614,7 +5613,7 @@ body {
   font-size: 16px;
   position: absolute;
   background: #fff;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 100%;
   z-index: 2;
@@ -5623,7 +5622,7 @@ body {
   padding: 0 8px 8px 8px;
   overflow: auto;
   position: absolute;
-  top: 56px;
+  top: 110px;
   left: 0;
   right: 0;
   bottom: 0;

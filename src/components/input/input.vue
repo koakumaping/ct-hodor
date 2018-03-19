@@ -87,8 +87,15 @@ export default {
     },
   },
   watch: {
-    value(val) {
-      this.setCurrentValue(val)
+    value: {
+      immediate: true,
+      handler(val) {
+        this.setCurrentValue(val)
+        this.$emit('input', val)
+      },
+    },
+    currentValue(val) {
+      this.$emit('input', val)
     },
   },
   computed: {
