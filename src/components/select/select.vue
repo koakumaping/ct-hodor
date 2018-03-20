@@ -168,9 +168,9 @@ export default {
       },
     },
     currentValue(val) {
-      this.update()
       this.$emit('input', val)
       this.$emit('change', val)
+      this.update()
     },
   },
   mounted() {
