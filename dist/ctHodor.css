@@ -1077,7 +1077,6 @@ body {
 
 .ct-button {
   display: inline-block;
-  vertical-align: top;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
@@ -1196,7 +1195,6 @@ body {
   color: #000;
   border-color: transparent;
   background-color: transparent;
-  border: 0;
 }
 .ct-button.ct-button-text.ct-button.is-disabled,
 .ct-button.ct-button-text.ct-button.is-disabled:hover,
@@ -1208,12 +1206,8 @@ body {
   border-color: transparent;
   transform: translateY(0);
 }
-.ct-button.ct-button-text.ct-button-small {
-  border: 0;
-}
 .ct-button.ct-button-text:hover {
   color: #687f8e;
-  border: 0;
 }
 .ct-button.ct-button.is-disabled,
 .ct-button.ct-button.is-disabled:hover,

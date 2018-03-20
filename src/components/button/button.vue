@@ -93,7 +93,7 @@ export default {
 
 .ct-button
   display: inline-block
-  vertical-align: top
+  // vertical-align: top
   line-height: 1
   white-space: nowrap
   cursor: pointer
@@ -193,7 +193,6 @@ export default {
     color: #000
     border-color: transparent
     background-color: transparent
-    border: 0
     &^[0].is-disabled,
     &^[0].is-disabled:hover,
     &^[0].is-disabled:active
@@ -203,11 +202,8 @@ export default {
       background-color: transparent
       border-color: transparent
       transform: translateY(0)
-    &.ct-button-small
-      border: 0
     &:hover
       color: #687f8e
-      border: 0
   &^[0].is-disabled,
   &^[0].is-disabled:hover,
   &^[0].is-disabled:active
