@@ -492,7 +492,11 @@ export default {
       window.document.body.appendChild(this.modal)
     },
     removeModal() {
-      if (this.modal) window.document.body.removeChild(this.modal)
+      try {
+        if (this.modal) document.body.removeChild(this.modal)
+      } catch (error) {
+        (() => {})()
+      }
     },
     clickoutside() {
       if (this.type === 'datetime') return false
@@ -513,8 +517,8 @@ export default {
       this.$emit('change', '')
     },
     doDestroy() {
+      this.removeModal()
       try {
-        this.removeModal()
         document.body.removeChild(this.$refs.ctDatePickerWarpper)
       } catch (error) {
         (() => {})()

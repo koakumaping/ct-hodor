@@ -5289,6 +5289,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: [Boolean],
       default: false
     },
+    readonly: {
+      type: [Boolean],
+      default: false
+    },
     loading: {
       type: [Boolean],
       default: false
@@ -5306,7 +5310,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     handleClick: function handleClick(event) {
-      if (this.disabled) return false;
+      if (this.disabled || this.readonly) return false;
       if (this.routerName) {
         if (this.routerName.includes('http://')) {
           window.location.href = this.routerName;
@@ -5868,7 +5872,11 @@ var prefixCls = 'ct-date-picker';
       window.document.body.appendChild(this.modal);
     },
     removeModal: function removeModal() {
-      if (this.modal) window.document.body.removeChild(this.modal);
+      try {
+        if (this.modal) document.body.removeChild(this.modal);
+      } catch (error) {
+        (function () {})();
+      }
     },
     clickoutside: function clickoutside() {
       if (this.type === 'datetime') return false;
@@ -5889,8 +5897,8 @@ var prefixCls = 'ct-date-picker';
       this.$emit('change', '');
     },
     doDestroy: function doDestroy() {
+      this.removeModal();
       try {
-        this.removeModal();
         document.body.removeChild(this.$refs.ctDatePickerWarpper);
       } catch (error) {
         (function () {})();
@@ -6171,6 +6179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     model: Object,
     rules: Object,
+    p: Object,
     showMessage: {
       type: Boolean,
       default: true
@@ -6302,6 +6311,24 @@ function getPropByPath(obj, path) {
   };
 }
 
+function getValueByPath(object, prop) {
+  prop = prop || '';
+  var paths = prop.split('.');
+  var current = object;
+  var result = null;
+  for (var i = 0, j = paths.length; i < j; i++) {
+    var path = paths[i];
+    if (!current) break;
+
+    if (i === j - 1) {
+      result = current[path];
+      break;
+    }
+    current = current[path];
+  }
+  return result;
+}
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ctFormLine',
   mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_emitter__["a" /* default */]],
@@ -6365,6 +6392,15 @@ function getPropByPath(obj, path) {
       }
 
       return this.label;
+    },
+
+    isReadonly: {
+      cache: false,
+      get: function get() {
+        var p = this.form.p;
+        if (!p || !this.prop) return false;
+        return getValueByPath(this.form.p, this.prop).readonly;
+      }
     },
     hasLabel: function hasLabel() {
       return !!this.label || !!this.$slots.label;
@@ -10944,7 +10980,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       _vm.type ? 'ct-button-' + _vm.type : '',
       _vm.size ? 'ct-button-' + _vm.size : '',
       {
-        'is-disabled': _vm.disabled,
+        'is-disabled': _vm.disabled || _vm.readonly,
         'is-loading': _vm.loading,
         'is-plain': _vm.plain,
         'icon-only': _vm.icon && !_vm.$slots.default,
@@ -11361,7 +11397,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n    " + _vm._s(_vm.getLabel) + "\n    "), _vm._t("label")], 2) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "form-content clear relative",
     style: (_vm.contentStyle)
-  }, [_vm._t("default"), _vm._v(" "), (_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage) ? _c('div', {
+  }, [(_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.fieldValue))]) : _vm._t("default"), _vm._v(" "), (_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage) ? _c('div', {
     staticClass: "ct-form-content-error"
   }, [_vm._v(_vm._s(_vm.validateMessage))]) : _vm._e()], 2)])
 },staticRenderFns: []}

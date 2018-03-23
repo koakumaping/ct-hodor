@@ -23,6 +23,7 @@ export default {
     },
     model: Object,
     rules: Object,
+    p: Object,
     showMessage: {
       type: Boolean,
       default: true,

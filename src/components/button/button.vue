@@ -9,7 +9,7 @@
       type ? 'ct-button-' + type : '',
       size ? 'ct-button-' + size : '',
       {
-        'is-disabled': disabled,
+        'is-disabled': disabled || readonly,
         'is-loading': loading,
         'is-plain': plain,
         'icon-only': icon && !$slots.default,
@@ -55,6 +55,10 @@ export default {
       type: [Boolean],
       default: false,
     },
+    readonly: {
+      type: [Boolean],
+      default: false,
+    },
     loading: {
       type: [Boolean],
       default: false,
@@ -72,7 +76,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      if (this.disabled) return false
+      if (this.disabled || this.readonly) return false
       if (this.routerName) {
         if (this.routerName.includes('http://')) {
           window.location.href = this.routerName
@@ -93,7 +97,7 @@ export default {
 
 .ct-button
   display: inline-block
-  // vertical-align: top
+  vertical-align: middle
   line-height: 1
   white-space: nowrap
   cursor: pointer

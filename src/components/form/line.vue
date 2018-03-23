@@ -11,7 +11,8 @@
       <slot name="label"></slot>
     </label>
     <div class="form-content clear relative" :style="contentStyle">
-      <slot></slot>
+      <span v-if="isReadonly">{{fieldValue}}</span>
+      <slot v-else/>
       <div class="ct-form-content-error" v-if="validateState === 'error' && showMessage && form.showMessage">{{validateMessage}}</div>
     </div>
   </section>
@@ -41,6 +42,24 @@ function getPropByPath(obj, path) {
     k: keyArr[i],
     v: tempObj[keyArr[i]],
   }
+}
+
+function getValueByPath(object, prop) {
+  prop = prop || ''
+  const paths = prop.split('.')
+  let current = object
+  let result = null
+  for (let i = 0, j = paths.length; i < j; i++) {
+    const path = paths[i]
+    if (!current) break
+
+    if (i === j - 1) {
+      result = current[path]
+      break
+    }
+    current = current[path]
+  }
+  return result
 }
 
 export default {
@@ -105,6 +124,14 @@ export default {
       }
 
       return this.label
+    },
+    isReadonly: {
+      cache: false,
+      get() {
+        const p = this.form.p
+        if (!p || !this.prop) return false
+        return getValueByPath(this.form.p, this.prop).readonly
+      },
     },
     hasLabel() {
       return !!this.label || !!this.$slots.label
