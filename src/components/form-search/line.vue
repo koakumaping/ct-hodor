@@ -1,7 +1,7 @@
 <template>
   <div class="search-line">
     <div class="clear">
-      <dl class="title left" v-if="title">{{title}}：</dl>
+      <dl class="title left hidden" v-if="title">{{title}}：</dl>
       <dl class="content" :style="titleStyl">
         <slot></slot>
       </dl>

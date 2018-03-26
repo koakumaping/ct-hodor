@@ -30,7 +30,7 @@ export default {
       padding: 7px 0
       padding-right: 8px
       text-align: right
-      width: 6em
+      width: 100%
     .content
       padding-right: 16px
       margin-left: 6em

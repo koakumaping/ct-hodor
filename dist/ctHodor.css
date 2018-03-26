@@ -5444,7 +5444,7 @@ body {
   padding: 7px 0;
   padding-right: 8px;
   text-align: right;
-  width: 6em;
+  width: 100%;
 }
 .ct-form-search .search-line .content {
   padding-right: 16px;
