@@ -27,7 +27,7 @@ export default {
       selected: false,
     }
   },
-  created() {
+  mounted() {
     this.$on('update-selected', this.updateSelect)
     this.addOption()
   },

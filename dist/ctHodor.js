@@ -7153,7 +7153,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       selected: false
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     this.$on('update-selected', this.updateSelect);
     this.addOption();
   },
