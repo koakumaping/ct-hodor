@@ -5590,18 +5590,6 @@ var prefixCls = 'ct-date-picker';
         return this.hhmm.split(':')[1];
       }
     },
-    listOverflow: function listOverflow() {
-      var windowHeight = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])();
-      var elRect = this.$refs.ctDatePicker.getBoundingClientRect();
-      var elToTop = elRect.top;
-      var elToBottom = elRect.bottom;
-
-
-      if (windowHeight - elToBottom - (340 + 8) <= 0 && elToTop > 340) {
-        return true;
-      }
-      return false;
-    },
     showClearBtn: function showClearBtn() {
       if (!this.clearable) return false;
       if (!this.hover) return false;
@@ -5843,7 +5831,6 @@ var prefixCls = 'ct-date-picker';
       }
     },
     showPicker: function showPicker() {
-      console.log('show-picker');
       this.getCells();
       var base = this.$refs.ctDatePicker;
       var _ret = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["popover"])(base, this.$refs.ctDatePickerWarpper, {
@@ -5851,7 +5838,9 @@ var prefixCls = 'ct-date-picker';
       }, true);
       _ret.visibility = 'visible';
       _ret.position = 'absolute';
-      _ret.top = _ret.top.replace('px', '') - 32 + 'px';
+      var _top = _ret.top.replace('px', '') - 32;
+      if (_top + 300 > __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])()) _top = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])() - 300;
+      _ret.top = _top + 'px';
       _ret.zIndex = '7';
       this.ret = _ret;
 

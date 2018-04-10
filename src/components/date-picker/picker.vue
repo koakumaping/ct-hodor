@@ -194,18 +194,6 @@ export default {
         return this.hhmm.split(':')[1]
       }
     },
-    listOverflow() {
-      const windowHeight = getWindowHeight()
-      const elRect = this.$refs.ctDatePicker.getBoundingClientRect()
-      const elToTop = elRect.top
-      const elToBottom = elRect.bottom
-      // const maxHeight = elRect.bottom - elRect.top
-
-      if (windowHeight - elToBottom - (340 + 8) <= 0 && elToTop > 340) {
-        return true
-      }
-      return false
-    },
     showClearBtn() {
       if (!this.clearable) return false
       if (!this.hover) return false
@@ -458,12 +446,6 @@ export default {
       }
     },
     showPicker() {
-      // if (this.listOverflow) {
-      //   this.topCls = `${prefixCls}-top`
-      // } else {
-      //   this.topCls = ''
-      // }
-      console.log('show-picker')
       this.getCells()
       const base = this.$refs.ctDatePicker
       const _ret = popover(base, this.$refs.ctDatePickerWarpper, {
@@ -471,7 +453,9 @@ export default {
       }, true)
       _ret.visibility = 'visible'
       _ret.position = 'absolute'
-      _ret.top = `${_ret.top.replace('px', '') - 32}px`
+      let _top = _ret.top.replace('px', '') - 32
+      if (_top + 300 > getWindowHeight()) _top = getWindowHeight() - 300
+      _ret.top = `${_top}px`
       _ret.zIndex = '7'
       this.ret = _ret
 
