@@ -65,7 +65,7 @@ export default {
     },
     validate(callback) {
       if (!this.model) {
-        console.warn('[Element Warn][Form]model is required for validate to work!')
+        console.warn('[Form]model is required for validate to work!')
         return false
       }
       let promise

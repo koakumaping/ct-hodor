@@ -24,64 +24,64 @@
       :style="ret"
       ref="ctDatePickerWarpper"
     >
-        <div :class="[prefixCls + '-header', 'clear']">
-          <span class="pointer left" :class="[prefixCls + '-header-prev-year']"
-            @click="setPrevYear"
-          >
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-          </span>
-          <span class="pointer left" :class="[prefixCls + '-header-prev-month']"
-            @click="setPrevMonth"
-          >
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-          </span>
+      <div :class="[prefixCls + '-header', 'clear']">
+        <span class="pointer left" :class="[prefixCls + '-header-prev-year']"
+          @click="setPrevYear"
+        >
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </span>
+        <span class="pointer left" :class="[prefixCls + '-header-prev-month']"
+          @click="setPrevMonth"
+        >
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </span>
 
-          <span class="pointer">{{year}}年 </span>
-          <span class="pointer">{{getMonth}}月</span>
+        <span class="pointer">{{year}}年 </span>
+        <span class="pointer">{{getMonth}}月</span>
 
-          <span class="pointer right" :class="[prefixCls + '-header-next-year']"
-            @click="setNextYear"
-          >
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-          </span>
-          <span class="pointer right" :class="[prefixCls + '-header-next-month']"
-            @click="setNextMonth"
-          >
-            <faFont name="angle-right"></faFont>
-          </span>
-        </div>
-        <div :class="[prefixCls + '-body']">
-          <div :class="[prefixCls + '-cells']">
-            <div :class="[prefixCls + '-cells-header']">
-              <span>日</span>
-              <span>一</span>
-              <span>二</span>
-              <span>三</span>
-              <span>四</span>
-              <span>五</span>
-              <span>六</span>
-            </div>
-            <span
-              v-for="(cell, index) in cells" :key="cell.id"
-              :class="getCellCls(cell)"
-              @click="setSelectDate(cell.year, cell.month, cell.day, index)"
-              >{{cell.day}}</span>
+        <span class="pointer right" :class="[prefixCls + '-header-next-year']"
+          @click="setNextYear"
+        >
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </span>
+        <span class="pointer right" :class="[prefixCls + '-header-next-month']"
+          @click="setNextMonth"
+        >
+          <faFont name="angle-right"></faFont>
+        </span>
+      </div>
+      <div :class="[prefixCls + '-body']">
+        <div :class="[prefixCls + '-cells']">
+          <div :class="[prefixCls + '-cells-header']">
+            <span>日</span>
+            <span>一</span>
+            <span>二</span>
+            <span>三</span>
+            <span>四</span>
+            <span>五</span>
+            <span>六</span>
           </div>
+          <span
+            v-for="(cell, index) in cells" :key="cell.id"
+            :class="getCellCls(cell)"
+            @click="setSelectDate(cell.year, cell.month, cell.day, index)"
+            >{{cell.day}}</span>
         </div>
-        <div :class="[prefixCls + '-actions', 'clear']">
-          <ctTimePicker
-            v-if="type === 'datetime'"
-            class="left"
-            v-model="hhmm"
-            v-on:on-hour-change="handleHourChange"
-            v-on:on-minutes-change="handleMinutesChange"
-            place="top"
-            :start="start"
-            :end="end"
-            :range="range"
-          ></ctTimePicker>
-          <ctButton class="right" type="primary" @click="hidePicker">确定</ctButton>
-        </div>
+      </div>
+      <div :class="[prefixCls + '-actions', 'clear']">
+        <ctTimePicker
+          v-if="type === 'datetime'"
+          class="left"
+          v-model="hhmm"
+          v-on:on-hour-change="handleHourChange"
+          v-on:on-minutes-change="handleMinutesChange"
+          place="top"
+          :start="start"
+          :end="end"
+          :range="range"
+        ></ctTimePicker>
+        <ctButton class="right" type="primary" @click="hidePicker">确定</ctButton>
+      </div>
     </div>
     </transition>
 

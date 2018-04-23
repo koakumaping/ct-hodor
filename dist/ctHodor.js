@@ -6214,7 +6214,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (!this.model) {
-        console.warn('[Element Warn][Form]model is required for validate to work!');
+        console.warn('[Form]model is required for validate to work!');
         return false;
       }
       var promise = void 0;
