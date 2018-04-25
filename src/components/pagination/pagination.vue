@@ -46,7 +46,13 @@
         :class="{ 'is-disabled': currentPage === pageLength }"
         v-on:click="go(currentPage + 1)"
       >
-        <iconFont name="more"></iconFont>
+        <iconFont name="more" />
+      </li>
+            <li
+        class="ct-pagination-total"
+        v-on:click="reload()"
+      >
+        总计 {{ total }} 条数据
       </li>
     </ul>
   </div>
@@ -142,7 +148,7 @@ export default {
       }
 
       if (this.ajax) {
-        this.$emit('on-change', {
+        this.$emit('change', {
           index,
           query: this.query,
         })
@@ -150,6 +156,9 @@ export default {
       }
 
       this.$router.push({ name: this.$route.name, query: this.query })
+    },
+    reload() {
+      this.$emit('reload')
     },
   },
 }

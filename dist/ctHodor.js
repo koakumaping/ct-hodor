@@ -6902,7 +6902,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       if (this.ajax) {
-        this.$emit('on-change', {
+        this.$emit('change', {
           index: index,
           query: this.query
         });
@@ -6910,6 +6910,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       this.$router.push({ name: this.$route.name, query: this.query });
+    },
+    reload: function reload() {
+      this.$emit('reload');
     }
   }
 });
@@ -10701,7 +10704,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "more"
     }
-  })], 1)], 2) : _vm._e()])
+  })], 1), _vm._v(" "), _c('li', {
+    staticClass: "ct-pagination-total",
+    on: {
+      "click": function($event) {
+        _vm.reload()
+      }
+    }
+  }, [_vm._v("\n      总计 " + _vm._s(_vm.total) + " 条数据\n    ")])], 2) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
