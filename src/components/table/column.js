@@ -6,17 +6,20 @@ let seed = 0
 const defaults = {
   default: {},
   selection: {
+    type: 'selection',
     width: 48,
     minWidth: 48,
     realWidth: 48,
     className: 'ct-table-column--selection',
   },
   expand: {
+    type: 'expand',
     width: 48,
     minWidth: 48,
     realWidth: 48,
   },
   index: {
+    type: 'index',
     width: 48,
     minWidth: 48,
     realWidth: 48,

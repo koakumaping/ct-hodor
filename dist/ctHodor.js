@@ -3582,17 +3582,20 @@ var seed = 0;
 var defaults = {
   default: {},
   selection: {
+    type: 'selection',
     width: 48,
     minWidth: 48,
     realWidth: 48,
     className: 'ct-table-column--selection'
   },
   expand: {
+    type: 'expand',
     width: 48,
     minWidth: 48,
     realWidth: 48
   },
   index: {
+    type: 'index',
     width: 48,
     minWidth: 48,
     realWidth: 48
@@ -4605,11 +4608,14 @@ TableStore.prototype.mutations = {
     var selection = states.selection,
         data = states.data;
 
-
     if (!this.states.isAllSelected) {
       data.forEach(function (item, index) {
         if (_this2.isSelected(item)) return false;
-        selection.push(item);
+        if (states.selectable) {
+          if (states.selectable.call(null, item, index)) selection.push(item);
+        } else {
+          selection.push(item);
+        }
       });
 
       this.states.isAllSelected = true;

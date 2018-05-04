@@ -171,11 +171,14 @@ TableStore.prototype.mutations = {
   toggleAllSelection(states) {
     // console.log('toggleAllSelection')
     const { selection, data } = states
-
     if (!this.states.isAllSelected) {
       data.forEach((item, index) => {
         if (this.isSelected(item)) return false
-        selection.push(item)
+        if (states.selectable) {
+          if (states.selectable.call(null, item, index)) selection.push(item)
+        } else {
+          selection.push(item)
+        }
       })
 
       this.states.isAllSelected = true
