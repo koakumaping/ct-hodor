@@ -339,7 +339,7 @@ export default {
         // 此时渲染的日期如果跟选择的值相同，则判定为选中
         // 不需要对上个月跟下个月做此判断
         // 因为选中上个月或者下个月的时候会自动切换成该月
-        _cellItem.selected = time === clearHours(new Date(this.currentValue))
+        _cellItem.selected = time === clearHours(new Date(this.currentValue.replace(new RegExp(/-/gm), '/')))
 
         _cellItem.disabled = this.disabledDate(new Date(time))
         this.cells.push(_cellItem)
