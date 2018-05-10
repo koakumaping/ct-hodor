@@ -71,6 +71,16 @@ export default {
     },
     // 以ajax方式翻页
     ajax: Boolean,
+    // 第几页， ajax用
+    page: {
+      type: Number,
+      default: 1,
+    },
+    // 每页数量， ajax用
+    size: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
@@ -89,10 +99,19 @@ export default {
     total(val) {
       this.setPageList()
     },
+    page(val) {
+      this.currentPage = val
+    },
   },
   methods: {
     init() {
-      this.currentPage = Number(this.$route.query.page) || 1
+      if (this.ajax) {
+        this.currentPage = this.page
+        this.perPage = this.size
+      } else {
+        this.currentPage = Number(this.$route.query.page) || this.page || 1
+      }
+
       this.setPageList()
       this.setSearchQuery()
     },

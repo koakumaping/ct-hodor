@@ -6829,7 +6829,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: 0
     },
 
-    ajax: Boolean
+    ajax: Boolean,
+
+    page: {
+      type: Number,
+      default: 1
+    },
+
+    size: {
+      type: Number,
+      default: 1
+    }
   },
   data: function data() {
     return {
@@ -6848,11 +6858,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     total: function total(val) {
       this.setPageList();
+    },
+    page: function page(val) {
+      this.currentPage = val;
     }
   },
   methods: {
     init: function init() {
-      this.currentPage = Number(this.$route.query.page) || 1;
+      if (this.ajax) {
+        this.currentPage = this.page;
+        this.perPage = this.size;
+      } else {
+        this.currentPage = Number(this.$route.query.page) || this.page || 1;
+      }
+
       this.setPageList();
       this.setSearchQuery();
     },
