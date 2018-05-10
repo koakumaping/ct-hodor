@@ -5731,7 +5731,7 @@ var prefixCls = 'ct-date-picker';
         var _time = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util__["a" /* clearHours */])(new Date(_cellItem2.year, _cellItem2.month, _cellItem2.day));
         _cellItem2.today = _time === today;
 
-        _cellItem2.selected = _time === __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util__["a" /* clearHours */])(new Date(this.currentValue.replace(new RegExp(/-/gm), '/')));
+        _cellItem2.selected = _time === __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util__["a" /* clearHours */])(new Date(this.currentValue ? this.currentValue.replace(new RegExp(/-/gm), '/') : ''));
 
         _cellItem2.disabled = this.disabledDate(new Date(_time));
         this.cells.push(_cellItem2);
