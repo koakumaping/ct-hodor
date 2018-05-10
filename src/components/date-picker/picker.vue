@@ -264,7 +264,7 @@ export default {
           }
         }
 
-        this.date = new Date(this.currentValue)
+        this.date = new Date(this.currentValue.replace(new RegExp(/-/gm), '/'))
       } else {
         this.date = new Date()
         this.date.setHours(this.getHour)
