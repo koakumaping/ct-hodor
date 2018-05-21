@@ -6588,7 +6588,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     enter: {
       type: Function,
-      default: function _default() {}
+      default: function _default(e) {
+        e.preventDefault();
+        return false;
+      }
     }
   },
   watch: {

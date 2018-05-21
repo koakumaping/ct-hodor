@@ -83,7 +83,10 @@ export default {
     // 回车键操作
     enter: {
       type: Function,
-      default: () => {},
+      default: (e) => {
+        e.preventDefault()
+        return false
+      },
     },
   },
   watch: {
