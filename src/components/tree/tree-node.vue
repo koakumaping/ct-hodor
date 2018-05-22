@@ -7,7 +7,7 @@
         @click="toggle"
         class="ct-tree-arrow" :class="arrowCls"></span>
       <ctCheckbox
-        v-if="!disabled"
+        v-if="showCheckbox"
         :value="model.checked"
         :indeterminate="indeterminate"
         @click.native.prevent="handleCheck"
@@ -30,6 +30,7 @@
           v-for="model in model.children"
           :key="model.id"
           :model="model"
+          :singleSelection="singleSelection"
         >
         </treeNode>
         <!-- <li class="add" @click="addChild">+</li> -->
@@ -51,6 +52,7 @@ export default {
       type: Object,
       default: () => {},
     },
+    singleSelection: Boolean,
   },
   data() {
     return {
@@ -68,6 +70,12 @@ export default {
     },
     arrowCls() {
       return [{ 'ct-tree-arrow-expand': this.open }]
+    },
+    showCheckbox() {
+      let flag = true
+      if (this.disabled) flag = false
+      if (this.singleSelection && this.isFolder) flag = false
+      return flag
     },
   },
   created() {
@@ -106,7 +114,7 @@ export default {
       }
       // console.log(checked)
       this.$set(this.model, 'checked', checked)
-      this.dispatch('Tree', 'checked')
+      this.dispatch('Tree', 'checked', clone(this.model))
       this.dispatch('Tree', 'on-checked', clone(this.model))
     },
     // 更新半选中状态

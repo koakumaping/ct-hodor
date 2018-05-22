@@ -8159,7 +8159,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     model: {
       type: Object,
       default: function _default() {}
-    }
+    },
+    singleSelection: Boolean
   },
   data: function data() {
     return {
@@ -8178,6 +8179,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     arrowCls: function arrowCls() {
       return [{ 'ct-tree-arrow-expand': this.open }];
+    },
+    showCheckbox: function showCheckbox() {
+      var flag = true;
+      if (this.disabled) flag = false;
+      if (this.singleSelection && this.isFolder) flag = false;
+      return flag;
     }
   },
   created: function created() {
@@ -8216,7 +8223,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       this.$set(this.model, 'checked', checked);
-      this.dispatch('Tree', 'checked');
+      this.dispatch('Tree', 'checked', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.model));
       this.dispatch('Tree', 'on-checked', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.model));
     },
     setIndeterminate: function setIndeterminate() {
@@ -8264,17 +8271,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     level: {
       type: Number,
       default: 0
-    }
+    },
+    singleSelection: Boolean
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.$on('checked', function () {
+    this.$on('checked', function (payload) {
       _this.updateData(false);
       _this.initMap();
     });
 
     this.$on('on-checked', function (payload) {
+      var cancelOtherChecked = function cancelOtherChecked() {
+        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+        for (var i = 0, l = list.length; i < l; ++i) {
+          var item = list[i];
+
+          if (item.id === payload.id) {
+            console.log(item.id, payload.id);
+          } else {
+            item.checked = false;
+          }
+
+          if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(item, 'children') && item.children.length > 0) {
+            cancelOtherChecked(item.children);
+          }
+        }
+      };
+
+      if (_this.singleSelection) cancelOtherChecked(_this.data);
       _this.$emit('on-node-check', payload);
     });
   },
@@ -8319,7 +8346,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var isInit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
       function reverseChecked(data) {
-        if (data.children) {
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(data.children) && data.children.length > 0) {
           var checkedLength = 0;
           data.children.forEach(function (node) {
             if (node.children) node = reverseChecked(node);
@@ -8336,7 +8363,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       function forwardChecked(data) {
-        if (data.children && data.children.length > 0) {
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(data.children) && data.children.length > 0) {
           data.children.forEach(function (node) {
             if (data.checked) node.checked = true;
             if (node.children) node = forwardChecked(node);
@@ -8373,7 +8400,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       function filterChildren(data) {
-        if (data.children) {
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isArray"])(data.children) && data.children.length > 0) {
           var checkedLength = 0;
           data.children.forEach(function (node) {
             if (node.children) node = filterChildren(node);
@@ -11394,7 +11421,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('treeNode', {
       staticClass: "item",
       attrs: {
-        "model": item
+        "model": item,
+        "singleSelection": _vm.singleSelection
       }
     })], 1)
   }))
@@ -12299,7 +12327,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.toggle
     }
-  }), _vm._v(" "), (!_vm.disabled) ? _c('ctCheckbox', {
+  }), _vm._v(" "), (_vm.showCheckbox) ? _c('ctCheckbox', {
     attrs: {
       "value": _vm.model.checked,
       "indeterminate": _vm.indeterminate,
@@ -12338,7 +12366,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: model.id,
       staticClass: "item",
       attrs: {
-        "model": model
+        "model": model,
+        "singleSelection": _vm.singleSelection
       }
     })
   })) : _vm._e()])], 1)

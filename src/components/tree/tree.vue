@@ -6,6 +6,7 @@
       <treeNode
         class="item"
         :model="item"
+        :singleSelection="singleSelection"
       >
       </treeNode>
     </ul>
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import { isNumber, clone } from 'ct-util'
+import { isNumber, clone, isArray, hasOwn } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 import treeNode from './tree-node'
 
@@ -36,15 +37,34 @@ export default {
       type: Number,
       default: 0,
     },
+    singleSelection: Boolean,
   },
   mounted() {
-    this.$on('checked', () => {
+    this.$on('checked', (payload) => {
       this.updateData(false)
       this.initMap()
     })
 
     this.$on('on-checked', (payload) => {
       // this.doEmit()
+      const cancelOtherChecked = (list = []) => {
+        for (let i = 0, l = list.length; i < l; ++i) {
+          const item = list[i]
+
+          if (item.id === payload.id) {
+            // item.checked = true
+            console.log(item.id, payload.id)
+          } else {
+            item.checked = false
+          }
+
+          if (hasOwn(item, 'children') && item.children.length > 0) {
+            cancelOtherChecked(item.children)
+          }
+        }
+      }
+
+      if (this.singleSelection) cancelOtherChecked(this.data)
       this.$emit('on-node-check', payload)
     })
   },
@@ -84,7 +104,7 @@ export default {
 
       // 如果children的checked都是true，置parent.checked为true
       function reverseChecked(data) {
-        if (data.children) {
+        if (isArray(data.children) && data.children.length > 0) {
           let checkedLength = 0
           data.children.forEach(node => {
             if (node.children) node = reverseChecked(node)
@@ -102,7 +122,7 @@ export default {
 
       // 如果parent.checked为true，选中所有子元素
       function forwardChecked(data) {
-        if (data.children && data.children.length > 0) {
+        if (isArray(data.children) && data.children.length > 0) {
           data.children.forEach(node => {
             if (data.checked) node.checked = true
             if (node.children) node = forwardChecked(node)
@@ -135,7 +155,7 @@ export default {
       }
 
       function filterChildren(data) {
-        if (data.children) {
+        if (isArray(data.children) && data.children.length > 0) {
           let checkedLength = 0
           data.children.forEach(node => {
             if (node.children) node = filterChildren(node)
