@@ -194,4 +194,6 @@ export default {
       border-color: $color-red
     > .ct-date-picker > .ct-date-picker-input > .ct-input::before
       cursor pointer!important
+    > .ct-table table > thead > tr > th > .cell
+      color: $color-red
 </style>

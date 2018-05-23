@@ -1661,6 +1661,7 @@ var Notice = function () {
         time = closeTime;
       }
       options.key = key;
+      if (!options.title) options.title = '提示';
 
       this.store.commit('ADD_NOTICE', options);
 

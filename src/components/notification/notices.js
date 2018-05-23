@@ -19,6 +19,7 @@ class Notice {
       time = closeTime
     }
     options.key = key
+    if (!options.title) options.title = '提示'
     // 添加到notice list，然后渲染
     this.store.commit('ADD_NOTICE', options)
     // 倒计时为0时不自动关闭
