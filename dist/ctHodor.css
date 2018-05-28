@@ -5473,6 +5473,51 @@ body {
 }
 }
 
+.ct-flexbox {
+  display: flex;
+  text-align: left;
+  align-items: center;
+}
+.ct-flexbox.ct-flexbox-align-start {
+  align-items: start;
+}
+.ct-flexbox.ct-flexbox-align-end {
+  align-items: end;
+}
+.ct-flexbox.ct-flexbox-align-center {
+  align-items: center;
+}
+.ct-flexbox.ct-flexbox-align-baseline {
+  align-items: baseline;
+}
+.ct-flexbox.ct-flexbox-align-stretch {
+  align-items: stretch;
+}
+.ct-flexbox.ct-flexbox-justify-start {
+  justify-content: flex-start;
+}
+.ct-flexbox.ct-flexbox-justify-end {
+  align-items: flex-end;
+}
+.ct-flexbox.ct-flexbox-justify-center {
+  justify-content: center;
+}
+.ct-flexbox.ct-flexbox-justify-between {
+  justify-content: space-between;
+}
+.ct-flexbox.ct-flexbox-justify-around {
+  align-items: space-around;
+}
+
+.ct-flexbox-item {
+  flex: 1;
+  margin-left: 8px;
+  min-width: 10px;
+}
+.ct-flexbox-item:first-child {
+  margin-left: 0;
+}
+
 .ct-pagination {
   font-size: 14px;
   margin-top: 16px;

@@ -1,4 +1,7 @@
 import ctRow from './row'
 import ctCol from './col'
 
-export { ctRow, ctCol }
+import flex from './flex'
+import flexItem from './flex-item'
+
+export { ctRow, ctCol, flex, flexItem }
