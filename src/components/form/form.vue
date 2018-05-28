@@ -142,6 +142,8 @@ export default {
       padding: 8px
       border: 1px solid #ccc
       border-radius: 1px
+  & > .section:last-child
+    margin-bottom 0
   .section
     margin-bottom 12px
     transition: all 0.3s

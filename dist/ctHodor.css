@@ -5363,6 +5363,9 @@ body {
   border: 1px solid #ccc;
   border-radius: 1px;
 }
+.form > .section:last-child {
+  margin-bottom: 0;
+}
 .form .section {
   margin-bottom: 12px;
   transition: all 0.3s;
