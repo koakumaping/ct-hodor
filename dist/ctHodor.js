@@ -8436,6 +8436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getCheckedNodes();
 
+      var self = this;
       this.checkedList = [];
       if (list.length <= 0) {
         return this.checkedList;
@@ -8460,7 +8461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('all children checked');
             for (var i = 0; i < data.children.length; ++i) {
               console.log(data.children[i].id);
-              removeChildren(data.children[i].id);
+              if (!self.singleSelection) removeChildren(data.children[i].id);
             }
           }
           return data;

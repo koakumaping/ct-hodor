@@ -138,6 +138,7 @@ export default {
     },
     getCheckedList(list = this.getCheckedNodes()) {
       // console.log('checked list', list)
+      const self = this
       this.checkedList = []
       if (list.length <= 0) {
         // console.log('checked list is', list.length)
@@ -165,7 +166,7 @@ export default {
             console.log('all children checked')
             for (let i = 0; i < data.children.length; ++i) {
               console.log(data.children[i].id)
-              removeChildren(data.children[i].id)
+              if (!self.singleSelection) removeChildren(data.children[i].id)
             }
           }
           return data
