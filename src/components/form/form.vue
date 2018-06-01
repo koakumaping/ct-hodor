@@ -172,6 +172,8 @@ export default {
         position: absolute
         top: 100%
         left: 0
+      & > .ct-button
+        vertical-align: top
     // TODO del
     // & > label + .form-content
     //   margin-left: 6em
