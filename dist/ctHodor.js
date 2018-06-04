@@ -5328,7 +5328,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     autofocus: {
       type: [Boolean],
       default: false
-    }
+    },
+    value: String
   },
   methods: {
     handleClick: function handleClick(event) {
@@ -11226,7 +11227,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": _vm.icon
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.$slots.default) ? _c('span', [_vm._t("default")], 2) : _vm._e()], 1)
+  }) : _vm._e(), _vm._v(" "), (_vm.$slots.default) ? _c('span', [_vm._t("default")], 2) : _c('span', [_vm._v(_vm._s(_vm.value))])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

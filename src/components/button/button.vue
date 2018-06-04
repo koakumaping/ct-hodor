@@ -21,6 +21,7 @@
     <span v-if="$slots.default">
       <slot></slot>
     </span>
+    <span v-else>{{ value }}</span>
   </button>
 </template>
 
@@ -73,6 +74,7 @@ export default {
       type: [Boolean],
       default: false,
     },
+    value: String,
   },
   methods: {
     handleClick(event) {
