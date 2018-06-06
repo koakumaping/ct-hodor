@@ -5403,6 +5403,9 @@ body {
 .form .section > .form-content > .ct-button {
   vertical-align: top;
 }
+.form .section > .form-content > .ct-table {
+  margin-top: -8px;
+}
 .form-action {
   margin: 0 auto;
   padding: 8px 0;

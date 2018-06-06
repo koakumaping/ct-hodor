@@ -174,6 +174,8 @@ export default {
         left: 0
       & > .ct-button
         vertical-align: top
+      & > .ct-table
+        margin-top: -8px
     // TODO del
     // & > label + .form-content
     //   margin-left: 6em
