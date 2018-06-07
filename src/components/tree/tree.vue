@@ -94,6 +94,23 @@ export default {
     doEmit() {
       this.$emit('on-check-change', this.getCheckedNodes())
       this.$emit('on-list-change', this.getCheckedList(this.getCheckedNodes()))
+
+      // 取选中的id列表
+      const _list = []
+
+      const walkList = (list = this.data) => {
+        for (let i = 0, l = list.length; i < l; ++i) {
+          const item = list[i]
+          if (item.checked) _list.push(item.id)
+          if (hasOwn(item, 'children') && item.children.length > 0) {
+            walkList(item.children)
+          }
+        }
+      }
+
+      walkList(this.data)
+
+      this.$emit('change', _list)
     },
     getCheckedNodes() {
       const nodes = this.findComponentsDownward(this, 'treeNode')

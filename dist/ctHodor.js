@@ -6935,14 +6935,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     setPageList: function setPageList() {
       this.pageLength = Math.ceil(this.total / this.perPage);
       this.pageList = [];
+
       for (var i = 1; i < this.pageLength + 1; ++i) {
         if (this.currentPage < 4) {
           if (i <= 5) {
-            this.pageList.push(i);
+            this.pageList.push({
+              key: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["randomString"])(12, true),
+              label: i,
+              value: i
+            });
           }
         } else {
           if (i <= this.currentPage + 2 && i >= this.currentPage - 2) {
-            this.pageList.push(i);
+            this.pageList.push({
+              key: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["randomString"])(12, true),
+              label: i,
+              value: i
+            });
           }
         }
       }
@@ -6974,18 +6983,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       delete this.query.t;
       this.query.t = +new Date();
 
-      if (this.permission) {
-        var _permission = this.query.permission;
-        delete this.query.permission;
-        this.query.permission = _permission;
-      }
-
       if (this.ajax) {
+        this.currentPage = index;
         this.$emit('change', {
           index: index,
           query: this.query
         });
-        return;
+        this.setPageList();
+        return false;
       }
 
       this.$router.push({ name: this.$route.name, query: this.query });
@@ -8382,8 +8387,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     doEmit: function doEmit() {
+      var _this3 = this;
+
       this.$emit('on-check-change', this.getCheckedNodes());
       this.$emit('on-list-change', this.getCheckedList(this.getCheckedNodes()));
+
+      var _list = [];
+
+      var walkList = function walkList() {
+        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this3.data;
+
+        for (var i = 0, l = list.length; i < l; ++i) {
+          var item = list[i];
+          if (item.checked) _list.push(item.id);
+          if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(item, 'children') && item.children.length > 0) {
+            walkList(item.children);
+          }
+        }
+      };
+
+      walkList();
+
+      this.$emit('change', _list);
     },
     getCheckedNodes: function getCheckedNodes() {
       var nodes = this.findComponentsDownward(this, 'treeNode');
@@ -8433,7 +8458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.broadcast('treeNode', 'indeterminate');
     },
     getCheckedList: function getCheckedList() {
-      var _this3 = this;
+      var _this4 = this;
 
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.getCheckedNodes();
 
@@ -8481,7 +8506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var filterCheckedItem = {};
         if (this.level) {
           this.checkedList.forEach(function (child) {
-            if (child.level === _this3.level) filterCheckedItem = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(child);
+            if (child.level === _this4.level) filterCheckedItem = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(child);
           });
         }
         results.push(this.level ? filterCheckedItem : this.checkedList.toString().replace(/,/g, this.dot));
@@ -10890,16 +10915,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("...")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.pageList), function(page) {
     return _c('li', {
-      key: page,
+      key: page.key,
       class: [{
-        'current': _vm.currentPage === page
-      }, ("ct-pagination-page-" + page)],
+        'current': _vm.currentPage === page.value
+      }, ("ct-pagination-page-" + (page.value))],
       on: {
         "click": function($event) {
-          _vm.go(page)
+          _vm.go(page.value)
         }
       }
-    }, [_vm._v("\n      " + _vm._s(page) + "\n    ")])
+    }, [_vm._v("\n      " + _vm._s(page.label) + "\n    ")])
   }), _vm._v(" "), (_vm.pageLength > 5 && (_vm.currentPage + 3 < _vm.pageLength)) ? _c('li', {
     staticClass: "ct-pagination-next-five",
     on: {

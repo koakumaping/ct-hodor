@@ -24,11 +24,11 @@
 
       <li
         v-for="page in pageList"
-        :key="page"
-        :class="[{ 'current': currentPage === page }, `ct-pagination-page-${page}`]"
-        v-on:click="go(page)"
+        :key="page.key"
+        :class="[{ 'current': currentPage === page.value }, `ct-pagination-page-${page.value}`]"
+        v-on:click="go(page.value)"
       >
-        {{page}}
+        {{ page.label }}
       </li>
 
       <li
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { clone } from 'ct-util'
+import { clone, randomString } from 'ct-util'
 
 export default {
   name: 'ctPagination',
@@ -121,14 +121,23 @@ export default {
     setPageList() {
       this.pageLength = Math.ceil(this.total / this.perPage)
       this.pageList = []
+
       for (let i = 1; i < this.pageLength + 1; ++i) {
         if (this.currentPage < 4) {
           if (i <= 5) {
-            this.pageList.push(i)
+            this.pageList.push({
+              key: randomString(12, true),
+              label: i,
+              value: i,
+            })
           }
         } else {
           if (i <= this.currentPage + 2 && i >= this.currentPage - 2) {
-            this.pageList.push(i)
+            this.pageList.push({
+              key: randomString(12, true),
+              label: i,
+              value: i,
+            })
           }
         }
       }
@@ -159,19 +168,15 @@ export default {
       // 保证t在末尾
       delete this.query.t
       this.query.t = +new Date()
-      // 保证permission在末尾
-      if (this.permission) {
-        const _permission = this.query.permission
-        delete this.query.permission
-        this.query.permission = _permission
-      }
 
       if (this.ajax) {
+        this.currentPage = index
         this.$emit('change', {
           index,
           query: this.query,
         })
-        return
+        this.setPageList()
+        return false
       }
 
       this.$router.push({ name: this.$route.name, query: this.query })
