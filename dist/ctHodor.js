@@ -8406,7 +8406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       };
 
-      walkList();
+      walkList(this.data);
 
       this.$emit('change', _list);
     },
@@ -11642,7 +11642,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         'is-required': _vm.isRequired || _vm.required,
     }
   }, [(_vm.hasLabel) ? _c('label', {
-    style: (_vm.labelStyle)
+    staticClass: "hidden",
+    style: (_vm.labelStyle),
+    attrs: {
+      "title": _vm.getLabel
+    }
   }, [_vm._v("\n    " + _vm._s(_vm.getLabel) + "\n    "), _vm._t("label")], 2) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "form-content clear relative",
     style: (_vm.contentStyle)

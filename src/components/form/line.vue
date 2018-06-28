@@ -6,7 +6,7 @@
       'is-required': isRequired || required,
     }"
   >
-    <label v-if="hasLabel" :style="labelStyle">
+    <label v-if="hasLabel" :style="labelStyle" class="hidden" :title="getLabel">
       {{getLabel}}
       <slot name="label"></slot>
     </label>
