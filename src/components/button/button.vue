@@ -118,6 +118,7 @@ export default {
   border-radius: 4px
   position: relative
   transition: 0.2s all ease-in
+  white-space: normal
   &.ct-button-small
     padding: 2px 7px
     font-size: 12px

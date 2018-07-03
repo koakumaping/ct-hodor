@@ -1096,6 +1096,7 @@ body {
   border-radius: 4px;
   position: relative;
   transition: 0.2s all ease-in;
+  white-space: normal;
 }
 .ct-button.ct-button-small {
   padding: 2px 7px;
