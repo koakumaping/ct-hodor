@@ -196,7 +196,8 @@ export default {
     > .ct-input > textarea,
     > .ct-input > .ct-input-addon,
     > .ct-date-picker,
-    > .ct-select > .ct-select-name
+    > .ct-select > .ct-select-name,
+    > .ct-single-select .ct-single-select__name
       border-color: $color-red
     > .ct-date-picker > .ct-date-picker-input > .ct-input::before
       cursor pointer!important
