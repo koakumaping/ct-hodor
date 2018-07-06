@@ -68,9 +68,8 @@
             >{{cell.day}}</span>
         </div>
       </div>
-      <div :class="[prefixCls + '-actions', 'clear']">
-        <ctTimePicker
-          v-if="type === 'datetime'"
+      <div :class="[prefixCls + '-actions', 'clear']" v-if="type === 'datetime'">
+        <ct-time-picker
           class="left"
           v-model="hhmm"
           v-on:on-hour-change="handleHourChange"
@@ -79,7 +78,7 @@
           :start="start"
           :end="end"
           :range="range"
-        ></ctTimePicker>
+        />
         <ctButton class="right" type="primary" @click="hidePicker">确定</ctButton>
       </div>
     </div>
@@ -381,7 +380,7 @@ export default {
       // $emit是异步的，所以要放在$nextTick中重新初始化数据
       this.$nextTick(() => {
         this.init()
-        if (this.autoclose) {
+        if (this.autoclose || this.type === 'date') {
           this.hidePicker()
         }
       })
