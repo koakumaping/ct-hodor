@@ -44,7 +44,7 @@ export default {
   padding: 0 5px
   height: 32px
   line-height: 30px
-  font-size: 12px
+  font-size: 14px
   color: #fff
   border-radius: 4px
   box-sizing: border-box
