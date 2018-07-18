@@ -13,7 +13,7 @@ export default {
   props: {
     span: {
       type: [String, Number],
-      required: true,
+      default: 8,
     },
   },
   computed: {

@@ -6675,7 +6675,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: {
     span: {
       type: [String, Number],
-      required: true
+      default: 8
     }
   },
   computed: {
