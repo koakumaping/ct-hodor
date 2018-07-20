@@ -584,7 +584,16 @@ textarea {
   color: #ee6b5d;
 }
 .text-red {
-  color: #f00;
+  color: #ed3f14;
+}
+.text-blue {
+  color: #15a4fa;
+}
+.text-green {
+  color: #19be6b;
+}
+.text-orange {
+  color: #f88a55;
 }
 .text-gray {
   color: #ddd;
