@@ -53,7 +53,7 @@ export default {
 
           if (item.id === payload.id) {
             // item.checked = true
-            console.log(item.id, payload.id)
+            // console.log(item.id, payload.id)
           } else {
             item.checked = false
           }
@@ -182,7 +182,7 @@ export default {
           if (checkedLength >= data.children.length) {
             console.log('all children checked')
             for (let i = 0; i < data.children.length; ++i) {
-              console.log(data.children[i].id)
+              // console.log(data.children[i].id)
               if (!self.singleSelection) removeChildren(data.children[i].id)
             }
           }

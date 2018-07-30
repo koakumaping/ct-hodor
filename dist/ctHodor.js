@@ -8345,9 +8345,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         for (var i = 0, l = list.length; i < l; ++i) {
           var item = list[i];
 
-          if (item.id === payload.id) {
-            console.log(item.id, payload.id);
-          } else {
+          if (item.id === payload.id) {} else {
             item.checked = false;
           }
 
@@ -8486,7 +8484,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           if (checkedLength >= data.children.length) {
             console.log('all children checked');
             for (var i = 0; i < data.children.length; ++i) {
-              console.log(data.children[i].id);
               if (!self.singleSelection) removeChildren(data.children[i].id);
             }
           }
