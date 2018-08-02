@@ -38,6 +38,8 @@ export default {
       default: 0,
     },
     singleSelection: Boolean,
+    // 不返回选中的children
+    noChildren: Boolean,
   },
   mounted() {
     this.$on('checked', (payload) => {
@@ -67,6 +69,8 @@ export default {
       if (this.singleSelection) cancelOtherChecked(this.data)
       this.$emit('on-node-check', payload)
     })
+
+    if (this.data && this.data.length > 0) this.updateAll()
   },
   data() {
     return {
@@ -81,16 +85,19 @@ export default {
       handler() {
         console.log('tree data change')
         this.$nextTick(() => {
-          this.updateData()
-          this.initMap()
-          this.broadcast('treeNode', 'indeterminate')
-          // 初始化数据完成后触发一次回调,更新下选中的列表
-          this.doEmit()
+          this.updateAll()
         })
       },
     },
   },
   methods: {
+    updateAll() {
+      this.updateData()
+      this.initMap()
+      this.broadcast('treeNode', 'indeterminate')
+      // 初始化数据完成后触发一次回调,更新下选中的列表
+      this.doEmit()
+    },
     doEmit() {
       this.$emit('on-check-change', this.getCheckedNodes())
       this.$emit('on-list-change', this.getCheckedList(this.getCheckedNodes()))
@@ -102,8 +109,14 @@ export default {
         for (let i = 0, l = list.length; i < l; ++i) {
           const item = list[i]
           if (item.checked) _list.push(item.id)
-          if (hasOwn(item, 'children') && item.children.length > 0) {
-            walkList(item.children)
+          if (!this.noChildren) {
+            if (hasOwn(item, 'children') && item.children.length > 0) {
+              walkList(item.children)
+            }
+          } else {
+            if (!item.checked && hasOwn(item, 'children') && item.children.length > 0) {
+              walkList(item.children)
+            }
           }
         }
       }

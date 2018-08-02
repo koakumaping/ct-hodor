@@ -8328,7 +8328,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Number,
       default: 0
     },
-    singleSelection: Boolean
+    singleSelection: Boolean,
+
+    noChildren: Boolean
   },
   mounted: function mounted() {
     var _this = this;
@@ -8358,6 +8360,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (_this.singleSelection) cancelOtherChecked(_this.data);
       _this.$emit('on-node-check', payload);
     });
+
+    if (this.data && this.data.length > 0) this.updateAll();
   },
   data: function data() {
     return {
@@ -8374,16 +8378,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         console.log('tree data change');
         this.$nextTick(function () {
-          _this2.updateData();
-          _this2.initMap();
-          _this2.broadcast('treeNode', 'indeterminate');
-
-          _this2.doEmit();
+          _this2.updateAll();
         });
       }
     }
   },
   methods: {
+    updateAll: function updateAll() {
+      this.updateData();
+      this.initMap();
+      this.broadcast('treeNode', 'indeterminate');
+
+      this.doEmit();
+    },
     doEmit: function doEmit() {
       var _this3 = this;
 
@@ -8398,8 +8405,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         for (var i = 0, l = list.length; i < l; ++i) {
           var item = list[i];
           if (item.checked) _list.push(item.id);
-          if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(item, 'children') && item.children.length > 0) {
-            walkList(item.children);
+          if (!_this3.noChildren) {
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(item, 'children') && item.children.length > 0) {
+              walkList(item.children);
+            }
+          } else {
+            if (!item.checked && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(item, 'children') && item.children.length > 0) {
+              walkList(item.children);
+            }
           }
         }
       };
