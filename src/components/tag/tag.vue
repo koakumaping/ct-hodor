@@ -57,6 +57,8 @@ export default {
     display: inline
     cursor: pointer
     line-height: 1
+    .iconfont
+      font-size: 14px
   &.ct-tag-success
     background-color: rgba(18,206,102,.1)
     border-color: rgba(18,206,102,.2)
