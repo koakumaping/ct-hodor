@@ -942,6 +942,12 @@ body {
   width: 100%;
   position: relative;
 }
+.ct-input[readonly=readonly]:hover > input,
+.ct-input[readonly=readonly]:hover > textarea {
+  box-shadow: none;
+  outline: none;
+  border: 1px solid #eee;
+}
 .ct-input.active > input,
 .ct-input:hover > input,
 .ct-input.active > textarea,
@@ -1057,6 +1063,9 @@ body {
   display: inline;
   cursor: pointer;
   line-height: 1;
+}
+.ct-tag .ct-tag-close .iconfont {
+  font-size: 14px;
 }
 .ct-tag.ct-tag-success {
   background-color: rgba(18,206,102,0.1);
@@ -1909,6 +1918,9 @@ body {
 }
 .ct-date-picker:hover {
   border-color: #ee6b5d;
+}
+.ct-date-picker[readonly=readonly]:hover {
+  border-color: #eee;
 }
 .ct-date-picker[readonly=readonly]:before {
   content: '';

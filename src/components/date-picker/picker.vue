@@ -530,6 +530,8 @@ export default {
   font-size: 14px
   &:hover
     border-color: $color-main
+  &[readonly=readonly]:hover
+    border-color: $border-color
   &[readonly=readonly]:before
     content: ''
     position: absolute
