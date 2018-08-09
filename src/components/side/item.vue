@@ -9,13 +9,18 @@
   >
     <dt class="side-menu-item" v-show="data.expand">
       <dd>
-        <router-link
+        <span
           v-for="item in data.children"
           :key="item.id"
-          :to="{ name: item.routerName }"
         >
-          {{item.name}}
-        </router-link>
+          <router-link
+          v-if="item.routerName"
+          :to="{ name: item.routerName }"
+          >
+            {{item.name}}
+          </router-link>
+          <a v-else :href="item.href" :target="item.target">{{item.name}}</a>
+        </span>
       </dd>
     </dt>
   </transition>

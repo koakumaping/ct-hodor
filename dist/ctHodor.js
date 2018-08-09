@@ -12165,14 +12165,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "side-menu-item"
   }, [_c('dd', _vm._l((_vm.data.children), function(item) {
-    return _c('router-link', {
-      key: item.id,
+    return _c('span', {
+      key: item.id
+    }, [(item.routerName) ? _c('router-link', {
       attrs: {
         "to": {
           name: item.routerName
         }
       }
-    }, [_vm._v("\n        " + _vm._s(item.name) + "\n      ")])
+    }, [_vm._v("\n          " + _vm._s(item.name) + "\n        ")]) : _c('a', {
+      attrs: {
+        "href": item.href,
+        "target": item.target
+      }
+    }, [_vm._v(_vm._s(item.name))])], 1)
   }))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

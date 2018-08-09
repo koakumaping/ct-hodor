@@ -126,7 +126,7 @@ $menu-bg-color = #2B3654
       white-space: nowrap
       transition: all 0.2s
 
-    dd > .router-link-active,
+    dd > span >.router-link-active,
     .side-menu:focus,
     a:focus
       outline: 0

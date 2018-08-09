@@ -5794,7 +5794,7 @@ body {
   white-space: nowrap;
   transition: all 0.2s;
 }
-.side nav dd > .router-link-active,
+.side nav dd > span >.router-link-active,
 .side nav .side-menu:focus,
 .side nav a:focus {
   outline: 0;
