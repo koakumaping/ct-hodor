@@ -574,6 +574,7 @@ export default {
       height: 32px
       line-height: 32px
       border-bottom: 1px solid #e9eaec
+      text-align: center
       span.pointer
         display: inline-block
         i
