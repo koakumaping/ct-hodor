@@ -12171,7 +12171,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "to": {
           name: item.routerName
-        }
+        },
+        "target": item.target
       }
     }, [_vm._v("\n          " + _vm._s(item.name) + "\n        ")]) : _c('a', {
       attrs: {

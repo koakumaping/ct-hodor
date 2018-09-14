@@ -14,8 +14,9 @@
           :key="item.id"
         >
           <router-link
-          v-if="item.routerName"
-          :to="{ name: item.routerName }"
+            v-if="item.routerName"
+            :to="{ name: item.routerName }"
+            :target="item.target"
           >
             {{item.name}}
           </router-link>
