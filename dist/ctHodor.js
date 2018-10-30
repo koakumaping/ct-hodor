@@ -6195,6 +6195,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showMessage: {
       type: Boolean,
       default: true
+    },
+
+    v: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -6371,7 +6376,8 @@ function getValueByPath(object, prop) {
       validateMessage: '',
       validateDisabled: false,
       validator: {},
-      isNested: false
+      isNested: false,
+      visible: true
     };
   },
 
@@ -6404,15 +6410,6 @@ function getValueByPath(object, prop) {
       }
 
       return this.label;
-    },
-
-    isReadonly: {
-      cache: false,
-      get: function get() {
-        var p = this.form.p;
-        if (!p || !this.prop) return false;
-        return getValueByPath(this.form.p, this.prop).readonly;
-      }
     },
     hasLabel: function hasLabel() {
       return !!this.label || !!this.$slots.label;
@@ -6474,6 +6471,8 @@ function getValueByPath(object, prop) {
   },
   mounted: function mounted() {
     if (!this.prop) return false;
+    this.checkVisible();
+    if (!this.visible) return false;
     this.dispatch('ctForm', 'ct.form.addField', [this]);
     var initialValue = this.fieldValue;
     if (Array.isArray(initialValue)) {
@@ -6554,6 +6553,19 @@ function getValueByPath(object, prop) {
         return;
       }
       this.validate('change');
+    },
+    checkVisible: function checkVisible() {
+      var p = this.form.p;
+      if (!p) return true;
+      if (!this.prop) return true;
+      var visible = true;
+      try {
+        visible = getValueByPath(this.form.p, this.prop).visible;
+      } catch (error) {
+        (function () {})();
+      }
+      this.visible = visible;
+      console.log(this.prop, this.visible);
     }
   }
 });
@@ -11644,7 +11656,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
+  return (_vm.visible) ? _c('section', {
     staticClass: "clear section",
     class: {
       'is-error': _vm.validateState === 'error',
@@ -11660,9 +11672,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n    " + _vm._s(_vm.getLabel) + "\n    "), _vm._t("label")], 2) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "form-content clear relative",
     style: (_vm.contentStyle)
-  }, [(_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.fieldValue))]) : _vm._t("default"), _vm._v(" "), (_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage) ? _c('div', {
+  }, [_vm._t("default"), _vm._v(" "), (_vm.validateState === 'error' && _vm.showMessage && _vm.form.showMessage) ? _c('div', {
     staticClass: "ct-form-content-error"
-  }, [_vm._v(_vm._s(_vm.validateMessage))]) : _vm._e()], 2)])
+  }, [_vm._v(_vm._s(_vm.validateMessage))]) : _vm._e()], 2)]) : _vm._e()
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

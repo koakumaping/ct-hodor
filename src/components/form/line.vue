@@ -5,14 +5,14 @@
       'is-validating': validateState === 'validating',
       'is-required': isRequired || required,
     }"
+    v-if="visible"
   >
     <label v-if="hasLabel" :style="labelStyle" class="hidden" :title="getLabel">
       {{getLabel}}
       <slot name="label"></slot>
     </label>
     <div class="form-content clear relative" :style="contentStyle">
-      <span v-if="isReadonly">{{fieldValue}}</span>
-      <slot v-else/>
+      <slot />
       <div class="ct-form-content-error" v-if="validateState === 'error' && showMessage && form.showMessage">{{validateMessage}}</div>
     </div>
   </section>
@@ -93,6 +93,7 @@ export default {
       validateDisabled: false,
       validator: {},
       isNested: false,
+      visible: true,
     }
   },
   watch: {
@@ -124,14 +125,6 @@ export default {
       }
 
       return this.label
-    },
-    isReadonly: {
-      cache: false,
-      get() {
-        const p = this.form.p
-        if (!p || !this.prop) return false
-        return getValueByPath(this.form.p, this.prop).readonly
-      },
     },
     hasLabel() {
       return !!this.label || !!this.$slots.label
@@ -192,6 +185,8 @@ export default {
   },
   mounted() {
     if (!this.prop) return false
+    this.checkVisible()
+    if (!this.visible) return false
     this.dispatch('ctForm', 'ct.form.addField', [this])
     let initialValue = this.fieldValue
     if (Array.isArray(initialValue)) {
@@ -267,6 +262,19 @@ export default {
         return
       }
       this.validate('change')
+    },
+    checkVisible() {
+      const p = this.form.p
+      if (!p) return true
+      if (!this.prop) return true
+      let visible = true
+      try {
+        visible = getValueByPath(this.form.p, this.prop).visible
+      } catch (error) {
+        (() => {})()
+      }
+      this.visible = visible
+      console.log(this.prop, this.visible)
     },
   },
 }

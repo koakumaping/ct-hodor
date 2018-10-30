@@ -145,6 +145,10 @@ export default {
   vertical-align: top
   width: 100%
   position: relative
+  &[readonly=readonly]
+    > input,
+    > textarea
+      background-color: $border-color
   &[readonly=readonly]:hover
     > input,
     > textarea

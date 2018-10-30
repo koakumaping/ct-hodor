@@ -942,6 +942,10 @@ body {
   width: 100%;
   position: relative;
 }
+.ct-input[readonly=readonly] > input,
+.ct-input[readonly=readonly] > textarea {
+  background-color: #eee;
+}
 .ct-input[readonly=readonly]:hover > input,
 .ct-input[readonly=readonly]:hover > textarea {
   box-shadow: none;
@@ -1293,6 +1297,9 @@ body {
   bottom: 0;
   z-index: 1;
   cursor: not-allowed;
+}
+.ct-select[readonly=readonly] .ct-select-name {
+  background-color: #eee;
 }
 .ct-select {
   display: inline-block;
@@ -1918,6 +1925,9 @@ body {
 }
 .ct-date-picker:hover {
   border-color: #ee6b5d;
+}
+.ct-date-picker[readonly=readonly] {
+  background-color: #eee;
 }
 .ct-date-picker[readonly=readonly]:hover {
   border-color: #eee;

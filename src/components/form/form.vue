@@ -28,6 +28,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    // 是否通过后台控制元素显示
+    v: {
+      type: Boolean,
+      default: false,
+    },
   },
   watch: {
     rules() {

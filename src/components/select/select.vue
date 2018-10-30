@@ -387,7 +387,8 @@ export default {
     bottom: 0
     z-index: 1
     cursor: not-allowed
-
+  .ct-select-name
+    background-color: $border-color
 .ct-select
   display: inline-block
   vertical-align: top
