@@ -56,11 +56,12 @@ import {
 
 import clickoutside from '../../directives/clickoutside'
 import Emitter from '../../mixins/emitter'
+import formChild from '../../mixins/form-child'
 
 export default {
   name: 'ctSelect',
   directives: { clickoutside },
-  mixins: [Emitter],
+  mixins: [Emitter, formChild],
   props: {
     width: {
       default: '',
@@ -107,11 +108,15 @@ export default {
     }
   },
   computed: {
-    selectCls() {
-      return [
-        this.multiple ? 'is-multiple' : undefined,
-        this.visible ? 'is-active' : undefined,
-      ]
+    selectCls: {
+      cache: false,
+      get() {
+        return [
+          this.multiple ? 'is-multiple' : undefined,
+          this.visible ? 'is-active' : undefined,
+          this.readonly !== undefined ? 'is-readonly' : this.p.readonly ? 'is-readonly' : undefined,
+        ]
+      },
     },
     listStyle() {
       const _ret = this.ret
@@ -154,9 +159,6 @@ export default {
     },
   },
   watch: {
-    // value(newVal, oldVal) {
-    //   this.update()
-    // },
     optionList(newVal, oldVal) {
       this.update()
     },
@@ -212,6 +214,7 @@ export default {
   },
   methods: {
     toggleList() {
+      if (this.isReadonly) return false
       this.visible = !this.visible
       if (this.filterable && this.visible) {
         this.unwatch = this.$watch('searchName', (val) => {
@@ -376,19 +379,18 @@ export default {
 @import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
 
-.ct-select[readonly=readonly]
+.ct-select.is-readonly
   position: relative
-  &:before
-    content: ''
-    position: absolute
-    left: 0
-    right: 0
-    top: 0
-    bottom: 0
-    z-index: 1
-    cursor: not-allowed
+  &:hover > .ct-select-name
+    border: 0
+    box-shadow: none
   .ct-select-name
-    background-color: $border-color
+    padding: 0
+    line-height: 32px
+    border: 0
+    cursor: default
+    i
+      display: none
 .ct-select
   display: inline-block
   vertical-align: top
@@ -397,7 +399,7 @@ export default {
 
   // z-index: 2
   &:hover > .ct-select-name
-    border-color $color-main
+    border-color: $color-main
   .ct-select-name
     padding: 0 24px 0 8px
     vertical-align: top
@@ -417,7 +419,7 @@ export default {
     white-space: nowrap
     &:hover,
     &.is-active
-      border-color $color-main
+      border-color: $color-main
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3)
   & > select
     width: 100%

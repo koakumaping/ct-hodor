@@ -1,12 +1,19 @@
 <template>
-  <div class="ct-input"
+  <div
+    class="ct-input"
     :style="{ width: currentWidth }"
-    :class="{ 'active': active, 'has-addon-prepend': $slots.prepend, 'has-addon-append': $slots.append }"
+    :class="{
+      'active': active,
+      'is-readonly': isReadonly,
+      'has-addon-prepend': $slots.prepend && !isReadonly,
+      'has-addon-append': $slots.append && !isReadonly,
+    }"
   >
     <span class="ct-input-addon" v-if="$slots.prepend">
       <slot name="prepend" />
     </span>
-    <input v-if="type === 'text'" type="text"
+    <span v-if="isReadonly">{{ e(currentValue) }}</span>
+    <input v-if="type === 'text' && !isReadonly" type="text"
       :value="currentValue" 
       @input="handleInput"
       @focus="handleFocus"
@@ -18,7 +25,9 @@
       :autofocus="autofocus"
       v-on:keyup.enter="enter"
     >
-    <input v-if="type === 'password'" type="password" class="ct-input"
+    <input v-if="type === 'password' && !isReadonly"
+      type="password"
+      class="ct-input"
       :value="currentValue"
       @input="handleInput"
       @focus="handleFocus"
@@ -29,7 +38,7 @@
       v-on:keyup.enter="enter"
     >
     <textarea class="ct-textarea"
-      v-if="type === 'textarea'"
+      v-if="type === 'textarea' && !isReadonly"
       :value="currentValue" 
       @input="handleInput"
       @focus="handleFocus"
@@ -49,10 +58,11 @@
 <script>
 import { isNumber } from 'ct-util'
 import Emitter from '../../mixins/emitter'
+import formChild from '../../mixins/form-child'
 
 export default {
   name: 'ctInput',
-  mixins: [Emitter],
+  mixins: [Emitter, formChild],
   props: {
     value: {
       type: [String, Number, Boolean],
@@ -145,11 +155,24 @@ export default {
   vertical-align: top
   width: 100%
   position: relative
-  &[readonly=readonly]
+  &.is-readonly
+    line-height: 32px
     > input,
     > textarea
-      background-color: $border-color
-  &[readonly=readonly]:hover
+      background-color: $background-disable
+    &.has-addon-prepend,
+    &.has-addon-append
+      border-collapse: unset
+      line-height: inherit
+    .ct-input-addon
+      display: inline
+      text-align: left
+      width: auto
+      padding: 0
+      vertical-align: unset
+      border: 0
+      border-radius: 0
+  &.is-readonly:hover
     > input,
     > textarea
       box-shadow: none
@@ -194,17 +217,6 @@ export default {
       border-top-left-radius: 0
       border-bottom-left-radius: 0
       border-left: 0
-.ct-input[readonly=readonly]:before
-  content: ''
-  position: absolute
-  left: 0
-  right: 0
-  top: 0
-  bottom: 0
-  z-index: 1
-  cursor: not-allowed
-  // .ct-input-readonly
-  //   display: block
 
 .ct-input > input
   font-size: $font-size

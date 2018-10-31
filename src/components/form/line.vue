@@ -105,6 +105,11 @@ export default {
       this.validateState = value
     },
   },
+  provide() {
+    return {
+      p: this.p,
+    }
+  },
   computed: {
     form() {
       let parent = this.$parent || this.$root
@@ -181,6 +186,24 @@ export default {
         })
       }
       return isRequired
+    },
+    p: {
+      cache: false,
+      get() {
+        const p = this.form.p
+        if (!p) return {}
+        if (!this.prop) return {}
+        let path = this.prop
+        if (path.indexOf(':') !== -1) {
+          path = path.replace(/:/, '.')
+        }
+        try {
+          return getPropByPath(p, path).v
+        } catch (error) {
+          console.log(error)
+        }
+        return {}
+      },
     },
   },
   mounted() {

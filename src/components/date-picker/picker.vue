@@ -1,7 +1,11 @@
 <template>
-  <div :class="prefixCls"
+  <div
     ref="ctDatePicker"
-    :style="{width: width}"
+    class="ct-date-picker"
+    :style="{ width: width }"
+    :class="{
+      'is-readonly': isReadonly,
+    }"
     @mouseover="handleMouseIn"
     @mouseout="handleMouseOut"
   >
@@ -96,6 +100,7 @@ import {
 } from 'ct-util'
 
 import Emitter from '../../mixins/emitter'
+import formChild from '../../mixins/form-child'
 import clickoutside from '../../directives/clickoutside'
 
 import {
@@ -145,7 +150,7 @@ export default {
     },
   },
   directives: { clickoutside },
-  mixins: [Emitter],
+  mixins: [Emitter, formChild],
   components: {
     ctTimePicker,
   },
@@ -445,6 +450,7 @@ export default {
       }
     },
     showPicker() {
+      if (this.isReadonly) return false
       this.getCells()
       const base = this.$refs.ctDatePicker
       const _ret = popover(base, this.$refs.ctDatePickerWarpper, {
@@ -530,19 +536,19 @@ export default {
   font-size: 14px
   &:hover
     border-color: $color-main
-  &[readonly=readonly]
-    background-color: $border-color
-  &[readonly=readonly]:hover
+  &.is-readonly
+    border: 0
+    .ct-date-picker-input
+      height: 32px
+      line-height: 32px
+      padding-left: 0
+      padding-right: 0
+      cursor: default
+      i
+        display: none
+  &.is-readonly:hover
     border-color: $border-color
-  &[readonly=readonly]:before
-    content: ''
-    position: absolute
-    left: 0
-    right: 0
-    top: 0
-    bottom: 0
-    z-index: 1
-    cursor: not-allowed
+
   ^[0]-input
     font-size: $font-size
     width: 100%

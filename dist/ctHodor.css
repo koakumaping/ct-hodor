@@ -942,12 +942,29 @@ body {
   width: 100%;
   position: relative;
 }
-.ct-input[readonly=readonly] > input,
-.ct-input[readonly=readonly] > textarea {
-  background-color: #eee;
+.ct-input.is-readonly {
+  line-height: 32px;
 }
-.ct-input[readonly=readonly]:hover > input,
-.ct-input[readonly=readonly]:hover > textarea {
+.ct-input.is-readonly > input,
+.ct-input.is-readonly > textarea {
+  background-color: #fafafa;
+}
+.ct-input.is-readonly.has-addon-prepend,
+.ct-input.is-readonly.has-addon-append {
+  border-collapse: unset;
+  line-height: inherit;
+}
+.ct-input.is-readonly .ct-input-addon {
+  display: inline;
+  text-align: left;
+  width: auto;
+  padding: 0;
+  vertical-align: unset;
+  border: 0;
+  border-radius: 0;
+}
+.ct-input.is-readonly:hover > input,
+.ct-input.is-readonly:hover > textarea {
   box-shadow: none;
   outline: none;
   border: 1px solid #eee;
@@ -997,16 +1014,6 @@ body {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left: 0;
-}
-.ct-input[readonly=readonly]:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  cursor: not-allowed;
 }
 .ct-input > input {
   font-size: 14px;
@@ -1285,21 +1292,21 @@ body {
   margin-right: 0;
 }
 
-.ct-select[readonly=readonly] {
+.ct-select.is-readonly {
   position: relative;
 }
-.ct-select[readonly=readonly]:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  cursor: not-allowed;
+.ct-select.is-readonly:hover > .ct-select-name {
+  border: 0;
+  box-shadow: none;
 }
-.ct-select[readonly=readonly] .ct-select-name {
-  background-color: #eee;
+.ct-select.is-readonly .ct-select-name {
+  padding: 0;
+  line-height: 32px;
+  border: 0;
+  cursor: default;
+}
+.ct-select.is-readonly .ct-select-name i {
+  display: none;
 }
 .ct-select {
   display: inline-block;
@@ -1926,21 +1933,21 @@ body {
 .ct-date-picker:hover {
   border-color: #ee6b5d;
 }
-.ct-date-picker[readonly=readonly] {
-  background-color: #eee;
+.ct-date-picker.is-readonly {
+  border: 0;
 }
-.ct-date-picker[readonly=readonly]:hover {
+.ct-date-picker.is-readonly .ct-date-picker-input {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 0;
+  padding-right: 0;
+  cursor: default;
+}
+.ct-date-picker.is-readonly .ct-date-picker-input i {
+  display: none;
+}
+.ct-date-picker.is-readonly:hover {
   border-color: #eee;
-}
-.ct-date-picker[readonly=readonly]:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  cursor: not-allowed;
 }
 .ct-date-picker-input {
   font-size: 14px;
