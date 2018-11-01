@@ -955,13 +955,14 @@ body {
   line-height: inherit;
 }
 .ct-input.is-readonly .ct-input-addon {
-  display: inline;
+  display: inline-block;
   text-align: left;
   width: auto;
   padding: 0;
   vertical-align: unset;
   border: 0;
   border-radius: 0;
+  background-color: transparent;
 }
 .ct-input.is-readonly:hover > input,
 .ct-input.is-readonly:hover > textarea {
@@ -2123,6 +2124,247 @@ body {
 }
 .ct-bar .ct-bar-warp .ct-bar-actions .ct-button:last-child {
   margin-right: 0;
+}
+
+.ct-single-select.is-readonly {
+  position: relative;
+}
+.ct-single-select.is-readonly .ct-single-select__name {
+  padding: 0;
+  line-height: 32px;
+  border: 0;
+}
+.ct-single-select.is-readonly .ct-single-select__name:hover {
+  border: 0;
+  box-shadow: none;
+}
+.ct-single-select.is-readonly .ct-single-select__name i {
+  display: none;
+}
+.ct-single-select {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  width: 100%;
+}
+.ct-single-select .ct-single-select__name {
+  padding: 0 24px 0 8px;
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  height: 32px;
+  line-height: 30px;
+  min-width: 50px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: left;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ct-single-select .ct-single-select__name:hover,
+.ct-single-select .ct-single-select__name.is-active {
+  border-color: #ee6b5d;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+.ct-single-select .ct-single-select__arrow {
+  position: absolute;
+  top: -1px;
+  right: 8px;
+  transition: all 0.3s;
+  display: block;
+  height: 32px;
+  line-height: 30px;
+}
+.ct-single-select .ct-single-select__arrow:before {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #ccc;
+}
+.ct-single-select__list {
+  background-color: #fff;
+  border-radius: 4px;
+  visibility: hidden;
+  position: fixed;
+  left: -9999px;
+  z-index: 7;
+  width: auto;
+  overflow: auto;
+  box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
+}
+.ct-single-select__list li {
+  background-color: #fff;
+  padding: 5px 8px 6px 9px;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  position: relative;
+}
+.ct-single-select__list li.disabled {
+  background-color: #f0f2f5;
+}
+.ct-single-select__list li.disabled:hover {
+  cursor: not-allowed;
+  background-color: #f0f2f5;
+}
+.ct-single-select__list li.current {
+  color: #fff;
+  background-color: #ee6b5d;
+}
+.ct-single-select__list li.current:hover {
+  color: #fff;
+  background-color: #ee6b5d;
+}
+.ct-single-select__list li:hover {
+  color: #000;
+  background-color: #f5f5f5;
+}
+.ct-single-select__list li.useless {
+  color: #fff;
+  user-select: none;
+  cursor: default;
+}
+.ct-single-select__list li.useless:hover {
+  cursor: default;
+  color: #fff;
+  background-color: #fff;
+}
+
+.ct-remote-select {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  width: 100%;
+  position: relative;
+}
+.ct-remote-select.is-readonly .ct-remote-select__name {
+  padding: 0;
+  line-height: 32px;
+  border: 0;
+  cursor: default;
+}
+.ct-remote-select.is-readonly .ct-remote-select__name:hover {
+  border: 0;
+  box-shadow: none;
+}
+.ct-remote-select.is-readonly i {
+  display: none;
+}
+.ct-remote-select .ct-remote-select__name {
+  padding: 0 24px 0 8px;
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  height: 32px;
+  line-height: 30px;
+  min-width: 50px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: left;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ct-remote-select .ct-remote-select__name:hover,
+.ct-remote-select .ct-remote-select__name.is-active {
+  border-color: #ee6b5d;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+.ct-remote-select .ct-remote-select__arrow {
+  position: absolute;
+  top: -1px;
+  right: 8px;
+  transition: all 0.3s;
+  display: block;
+  height: 32px;
+  line-height: 30px;
+}
+.ct-remote-select .ct-remote-select__arrow:before {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #ccc;
+}
+.ct-remote-select input {
+  font-size: 14px;
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif, "NSimSun", "SimSun";
+  padding: 4px 8px;
+  background-color: #fff;
+  display: block;
+  height: 32px;
+  line-height: 1;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  vertical-align: baseline;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.ct-remote-select input:hover,
+.ct-remote-select input:focus {
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+  outline: none;
+  border: 1px solid #ee6b5d;
+}
+.ct-remote-select__list {
+  background-color: #fff;
+  border-radius: 4px;
+  position: fixed;
+  visibility: hidden;
+  top: 36px;
+  left: -9999px;
+  width: auto;
+  overflow: auto;
+  box-shadow: 2px 2px 20px 0 rgba(0,0,0,0.1);
+}
+.ct-remote-select__list li {
+  background-color: #fff;
+  padding: 5px 8px 6px 8px;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  position: relative;
+}
+.ct-remote-select__list li.is-disabled {
+  background-color: #f0f2f5;
+}
+.ct-remote-select__list li.is-disabled:hover {
+  cursor: not-allowed;
+  background-color: #f0f2f5;
+}
+.ct-remote-select__list li.current {
+  color: #fff;
+  background-color: #ee6b5d;
+}
+.ct-remote-select__list li.current:hover {
+  color: #fff;
+  background-color: #ee6b5d;
+}
+.ct-remote-select__list li:hover {
+  color: #000;
+  background-color: #f5f5f5;
+}
+.ct-remote-select__list li.useless {
+  color: #fff;
+  user-select: none;
+  cursor: default;
+}
+.ct-remote-select__list li.useless:hover {
+  cursor: default;
+  color: #fff;
+  background-color: #fff;
 }
 
 .ct-popover {

@@ -13,6 +13,8 @@ const ctLoading = require('./components/normal/ctLoading.vue')
 const ctTimePicker = require('./components/time-picker').default
 const ctDatePicker = require('./components/date-picker').default
 const ctBar = require('./components/bar').default
+const SingleSelect = require('./components/single-select').default
+const RemoteSelect = require('./components/remote-select').default
 
 const ctPopover = require('./components/popover').default
 const ctDialog = require('./components/dialog').default
@@ -59,6 +61,8 @@ const components = {
   ctTimePicker,
   ctDatePicker,
   ctBar,
+  SingleSelect,
+  RemoteSelect,
   ctPopover,
   ctDialog,
   pageLoading,

@@ -114,7 +114,7 @@ export default {
         return [
           this.multiple ? 'is-multiple' : undefined,
           this.visible ? 'is-active' : undefined,
-          this.readonly !== undefined ? 'is-readonly' : this.p.readonly ? 'is-readonly' : undefined,
+          this.isReadonly ? 'is-readonly' : undefined,
         ]
       },
     },

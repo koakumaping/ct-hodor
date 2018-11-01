@@ -165,13 +165,14 @@ export default {
       border-collapse: unset
       line-height: inherit
     .ct-input-addon
-      display: inline
+      display: inline-block
       text-align: left
       width: auto
       padding: 0
       vertical-align: unset
       border: 0
       border-radius: 0
+      background-color: transparent
   &.is-readonly:hover
     > input,
     > textarea
