@@ -285,7 +285,7 @@ export default {
       // }
     },
     setDate() {
-      this.date = new Date(this.year, this.month, this.day)
+      this.date = new Date(this.year, this.month, 1)
     },
     getCells() {
       this.cells = []
