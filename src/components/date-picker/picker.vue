@@ -538,12 +538,14 @@ export default {
     border-color: $color-main
   &.is-readonly
     border: 0
+    background-color: transparent
     .ct-date-picker-input
       height: 32px
       line-height: 32px
       padding-left: 0
       padding-right: 0
       cursor: default
+      background-color: transparent
       i
         display: none
   &.is-readonly:hover
