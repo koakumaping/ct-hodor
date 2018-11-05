@@ -2369,6 +2369,42 @@ body {
   background-color: #fff;
 }
 
+.ct-single-block {
+  font-size: 0;
+}
+.ct-single-block.is-readonly .ct-single-block__item {
+  padding: 0;
+  height: 32px;
+  line-height: 32px;
+}
+.ct-single-block .ct-single-block__item {
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+.ct-single-block .ct-single-block__item .text-only {
+  font-size: 14px;
+}
+.form .section .ct-single-block__item {
+  padding-bottom: 0;
+}
+
+.ct-multi-block {
+  margin-right: -8px;
+}
+.ct-multi-block.is-readonly .ct-multi-block__item {
+  width: auto;
+}
+.ct-multi-block .ct-multi-block__item {
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+.ct-multi-block .ct-multi-block__item .ct-button {
+  width: 100%;
+}
+.ct-multi-block .ct-multi-block__item .text-only {
+  font-size: 14px;
+}
+
 .ct-popover {
   visibility: hidden;
   position: fixed;

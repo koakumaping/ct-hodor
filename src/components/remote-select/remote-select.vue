@@ -32,8 +32,9 @@
       >
         <flex v-if="_.isArray(line.label)">
           <flex-item
-            v-for="item in line.label"
-            :key="`${item}_${_.randomString(4)}`"
+            v-for="(item, index) in line.label"
+            :key="`${item}_${_.randomString(6)}`"
+            v-if="level !== '' ? index < level : true"
           >{{ $e(item) }}</flex-item>
         </flex>
         <span v-else>{{ line.label }}</span>
@@ -75,6 +76,15 @@ export default {
       type: [String, Number, Object, Array],
     },
     loading: Boolean,
+    level: {
+      type: [String, Number],
+      default: '',
+    },
+    // 分割符号
+    dot: {
+      type: String,
+      default: '-',
+    },
   },
   data() {
     return {
@@ -162,7 +172,17 @@ export default {
     handleClick(payload) {
       payload = this._.clone(payload)
       this.currentValue = payload.value
-      this.label = this._.isArray(payload.label) ? payload.label[0] : payload.label
+      if (this._.isArray(payload.label)) {
+        if (this.level === '') {
+          this.label = payload.label[0]
+        } else {
+          this.label = payload.label.slice(0, this.level).toString().replace(/,/g, this.dot)
+          payload.text = this.label
+        }
+      } else {
+        this.label = payload.label
+      }
+
       this.$emit('select', payload)
       this.hideList()
     },

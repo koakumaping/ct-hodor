@@ -16,6 +16,8 @@ const ctBar = require('./components/bar').default
 const SingleSelect = require('./components/single-select').default
 const RemoteSelect = require('./components/remote-select').default
 
+const { SingleBlock, MultiBlock } = require('./components/block')
+
 const ctPopover = require('./components/popover').default
 const ctDialog = require('./components/dialog').default
 
@@ -63,6 +65,8 @@ const components = {
   ctBar,
   SingleSelect,
   RemoteSelect,
+  SingleBlock,
+  MultiBlock,
   ctPopover,
   ctDialog,
   pageLoading,
