@@ -7563,7 +7563,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showList: function showList() {
       var _this = this;
 
-      if (this.readonly) return false;
+      if (this.isReadonly) return false;
       var base = this.$refs.base;
       var _ret = this._.popover(base, this.$refs.list, {
         place: 'bottom-left'

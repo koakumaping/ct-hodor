@@ -235,6 +235,7 @@ export default {
     padding: 0
     line-height: 32px
     border: 0
+    cursor: default
     &:hover
       border: 0
       box-shadow: none
@@ -255,7 +256,7 @@ export default {
     line-height: 30px
     min-width: 50px
     border: 1px solid $border-color
-    cursor pointer
+    cursor: pointer
     border-radius: 4px
     text-align: left
     background-color: #fff

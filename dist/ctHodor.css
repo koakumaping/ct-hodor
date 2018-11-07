@@ -2135,6 +2135,7 @@ body {
   padding: 0;
   line-height: 32px;
   border: 0;
+  cursor: default;
 }
 .ct-single-select.is-readonly .ct-single-select__name:hover {
   border: 0;

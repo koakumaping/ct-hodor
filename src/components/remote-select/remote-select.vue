@@ -137,7 +137,7 @@ export default {
   },
   methods: {
     showList() {
-      if (this.readonly) return false
+      if (this.isReadonly) return false
       const base = this.$refs.base
       const _ret = this._.popover(base, this.$refs.list, {
         place: 'bottom-left',
