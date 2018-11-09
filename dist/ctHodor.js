@@ -6064,6 +6064,7 @@ var prefixCls = 'ct-date-picker';
         this.$emit('input', this.currentValue);
         this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
       }
+      this.$emit('change', this.currentValue);
     },
     handleHourChange: function handleHourChange(val) {
       if (this.$ready) {
