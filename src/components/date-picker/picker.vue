@@ -547,6 +547,8 @@ export default {
       padding-right: 0
       cursor: default
       background-color: transparent
+      .placeholder
+        color: #000
       i
         display: none
   &.is-readonly:hover

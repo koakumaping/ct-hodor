@@ -1946,6 +1946,9 @@ body {
   cursor: default;
   background-color: transparent;
 }
+.ct-date-picker.is-readonly .ct-date-picker-input .placeholder {
+  color: #000;
+}
 .ct-date-picker.is-readonly .ct-date-picker-input i {
   display: none;
 }

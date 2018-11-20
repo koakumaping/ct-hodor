@@ -131,6 +131,7 @@ export default {
     value: {
       immediate: true,
       handler(val) {
+        this.label = ''
         this.data.forEach(item => {
           if (item.value === val) this.label = item.label
         })

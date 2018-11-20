@@ -8285,6 +8285,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       handler: function handler(val) {
         var _this = this;
 
+        this.label = '';
         this.data.forEach(function (item) {
           if (item.value === val) _this.label = item.label;
         });
