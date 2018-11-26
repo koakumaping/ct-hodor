@@ -214,7 +214,10 @@ export default {
     maxHeight: [String, Number],
     loading: Boolean,
     // 高亮显示当前行
-    highlightCurrentRow: Boolean,
+    highlightCurrentRow: {
+      type: Boolean,
+      default: true,
+    },
     // 斑马格，隔一行换一个背景色
     stripe: Boolean,
     // 边框,默认没有

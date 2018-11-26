@@ -8461,7 +8461,10 @@ var seed = 0;
     maxHeight: [String, Number],
     loading: Boolean,
 
-    highlightCurrentRow: Boolean,
+    highlightCurrentRow: {
+      type: Boolean,
+      default: true
+    },
 
     stripe: Boolean,
 

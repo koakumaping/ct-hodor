@@ -1746,6 +1746,9 @@ body {
   white-space: normal;
   word-break: break-all;
 }
+.ct-table table > tbody > tr > td > .cell .ct-single-select.is-readonly .ct-single-select__name {
+  background-color: transparent;
+}
 
 .ct-loading-spinners[data-v-4ba048d8] {
   width: 100%;
