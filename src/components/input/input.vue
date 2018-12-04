@@ -23,7 +23,7 @@
       spellcheck="false"
       :maxlength="maxlength"
       :autofocus="autofocus"
-      v-on:keyup.enter="enter"
+      v-on:keyup.enter.prevent="enter"
     >
     <input v-if="type === 'password' && !isReadonly"
       type="password"
@@ -35,7 +35,7 @@
       :placeholder="placeholder"
       :name="name"
       spellcheck="false"
-      v-on:keyup.enter="enter"
+      v-on:keyup.enter.prevent="enter"
     >
     <textarea class="ct-textarea"
       v-if="type === 'textarea' && !isReadonly"
@@ -46,7 +46,7 @@
       :placeholder="placeholder"
       :name="name"
       spellcheck="false"
-      v-on:keyup.enter="enter"
+      v-on:keyup.enter.prevent="enter"
       :rows="rows"
     />
     <span class="ct-input-addon" v-if="$slots.append">

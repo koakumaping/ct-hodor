@@ -216,7 +216,7 @@ export default {
     // 高亮显示当前行
     highlightCurrentRow: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     // 斑马格，隔一行换一个背景色
     stripe: Boolean,

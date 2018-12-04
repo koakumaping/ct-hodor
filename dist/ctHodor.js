@@ -8463,7 +8463,7 @@ var seed = 0;
 
     highlightCurrentRow: {
       type: Boolean,
-      default: true
+      default: false
     },
 
     stripe: Boolean,
@@ -12097,6 +12097,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "blur": _vm.handleBlur,
       "keyup": function($event) {
         if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+        $event.preventDefault();
         _vm.enter($event)
       }
     }
@@ -12117,6 +12118,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "blur": _vm.handleBlur,
       "keyup": function($event) {
         if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+        $event.preventDefault();
         _vm.enter($event)
       }
     }
@@ -12137,6 +12139,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "blur": _vm.handleBlur,
       "keyup": function($event) {
         if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+        $event.preventDefault();
         _vm.enter($event)
       }
     }
