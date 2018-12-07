@@ -60,7 +60,7 @@ export default {
                 colspan={ column.colSpan }
                 rowspan={ column.rowSpan }
                 class={
-                [column.id, column.headerAlign, column.className || '',
+                [column.id, `align-${column.align}`, column.className || '',
                   this.isCellHidden(cellIndex, this.columns) ? 'is-hidden' : '',
                   !column.children ? 'is-leaf' : '', column.labelClassName]
                 }

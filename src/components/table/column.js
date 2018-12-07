@@ -154,7 +154,10 @@ export default {
       type: String,
       default: 'left',
     },
-    headerAlign: String,
+    headerAlign: {
+      type: String,
+      default: 'left',
+    },
   },
   data() {
     return {
