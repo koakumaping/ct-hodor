@@ -13118,7 +13118,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [(_vm.currentValue) ? _c('span', [_vm._v(_vm._s(_vm.currentValue))]) : _c('span', {
     staticClass: "placeholder"
-  }, [_vm._v(_vm._s(_vm.placeholder))]), _vm._v(" "), _c('faFont', {
+  }, [_vm._v(_vm._s(_vm.isReadonly ? '--' : _vm.placeholder))]), _vm._v(" "), _c('faFont', {
     directives: [{
       name: "show",
       rawName: "v-show",

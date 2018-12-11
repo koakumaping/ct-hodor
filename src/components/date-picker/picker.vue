@@ -11,7 +11,7 @@
   >
     <div :class="[prefixCls + '-input', 'pointer']" @click="showPicker">
       <span v-if="currentValue">{{currentValue}}</span>
-      <span v-else class="placeholder">{{placeholder}}</span>
+      <span v-else class="placeholder">{{ isReadonly ? '--' : placeholder}}</span>
       <faFont name="calendar" v-show="!showClearBtn"></faFont>
       <dl v-on:click.stop="clearValue">
         <faFont
