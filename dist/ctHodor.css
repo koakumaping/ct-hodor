@@ -5957,7 +5957,7 @@ body {
   overflow: hidden;
 }
 .ct-filterbar-warp.ct-filterbar-visible {
-  z-index: 7;
+  z-index: 5;
   visibility: visible;
   height: auto;
   width: auto;
