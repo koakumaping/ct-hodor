@@ -4941,16 +4941,7 @@ TableStore.prototype.updateAllSelected = function uAS() {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
   inserted: function inserted(el, binding) {
-    if (binding.value) el.focus();else el.blur();
-  },
-  componentUpdated: function componentUpdated(el, binding) {
-    if (binding.modifiers.lazy) {
-      if (Boolean(binding.value) === Boolean(binding.oldValue)) {
-        return false;
-      }
-    }
-
-    if (binding.value) el.focus();else el.blur();
+    el.focus();
   }
 });
 
@@ -6869,9 +6860,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: false
     },
     maxlength: Number,
-    autofocus: {
-      default: null
-    },
 
     enter: {
       type: Function,
@@ -12088,8 +12076,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": _vm.placeholder,
       "name": _vm.name,
       "spellcheck": "false",
-      "maxlength": _vm.maxlength,
-      "autofocus": _vm.autofocus
+      "maxlength": _vm.maxlength
     },
     domProps: {
       "value": _vm.currentValue

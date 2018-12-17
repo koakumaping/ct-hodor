@@ -22,7 +22,6 @@
       :name="name"
       spellcheck="false"
       :maxlength="maxlength"
-      :autofocus="autofocus"
       v-on:keyup.enter.prevent="enter"
     >
     <input v-if="type === 'password' && !isReadonly"
@@ -87,9 +86,6 @@ export default {
       default: false,
     },
     maxlength: Number,
-    autofocus: {
-      default: null,
-    },
     // 回车键操作
     enter: {
       type: Function,
