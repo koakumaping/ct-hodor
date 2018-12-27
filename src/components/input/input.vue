@@ -22,7 +22,6 @@
       :name="name"
       spellcheck="false"
       :maxlength="maxlength"
-      v-on:keyup.enter.prevent="enter"
     >
     <input v-if="type === 'password' && !isReadonly"
       type="password"
@@ -34,7 +33,6 @@
       :placeholder="placeholder"
       :name="name"
       spellcheck="false"
-      v-on:keyup.enter.prevent="enter"
     >
     <textarea class="ct-textarea"
       v-if="type === 'textarea' && !isReadonly"
@@ -45,7 +43,6 @@
       :placeholder="placeholder"
       :name="name"
       spellcheck="false"
-      v-on:keyup.enter.prevent="enter"
       :rows="rows"
     />
     <span class="ct-input-addon" v-if="$slots.append">
@@ -86,14 +83,6 @@ export default {
       default: false,
     },
     maxlength: Number,
-    // 回车键操作
-    enter: {
-      type: Function,
-      default: (e) => {
-        e.preventDefault()
-        return false
-      },
-    },
   },
   watch: {
     value: {
