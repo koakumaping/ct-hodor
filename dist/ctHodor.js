@@ -6859,15 +6859,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Boolean,
       default: false
     },
-    maxlength: Number,
-
-    enter: {
-      type: Function,
-      default: function _default(e) {
-        e.preventDefault();
-        return false;
-      }
-    }
+    maxlength: Number
   },
   watch: {
     value: {
@@ -12084,12 +12076,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": _vm.handleInput,
       "focus": _vm.handleFocus,
-      "blur": _vm.handleBlur,
-      "keyup": function($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
-        $event.preventDefault();
-        _vm.enter($event)
-      }
+      "blur": _vm.handleBlur
     }
   }) : _vm._e(), _vm._v(" "), (_vm.type === 'password' && !_vm.isReadonly) ? _c('input', {
     staticClass: "ct-input",
@@ -12105,12 +12092,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": _vm.handleInput,
       "focus": _vm.handleFocus,
-      "blur": _vm.handleBlur,
-      "keyup": function($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
-        $event.preventDefault();
-        _vm.enter($event)
-      }
+      "blur": _vm.handleBlur
     }
   }) : _vm._e(), _vm._v(" "), (_vm.type === 'textarea' && !_vm.isReadonly) ? _c('textarea', {
     staticClass: "ct-textarea",
@@ -12126,12 +12108,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": _vm.handleInput,
       "focus": _vm.handleFocus,
-      "blur": _vm.handleBlur,
-      "keyup": function($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
-        $event.preventDefault();
-        _vm.enter($event)
-      }
+      "blur": _vm.handleBlur
     }
   }) : _vm._e(), _vm._v(" "), (_vm.$slots.append) ? _c('span', {
     staticClass: "ct-input-addon"
