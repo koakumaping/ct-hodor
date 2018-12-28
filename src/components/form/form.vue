@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form class="form" onsubmit="return false">
     <slot></slot>
   </form>
 </template>
