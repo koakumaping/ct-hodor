@@ -7494,7 +7494,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     dot: {
       type: String,
       default: '-'
-    }
+    },
+
+    initData: Boolean
   },
   data: function data() {
     return {
@@ -7569,6 +7571,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$nextTick(function () {
         _this.$refs.input.focus();
       });
+
+      if (this.initData) this.$emit('change', '');
     },
     hideList: function hideList() {
       if (this.visible && this.unwatch) this.unwatch();

@@ -85,6 +85,8 @@ export default {
       type: String,
       default: '-',
     },
+    // 自动获取一次数据
+    initData: Boolean,
   },
   data() {
     return {
@@ -159,6 +161,8 @@ export default {
       this.$nextTick(() => {
         this.$refs.input.focus()
       })
+
+      if (this.initData) this.$emit('change', '')
     },
     hideList() {
       if (this.visible && this.unwatch) this.unwatch()
