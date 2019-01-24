@@ -35,7 +35,7 @@
             v-for="(item, index) in line.label"
             :key="`${item}_${_.randomString(6)}`"
             v-if="level !== '' ? index < level : true"
-          >{{ $e(item) }}</flex-item>
+          ><span :title="$e(item)">{{ $e(item) }}</span></flex-item>
         </flex>
         <span v-else>{{ line.label }}</span>
       </li>

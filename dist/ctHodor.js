@@ -12778,7 +12778,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [(_vm._.isArray(line.label)) ? _c('flex', _vm._l((line.label), function(item, index) {
       return (_vm.level !== '' ? index < _vm.level : true) ? _c('flex-item', {
         key: (item + "_" + (_vm._.randomString(6)))
-      }, [_vm._v(_vm._s(_vm.$e(item)))]) : _vm._e()
+      }, [_c('span', {
+        attrs: {
+          "title": _vm.$e(item)
+        }
+      }, [_vm._v(_vm._s(_vm.$e(item)))])]) : _vm._e()
     })) : _c('span', [_vm._v(_vm._s(line.label))])], 1)
   }), _vm._v(" "), _vm._l((_vm.maxItem - 1), function(item) {
     return _c('li', {
