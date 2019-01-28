@@ -2257,6 +2257,7 @@ body {
   line-height: 32px;
   border: 0;
   cursor: default;
+  background-color: transparent;
 }
 .ct-remote-select.is-readonly .ct-remote-select__name:hover {
   border: 0;

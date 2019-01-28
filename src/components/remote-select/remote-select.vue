@@ -238,6 +238,7 @@ export default {
       line-height: 32px
       border: 0
       cursor: default
+      background-color: transparent
       &:hover
         border: 0
         box-shadow: none
