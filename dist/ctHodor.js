@@ -7590,7 +7590,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (this.level === '') {
           this.label = payload.label[0];
         } else {
-          this.label = payload.label.slice(0, this.level).toString().replace(/,/g, this.dot);
+          this.label = payload.label.filter(function (item) {
+            if (item !== '') return item;
+          }).slice(0, this.level).toString().replace(/,/g, this.dot);
           payload.text = this.label;
         }
       } else {
