@@ -8846,7 +8846,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Object,
       default: function _default() {}
     },
-    singleSelection: Boolean
+    singleSelection: Boolean,
+    catalog: Boolean
   },
   data: function data() {
     return {
@@ -8889,6 +8890,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    handleClick: function handleClick() {
+      this.dispatch('Tree', 'clicked', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(this.model));
+    },
     toggle: function toggle() {
       if (this.isFolder) {
         this.open = !this.open;
@@ -8960,10 +8964,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     singleSelection: Boolean,
 
-    noChildren: Boolean
+    noChildren: Boolean,
+
+    catalog: Boolean
   },
   mounted: function mounted() {
     var _this = this;
+
+    this.$on('clicked', function (payload) {
+      _this.$emit('catalog', payload);
+    });
 
     this.$on('checked', function (payload) {
       _this.updateData(false);
@@ -12578,11 +12588,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('ul', {
       key: item.id,
       staticClass: "ct-tree-children"
-    }, [_c('treeNode', {
+    }, [_c('tree-node', {
       staticClass: "item",
       attrs: {
         "model": item,
-        "singleSelection": _vm.singleSelection
+        "singleSelection": _vm.singleSelection,
+        "catalog": _vm.catalog
       }
     })], 1)
   }))
@@ -13676,7 +13687,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.toggle
     }
-  }), _vm._v(" "), (_vm.showCheckbox) ? _c('ctCheckbox', {
+  }), _vm._v(" "), (_vm.showCheckbox && !_vm.catalog) ? _c('ctCheckbox', {
     attrs: {
       "value": _vm.model.checked,
       "indeterminate": _vm.indeterminate,
@@ -13689,12 +13700,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.handleCheck($event)
       }
     }
-  }, [_vm._v(_vm._s(_vm.model.name))]) : _c('span', {
+  }, [_vm._v(_vm._s(_vm.model.name))]) : _vm._e(), _vm._v(" "), (!_vm.showCheckbox && !_vm.catalog) ? _c('span', {
     staticClass: "pointer",
     on: {
       "click": _vm.toggle
     }
-  }, [_vm._v(_vm._s(_vm.model.name))])], 1), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.model.name))]) : _vm._e(), _vm._v(" "), (_vm.catalog) ? _c('span', {
+    staticClass: "pointer",
+    on: {
+      "click": _vm.handleClick
+    }
+  }, [_vm._v(_vm._s(_vm.model.name))]) : _vm._e()], 1), _vm._v(" "), _c('transition', {
     on: {
       "before-enter": _vm.beforeEnter,
       "enter": _vm.enter,
@@ -13711,12 +13727,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "open"
     }]
   }, _vm._l((_vm.model.children), function(model) {
-    return _c('treeNode', {
+    return _c('tree-node', {
       key: model.id,
       staticClass: "item",
       attrs: {
         "model": model,
-        "singleSelection": _vm.singleSelection
+        "singleSelection": _vm.singleSelection,
+        "catalog": _vm.catalog
       }
     })
   })) : _vm._e()])], 1)

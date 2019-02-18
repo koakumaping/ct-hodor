@@ -7,14 +7,15 @@
         @click="toggle"
         class="ct-tree-arrow" :class="arrowCls"></span>
       <ctCheckbox
-        v-if="showCheckbox"
+        v-if="showCheckbox && !catalog"
         :value="model.checked"
         :indeterminate="indeterminate"
         @click.native.prevent="handleCheck"
         :aria-readonly="readonly"
         :readonly="readonly"
       >{{model.name}}</ctCheckbox>
-      <span v-else @click="toggle" class="pointer">{{model.name}}</span>
+      <span v-if="!showCheckbox && !catalog" @click="toggle" class="pointer">{{model.name}}</span>
+      <span v-if="catalog" @click="handleClick" class="pointer">{{model.name}}</span>
     </div>
     <transition
       v-on:before-enter="beforeEnter"
@@ -25,15 +26,14 @@
       v-on:after-leave="afterLeave"
     >
       <ul v-show="open" v-if="isFolder">
-        <treeNode
+        <tree-node
           class="item"
           v-for="model in model.children"
           :key="model.id"
           :model="model"
           :singleSelection="singleSelection"
-        >
-        </treeNode>
-        <!-- <li class="add" @click="addChild">+</li> -->
+          :catalog="catalog"
+        />
       </ul>
     </transition>
   </li>
@@ -53,6 +53,7 @@ export default {
       default: () => {},
     },
     singleSelection: Boolean,
+    catalog: Boolean,
   },
   data() {
     return {
@@ -92,6 +93,9 @@ export default {
     })
   },
   methods: {
+    handleClick() {
+      this.dispatch('Tree', 'clicked', clone(this.model))
+    },
     toggle() {
       if (this.isFolder) {
         this.open = !this.open

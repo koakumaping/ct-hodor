@@ -74,5 +74,6 @@ module.exports = {
       "prefer-template": 0,
       "no-mixed-operators": 0,
       "object-shorthand": 0,
+      "array-callback-return": 0,
   }
 }

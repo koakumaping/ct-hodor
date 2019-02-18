@@ -3,12 +3,12 @@
     <ul class="ct-tree-children"
       v-for="item in data" :key="item.id"
     >
-      <treeNode
+      <tree-node
         class="item"
         :model="item"
         :singleSelection="singleSelection"
-      >
-      </treeNode>
+        :catalog="catalog"
+      />
     </ul>
   </div>
 </template>
@@ -40,8 +40,14 @@ export default {
     singleSelection: Boolean,
     // 不返回选中的children
     noChildren: Boolean,
+    // 作为目录使用
+    catalog: Boolean,
   },
   mounted() {
+    this.$on('clicked', (payload) => {
+      this.$emit('catalog', payload)
+    })
+
     this.$on('checked', (payload) => {
       this.updateData(false)
       this.initMap()
