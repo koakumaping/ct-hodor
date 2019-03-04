@@ -56,6 +56,9 @@
 </template>
 
 <script>
+import {
+  getWindowHeight,
+} from 'ct-util'
 import Emitter from '../../mixins/emitter'
 import formChild from '../../mixins/form-child'
 
@@ -126,6 +129,16 @@ export default {
       if (this.currentValue !== '') return true
       return false
     },
+    listOverflow() {
+      const windowHeight = getWindowHeight()
+      const elToBottom = this.$refs.base.getBoundingClientRect().bottom
+      const maxHeight = 32 * this.max
+
+      if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
+        return true
+      }
+      return false
+    },
   },
   watch: {
     value: {
@@ -162,8 +175,19 @@ export default {
       }, true)
       _ret.visibility = 'visible'
       _ret.position = 'absolute'
+      // let _top = _ret.top.replace('px', '') - 32
+      // if (_top + 200 > this._.getWindowHeight()) _top = this._.getWindowHeight() - 200
+
+      // 处理下top，保证list能正好覆盖住ct-select
       let _top = _ret.top.replace('px', '') - 32
-      if (_top + 200 > this._.getWindowHeight()) _top = this._.getWindowHeight() - 200
+      if (this.listOverflow) {
+        let _maxItem = this.data.length
+        if (_maxItem > this.max) _maxItem = this.max
+        // 排除自己的高度
+        _maxItem -= 1
+        _top -= 32 * _maxItem
+      }
+
       _ret.top = `${_top}px`
       _ret.zIndex = '7'
       this.appendModal()

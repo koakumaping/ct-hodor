@@ -8193,8 +8193,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_emitter__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_child__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_emitter__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_child__ = __webpack_require__(6);
+
 
 
 
@@ -8202,7 +8205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleSelect',
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_emitter__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form_child__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_emitter__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_child__["a" /* default */]],
   props: {
     data: {
       type: Array,
@@ -8266,6 +8269,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!this.hover) return false;
       if (this.currentValue !== '') return true;
       return false;
+    },
+    listOverflow: function listOverflow() {
+      var windowHeight = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["getWindowHeight"])();
+      var elToBottom = this.$refs.base.getBoundingClientRect().bottom;
+      var maxHeight = 32 * this.max;
+
+      if (windowHeight - elToBottom - (maxHeight + 8) <= 0) {
+        return true;
+      }
+      return false;
     }
   },
   watch: {
@@ -8309,8 +8322,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }, true);
       _ret.visibility = 'visible';
       _ret.position = 'absolute';
+
       var _top = _ret.top.replace('px', '') - 32;
-      if (_top + 200 > this._.getWindowHeight()) _top = this._.getWindowHeight() - 200;
+      if (this.listOverflow) {
+        var _maxItem = this.data.length;
+        if (_maxItem > this.max) _maxItem = this.max;
+
+        _maxItem -= 1;
+        _top -= 32 * _maxItem;
+      }
+
       _ret.top = _top + 'px';
       _ret.zIndex = '7';
       this.appendModal();
