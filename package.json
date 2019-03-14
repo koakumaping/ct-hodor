@@ -1,6 +1,6 @@
 {
   "name": "ct-hodor",
-  "version": "1.7.80",
+  "version": "1.7.81",
   "description": "hodor",
   "main": "dist/ctHodor.js",
   "files": [
