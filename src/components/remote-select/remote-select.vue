@@ -183,11 +183,12 @@ export default {
           this.label = payload.label
             .filter(item => { if (item !== '') return item })
             .slice(0, this.level).toString().replace(/,/g, this.dot)
-          payload.text = this.label
         }
       } else {
         this.label = payload.label
       }
+      // 增加text用于select的时候直接获取需要的文本
+      payload.text = this.label
 
       this.$emit('select', payload)
       this.hideList()
