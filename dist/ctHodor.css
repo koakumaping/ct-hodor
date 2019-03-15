@@ -2974,8 +2974,8 @@ body {
 .ct-tree ul li ul .item {
   margin-bottom: 4px;
 }
-.ct-tree .ct-tree-folder {
-  margin-bottom: 4px;
+.ct-tree .ct-tree-folder margin-bottom 4px {
+  font-size: 14px;
 }
 .ct-tree .ct-tree-folder > .ct-tree-arrow {
   opacity: 1;

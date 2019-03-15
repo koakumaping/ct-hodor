@@ -279,6 +279,7 @@ export default {
   
   .ct-tree-folder
     margin-bottom 4px
+      font-size 14px
     & > .ct-tree-arrow
       opacity 1
       cursor pointer
