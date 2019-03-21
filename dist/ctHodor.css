@@ -2974,7 +2974,11 @@ body {
 .ct-tree ul li ul .item {
   margin-bottom: 4px;
 }
-.ct-tree .ct-tree-folder margin-bottom 4px {
+.ct-tree ul li ul .item .pointer {
+  font-size: 14px;
+}
+.ct-tree .ct-tree-folder {
+  margin-bottom: 4px;
   font-size: 14px;
 }
 .ct-tree .ct-tree-folder > .ct-tree-arrow {
@@ -2983,7 +2987,8 @@ body {
 }
 .ct-tree .ct-tree-arrow {
   display: inline-block;
-  height: 16px;
+  margin-top: -2px;
+  height: 20px;
   width: 14px;
   opacity: 0;
   vertical-align: text-top;

@@ -276,16 +276,19 @@ export default {
       padding-left 18px
       .item
         margin-bottom 4px
+        .pointer
+          font-size 14px
   
   .ct-tree-folder
     margin-bottom 4px
-      font-size 14px
+    font-size 14px
     & > .ct-tree-arrow
       opacity 1
       cursor pointer
   .ct-tree-arrow
     display inline-block
-    height 16px
+    margin-top -2px
+    height 20px
     width 14px
     opacity 0
     vertical-align text-top
