@@ -9,7 +9,7 @@
     ref="base"
   >
     <dl class="ct-remote-select__name" @click="showList" v-show="!visible">
-      <span>{{ name }}</span>
+      <span :title="name">{{ name }}</span>
     </dl>
 
     <input
