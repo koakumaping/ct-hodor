@@ -12758,7 +12758,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.showList
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.name))])]), _vm._v(" "), _c('input', {
+  }, [_c('span', {
+    attrs: {
+      "title": _vm.name
+    }
+  }, [_vm._v(_vm._s(_vm.name))])]), _vm._v(" "), _c('input', {
     directives: [{
       name: "show",
       rawName: "v-show",

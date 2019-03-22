@@ -6045,7 +6045,7 @@ body {
   background: #323d59;
   box-shadow: 2px 0 6px rgba(0,21,41,0.35);
   height: 100%;
-  padding-top: 50px;
+  padding-top: 48px;
   z-index: 5;
   transition: all 0.3s;
 }
