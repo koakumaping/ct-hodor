@@ -11765,7 +11765,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.stopPropagation();
-        _vm.clearValue($event)
+        return _vm.clearValue($event)
       }
     }
   }, [_c('faFont', {
@@ -11792,14 +11792,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.handleClick(line)
+          return _vm.handleClick(line)
         }
       }
     }, [(_vm._.isArray(line.label)) ? _c('flex', _vm._l((line.label), function(item) {
       return _c('flex-item', {
         key: (item + "_" + (_vm._.randomString(4)))
       }, [_vm._v(_vm._s(_vm.$e(item)))])
-    })) : _c('span', [_vm._v(_vm._s(line.label))])], 1)
+    }), 1) : _c('span', [_vm._v(_vm._s(line.label))])], 1)
   }), _vm._v(" "), _vm._l((_vm.max - 1), function(item) {
     return _c('li', {
       directives: [{
@@ -11860,7 +11860,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.handleClick(item.value, item)
+          return _vm.handleClick(item.value, item)
         }
       }
     }, [_vm._v(_vm._s(item.label))]) : _vm._e(), _vm._v(" "), (_vm.isReadonly && item.value === _vm.currentValue) ? _c('span', {
@@ -11869,7 +11869,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "type": "text"
       }
     }, [_vm._v("\n        " + _vm._s(item.label) + "\n      ")]) : _vm._e()], 1)
-  })) : _c('span', [_vm._v(_vm._s(_vm.isReadonly ? '--' : '无数据'))])])
+  }), 0) : _c('span', [_vm._v(_vm._s(_vm.isReadonly ? '--' : '无数据'))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -11897,7 +11897,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.go(_vm.currentPage - 1)
+        return _vm.go(_vm.currentPage - 1)
       }
     }
   }, [_c('iconFont', {
@@ -11908,14 +11908,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-pagination-first",
     on: {
       "click": function($event) {
-        _vm.go(1)
+        return _vm.go(1)
       }
     }
   }, [_vm._v("1")]) : _vm._e(), _vm._v(" "), (_vm.currentPage > 4) ? _c('li', {
     staticClass: "ct-pagination-prev-five",
     on: {
       "click": function($event) {
-        _vm.go(_vm.currentPage - 5)
+        return _vm.go(_vm.currentPage - 5)
       }
     }
   }, [_vm._v("...")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.pageList), function(page) {
@@ -11926,7 +11926,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }, ("ct-pagination-page-" + (page.value))],
       on: {
         "click": function($event) {
-          _vm.go(page.value)
+          return _vm.go(page.value)
         }
       }
     }, [_vm._v("\n      " + _vm._s(page.label) + "\n    ")])
@@ -11934,14 +11934,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-pagination-next-five",
     on: {
       "click": function($event) {
-        _vm.go(_vm.currentPage + 5)
+        return _vm.go(_vm.currentPage + 5)
       }
     }
   }, [_vm._v("...")]) : _vm._e(), _vm._v(" "), (_vm.pageLength > 5 && (_vm.currentPage + 2 < _vm.pageLength)) ? _c('li', {
     staticClass: "ct-pagination-last",
     on: {
       "click": function($event) {
-        _vm.go(_vm.pageLength)
+        return _vm.go(_vm.pageLength)
       }
     }
   }, [_vm._v(_vm._s(_vm.pageLength))]) : _vm._e(), _vm._v(" "), _c('li', {
@@ -11951,7 +11951,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.go(_vm.currentPage + 1)
+        return _vm.go(_vm.currentPage + 1)
       }
     }
   }, [_c('iconFont', {
@@ -11962,7 +11962,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-pagination-total",
     on: {
       "click": function($event) {
-        _vm.reload()
+        return _vm.reload()
       }
     }
   }, [_vm._v("\n      总计 " + _vm._s(_vm.total) + " 条数据\n    ")])], 2) : _vm._e()])
@@ -12051,7 +12051,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item
       }
     })
-  })), _vm._v(" "), _c('ctSelect', {
+  }), 1), _vm._v(" "), _c('ctSelect', {
     attrs: {
       "width": "54px",
       "noFormEmit": "",
@@ -12072,7 +12072,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item
       }
     })
-  }))], 1)
+  }), 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -12172,7 +12172,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-filterbar-bg",
     on: {
       "click": function($event) {
-        _vm.hide()
+        return _vm.hide()
       }
     }
   }), _vm._v(" "), _c('div', {
@@ -12414,7 +12414,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.toggleMenu(index)
+          return _vm.toggleMenu(index)
         }
       }
     }, [_c('iconFont', {
@@ -12431,11 +12431,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data": row
       }
     })], 1)
-  })), _vm._v(" "), _c('div', {
+  }), 0), _vm._v(" "), _c('div', {
     staticClass: "side-collapse",
     on: {
       "click": function($event) {
-        _vm.handleCollapse()
+        return _vm.handleCollapse()
       }
     }
   }, [_c('iconFont', {
@@ -12567,11 +12567,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       nativeOn: {
         "click": function($event) {
-          _vm.handleClose(item.key)
+          return _vm.handleClose(item.key)
         }
       }
     })], 1)
-  }))
+  }), 0)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -12618,7 +12618,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "catalog": _vm.catalog
       }
     })], 1)
-  }))
+  }), 0)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -12651,7 +12651,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.set(item)
+          return _vm.set(item)
         }
       }
     }, [_vm._v(_vm._s(item.label))]) : _vm._e(), _vm._v(" "), (_vm.isReadonly && _vm.currentValue.indexOf(item.value) > -1) ? _c('span', {
@@ -12660,7 +12660,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "type": "text"
       }
     }, [_vm._v("\n      " + _vm._s(item.label) + "\n    ")]) : _vm._e()], 1)
-  }))
+  }), 0)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -12714,7 +12714,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.setCurrentValue(_vm.value)
+        return _vm.setCurrentValue(_vm.value)
       }
     }
   }, [_vm._v(_vm._s(_vm.label))])
@@ -12811,7 +12811,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.handleClick(line)
+          return _vm.handleClick(line)
         }
       }
     }, [(_vm._.isArray(line.label)) ? _c('flex', _vm._l((line.label), function(item, index) {
@@ -12822,7 +12822,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           "title": _vm.$e(item)
         }
       }, [_vm._v(_vm._s(_vm.$e(item)))])]) : _vm._e()
-    })) : _c('span', [_vm._v(_vm._s(line.label))])], 1)
+    }), 1) : _c('span', [_vm._v(_vm._s(line.label))])], 1)
   }), _vm._v(" "), _vm._l((_vm.maxItem - 1), function(item) {
     return _c('li', {
       directives: [{
@@ -13146,7 +13146,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.stopPropagation();
-        _vm.clearValue($event)
+        return _vm.clearValue($event)
       }
     }
   }, [_c('faFont', {
@@ -13232,7 +13232,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       class: _vm.getCellCls(cell),
       on: {
         "click": function($event) {
-          _vm.setSelectDate(cell.year, cell.month, cell.day, index)
+          return _vm.setSelectDate(cell.year, cell.month, cell.day, index)
         }
       }
     }, [_vm._v(_vm._s(cell.day))])
@@ -13331,7 +13331,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "target": item.target
       }
     }, [_vm._v(_vm._s(item.name))])], 1)
-  }))])])
+  }), 0)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -13529,7 +13529,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.stopPropagation();
-        _vm.clearValue($event)
+        return _vm.clearValue($event)
       }
     }
   }, [_c('faFont', {
@@ -13723,7 +13723,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     nativeOn: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.handleCheck($event)
+        return _vm.handleCheck($event)
       }
     }
   }, [_vm._v(_vm._s(_vm.model.name))]) : _vm._e(), _vm._v(" "), (!_vm.showCheckbox && !_vm.catalog) ? _c('span', {
@@ -13762,7 +13762,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "catalog": _vm.catalog
       }
     })
-  })) : _vm._e()])], 1)
+  }), 1) : _vm._e()])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
