@@ -6812,7 +6812,6 @@ function getValueByPath(object, prop) {
         (function () {})();
       }
       this.visible = visible;
-      console.log(this.prop, this.visible);
     }
   }
 });

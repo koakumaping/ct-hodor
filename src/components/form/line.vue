@@ -297,7 +297,6 @@ export default {
         (() => {})()
       }
       this.visible = visible
-      console.log(this.prop, this.visible)
     },
   },
 }
