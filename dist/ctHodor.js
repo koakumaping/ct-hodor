@@ -9081,6 +9081,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       walkList(this.data);
 
+      if (this.singleSelection && _list.length > 0) _list = _list[_list.length - 1];
+
       this.$emit('change', _list);
     },
     getCheckedNodes: function getCheckedNodes() {
@@ -9184,6 +9186,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         results.push(this.level ? filterCheckedItem : this.checkedList.toString().replace(/,/g, this.dot));
         this.checkedList = [];
       }
+
+      if (this.singleSelection && results.length > 0) results = results[results.length - 1];
 
       return results;
     },
