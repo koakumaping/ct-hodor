@@ -9081,6 +9081,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       walkList(this.data);
 
       if (this.singleSelection && _list.length > 0) _list = _list[_list.length - 1];
+      if (this.singleSelection && _list.length === 0) _list = '';
 
       this.$emit('change', _list);
     },
@@ -9187,6 +9188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       if (this.singleSelection && results.length > 0) results = results[results.length - 1];
+      if (this.singleSelection && results.length === 0) results = '';
 
       return results;
     },

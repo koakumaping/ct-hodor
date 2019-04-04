@@ -130,6 +130,7 @@ export default {
       walkList(this.data)
 
       if (this.singleSelection && _list.length > 0) _list = _list[_list.length - 1]
+      if (this.singleSelection && _list.length === 0) _list = ''
 
       this.$emit('change', _list)
     },
@@ -229,8 +230,9 @@ export default {
         results.push(this.level ? filterCheckedItem : this.checkedList.toString().replace(/,/g, this.dot))
         this.checkedList = []
       }
-      
+
       if (this.singleSelection && results.length > 0) results = results[results.length - 1]
+      if (this.singleSelection && results.length === 0) results = ''
 
       return results
     },
