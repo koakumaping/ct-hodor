@@ -4,6 +4,7 @@
       :class="{ 'ct-tree-folder': isFolder}"
     >
       <span
+        v-if="isFolder"
         @click="toggle"
         class="ct-tree-arrow" :class="arrowCls"></span>
       <ctCheckbox

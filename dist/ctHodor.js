@@ -13712,13 +13712,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     class: {
       'ct-tree-folder': _vm.isFolder
     }
-  }, [_c('span', {
+  }, [(_vm.isFolder) ? _c('span', {
     staticClass: "ct-tree-arrow",
     class: _vm.arrowCls,
     on: {
       "click": _vm.toggle
     }
-  }), _vm._v(" "), (_vm.showCheckbox && !_vm.catalog) ? _c('ctCheckbox', {
+  }) : _vm._e(), _vm._v(" "), (_vm.showCheckbox && !_vm.catalog) ? _c('ctCheckbox', {
     attrs: {
       "value": _vm.model.checked,
       "indeterminate": _vm.indeterminate,
