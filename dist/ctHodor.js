@@ -6858,7 +6858,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Boolean,
       default: false
     },
-    maxlength: Number
+    maxlength: Number,
+
+    dot: Boolean
   },
   watch: {
     value: {
@@ -6903,6 +6905,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     handleBlur: function handleBlur(event) {
       this.$emit('blur', event);
       this.dispatch('ctFormLine', 'ct.form.blur', this.currentValue);
+    },
+    handleReadyOnlyDisplay: function handleReadyOnlyDisplay(payload) {
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isEmpty"])(payload)) return '--';
+      if (this.dot) payload = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["formatMoney"])(payload);
+      return payload;
     }
   }
 });
@@ -12105,7 +12112,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   }, [(_vm.$slots.prepend) ? _c('span', {
     staticClass: "ct-input-addon"
-  }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.e(_vm.currentValue)))]) : _vm._e(), _vm._v(" "), (_vm.type === 'text' && !_vm.isReadonly) ? _c('input', {
+  }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.handleReadyOnlyDisplay(_vm.currentValue)))]) : _vm._e(), _vm._v(" "), (_vm.type === 'text' && !_vm.isReadonly) ? _c('input', {
     attrs: {
       "type": "text",
       "placeholder": _vm.placeholder,

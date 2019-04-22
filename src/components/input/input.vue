@@ -12,7 +12,7 @@
     <span class="ct-input-addon" v-if="$slots.prepend">
       <slot name="prepend" />
     </span>
-    <span v-if="isReadonly">{{ e(currentValue) }}</span>
+    <span v-if="isReadonly">{{ handleReadyOnlyDisplay(currentValue) }}</span>
     <input v-if="type === 'text' && !isReadonly" type="text"
       :value="currentValue" 
       @input="handleInput"
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { isNumber } from 'ct-util'
+import { isNumber, isEmpty, formatMoney } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 import formChild from '../../mixins/form-child'
 
@@ -83,6 +83,8 @@ export default {
       default: false,
     },
     maxlength: Number,
+    // 用于格式化金额为三位一个逗号分割
+    dot: Boolean,
   },
   watch: {
     value: {
@@ -126,6 +128,11 @@ export default {
     handleBlur(event) {
       this.$emit('blur', event)
       this.dispatch('ctFormLine', 'ct.form.blur', this.currentValue)
+    },
+    handleReadyOnlyDisplay(payload) {
+      if (isEmpty(payload)) return '--'
+      if (this.dot) payload = formatMoney(payload)
+      return payload
     },
   },
 }
