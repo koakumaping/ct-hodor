@@ -13,7 +13,7 @@
       <slot name="prepend" />
     </span>
     <span v-if="isReadonly">{{ handleReadyOnlyDisplay(currentValue) }}</span>
-    <input v-if="type === 'text' && !isReadonly" type="text"
+    <input v-if="type === 'text' && !isReadonly" type="text" ref="text"
       :value="currentValue" 
       @input="handleInput"
       @focus="handleFocus"
@@ -85,6 +85,8 @@ export default {
     maxlength: Number,
     // 用于格式化金额为三位一个逗号分割
     dot: Boolean,
+    // 聚焦自动选中文本
+    autoselect: Boolean,
   },
   watch: {
     value: {
@@ -123,6 +125,7 @@ export default {
       this.$emit('change', event)
     },
     handleFocus(event) {
+      if (this.autoselect && this.type === 'text') this.$refs.text.select()
       this.$emit('focus', event)
     },
     handleBlur(event) {

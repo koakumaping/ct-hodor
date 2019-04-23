@@ -6860,7 +6860,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     maxlength: Number,
 
-    dot: Boolean
+    dot: Boolean,
+
+    autoselect: Boolean
   },
   watch: {
     value: {
@@ -6900,6 +6902,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('change', event);
     },
     handleFocus: function handleFocus(event) {
+      if (this.autoselect && this.type === 'text') this.$refs.text.select();
       this.$emit('focus', event);
     },
     handleBlur: function handleBlur(event) {
@@ -12113,6 +12116,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.$slots.prepend) ? _c('span', {
     staticClass: "ct-input-addon"
   }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.handleReadyOnlyDisplay(_vm.currentValue)))]) : _vm._e(), _vm._v(" "), (_vm.type === 'text' && !_vm.isReadonly) ? _c('input', {
+    ref: "text",
     attrs: {
       "type": "text",
       "placeholder": _vm.placeholder,
