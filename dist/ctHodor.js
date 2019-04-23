@@ -8092,9 +8092,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           children: []
         };
       }
+    },
+    countList: {
+      type: Object,
+      default: function d() {
+        return {};
+      }
     }
   },
   methods: {
+    count: function count(payload) {
+      var countList = this.countList;
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isEmptyObject"])(countList)) return '';
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(countList, payload.routerName)) return countList[payload.routerName];
+      return '';
+    },
+    showCount: function showCount(payload) {
+      var countList = this.countList;
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isEmptyObject"])(countList)) return false;
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasOwn"])(countList, payload.routerName)) return true;
+      return false;
+    },
     beforeEnter: function beforeEnter(el) {
       __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["addClass"])(el, 'collapse-transition');
       if (!el.dataset) el.dataset = {};
@@ -8178,6 +8196,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     collapse: {
       type: Boolean,
       default: true
+    },
+    countList: {
+      type: Object,
+      default: function d() {
+        return {};
+      }
     }
   },
   methods: {
@@ -12444,7 +12468,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })], 1), _vm._v(" "), _c('sideItem', {
       attrs: {
-        "data": row
+        "data": row,
+        "countList": _vm.countList
       }
     })], 1)
   }), 0), _vm._v(" "), _c('div', {
@@ -13341,12 +13366,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         },
         "target": item.target
       }
-    }, [_vm._v("\n          " + _vm._s(item.name) + "\n        ")]) : _c('a', {
+    }, [_vm._v("\n          " + _vm._s(item.name)), (_vm.showCount(item)) ? _c('span', {
+      staticClass: "side-menu-count"
+    }, [_vm._v("(" + _vm._s(_vm.count(item)) + ")")]) : _vm._e()]) : _c('a', {
       attrs: {
         "href": item.href,
         "target": item.target
       }
-    }, [_vm._v(_vm._s(item.name))])], 1)
+    }, [_vm._v(_vm._s(item.name)), _c('span', [_vm._v(_vm._s(_vm.count(item)))])])], 1)
   }), 0)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

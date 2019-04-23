@@ -18,9 +18,9 @@
             :to="{ name: item.routerName }"
             :target="item.target"
           >
-            {{item.name}}
+            {{ item.name }}<span v-if="showCount(item)" class="side-menu-count">({{ count(item) }})</span>
           </router-link>
-          <a v-else :href="item.href" :target="item.target">{{item.name}}</a>
+          <a v-else :href="item.href" :target="item.target">{{ item.name }}<span>{{ count(item) }}</span></a>
         </span>
       </dd>
     </dt>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { addClass, removeClass } from 'ct-util'
+import { addClass, removeClass, isEmptyObject, hasOwn } from 'ct-util'
 
 export default {
   name: 'sideItem',
@@ -42,8 +42,27 @@ export default {
         }
       },
     },
+    countList: {
+      type: Object,
+      default: function d() {
+        return {}
+      },
+    },
   },
   methods: {
+    // 计算数量显示
+    count(payload) {
+      const countList = this.countList
+      if (isEmptyObject(countList)) return ''
+      if (hasOwn(countList, payload.routerName)) return countList[payload.routerName]
+      return ''
+    },
+    showCount(payload) {
+      const countList = this.countList
+      if (isEmptyObject(countList)) return false
+      if (hasOwn(countList, payload.routerName)) return true
+      return false
+    },
     beforeEnter(el) {
       addClass(el, 'collapse-transition')
       if (!el.dataset) el.dataset = {}

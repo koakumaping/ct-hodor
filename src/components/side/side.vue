@@ -9,7 +9,7 @@
           <span>{{row.name}}</span>
           <iconFont name="more" class="right"></iconFont>
         </dt>
-        <sideItem :data="row"></sideItem>        
+        <sideItem :data="row" :countList="countList"></sideItem>        
       </dl>
     </nav>
     <div class="side-collapse" @click="handleCollapse()">
@@ -37,6 +37,12 @@ export default {
     collapse: {
       type: Boolean,
       default: true,
+    },
+    countList: {
+      type: Object,
+      default: function d() {
+        return {}
+      },
     },
   },
   methods: {
