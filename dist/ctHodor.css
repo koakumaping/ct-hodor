@@ -2245,6 +2245,14 @@ body {
   background-color: #fff;
 }
 
+.ct-remote-select__table td {
+  padding: 4px;
+  cursor: pointer;
+}
+.ct-remote-select__table tr:hover {
+  color: #ee6b5d;
+  background-color: #f5f5f5;
+}
 .ct-remote-select {
   display: inline-block;
   vertical-align: top;

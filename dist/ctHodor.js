@@ -7505,7 +7505,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: '-'
     },
 
-    initData: Boolean
+    initData: Boolean,
+
+    bigData: Boolean
   },
   data: function data() {
     return {
@@ -12834,7 +12836,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "angle-down"
     }
-  }), _vm._v(" "), _c('ul', {
+  }), _vm._v(" "), (!_vm.bigData) ? _c('ul', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -12869,13 +12871,41 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.data.length > _vm.maxItem),
-        expression: "data.length > maxItem"
+        value: ((_vm.data.length > _vm.maxItem) && !_vm.bigData),
+        expression: "(data.length > maxItem) && !bigData"
       }],
       key: item,
       staticClass: "useless"
     }, [_vm._v(_vm._s(item))])
-  })], 2)], 1)
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.bigData) ? _c('ul', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.visible),
+      expression: "visible"
+    }],
+    ref: "list",
+    staticClass: "ct-remote-select__list",
+    style: (_vm.listStyle)
+  }, [(_vm.data.length === 0 && _vm.searchName !== '') ? _c('li', [_vm._v(_vm._s(_vm.loading ? '查询中' : '暂无相关数据'))]) : _vm._e(), _vm._v(" "), _c('table', {
+    staticClass: "ct-remote-select__table"
+  }, _vm._l((_vm.data), function(line) {
+    return _c('tr', {
+      key: ((line.key) + "_" + (_vm._.randomString(10))),
+      attrs: {
+        "data-value": line.value
+      },
+      on: {
+        "click": function($event) {
+          return _vm.handleClick(line)
+        }
+      }
+    }, _vm._l((line.label), function(item, index) {
+      return (_vm.level !== '' ? index < _vm.level : true) ? _c('td', {
+        key: (item + "_" + (_vm._.randomString(6)))
+      }, [_vm._v(_vm._s(_vm.$e(item)))]) : _vm._e()
+    }), 0)
+  }), 0)]) : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

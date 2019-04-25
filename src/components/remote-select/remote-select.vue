@@ -22,7 +22,7 @@
 
     <fa-font class="ct-remote-select__arrow" name="angle-down" />
 
-    <ul ref="list" class="ct-remote-select__list" :style="listStyle" v-show="visible">
+    <ul ref="list" class="ct-remote-select__list" :style="listStyle" v-show="visible" v-if="!bigData">
       <li v-if="data.length === 0 && searchName !== ''">{{ loading ? '查询中' : '暂无相关数据' }}</li>
       <li
         v-for="line in data"
@@ -42,8 +42,25 @@
       <li class="useless"
         v-for="item in maxItem - 1"
         :key="item"
-        v-show="data.length > maxItem"
+        v-show="(data.length > maxItem) && !bigData"
       >{{item}}</li>
+    </ul>
+    <ul ref="list" class="ct-remote-select__list" :style="listStyle" v-show="visible" v-if="bigData">
+      <li v-if="data.length === 0 && searchName !== ''">{{ loading ? '查询中' : '暂无相关数据' }}</li>
+      <table class="ct-remote-select__table">
+        <tr
+          v-for="line in data"
+          :key="`${line.key}_${_.randomString(10)}`"
+          @click="handleClick(line)"
+          :data-value="line.value"
+        >
+          <td
+            v-for="(item, index) in line.label"
+            :key="`${item}_${_.randomString(6)}`"
+            v-if="level !== '' ? index < level : true"
+          >{{ $e(item) }}</td>
+        </tr>
+      </table>
     </ul>
   </div>
 </template>
@@ -87,6 +104,8 @@ export default {
     },
     // 自动获取一次数据
     initData: Boolean,
+    // 大量数据的显示方式
+    bigData: Boolean,
   },
   data() {
     return {
@@ -228,6 +247,14 @@ export default {
 <style lang="stylus">
 @import '../../assets/stylus/var'
 @import '../../assets/stylus/color'
+
+.ct-remote-select__table
+  td
+    padding: 4px
+    cursor: pointer
+  tr:hover
+    color: $color-main
+    background-color: $color-hover
 
 .ct-remote-select
   display: inline-block
