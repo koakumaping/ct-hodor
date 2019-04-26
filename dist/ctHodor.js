@@ -6879,10 +6879,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     currentWidth: function currentWidth() {
       return '' + this.width + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isNumber"])(this.width) ? 'px' : '');
+    },
+    showClearBtn: function showClearBtn() {
+      if (this.isReadonly) return false;
+      if (this.type === 'textarea') return false;
+      return this.hover;
     }
   },
   data: function data() {
     return {
+      hover: false,
       currentValue: this.value
     };
   },
@@ -6902,10 +6908,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('change', event);
     },
     handleFocus: function handleFocus(event) {
+      this.hover = true;
       if (this.autoselect && this.type === 'text') this.$refs.text.select();
       this.$emit('focus', event);
     },
     handleBlur: function handleBlur(event) {
+      this.hover = false;
       this.$emit('blur', event);
       this.dispatch('ctFormLine', 'ct.form.blur', this.currentValue);
     },
@@ -6913,6 +6921,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["isEmpty"])(payload)) return '--';
       if (this.dot) payload = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["formatMoney"])(payload);
       return payload;
+    },
+    clearValue: function clearValue() {
+      this.currentValue = '';
+      this.$refs.text.focus();
+    },
+    handleMouseIn: function handleMouseIn() {
+      if (this.isReadonly) return false;
+      this.hover = true;
+    },
+    handleMouseOut: function handleMouseOut() {
+      if (this.isReadonly) return false;
+      this.hover = false;
     }
   }
 });
@@ -12138,10 +12158,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     style: ({
       width: _vm.currentWidth
-    })
+    }),
+    on: {
+      "mouseover": _vm.handleMouseIn,
+      "mouseout": _vm.handleMouseOut
+    }
   }, [(_vm.$slots.prepend) ? _c('span', {
     staticClass: "ct-input-addon"
-  }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.handleReadyOnlyDisplay(_vm.currentValue)))]) : _vm._e(), _vm._v(" "), (_vm.type === 'text' && !_vm.isReadonly) ? _c('input', {
+  }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.handleReadyOnlyDisplay(_vm.currentValue)))]) : _vm._e(), _vm._v(" "), _c('dl', {
+    staticClass: "pointer",
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        return _vm.clearValue($event)
+      }
+    }
+  }, [_c('faFont', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showClearBtn),
+      expression: "showClearBtn"
+    }],
+    staticClass: "ct-input-clear",
+    class: {
+      'ct-input-clear__append': _vm.$slots.append
+    },
+    attrs: {
+      "name": "times-circle"
+    }
+  })], 1), _vm._v(" "), (_vm.type === 'text' && !_vm.isReadonly) ? _c('input', {
     ref: "text",
     attrs: {
       "type": "text",

@@ -8,13 +8,22 @@
       'has-addon-prepend': $slots.prepend && !isReadonly,
       'has-addon-append': $slots.append && !isReadonly,
     }"
+    @mouseover="handleMouseIn"
+    @mouseout="handleMouseOut"
   >
     <span class="ct-input-addon" v-if="$slots.prepend">
       <slot name="prepend" />
     </span>
     <span v-if="isReadonly">{{ handleReadyOnlyDisplay(currentValue) }}</span>
+    <dl v-on:click.stop="clearValue" class="pointer">
+      <faFont class="ct-input-clear"
+        :class="{ 'ct-input-clear__append': $slots.append }"
+        v-show="showClearBtn"
+        name="times-circle">
+      </faFont>
+    </dl>
     <input v-if="type === 'text' && !isReadonly" type="text" ref="text"
-      :value="currentValue" 
+      :value="currentValue"
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -104,9 +113,15 @@ export default {
     currentWidth() {
       return `${this.width}${isNumber(this.width) ? 'px' : ''}`
     },
+    showClearBtn() {
+      if (this.isReadonly) return false
+      if (this.type === 'textarea') return false
+      return this.hover
+    },
   },
   data() {
     return {
+      hover: false,
       currentValue: this.value,
     }
   },
@@ -125,10 +140,12 @@ export default {
       this.$emit('change', event)
     },
     handleFocus(event) {
+      this.hover = true
       if (this.autoselect && this.type === 'text') this.$refs.text.select()
       this.$emit('focus', event)
     },
     handleBlur(event) {
+      this.hover = false
       this.$emit('blur', event)
       this.dispatch('ctFormLine', 'ct.form.blur', this.currentValue)
     },
@@ -136,6 +153,18 @@ export default {
       if (isEmpty(payload)) return '--'
       if (this.dot) payload = formatMoney(payload)
       return payload
+    },
+    clearValue() {
+      this.currentValue = ''
+      this.$refs.text.focus()
+    },
+    handleMouseIn() {
+      if (this.isReadonly) return false
+      this.hover = true
+    },
+    handleMouseOut() {
+      if (this.isReadonly) return false
+      this.hover = false
     },
   },
 }
@@ -150,6 +179,19 @@ export default {
   vertical-align: top
   width: 100%
   position: relative
+  .ct-input-clear
+    position: absolute
+    top: 1px
+    right: 8px
+    transition all 0.3s
+    display: block
+    height: 32px
+    line-height: 30px
+    &:before
+      font-size: 16px
+      display: inline-block
+      vertical-align: middle
+      color: #ccc
   &.is-readonly
     line-height: 32px
     > input,
@@ -224,6 +266,7 @@ export default {
              "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
              SimSun, sans-serif, "NSimSun", "SimSun"
   padding: 0 8px
+  padding-right: 20px
   background-color: #fff
   display: block
   height: 32px
