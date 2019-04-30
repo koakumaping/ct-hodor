@@ -8359,6 +8359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
       this.$emit('input', val);
       this.$emit('change', val);
+      this.$emit('label', this.label);
       this.dispatch('ctFormLine', 'ct.form.change', this.currentValue);
     },
     data: function data(val) {
