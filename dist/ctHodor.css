@@ -942,6 +942,9 @@ body {
   width: 100%;
   position: relative;
 }
+.ct-input .ct-input-clear-warp {
+  display: inline-block;
+}
 .ct-input .ct-input-clear {
   position: absolute;
   top: 1px;

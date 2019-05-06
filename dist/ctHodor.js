@@ -12167,7 +12167,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.$slots.prepend) ? _c('span', {
     staticClass: "ct-input-addon"
   }, [_vm._t("prepend")], 2) : _vm._e(), _vm._v(" "), (_vm.isReadonly) ? _c('span', [_vm._v(_vm._s(_vm.handleReadyOnlyDisplay(_vm.currentValue)))]) : _vm._e(), _vm._v(" "), _c('dl', {
-    staticClass: "pointer",
+    staticClass: "ct-input-clear-warp pointer",
     on: {
       "click": function($event) {
         $event.stopPropagation();

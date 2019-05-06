@@ -15,7 +15,7 @@
       <slot name="prepend" />
     </span>
     <span v-if="isReadonly">{{ handleReadyOnlyDisplay(currentValue) }}</span>
-    <dl v-on:click.stop="clearValue" class="pointer">
+    <dl v-on:click.stop="clearValue" class="ct-input-clear-warp pointer">
       <faFont class="ct-input-clear"
         :class="{ 'ct-input-clear__append': $slots.append }"
         v-show="showClearBtn"
@@ -179,6 +179,8 @@ export default {
   vertical-align: top
   width: 100%
   position: relative
+  .ct-input-clear-warp
+    display: inline-block
   .ct-input-clear
     position: absolute
     top: 1px
