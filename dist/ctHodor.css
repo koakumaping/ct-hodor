@@ -943,7 +943,7 @@ body {
   position: relative;
 }
 .ct-input .ct-input-clear-warp {
-  display: inline-block;
+  display: inline;
 }
 .ct-input .ct-input-clear {
   position: absolute;

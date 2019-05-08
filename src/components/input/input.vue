@@ -180,7 +180,7 @@ export default {
   width: 100%
   position: relative
   .ct-input-clear-warp
-    display: inline-block
+    display: inline
   .ct-input-clear
     position: absolute
     top: 1px
