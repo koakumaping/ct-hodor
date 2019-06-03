@@ -200,7 +200,7 @@ export default {
         try {
           return getPropByPath(p, path).v
         } catch (error) {
-          console.log(error)
+          (() => {})()
         }
         return {}
       },

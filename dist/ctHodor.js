@@ -6710,7 +6710,7 @@ function getValueByPath(object, prop) {
         try {
           return getPropByPath(p, path).v;
         } catch (error) {
-          console.log(error);
+          (function () {})();
         }
         return {};
       }
