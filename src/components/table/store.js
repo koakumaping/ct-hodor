@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { hasOwn } from 'ct-util'
+import { hasOwn, arrayFind } from 'ct-util'
 
 function toggleRowSelection(states, row, selected) {
   let changed = false
@@ -74,6 +74,8 @@ function TableStore(table, initialState) {
     selectable: null,
     currentRow: null,
     hoverRow: null,
+    sortingColumn: null,
+    sortProp: null,
   }
 }
 
@@ -93,6 +95,9 @@ TableStore.prototype.mutations = {
     if (!states.reserveSelection) {
       if (dataInstanceChanged) {
         this.clearSelection()
+        const init = true
+        const { prop, order } = this.table.defaultSort
+        this.commit('sort', { prop, order, init })
       } else {
         this.cleanSelection()
       }
@@ -197,6 +202,40 @@ TableStore.prototype.mutations = {
     states.currentRow = row
     if (oldCurrentRow !== row) {
       this.table.$emit('current-change', row, oldCurrentRow)
+    }
+  },
+  sort(states, options) {
+    const { prop, order, init } = options
+
+    if (prop) {
+      // TODO：nextTick 是否有必要？
+      Vue.nextTick(() => {
+        const column = arrayFind(states.columns, c => c.property === prop)
+        const _column = arrayFind(states._columns, c => c.property === prop)
+        const originColumn = arrayFind(states.originColumns, c => c.property === prop)
+        if (column) {
+          column.order = order
+          _column.order = order
+          originColumn.order = order
+          this.updateSort(column, prop, order)
+          this.commit('changeSortCondition', states, init)
+        }
+      })
+    }
+  },
+  changeSortCondition(states, silent = false) {
+    const { sortingColumn: column, sortProp: prop, sortOrder: order } = states
+    if (order === null) {
+      states.sortingColumn = null
+      states.sortProp = null
+    }
+
+    if (!silent) {
+      this.table.$emit('sort-change', {
+        column,
+        prop,
+        order,
+      })
     }
   },
 }
@@ -387,6 +426,12 @@ TableStore.prototype.updateAllSelected = function uAS() {
   if (selectedCount === 0) isAllSelected = false
 
   states.isAllSelected = isAllSelected
+}
+
+TableStore.prototype.updateSort = function updateSort(column, prop, order) {
+  this.states.sortingColumn = column
+  this.states.sortProp = prop
+  this.states.sortOrder = order
 }
 
 export default TableStore

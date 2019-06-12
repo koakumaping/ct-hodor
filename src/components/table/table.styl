@@ -28,6 +28,36 @@
   .hidden-columns
     display: none
 
+  .caret-wrapper
+    display: inline-flex
+    flex-direction: column
+    align-items: center
+    height: 34px
+    width: 24px
+    vertical-align: middle
+    cursor: pointer
+    overflow: initial
+    position: relative
+
+  .sort-caret
+    width: 0
+    height: 0
+    border: solid 5px transparent
+    position: absolute
+    left: 7px
+    &.ascending
+      border-bottom-color: $color-placeholder
+      top: 5px
+    &.descending
+      border-top-color: $color-placeholder
+      bottom: 7px
+
+  .ascending .sort-caret.ascending
+    border-bottom-color: $color-main
+
+  .descending .sort-caret.descending
+    border-top-color: $color-main
+
   .ct-table-empty
     position: relative
     text-align: center

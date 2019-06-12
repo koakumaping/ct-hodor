@@ -158,6 +158,8 @@ export default {
       type: String,
       default: 'left',
     },
+    // 是否可以排序
+    sortable: Boolean,
   },
   data() {
     return {
@@ -206,6 +208,8 @@ export default {
       labelClassName: this.labelClassName,
       align: this.align,
       headerAlign: this.headerAlign,
+      sortable: this.sortable,
+      order: '',
     })
 
     this.column = column

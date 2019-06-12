@@ -1619,6 +1619,38 @@ body {
 .ct-table .hidden-columns {
   display: none;
 }
+.ct-table .caret-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  height: 34px;
+  width: 24px;
+  vertical-align: middle;
+  cursor: pointer;
+  overflow: initial;
+  position: relative;
+}
+.ct-table .sort-caret {
+  width: 0;
+  height: 0;
+  border: solid 5px transparent;
+  position: absolute;
+  left: 7px;
+}
+.ct-table .sort-caret.ascending {
+  border-bottom-color: #757575;
+  top: 5px;
+}
+.ct-table .sort-caret.descending {
+  border-top-color: #757575;
+  bottom: 7px;
+}
+.ct-table .ascending .sort-caret.ascending {
+  border-bottom-color: #ee6b5d;
+}
+.ct-table .descending .sort-caret.descending {
+  border-top-color: #ee6b5d;
+}
 .ct-table .ct-table-empty {
   position: relative;
   text-align: center;

@@ -1,3 +1,5 @@
+import { hasClass, removeClass } from 'ct-util'
+
 /**
  * 获取所有的列，因为会有嵌套所以使用了递归
  * @param columns 原始的所有列
@@ -78,12 +80,28 @@ export default {
       required: true,
     },
     border: Boolean,
+    // 默认排序
+    defaultSort: {
+      type: Object,
+      default() {
+        return {
+          prop: '',
+          order: '',
+        }
+      },
+    },
   },
   computed: {
     // 所有的列
     columns() {
       return this.store.states.columns
     },
+  },
+  mounted() {
+    console.log('head mounted')
+    const init = true
+    const { prop, order } = this.defaultSort
+    this.store.commit('sort', { prop, order, init })
   },
   methods: {
     isCellHidden(index, columns) {
@@ -97,6 +115,49 @@ export default {
         return before < this.columnsCount - this.rightFixedCount
       }
       return (index < this.leftFixedCount) || (index >= this.columnsCount - this.rightFixedCount)
+    },
+    handleSortClick(event, column, givenOrder) {
+      event.stopPropagation()
+
+      let target = event.target
+      while (target && target.tagName !== 'TH') {
+        target = target.parentNode
+      }
+
+      if (target && target.tagName === 'TH') {
+        if (hasClass(target, 'noclick')) {
+          removeClass(target, 'noclick')
+          return false
+        }
+      }
+
+      if (!column.sortable) return
+
+      const states = this.store.states
+
+      let sortOrder
+      const sortingColumn = states.sortingColumn
+
+      if (sortingColumn !== column || (sortingColumn === column && sortingColumn.order === null)) {
+        if (sortingColumn) {
+          sortingColumn.order = null
+        }
+        states.sortingColumn = column
+      }
+
+      if (!givenOrder) {
+        column.order = null
+        sortOrder = column.order
+      } else {
+        column.order = givenOrder
+        sortOrder = column.order
+      }
+
+      states.sortProp = column.property
+      states.sortOrder = sortOrder
+      states.sortingColumn = column
+
+      this.store.commit('changeSortCondition')
     },
   },
   render(h) {
@@ -130,10 +191,15 @@ export default {
                       colspan={column.colSpan}
                       rowspan={column.rowSpan}
                       prop={column.prop}
-                      class={ [column.id, column.order, `text-${column.headerAlign}`, column.className || '',
+                      class={
+                      [
+                        column.id, column.order, `text-${column.headerAlign}`, column.className || '',
                         rowIndex === 0 && this.isCellHidden(cellIndex, columns) ? 'is-hidden' : '',
                         !column.children ? 'is-leaf' : '',
-                        column.labelClassName] }
+                        column.sortable ? 'is-sortable' : '',
+                        column.labelClassName,
+                      ]
+                      }
                     >
                       <div class={['cell', column.labelClassName]}>
                         {
@@ -149,6 +215,18 @@ export default {
                               },
                               )
                             : column.label
+                        }
+                        {
+                          column.sortable ? (<span
+                            class="caret-wrapper"
+                            on-click={ ($event) => this.handleSortClick($event, column) }>
+                            <i class="sort-caret ascending"
+                              on-click={ ($event) => this.handleSortClick($event, column, 'ascending') }>
+                            </i>
+                            <i class="sort-caret descending"
+                              on-click={ ($event) => this.handleSortClick($event, column, 'descending') }>
+                            </i>
+                          </span>) : ''
                         }
                       </div>
                     </th>,

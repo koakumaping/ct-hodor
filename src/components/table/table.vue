@@ -15,6 +15,7 @@
         :store="store"
         :layout="layout"
         :style="{ width: layout.bodyWidth ? layout.bodyWidth + 'px' : '' }"
+        :default-sort="defaultSort"
       ></ctTableHeader>
     </div>
 
@@ -70,7 +71,9 @@
           fixed="left"
           :store="store"
           :layout="layout"
-          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }">
+          :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"
+          :default-sort="defaultSort"
+        >
         </ctTableHeader>
       </div>
       <!-- 表格主体, 左侧固定 -->
@@ -119,7 +122,9 @@
           fixed="right"
           :store="store"
           :layout="layout"
-          :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }">
+          :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"
+          :default-sort="defaultSort"
+        >
         </ctTableHeader>
       </div>
       <!-- 表格主体, 右侧侧固定 -->
@@ -204,7 +209,15 @@ export default {
     showSummary: Boolean,
     sumText: String,
     summaryMethod: Function,
-    defaultSort: Object,
+    defaultSort: {
+      type: Object,
+      default: function d() {
+        return {
+          prop: '',
+          order: '',
+        }
+      },
+    },
     emptyText: {
       default: '暂无数据',
     },
@@ -264,11 +277,11 @@ export default {
   },
   created() {
     this.tableId = `ct-table-${seed}-`
+    this.debounceLayout()
   },
   mounted() {
     this.$ready = true
     this.bindEvents()
-    this.debounceLayout()
   },
   computed: {
     bodyWrapper() {
