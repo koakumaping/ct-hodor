@@ -211,12 +211,8 @@ TableStore.prototype.mutations = {
       // TODO：nextTick 是否有必要？
       Vue.nextTick(() => {
         const column = arrayFind(states.columns, c => c.property === prop)
-        const _column = arrayFind(states._columns, c => c.property === prop)
-        const originColumn = arrayFind(states.originColumns, c => c.property === prop)
         if (column) {
           column.order = order
-          _column.order = order
-          originColumn.order = order
           this.updateSort(column, prop, order)
           this.commit('changeSortCondition', states, init)
         }

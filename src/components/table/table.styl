@@ -28,8 +28,16 @@
   .hidden-columns
     display: none
 
+  // 鼠标移动上去显示，有排序状态时显示
+  > .ct-table-header-warp
+    > table > thead > tr
+      > th:hover .caret-wrapper,
+      > th.ascending .caret-wrapper,
+      > th.descending .caret-wrapper
+        display: inline-flex
+
   .caret-wrapper
-    display: inline-flex
+    display: none
     flex-direction: column
     align-items: center
     height: 34px

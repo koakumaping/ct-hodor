@@ -4844,16 +4844,8 @@ TableStore.prototype.mutations = {
         var column = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ct_util__["arrayFind"])(states.columns, function (c) {
           return c.property === prop;
         });
-        var _column = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ct_util__["arrayFind"])(states._columns, function (c) {
-          return c.property === prop;
-        });
-        var originColumn = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ct_util__["arrayFind"])(states.originColumns, function (c) {
-          return c.property === prop;
-        });
         if (column) {
           column.order = order;
-          _column.order = order;
-          originColumn.order = order;
           _this3.updateSort(column, prop, order);
           _this3.commit('changeSortCondition', states, init);
         }

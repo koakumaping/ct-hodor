@@ -1619,8 +1619,13 @@ body {
 .ct-table .hidden-columns {
   display: none;
 }
-.ct-table .caret-wrapper {
+.ct-table > .ct-table-header-warp > table > thead > tr > th:hover .caret-wrapper,
+.ct-table > .ct-table-header-warp > table > thead > tr > th.ascending .caret-wrapper,
+.ct-table > .ct-table-header-warp > table > thead > tr > th.descending .caret-wrapper {
   display: inline-flex;
+}
+.ct-table .caret-wrapper {
+  display: none;
   flex-direction: column;
   align-items: center;
   height: 34px;
