@@ -12556,7 +12556,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "ct-action-bar__right-content"
   }, [_vm._t("right"), _vm._v(" "), (_vm.$slots.extra) ? _c('ctButton', {
     attrs: {
-      "icon": "cogs"
+      "icon": "filter"
     },
     on: {
       "click": _vm.toggle

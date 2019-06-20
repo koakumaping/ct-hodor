@@ -7,7 +7,7 @@
     <div class="ct-action-bar__right text-right clear">
       <div class="ct-action-bar__right-content">
         <slot name="right"></slot>
-        <ctButton v-if="$slots.extra" @click="toggle" icon="cogs"></ctButton>
+        <ctButton v-if="$slots.extra" @click="toggle" icon="filter"></ctButton>
         <ctButton v-if="!hiddenSearchBtn && $slots.right" @click="doSearch" type="primary" icon="search"></ctButton>
       </div>
       <div class="ct-action-bar__right-action">
