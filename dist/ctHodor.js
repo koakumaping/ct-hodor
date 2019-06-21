@@ -544,7 +544,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
   },
   computed: {
     isReadonly: function isReadonly() {
-      return this.readonly !== undefined ? this.readonly : this.p.readonly;
+      return this.readonly !== undefined ? this.readonly : this.p ? this.p.readonly : false;
     }
   },
   inject: ['p'],

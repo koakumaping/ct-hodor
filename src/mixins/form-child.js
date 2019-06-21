@@ -9,7 +9,7 @@ export default {
   },
   computed: {
     isReadonly() {
-      return this.readonly !== undefined ? this.readonly : this.p.readonly
+      return this.readonly !== undefined ? this.readonly : this.p ? this.p.readonly : false
     },
   },
   inject: ['p'],
