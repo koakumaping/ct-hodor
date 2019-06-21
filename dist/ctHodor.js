@@ -8444,7 +8444,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      visible: false,
       hover: false,
       ret: {
         visibility: 'hidden'
@@ -8549,10 +8548,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.appendModal();
       this.ret = _ret;
       document.body.appendChild(this.$refs.list);
+      this.scrollToCurrent();
     },
     hideList: function hideList() {
       this.removeModal();
       this.ret.visibility = 'hidden';
+    },
+    scrollToCurrent: function scrollToCurrent() {
+      var _this4 = this;
+
+      if (this.multiple) return false;
+      this.$nextTick(function () {
+        var ul = _this4.$refs.list;
+        var children = ul.children;
+        for (var i = 0, l = children.length; i < l; ++i) {
+          if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["hasClass"])(children[i], 'current')) {
+            ul.scrollTop = i * 32;
+          }
+        }
+      });
     },
     appendModal: function appendModal() {
       if (!this.modal) {
@@ -12025,17 +12039,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         key: (item + "_" + (_vm._.randomString(4)))
       }, [_vm._v(_vm._s(_vm.$e(item)))])
     }), 1) : _c('span', [_vm._v(_vm._s(line.label))])], 1)
-  }), _vm._v(" "), _vm._l((_vm.max - 1), function(item) {
-    return _c('li', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.data.length > _vm.max),
-        expression: "data.length > max"
-      }],
-      key: item,
-      staticClass: "useless"
-    }, [_vm._v(_vm._s(item))])
   })], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

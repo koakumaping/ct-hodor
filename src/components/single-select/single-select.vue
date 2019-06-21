@@ -45,11 +45,11 @@
         </flex>
         <span v-else>{{ line.label }}</span>
       </li>
-      <li class="useless"
+      <!-- <li class="useless"
         v-for="item in max - 1"
         :key="item"
         v-show="data.length > max"
-      >{{item}}</li>
+      >{{item}}</li> -->
     </ul>
     </span>
   </div>
@@ -58,6 +58,7 @@
 <script>
 import {
   getWindowHeight,
+  hasClass,
 } from 'ct-util'
 import Emitter from '../../mixins/emitter'
 import formChild from '../../mixins/form-child'
@@ -90,7 +91,6 @@ export default {
   },
   data() {
     return {
-      visible: false,
       hover: false,
       ret: {
         visibility: 'hidden',
@@ -194,10 +194,23 @@ export default {
       this.appendModal()
       this.ret = _ret
       document.body.appendChild(this.$refs.list)
+      this.scrollToCurrent()
     },
     hideList() {
       this.removeModal()
       this.ret.visibility = 'hidden'
+    },
+    scrollToCurrent() {
+      if (this.multiple) return false
+      this.$nextTick(() => {
+        const ul = this.$refs.list
+        const children = ul.children
+        for (let i = 0, l = children.length; i < l; ++i) {
+          if (hasClass(children[i], 'current')) {
+            ul.scrollTop = i * 32
+          }
+        }
+      })
     },
     appendModal() {
       if (!this.modal) {
