@@ -7325,13 +7325,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     size: {
-      type: Number,
-      default: 1
+      type: [Number, String],
+      default: ''
     }
   },
   data: function data() {
     return {
-      perPage: Number(window.localStorage.getItem('perPage')) || this.$perPage,
+      perPage: this.size || Number(window.localStorage.getItem('perPage')) || this.$perPage,
       currentPage: 1,
       pageLength: 0,
       pageList: [],

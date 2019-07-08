@@ -183,7 +183,7 @@ export default {
     display: inline
   .ct-input-clear
     position: absolute
-    top: 1px
+    top: -1px
     right: 8px
     transition all 0.3s
     display: block

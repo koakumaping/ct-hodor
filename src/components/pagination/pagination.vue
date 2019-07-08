@@ -76,15 +76,15 @@ export default {
       type: Number,
       default: 1,
     },
-    // 每页数量， ajax用
+    // 每页数量
     size: {
-      type: Number,
-      default: 1,
+      type: [Number, String],
+      default: '',
     },
   },
   data() {
     return {
-      perPage: Number(window.localStorage.getItem('perPage')) || this.$perPage,
+      perPage: this.size || Number(window.localStorage.getItem('perPage')) || this.$perPage,
       currentPage: 1,
       pageLength: 0,
       pageList: [],
