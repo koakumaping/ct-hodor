@@ -202,7 +202,8 @@ export default {
     > .ct-input > .ct-input-addon,
     > .ct-date-picker,
     > .ct-select > .ct-select-name,
-    > .ct-single-select .ct-single-select__name
+    > .ct-single-select .ct-single-select__name,
+    > .ct-remote-select .ct-remote-select__name
       border-color: $color-red
     > .ct-date-picker > .ct-date-picker-input > .ct-input::before
       cursor pointer!important

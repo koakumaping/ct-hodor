@@ -5822,7 +5822,8 @@ body {
 .form section.is-error .form-content > .ct-input > .ct-input-addon,
 .form section.is-error .form-content > .ct-date-picker,
 .form section.is-error .form-content > .ct-select > .ct-select-name,
-.form section.is-error .form-content > .ct-single-select .ct-single-select__name {
+.form section.is-error .form-content > .ct-single-select .ct-single-select__name,
+.form section.is-error .form-content > .ct-remote-select .ct-remote-select__name {
   border-color: #ed3f14;
 }
 .form section.is-error .form-content > .ct-date-picker > .ct-date-picker-input > .ct-input::before {
