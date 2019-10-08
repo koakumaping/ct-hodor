@@ -5955,6 +5955,11 @@ body {
   background-color: #fff;
   border-color: #eee;
 }
+.ct-pagination .ct-single-select {
+  display: block;
+  float: left;
+  margin-right: 8px;
+}
 
 .ct-action-bar {
   margin-bottom: 8px;

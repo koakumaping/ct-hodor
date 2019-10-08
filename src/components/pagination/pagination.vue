@@ -48,7 +48,8 @@
       >
         <iconFont name="more" />
       </li>
-            <li
+      <single-select :data="selectList" width="60" v-model="perPage" @change="reSetPerPage"/>
+      <li
         class="ct-pagination-total"
         v-on:click="reload()"
       >
@@ -59,7 +60,8 @@
 </template>
 
 <script>
-import { clone, randomString } from 'ct-util'
+import { clone, randomString, toNumber } from 'ct-util'
+import singleSelect from '../single-select'
 
 export default {
   name: 'ctPagination',
@@ -82,13 +84,38 @@ export default {
       default: '',
     },
   },
+  components: {
+    singleSelect,
+  },
   data() {
     return {
-      perPage: this.size || Number(window.localStorage.getItem('perPage')) || this.$perPage,
+      perPage: this.size || toNumber(window.localStorage.getItem('perPage')) || 10,
       currentPage: 1,
       pageLength: 0,
       pageList: [],
       searchList: [],
+      selectList: [
+        {
+          key: 'z234sdfc',
+          label: '10',
+          value: 10,
+        },
+        {
+          key: 'afxc34we',
+          label: '20',
+          value: 20,
+        },
+        {
+          key: 'zds534sc',
+          label: '40',
+          value: 40,
+        },
+        {
+          key: 'xg46ygfb',
+          label: '100',
+          value: 100,
+        },
+      ],
       query: {},
     }
   },
@@ -145,7 +172,7 @@ export default {
     setSearchQuery() {
       this.query = clone(this.$route.query)
     },
-    go(index) {
+    go(index, force = false) {
       if (index === '' || index === window.undefined) {
         index = this.pageLength
       }
@@ -156,7 +183,7 @@ export default {
         index = this.pageLength
       }
       // 当前页面不做跳转
-      if (this.currentPage === index) {
+      if (this.currentPage === index && !force) {
         this.$notice.info({
           title: '提示',
           content: '你已经在该页面了',
@@ -165,6 +192,7 @@ export default {
       }
       this.setSearchQuery()
       this.query.page = index
+      this.query.pagesize = this.perPage
       // 保证t在末尾
       delete this.query.t
       this.query.t = +new Date()
@@ -183,6 +211,10 @@ export default {
     },
     reload() {
       this.$emit('reload')
+    },
+    reSetPerPage() {
+      window.localStorage.setItem('perPage', this.perPage)
+      this.go(1, true)
     },
   },
 }
@@ -239,4 +271,8 @@ export default {
           color: #000
           background-color: #fff
           border-color: $border-color
+  .ct-single-select
+    display: block
+    float: left
+    margin-right: 8px
 </style>
