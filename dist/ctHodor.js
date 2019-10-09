@@ -7329,6 +7329,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     size: {
       type: [Number, String],
       default: ''
+    },
+    pageLabel: {
+      type: String,
+      default: '条每页'
     }
   },
   components: {
@@ -7343,19 +7347,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       searchList: [],
       selectList: [{
         key: 'z234sdfc',
-        label: '10',
+        label: '10' + this.pageLabel,
         value: 10
       }, {
         key: 'afxc34we',
-        label: '20',
+        label: '20' + this.pageLabel,
         value: 20
       }, {
         key: 'zds534sc',
-        label: '40',
+        label: '40' + this.pageLabel,
         value: 40
       }, {
         key: 'xg46ygfb',
-        label: '100',
+        label: '100' + this.pageLabel,
         value: 100
       }],
       query: {}
@@ -12218,7 +12222,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1), _vm._v(" "), _c('single-select', {
     attrs: {
       "data": _vm.selectList,
-      "width": "60"
+      "width": "100"
     },
     on: {
       "change": _vm.reSetPerPage

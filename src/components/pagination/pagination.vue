@@ -48,7 +48,7 @@
       >
         <iconFont name="more" />
       </li>
-      <single-select :data="selectList" width="60" v-model="perPage" @change="reSetPerPage"/>
+      <single-select :data="selectList" width="100" v-model="perPage" @change="reSetPerPage"/>
       <li
         class="ct-pagination-total"
         v-on:click="reload()"
@@ -83,6 +83,10 @@ export default {
       type: [Number, String],
       default: '',
     },
+    pageLabel: {
+      type: String,
+      default: '条每页',
+    },
   },
   components: {
     singleSelect,
@@ -97,22 +101,22 @@ export default {
       selectList: [
         {
           key: 'z234sdfc',
-          label: '10',
+          label: `10${this.pageLabel}`,
           value: 10,
         },
         {
           key: 'afxc34we',
-          label: '20',
+          label: `20${this.pageLabel}`,
           value: 20,
         },
         {
           key: 'zds534sc',
-          label: '40',
+          label: `40${this.pageLabel}`,
           value: 40,
         },
         {
           key: 'xg46ygfb',
-          label: '100',
+          label: `100${this.pageLabel}`,
           value: 100,
         },
       ],
