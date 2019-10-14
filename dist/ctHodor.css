@@ -6469,3 +6469,14 @@ body {
 .popup-leave-active {
   opacity: 0;
 }
+
+.ct-poptip {
+  position: relative;
+  display: inline-block;
+}
+.ct-action-bar .ct-poptip-warp {
+  margin-bottom: 0 !important;
+}
+.ct-popover-warp .ct-popover-close {
+  float: right;
+}

@@ -46,6 +46,7 @@ const ctCard = require('./components/card').default
 const ctSpin = require('./components/spin')
 
 const popup = require('./components/popup')
+const ctPoptip = require('./components/poptip')
 
 const components = {
   iconFont,
@@ -90,6 +91,7 @@ const components = {
   ctCard,
   ctSpin,
   popup,
+  ctPoptip,
 }
 
 const {
