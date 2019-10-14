@@ -6433,3 +6433,39 @@ body {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 }
+
+.ct-popup {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  overflow-y: auto;
+  background-color: #f0f2f5;
+  backface-visibility: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+.ct-popup.ct-popup-right {
+  width: 375px;
+  height: 100%;
+  left: auto;
+  bottom: auto;
+  top: 0;
+  right: 0;
+  max-height: 100%;
+  box-shadow: -4px 3px 9px rgba(0,21,41,0.08);
+}
+.popup-float-bottom-enter,
+.popup-float-bottom-leave-active {
+  transform: translate3d(0, 100%, 0);
+}
+.popup-float-right-enter,
+.popup-float-right-leave-active {
+  transform: translate3d(100%, 0, 0);
+}
+.popup-enter,
+.popup-leave-active {
+  opacity: 0;
+}
