@@ -33,7 +33,7 @@ const { ctFormSearch, ctFormSearchLine } = require('./components/form-search')
 
 // 布局
 const { ctRow, ctCol } = require('./components/layout')
-const { flex, flexItem } = require('./components/layout')
+const { flex, flexItem, WhiteSpace } = require('./components/layout')
 
 // 分页
 const ctPagination = require('./components/pagination').default
@@ -80,6 +80,7 @@ const components = {
   ctCol,
   flex,
   flexItem,
+  WhiteSpace,
   ctNotification,
   ctActionBar,
   ctFilterbar,

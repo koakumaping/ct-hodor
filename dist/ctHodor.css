@@ -5898,6 +5898,22 @@ body {
   margin-left: 0;
 }
 
+.ct-white-space.ct-white-space-xs {
+  padding: 1.5px 0;
+}
+.ct-white-space.ct-white-space-sm {
+  padding: 3px 0;
+}
+.ct-white-space.ct-white-space-md {
+  padding: 4.5px 0;
+}
+.ct-white-space.ct-white-space-lg {
+  padding: 7.5px 0;
+}
+.ct-white-space.ct-white-space-xl {
+  padding: 10.5px 0;
+}
+
 .ct-pagination {
   font-size: 14px;
   margin-top: 16px;

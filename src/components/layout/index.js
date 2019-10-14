@@ -4,4 +4,6 @@ import ctCol from './col'
 import flex from './flex'
 import flexItem from './flex-item'
 
-export { ctRow, ctCol, flex, flexItem }
+import WhiteSpace from './white-space'
+
+export { ctRow, ctCol, flex, flexItem, WhiteSpace }
