@@ -6526,3 +6526,108 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   transition: transform 0.35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
 }
+
+.ct-tabs {
+  background-color: #fff;
+  overflow: hidden;
+}
+.ct-tabs > .ct-tabs-nav {
+  position: relative;
+  font-size: 0;
+  margin-bottom: 8px;
+}
+.ct-tabs > .ct-tabs-nav:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #e5e7ea;
+  z-index: 1;
+}
+.ct-tabs > .ct-tabs-nav > .ct-tabs-item {
+  padding: 0 20px;
+  height: 41px;
+  box-sizing: border-box;
+  line-height: 40px;
+  display: inline-block;
+  list-style: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.ct-tabs > .ct-tabs-nav > .ct-tabs__active-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #ee6b5d;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  list-style: none;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-nav {
+  float: left;
+  margin-right: 8px;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-nav:after {
+  left: auto;
+  right: 0;
+  height: 100%;
+  width: 2px;
+  bottom: auto;
+  top: 0;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-nav > .ct-tabs-item {
+  display: block;
+  text-align: right;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-nav > .ct-tabs__active-bar {
+  left: auto;
+  right: 0;
+  top: 0;
+  bottom: auto;
+  width: 2px;
+  height: 40px;
+}
+.ct-tabs.ct-tabs__right > .ct-tabs-nav {
+  float: right;
+  margin-left: 8px;
+}
+.ct-tabs.ct-tabs__right > .ct-tabs-nav:after {
+  left: 0;
+  right: auto;
+  height: 100%;
+  width: 2px;
+  bottom: auto;
+  top: 0;
+}
+.ct-tabs.ct-tabs__right > .ct-tabs-nav > .ct-tabs-item {
+  display: block;
+  text-align: right;
+}
+.ct-tabs.ct-tabs__right > .ct-tabs-nav > .ct-tabs__active-bar {
+  left: 0;
+  right: auto;
+  top: 0;
+  bottom: auto;
+  width: 2px;
+  height: 40px;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-nav,
+.ct-tabs.ct-tabs__right > .ct-tabs-nav {
+  margin-bottom: 0;
+  height: 100%;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-nav > .ct-tabs-item,
+.ct-tabs.ct-tabs__right > .ct-tabs-nav > .ct-tabs-item {
+  height: 40px;
+}
+.ct-tabs.ct-tabs__left > .ct-tabs-content,
+.ct-tabs.ct-tabs__right > .ct-tabs-content {
+  height: 100%;
+}
+
+.ct-tab-pane {
+  height: 100%;
+}

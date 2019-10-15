@@ -50,6 +50,8 @@ const ctPoptip = require('./components/poptip')
 
 const ctSwitch = require('./components/switch')
 
+const { ctTabs, ctTabPane } = require('./components/tabs')
+
 const components = {
   iconFont,
   faFont,
@@ -95,6 +97,8 @@ const components = {
   popup,
   ctPoptip,
   ctSwitch,
+  ctTabs,
+  ctTabPane,
 }
 
 const {
