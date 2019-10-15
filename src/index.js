@@ -48,6 +48,8 @@ const ctSpin = require('./components/spin')
 const popup = require('./components/popup')
 const ctPoptip = require('./components/poptip')
 
+const ctSwitch = require('./components/switch')
+
 const components = {
   iconFont,
   faFont,
@@ -92,6 +94,7 @@ const components = {
   ctSpin,
   popup,
   ctPoptip,
+  ctSwitch,
 }
 
 const {

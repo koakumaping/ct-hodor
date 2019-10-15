@@ -6480,3 +6480,49 @@ body {
 .ct-popover-warp .ct-popover-close {
   float: right;
 }
+
+.ct-switch > input[type=checkbox] {
+  position: relative;
+  width: 52px;
+  height: 32px;
+  border: 1px solid #e0e0e0;
+  outline: 0;
+  border-radius: 16px;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  -webkit-transition: background-color 0.1s, border 0.1s;
+  -webkit-appearance: none;
+}
+.ct-switch > input[type=checkbox]:checked {
+  border-color: #04b7a8;
+  background-color: #04b7a8;
+}
+.ct-switch > input[type=checkbox]:checked::before {
+  transform: scale(0);
+}
+.ct-switch > input[type=checkbox]:checked::after {
+  transform: translateX(20px);
+}
+.ct-switch > input[type=checkbox]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #fdfdfd;
+  transition: transform 0.35s cubic-bezier(0.45, 1, 0.4, 1);
+}
+.ct-switch > input[type=checkbox]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  transition: transform 0.35s cubic-bezier(0.4, 0.4, 0.25, 1.35);
+}
