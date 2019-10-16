@@ -52,6 +52,8 @@ const ctSwitch = require('./components/switch')
 
 const { ctTabs, ctTabPane } = require('./components/tabs')
 
+const multiSelect = require('./components/multi-select')
+
 const components = {
   iconFont,
   faFont,
@@ -99,6 +101,7 @@ const components = {
   ctSwitch,
   ctTabs,
   ctTabPane,
+  multiSelect,
 }
 
 const {
