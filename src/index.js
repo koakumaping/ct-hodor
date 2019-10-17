@@ -57,6 +57,8 @@ const listCard = require('./components/list-card')
 
 const ctDivider = require('./components/divider')
 
+const treeSelect = require('./components/tree-select')
+
 const components = {
   iconFont,
   faFont,
@@ -107,6 +109,7 @@ const components = {
   multiSelect,
   listCard,
   ctDivider,
+  treeSelect,
 }
 
 const {

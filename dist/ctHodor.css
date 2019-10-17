@@ -6869,3 +6869,78 @@ body {
   position: relative;
   top: -0.06em;
 }
+
+.ct-tree-select_checkbox {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  user-select: none;
+  font-size: 14px;
+}
+.ct-tree-select_checkbox.is-checked {
+  color: #ccc;
+}
+.ct-tree-select_checkbox label {
+  display: block;
+  position: relative;
+  -webkit-tap-highlight-color: #fff;
+  user-select: none;
+  padding-left: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+  line-height: 16px;
+  padding: 8px 0;
+}
+.ct-tree-select_checkbox label > span {
+  display: inline-block;
+  margin: 1px 0 0 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  outline: none;
+  transition: all ease 0.2s;
+  -webkit-user-select: none;
+  border: 1px solid #d3d3d3;
+  vertical-align: top;
+  background: #fff;
+  transition: all 0.3s;
+}
+.ct-tree-select_checkbox label > span.checked {
+  border-color: #ee6b5d;
+  background-color: #ee6b5d;
+  user-select: none;
+}
+.ct-tree-select_checkbox label > span.checked::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 27px;
+  height: 9px;
+  width: 5px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  opacity: 1;
+  transform: translate3d(8px, -16px, 0) rotateZ(45deg) scale(1);
+}
+.ct-tree-select_checkbox label input[type=checkbox],
+.ct-tree-select_checkbox label input[type=radio] {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  user-select: none;
+  position: absolute;
+  left: -9999px;
+}
+.ct-tree-select__list .ct-tree-select__list-item {
+  line-height: 32px;
+  padding: 0 8px;
+}
+.ct-tree-select__nav {
+  padding: 4px;
+  padding-top: 8px;
+}
+.ct-tree-select__nav .ct-tree-select__nav-item:last-child {
+  color: #ccc;
+}
