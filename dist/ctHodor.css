@@ -6755,3 +6755,95 @@ body {
   color: #fff;
   background-color: #fff;
 }
+
+.ct-card-list .ct-list-card {
+  margin-bottom: 12px;
+  margin-left: 0;
+  margin-right: 12px;
+}
+.ct-list-card {
+  padding: 20px;
+  min-height: 188px;
+}
+.ct-list-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+  border-color: rgba(0,0,0,0.09);
+}
+.ct-list-card.ct-list-card_btn {
+  border: 0;
+  padding: 0;
+  height: 188px;
+}
+.ct-list-card .ct-button {
+  background-color: #fff;
+  border-color: #d9d9d9;
+  border-radius: 2px;
+  color: rgba(0,0,0,0.45);
+  width: 100%;
+  height: 100%;
+}
+.ct-card-meta {
+  margin: -4px 0;
+  zoom: 1;
+}
+.ct-card-meta .ct-card-meta-avatar {
+  padding-right: 16px;
+  float: left;
+}
+.ct-card-meta .ct-card-meta-avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+}
+.ct-card-meta .ct-card-meta-detail {
+  overflow: hidden;
+}
+.ct-card-meta .ct-card-meta-detail > div:not(:last-child) {
+  margin-bottom: 8px;
+}
+.ct-card-meta .ct-card-meta-detail .ct-card-meta-title {
+  margin-bottom: 12px;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: rgba(0,0,0,0.85);
+  font-weight: 500;
+}
+.ct-card-meta .ct-card-meta-detail .ct-card-meta-title > a {
+  color: rgba(0,0,0,0.85);
+  display: inline-block;
+  max-width: 100%;
+}
+.ct-card-meta .ct-card-meta-detail .ct-card-meta-description {
+  color: rgba(0,0,0,0.45);
+}
+.ct-card-meta .ct-card-meta-detail .ct-card-meta-description > div {
+  min-height: 64px;
+  line-height: 1.5;
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  display: -webkit-box;
+  font-size: 14px;
+}
+.ct-card-actions {
+  background: #f7f9fa;
+  border-top: 1px solid #e8e8e8;
+  zoom: 1;
+  list-style: none;
+  margin: 21px -20px -20px;
+  padding: 0;
+  display: flex;
+}
+.ct-card-actions > li {
+  float: left;
+  text-align: center;
+  margin: 8px 0;
+  color: rgba(0,0,0,0.45);
+  cursor: pointer;
+  flex: 1;
+}
+.ct-card-actions > li:not(:last-child) {
+  border-right: 1px solid #e8e8e8;
+}
