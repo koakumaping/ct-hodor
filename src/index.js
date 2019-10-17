@@ -55,6 +55,8 @@ const { ctTabs, ctTabPane } = require('./components/tabs')
 const multiSelect = require('./components/multi-select')
 const listCard = require('./components/list-card')
 
+const ctDivider = require('./components/divider')
+
 const components = {
   iconFont,
   faFont,
@@ -104,6 +106,7 @@ const components = {
   ctTabPane,
   multiSelect,
   listCard,
+  ctDivider,
 }
 
 const {
