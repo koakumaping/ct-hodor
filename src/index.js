@@ -59,6 +59,8 @@ const ctDivider = require('./components/divider')
 
 const treeSelect = require('./components/tree-select')
 
+const spinner = require('./components/spinner')
+
 const components = {
   iconFont,
   faFont,
@@ -110,6 +112,7 @@ const components = {
   listCard,
   ctDivider,
   treeSelect,
+  spinner,
 }
 
 const {

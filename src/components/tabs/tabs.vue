@@ -247,6 +247,5 @@ export default {
         height 40px
     > .ct-tabs-content
       height 100%
-      // position relative
-      // overflow hidden
+      overflow auto
 </style>
