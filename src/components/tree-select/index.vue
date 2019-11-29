@@ -3,6 +3,9 @@
     class="ct-tree-select-item"
     arrow
     @click="show = true"
+    :loading="loading"
+    :readonly="isReadonly"
+    :type="isReadonly ? 'text' : ''"
   >
     <span v-if="currentValue && currentValue.length === 0"><slot />{{ label || placeholder }}</span>
     <span
@@ -64,9 +67,11 @@
 
 <script>
 import WhiteSpace from '../layout/white-space'
+import formChild from '../../mixins/form-child'
 
 export default {
   name: 'TreeSelect',
+  mixins: [formChild],
   components: {
     WhiteSpace,
   },
@@ -80,6 +85,10 @@ export default {
       default: function d() {
         return []
       },
+    },
+    loading: {
+      type: [Boolean],
+      default: false,
     },
     placeholder: {
       type: String,
