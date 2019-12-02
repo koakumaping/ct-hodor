@@ -13641,7 +13641,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "mouseover": _vm.handleMouseIn,
       "mouseout": _vm.handleMouseOut
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c('faFont', {
+  }, [_c('span', {
+    attrs: {
+      "title": _vm.name
+    }
+  }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c('faFont', {
     directives: [{
       name: "show",
       rawName: "v-show",

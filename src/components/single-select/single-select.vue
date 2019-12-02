@@ -12,7 +12,7 @@
       @mouseover="handleMouseIn"
       @mouseout="handleMouseOut"
     >
-      <span>{{ name }}</span>
+      <span :title="name">{{ name }}</span>
       <!-- <fa-font class="ct-single-select__arrow" name="angle-down" /> -->
       <faFont class="ct-single-select__arrow"
         v-show="!showClearBtn"
