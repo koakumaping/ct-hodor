@@ -8606,11 +8606,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     initData: Boolean,
 
-    bigData: Boolean
+    bigData: Boolean,
+
+    clearable: Boolean
   },
   data: function data() {
     return {
       visible: false,
+      hover: false,
       searchName: '',
       unwatch: null,
       ret: {
@@ -8640,6 +8643,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _ret.height = height + 'px';
       _ret.zIndex = 10;
       return _ret;
+    },
+    showClearBtn: function showClearBtn() {
+      if (this.isReadonly) return false;
+      if (!this.clearable) return false;
+      if (!this.hover) return false;
+      if (this.currentValue !== '') return true;
+      return false;
     }
   },
   watch: {
@@ -8728,6 +8738,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } catch (error) {
         (function () {})();
       }
+    },
+    handleMouseIn: function handleMouseIn() {
+      if (!this.clearable || this.isReadonly) return false;
+      this.hover = true;
+    },
+    handleMouseOut: function handleMouseOut() {
+      if (!this.clearable || this.isReadonly) return false;
+      this.hover = false;
+    },
+    clearValue: function clearValue() {
+      this.currentValue = '';
+      this.label = '';
+      this.$emit('clear');
     }
   },
   beforeDestroy: function beforeDestroy() {
@@ -13645,7 +13668,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "title": _vm.name
     }
-  }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c('faFont', {
+  }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c('fa-font', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -15068,7 +15091,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     style: ({
       width: (_vm.width + "px")
-    })
+    }),
+    on: {
+      "mouseover": _vm.handleMouseIn,
+      "mouseout": _vm.handleMouseOut
+    }
   }, [_c('dl', {
     directives: [{
       name: "show",
@@ -15111,11 +15138,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('fa-font', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.showClearBtn),
+      expression: "!showClearBtn"
+    }],
     staticClass: "ct-remote-select__arrow",
     attrs: {
       "name": "angle-down"
     }
-  }), _vm._v(" "), (!_vm.bigData) ? _c('ul', {
+  }), _vm._v(" "), _c('dl', {
+    on: {
+      "click": function($event) {
+        $event.stopPropagation();
+        return _vm.clearValue($event)
+      }
+    }
+  }, [_c('fa-font', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showClearBtn),
+      expression: "showClearBtn"
+    }],
+    staticClass: "ct-remote-select__arrow",
+    attrs: {
+      "name": "times-circle"
+    }
+  })], 1), _vm._v(" "), (!_vm.bigData) ? _c('ul', {
     directives: [{
       name: "show",
       rawName: "v-show",

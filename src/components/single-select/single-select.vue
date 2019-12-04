@@ -14,10 +14,9 @@
     >
       <span :title="name">{{ name }}</span>
       <!-- <fa-font class="ct-single-select__arrow" name="angle-down" /> -->
-      <faFont class="ct-single-select__arrow"
+      <fa-font class="ct-single-select__arrow"
         v-show="!showClearBtn"
-        name="angle-down">
-      </faFont>
+        name="angle-down" />
       <dl v-on:click.stop="clearValue">
         <faFont class="ct-single-select__arrow"
           v-show="showClearBtn"

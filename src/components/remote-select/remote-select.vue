@@ -7,8 +7,14 @@
       'is-readonly': isReadonly,
     }"
     ref="base"
+    @mouseover="handleMouseIn"
+    @mouseout="handleMouseOut"
   >
-    <dl class="ct-remote-select__name" @click="showList" v-show="!visible">
+    <dl
+      class="ct-remote-select__name"
+      @click="showList"
+      v-show="!visible"
+    >
       <span :title="name">{{ name }}</span>
     </dl>
 
@@ -20,7 +26,13 @@
       ref="input"
     />
 
-    <fa-font class="ct-remote-select__arrow" name="angle-down" />
+    <fa-font class="ct-remote-select__arrow" name="angle-down" v-show="!showClearBtn"/>
+    <dl v-on:click.stop="clearValue">
+      <fa-font class="ct-remote-select__arrow"
+        v-show="showClearBtn"
+        name="times-circle">
+      </fa-font>
+    </dl>
 
     <ul ref="list" class="ct-remote-select__list" :style="listStyle" v-show="visible" v-if="!bigData">
       <li v-if="data.length === 0 && searchName !== ''">{{ loading ? '查询中' : '暂无相关数据' }}</li>
@@ -106,10 +118,13 @@ export default {
     initData: Boolean,
     // 大量数据的显示方式
     bigData: Boolean,
+    // 可以清空
+    clearable: Boolean,
   },
   data() {
     return {
       visible: false,
+      hover: false,
       searchName: '',
       unwatch: null,
       ret: {
@@ -141,6 +156,13 @@ export default {
       _ret.height = `${height}px`
       _ret.zIndex = 10
       return _ret
+    },
+    showClearBtn() {
+      if (this.isReadonly) return false
+      if (!this.clearable) return false
+      if (!this.hover) return false
+      if (this.currentValue !== '') return true
+      return false
     },
   },
   watch: {
@@ -227,6 +249,19 @@ export default {
       } catch (error) {
         (() => {})()
       }
+    },
+    handleMouseIn() {
+      if (!this.clearable || this.isReadonly) return false
+      this.hover = true
+    },
+    handleMouseOut() {
+      if (!this.clearable || this.isReadonly) return false
+      this.hover = false
+    },
+    clearValue() {
+      this.currentValue = ''
+      this.label = ''
+      this.$emit('clear')
     },
   },
   beforeDestroy() {
