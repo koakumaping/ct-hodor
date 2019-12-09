@@ -7985,6 +7985,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     ajax: Boolean,
+    selectPageSizeList: {
+      type: Boolean,
+      default: true
+    },
 
     page: {
       type: Number,
@@ -13894,7 +13898,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "more"
     }
-  })], 1), _vm._v(" "), _c('single-select', {
+  })], 1), _vm._v(" "), (_vm.selectPageSizeList) ? _c('single-select', {
     attrs: {
       "data": _vm.selectList,
       "width": "100"
@@ -13909,7 +13913,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "perPage"
     }
-  }), _vm._v(" "), _c('li', {
+  }) : _vm._e(), _vm._v(" "), _c('li', {
     staticClass: "ct-pagination-total",
     on: {
       "click": function($event) {

@@ -48,7 +48,7 @@
       >
         <iconFont name="more" />
       </li>
-      <single-select :data="selectList" width="100" v-model="perPage" @change="reSetPerPage"/>
+      <single-select :data="selectList" width="100" v-model="perPage" @change="reSetPerPage" v-if="selectPageSizeList"/>
       <li
         class="ct-pagination-total"
         v-on:click="reload()"
@@ -73,6 +73,10 @@ export default {
     },
     // 以ajax方式翻页
     ajax: Boolean,
+    selectPageSizeList: {
+      type: Boolean,
+      default: true,
+    },
     // 第几页， ajax用
     page: {
       type: Number,
