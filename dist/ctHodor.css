@@ -6882,6 +6882,32 @@ body {
 .ct-tree-select_checkbox.is-checked {
   color: #ccc;
 }
+.ct-tree-select_checkbox.readonly:before,
+.ct-tree-select_checkbox.disabled:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: not-allowed;
+}
+.ct-tree-select_checkbox.readonly label {
+  cursor: default;
+  color: #ccc;
+}
+.ct-tree-select_checkbox.disabled:before {
+  cursor: not-allowed;
+}
+.ct-tree-select_checkbox.disabled label {
+  cursor: not-allowed;
+  color: #ccc;
+}
+.ct-tree-select_checkbox.disabled label > span {
+  border-color: #ccc;
+  background-color: #d3d3d3;
+}
 .ct-tree-select_checkbox label {
   display: block;
   position: relative;

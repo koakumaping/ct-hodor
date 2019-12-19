@@ -10298,6 +10298,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    prevent: function prevent(e, payload) {
+      if (payload.readonly || payload.disable) e.preventDefault();
+    },
     isFolder: function isFolder(item) {
       if (this._.hasOwn(item, 'children')) return true;
       if (item.children && item.children.length === 0) return true;
@@ -10366,6 +10369,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     singleSelect: function singleSelect(payload) {
+      if (payload.disable) {
+        payload.checked = false;
+        return false;
+      }
       this.itemChanged(payload);
       if (!this.anySelection && this.isFolder(payload)) {
         this.goNextLevel(payload);
@@ -14664,17 +14671,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "ct-tree-select__list-item clear",
       attrs: {
         "label": item.label,
-        "value": item.id,
-        "disabled": item.disabled
+        "value": item.id
       }
     }, [_c('div', {
       class: [_vm.isFolder(item) ? 'ct-20' : 'ct-24']
     }, [(_vm.showCheckbox(item)) ? _c('div', {
       staticClass: "ct-tree-select_checkbox",
       class: {
-        'is-checked': item.checked
+        'is-checked': item.checked, 'disabled': item.disable
       }
-    }, [_c('label', [_c('span', {
+    }, [_c('label', {
+      on: {
+        "click": function($event) {
+          return _vm.prevent($event, item)
+        }
+      }
+    }, [_c('span', {
       class: {
         'checked': item.checked
       }
@@ -14726,7 +14738,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "name": "file"
       }
-    }), _vm._v("\n            " + _vm._s(item.label))], 1) : _vm._e()]), _vm._v(" "), (_vm.isFolder(item)) ? _c('div', {
+    }), _vm._v("\n            " + _vm._s(item.label) + "\n          ")], 1) : _vm._e()]), _vm._v(" "), (_vm.isFolder(item)) ? _c('div', {
       staticClass: "ct-4 text-center pointer",
       on: {
         "click": function($event) {

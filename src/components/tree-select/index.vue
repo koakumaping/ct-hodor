@@ -37,12 +37,11 @@
           :key="item.key"
           :label="item.label"
           :value="item.id"
-          :disabled="item.disabled"
           class="ct-tree-select__list-item clear"
         >
           <div :class="[isFolder(item) ? 'ct-20' : 'ct-24']">
-            <div class="ct-tree-select_checkbox" :class="{ 'is-checked': item.checked }" v-if="showCheckbox(item)">
-              <label>
+            <div class="ct-tree-select_checkbox" :class="{ 'is-checked': item.checked, 'disabled': item.disable }" v-if="showCheckbox(item)">
+              <label @click="prevent($event, item)">
                 <span :class="{ 'checked': item.checked }">
                   <input type="checkbox" v-model="item.checked" @change="itemChanged(item)">
                 </span>
@@ -52,7 +51,8 @@
             <div v-if="showFolder(item)" @click="singleSelect(item)" class="pointer">
               <fa-font name="folder" v-if="isFolder(item)"/>
               <fa-font name="file" v-else/>
-              {{ item.label }}</div>
+              {{ item.label }}
+            </div>
           </div>
           <div class="ct-4 text-center pointer" @click="goNextLevel(item)" v-if="isFolder(item)">
             <fa-font name="map-signs"></fa-font> 下级</div>
@@ -130,6 +130,9 @@ export default {
     }
   },
   methods: {
+    prevent(e, payload) {
+      if (payload.readonly || payload.disable) e.preventDefault()
+    },
     isFolder(item) {
       if (this._.hasOwn(item, 'children')) return true
       if (item.children && item.children.length === 0) return true
@@ -191,6 +194,10 @@ export default {
       })
     },
     singleSelect(payload) {
+      if (payload.disable) {
+        payload.checked = false
+        return false
+      }
       this.itemChanged(payload)
       if (!this.anySelection && this.isFolder(payload)) {
         this.goNextLevel(payload)
@@ -332,6 +339,27 @@ export default {
   font-size: 14px
   &.is-checked
     color: #ccc
+  &.readonly:before,
+  &.disabled:before
+    content: ''
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 1
+    cursor: not-allowed
+  &.readonly label
+    cursor: default
+    color: #ccc
+  &.disabled:before
+    cursor: not-allowed
+  &.disabled label
+    cursor: not-allowed
+    color: #ccc
+    & > span
+      border-color: #cccccc
+      background-color: #d3d3d3
   label
     display: block
     position: relative
