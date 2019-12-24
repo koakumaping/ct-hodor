@@ -329,7 +329,7 @@ export default {
       }
 
       // 当月日期计算
-      const thisMonthAllDays = getDayCountOfMonth(thisMonth)
+      const thisMonthAllDays = getDayCountOfMonth(thisMonth, thisYear)
       for (let j = 1; j < thisMonthAllDays + 1; ++j) {
         // 此时渲染的日期
         const _cellItem = clone(cellItem)
@@ -354,7 +354,7 @@ export default {
       if (thisMonth === 11) {
         nextYear += 1
       }
-      const nextMonth = getNextMonth(thisMonth)
+      const nextMonth = getNextMonth(thisMonth, nextYear)
       const nextMonthEndDay = 42 - this.cells.length
       for (let k = 1; k < nextMonthEndDay + 1; ++k) {
         const _cellItem = clone(cellItem)
