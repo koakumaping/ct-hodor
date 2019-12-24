@@ -6560,7 +6560,7 @@ var prefixCls = 'ct-date-picker';
         this.cells.push(_cellItem);
       }
 
-      var thisMonthAllDays = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["d" /* getDayCountOfMonth */])(thisMonth);
+      var thisMonthAllDays = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["d" /* getDayCountOfMonth */])(thisMonth, thisYear);
       for (var j = 1; j < thisMonthAllDays + 1; ++j) {
         var _cellItem2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(cellItem);
 
@@ -6581,7 +6581,7 @@ var prefixCls = 'ct-date-picker';
       if (thisMonth === 11) {
         nextYear += 1;
       }
-      var nextMonth = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["e" /* getNextMonth */])(thisMonth);
+      var nextMonth = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__util__["e" /* getNextMonth */])(thisMonth, nextYear);
       var nextMonthEndDay = 42 - this.cells.length;
       for (var k = 1; k < nextMonthEndDay + 1; ++k) {
         var _cellItem3 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["clone"])(cellItem);
@@ -10271,14 +10271,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     anySelection: Boolean,
 
-    noChildren: Boolean
+    noChildren: Boolean,
+
+    displayMethod: {
+      type: String,
+      default: 'normal'
+    }
   },
   watch: {
     data: {
       immediate: true,
       handler: function handler(val) {
+        this.clear();
         this.list = val;
       }
+    }
+  },
+  computed: {
+    labelCount: function labelCount() {
+      if (!this.label) return 0;
+      if (this.label.indexOf(' ') === -1 && this.label.indexOf(',') === -1) return 1;
+
+      var spaceLength = 0;
+      var dotLength = 0;
+
+      if (this.label.indexOf(' ') > 0) {
+        spaceLength = this.label.split(' ').length;
+      }
+      if (this.label.indexOf(',') > 0) {
+        dotLength = this.label.split(',').length;
+      }
+
+      return spaceLength + dotLength;
+    },
+    allChecked: function allChecked() {
+      return this.list.filter(function (item) {
+        return !item.disable;
+      }).length === this.list.filter(function (item) {
+        return item.checked;
+      }).length;
+    },
+    allDisabled: function allDisabled() {
+      return this.list.filter(function (item) {
+        return item.disable;
+      }).length === this.list.length;
     }
   },
   data: function data() {
@@ -10301,6 +10337,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     prevent: function prevent(e, payload) {
       if (payload.readonly || payload.disable) e.preventDefault();
     },
+    selectAllItem: function selectAllItem(e) {
+      var _this = this;
+
+      e.preventDefault();
+      var checkeStatus = !this.allChecked;
+      if (this.allDisabled && checkeStatus) return false;
+      if (this.anySelection) {
+        this.list.forEach(function (item) {
+          if (item.disable) return false;
+          item.checked = checkeStatus;
+          _this.itemChanged(item);
+        });
+        return false;
+      }
+      this.list.forEach(function (item) {
+        if (item.disable) return false;
+        if (item.children && item.children.length > 0) return false;
+        item.checked = checkeStatus;
+        _this.itemChanged(item);
+      });
+    },
     isFolder: function isFolder(item) {
       if (this._.hasOwn(item, 'children')) return true;
       if (item.children && item.children.length === 0) return true;
@@ -10318,12 +10375,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return false;
     },
     goIndex: function goIndex(item, index) {
-      var _this = this;
+      var _this2 = this;
 
-      console.log(item, index);
       if (index === this.navList.length - 1) return false;
       this.$nextTick(function () {
-        _this.navList = _this.navList.slice(0, index + 1);
+        _this2.navList = _this2.navList.slice(0, index + 1);
       });
       var id = item.value;
       if (id) {
@@ -10341,27 +10397,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.list = payload.children;
     },
     getListById: function getListById(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.id = id;
       this.walkList(this.data).then(function (res) {
-        _this2.list = res;
+        _this3.list = res;
       });
     },
     walkList: function walkList() {
-      var _this3 = this;
+      var _this4 = this;
 
       var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
       return new Promise(function (resolve, reject) {
         for (var i = 0, l = list.length; i < l; ++i) {
           var item = list[i];
-          if (item.value === _this3.id) {
+          if (item.value === _this4.id) {
             console.log(item, item.children);
             resolve(item.children);
             return false;
-          } else if (_this3._.hasOwn(item, 'children') && item.children.length > 0) {
-            _this3.walkList(item.children).then(function (res) {
+          } else if (_this4._.hasOwn(item, 'children') && item.children.length > 0) {
+            _this4.walkList(item.children).then(function (res) {
               resolve(res);
             });
           }
@@ -10386,26 +10442,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.show = false;
     },
     handleClick: function handleClick() {
-      var _this4 = this;
+      var _this5 = this;
 
       var _list = [];
       var walkList = function walkList() {
-        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this4.data;
+        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this5.data;
 
         for (var i = 0, l = list.length; i < l; ++i) {
           var item = list[i];
           if (item.checked) {
-            var _item = _this4._.clone(item);
+            var _item = _this5._.clone(item);
             delete _item.checked;
             delete _item.children;
             _list.push(_item);
           }
-          if (!_this4.noChildren) {
-            if (_this4._.hasOwn(item, 'children') && item.children.length > 0) {
+          if (!_this5.noChildren) {
+            if (_this5._.hasOwn(item, 'children') && item.children.length > 0) {
               walkList(item.children);
             }
           } else {
-            if (!item.checked && _this4._.hasOwn(item, 'children') && item.children.length > 0) {
+            if (!item.checked && _this5._.hasOwn(item, 'children') && item.children.length > 0) {
               walkList(item.children);
             }
           }
@@ -10413,7 +10469,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
 
       walkList(this.data);
-      console.log('_list', _list);
       if (this.singleSelection && _list.length > 1) {
         this.$n.warn('只能选择一项');
         return false;
@@ -10470,15 +10525,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       payload.replaced = false;
     },
     clear: function clear() {
-      var _this5 = this;
+      var _this6 = this;
 
       var walkList = function walkList() {
-        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this5.data;
+        var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this6.data;
 
         for (var i = 0, l = list.length; i < l; ++i) {
           var item = list[i];
           if (item.checked) item.checked = false;
-          if (_this5._.hasOwn(item, 'children') && item.children.length > 0) {
+          if (_this6._.hasOwn(item, 'children') && item.children.length > 0) {
             walkList(item.children);
           }
         }
@@ -14615,10 +14670,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.show = true
       }
     }
-  }, [(_vm.currentValue && _vm.currentValue.length === 0) ? _c('span', [_vm._t("default"), _vm._v(_vm._s(_vm.label || _vm.placeholder))], 2) : _vm._e(), _vm._v(" "), _vm._l((_vm.currentValue), function(item, index) {
-    return _c('span', {
+  }, [(_vm.displayMethod === 'count') ? _c('span', [_vm._t("default"), _vm._v("\n    " + _vm._s(("已选择" + _vm.labelCount + "项")) + "\n  ")], 2) : _vm._e(), _vm._v(" "), (_vm.currentValue && _vm.currentValue.length === 0 && _vm.displayMethod === 'normal') ? _c('span', [_vm._v(_vm._s(_vm.label || _vm.placeholder))]) : _vm._e(), _vm._v(" "), _vm._l((_vm.currentValue), function(item, index) {
+    return (_vm.currentValue && _vm.currentValue.length !== 0 && _vm.displayMethod === 'normal' && _vm.labelCount > 0) ? _c('span', {
       key: item.key + index
-    }, [(index !== 0 && !item.replaced) ? _c('small', [_vm._v(",")]) : _vm._e(), _vm._v(" "), (index !== 0 && item.replaced) ? _c('small') : _vm._e(), _vm._v("\n    " + _vm._s(item.labelList) + "\n  ")])
+    }, [(index !== 0 && !item.replaced) ? _c('small', [_vm._v(",")]) : _vm._e(), _vm._v(" "), (index !== 0 && item.replaced) ? _c('small') : _vm._e(), _vm._v("\n    " + _vm._s(item.labelList) + "\n  ")]) : _vm._e()
   }), _vm._v(" "), _c('popup', {
     model: {
       value: (_vm.show),
@@ -14665,7 +14720,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(item.label)), (_vm.navList.length > 1 && index !== _vm.navList.length - 1) ? _c('span', [_vm._v(" / ")]) : _vm._e()])
   }), 0), _vm._v(" "), _c('ul', {
     staticClass: "ct-tree-select__list clear"
-  }, [_vm._l((_vm.list), function(item) {
+  }, [(!_vm.singleSelection) ? _c('li', {
+    staticClass: "ct-tree-select__list-item clear"
+  }, [_c('div', {
+    staticClass: "ct-24"
+  }, [_c('div', {
+    staticClass: "ct-tree-select_checkbox",
+    class: {
+      'is-checked': _vm.allChecked, 'disabled': _vm.allDisabled
+    }
+  }, [_c('label', {
+    on: {
+      "click": _vm.selectAllItem
+    }
+  }, [_c('span', {
+    class: {
+      'checked': _vm.allChecked
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox"
+    },
+    domProps: {
+      "value": _vm.allChecked
+    }
+  })]), _vm._v("\n              全选\n            ")])])])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.list), function(item) {
     return _c('li', {
       key: item.key,
       staticClass: "ct-tree-select__list-item clear",

@@ -7,8 +7,15 @@
     :readonly="isReadonly"
     :type="isReadonly ? 'text' : ''"
   >
-    <span v-if="currentValue && currentValue.length === 0"><slot />{{ label || placeholder }}</span>
+    <span v-if="displayMethod === 'count'">
+      <slot />
+      {{ `已选择${labelCount}项` }}
+    </span>
+
+    <span v-if="currentValue && currentValue.length === 0 && displayMethod === 'normal'">{{ label || placeholder }}</span>
+
     <span
+      v-if="currentValue && currentValue.length !== 0 && displayMethod === 'normal' && labelCount > 0"
       v-for="(item, index) in currentValue"
       :key="item.key + index"
     >
@@ -32,6 +39,18 @@
         >{{ item.label }}<span v-if="navList.length > 1 && index !== navList.length - 1">&ensp;/&ensp;</span></li>
       </ul>
       <ul class="ct-tree-select__list clear">
+        <li class="ct-tree-select__list-item clear" v-if="!singleSelection">
+          <div class="ct-24">
+            <div class="ct-tree-select_checkbox" :class="{ 'is-checked': allChecked, 'disabled': allDisabled }">
+              <label @click="selectAllItem">
+                <span :class="{ 'checked': allChecked }">
+                  <input type="checkbox" :value="allChecked">
+                </span>
+                全选
+              </label>
+            </div>
+          </div>
+        </li>
         <li
           v-for="item in list"
           :key="item.key"
@@ -99,17 +118,45 @@ export default {
     anySelection: Boolean,
     // 不返回选中的children
     noChildren: Boolean,
+    // 显示方式
+    displayMethod: {
+      type: String,
+      default: 'normal',
+    },
   },
   watch: {
-    // currentValue(val) {
-    //   this.$emit('input', val)
-    //   this.$emit('change', val)
-    // },
     data: {
       immediate: true,
       handler(val) {
+        this.clear()
         this.list = val
       },
+    },
+  },
+  computed: {
+    labelCount() {
+      if (!this.label) return 0
+      if (this.label.indexOf(' ') === -1 && this.label.indexOf(',') === -1) return 1
+
+      let spaceLength = 0
+      let dotLength = 0
+
+      if (this.label.indexOf(' ') > 0) {
+        spaceLength = this.label.split(' ').length
+      }
+      if (this.label.indexOf(',') > 0) {
+        dotLength = this.label.split(',').length
+      }
+
+      return spaceLength + dotLength
+    },
+    allChecked() {
+      return this.list.filter(item => !item.disable).length ===
+        this.list.filter(item => item.checked).length
+    },
+    allDisabled() {
+      return this.list.filter(item => item.disable).length ===
+        this.list.length
     },
   },
   data() {
@@ -133,6 +180,25 @@ export default {
     prevent(e, payload) {
       if (payload.readonly || payload.disable) e.preventDefault()
     },
+    selectAllItem(e) {
+      e.preventDefault()
+      const checkeStatus = !this.allChecked
+      if (this.allDisabled && checkeStatus) return false
+      if (this.anySelection) {
+        this.list.forEach(item => {
+          if (item.disable) return false
+          item.checked = checkeStatus
+          this.itemChanged(item)
+        })
+        return false
+      }
+      this.list.forEach(item => {
+        if (item.disable) return false
+        if (item.children && item.children.length > 0) return false
+        item.checked = checkeStatus
+        this.itemChanged(item)
+      })
+    },
     isFolder(item) {
       if (this._.hasOwn(item, 'children')) return true
       if (item.children && item.children.length === 0) return true
@@ -150,7 +216,6 @@ export default {
       return false
     },
     goIndex(item, index) {
-      console.log(item, index)
       if (index === this.navList.length - 1) return false
       this.$nextTick(() => {
         this.navList = this.navList.slice(0, index + 1)
@@ -235,7 +300,6 @@ export default {
       }
 
       walkList(this.data)
-      console.log('_list', _list)
       if (this.singleSelection && _list.length > 1) {
         this.$n.warn('只能选择一项')
         return false
