@@ -128,7 +128,6 @@ export default {
     data: {
       immediate: true,
       handler(val) {
-        this.clear()
         this.list = val
       },
     },
