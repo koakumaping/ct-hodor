@@ -40,8 +40,11 @@
           <i class="fa fa-angle-left" aria-hidden="true"></i>
         </span>
 
-        <span class="pointer">{{year}}年 </span>
-        <span class="pointer">{{getMonth}}月</span>
+        <span class="pointer">{{ year }}年 </span>
+        <span class="pointer">{{ getMonth }}月</span>
+        <select class="year-list__select" v-model="year" @change="init()">
+          <option v-for="y in yearList" :value="y.value" :key="y.key">{{ y.label }}</option>
+        </select>
 
         <span class="pointer right" :class="[prefixCls + '-header-next-year']"
           @click="setNextYear"
@@ -205,6 +208,20 @@ export default {
         return true
       }
       return false
+    },
+    yearList() {
+      const currentYear = new Date().getFullYear()
+      const list = []
+      for (let i = 0; i < 101; ++i) {
+        const item = {
+          key: randomString(5, true),
+          label: currentYear + i,
+          value: currentYear + i,
+        }
+        list.push(item)
+      }
+
+      return list
     },
   },
   watch: {
@@ -667,4 +684,12 @@ export default {
         min-width: 40px
         width: 40px
         padding: 0
+    select.year-list__select
+      min-width: 45px
+      width: 45px
+      display: block
+      position: absolute
+      top: 9px
+      left: 70px
+      opacity: 0
 </style>

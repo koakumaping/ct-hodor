@@ -2128,6 +2128,16 @@ body {
   width: 40px;
   padding: 0;
 }
+.ct-date-picker-warpper select.year-list__select {
+  min-width: 45px;
+  width: 45px;
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 70px;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+}
 
 .ct-bar {
   margin: 0 -16px;
