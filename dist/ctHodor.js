@@ -6457,6 +6457,19 @@ var prefixCls = 'ct-date-picker';
       }
 
       return list;
+    },
+    monthList: function monthList() {
+      var list = [];
+      for (var i = 0; i < 12; ++i) {
+        var item = {
+          key: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["randomString"])(5, true),
+          label: i + 1,
+          value: i
+        };
+        list.push(item);
+      }
+
+      return list;
     }
   },
   watch: {
@@ -15788,6 +15801,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": y.value
       }
     }, [_vm._v(_vm._s(y.label))])
+  }), 0), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.month),
+      expression: "month"
+    }],
+    staticClass: "month-list__select",
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.month = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        return _vm.init()
+      }]
+    }
+  }, _vm._l((_vm.monthList), function(m) {
+    return _c('option', {
+      key: m.key,
+      domProps: {
+        "value": m.value
+      }
+    }, [_vm._v(_vm._s(m.label))])
   }), 0), _vm._v(" "), _c('span', {
     staticClass: "pointer right",
     class: [_vm.prefixCls + '-header-next-year'],

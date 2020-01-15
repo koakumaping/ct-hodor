@@ -2137,6 +2137,18 @@ body {
   left: 70px;
   opacity: 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  cursor: pointer;
+}
+.ct-date-picker-warpper select.month-list__select {
+  min-width: 32px;
+  width: 32px;
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 116px;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  cursor: pointer;
 }
 
 .ct-bar {

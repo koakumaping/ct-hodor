@@ -45,6 +45,9 @@
         <select class="year-list__select" v-model="year" @change="init()">
           <option v-for="y in yearList" :value="y.value" :key="y.key">{{ y.label }}</option>
         </select>
+        <select class="month-list__select" v-model="month" @change="init()">
+          <option v-for="m in monthList" :value="m.value" :key="m.key">{{ m.label }}</option>
+        </select>
 
         <span class="pointer right" :class="[prefixCls + '-header-next-year']"
           @click="setNextYear"
@@ -217,6 +220,19 @@ export default {
           key: randomString(5, true),
           label: currentYear + i,
           value: currentYear + i,
+        }
+        list.push(item)
+      }
+
+      return list
+    },
+    monthList() {
+      const list = []
+      for (let i = 0; i < 12; ++i) {
+        const item = {
+          key: randomString(5, true),
+          label: i + 1,
+          value: i,
         }
         list.push(item)
       }
@@ -692,4 +708,14 @@ export default {
       top: 9px
       left: 70px
       opacity: 0
+      cursor: pointer
+    select.month-list__select
+      min-width: 32px
+      width: 32px
+      display: block
+      position: absolute
+      top: 9px
+      left: 116px
+      opacity: 0
+      cursor: pointer
 </style>
