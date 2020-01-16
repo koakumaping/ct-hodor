@@ -10261,9 +10261,12 @@ var prefixCls = 'ct-time-picker';
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layout_white_space__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layout_white_space___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layout_white_space__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_child__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ct_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ct_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layout_white_space__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layout_white_space___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layout_white_space__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_child__ = __webpack_require__(5);
+
 
 
 
@@ -10271,9 +10274,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TreeSelect',
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_form_child__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_form_child__["a" /* default */]],
   components: {
-    WhiteSpace: __WEBPACK_IMPORTED_MODULE_0__layout_white_space___default.a
+    WhiteSpace: __WEBPACK_IMPORTED_MODULE_1__layout_white_space___default.a
   },
   props: {
     label: {
@@ -10330,17 +10333,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       return spaceLength + dotLength;
     },
-    allChecked: function allChecked() {
-      return this.list.filter(function (item) {
-        return !item.disable;
-      }).length === this.list.filter(function (item) {
-        return item.checked;
-      }).length;
+
+    allChecked: {
+      cache: false,
+      get: function get() {
+        return this.list.filter(function (item) {
+          return !item.disable;
+        }).length === this.list.filter(function (item) {
+          return item.checked;
+        }).length;
+      }
     },
-    allDisabled: function allDisabled() {
-      return this.list.filter(function (item) {
-        return item.disable;
-      }).length === this.list.length;
+    allDisabled: {
+      cache: false,
+      get: function get() {
+        return this.list.filter(function (item) {
+          return item.disable;
+        }).length === this.list.length;
+      }
     }
   },
   data: function data() {
@@ -10360,6 +10370,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    randomString: function randomString(length) {
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_ct_util__["randomString"])(length, flag);
+    },
     prevent: function prevent(e, payload) {
       if (payload.readonly || payload.disable) e.preventDefault();
     },
@@ -10367,12 +10382,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       e.preventDefault();
-      var checkeStatus = !this.allChecked;
-      if (this.allDisabled && checkeStatus) return false;
+      var checkStatus = !this.allChecked;
+      if (this.allDisabled && checkStatus) return false;
       if (this.anySelection) {
         this.list.forEach(function (item) {
           if (item.disable) return false;
-          item.checked = checkeStatus;
+          item.checked = checkStatus;
           _this.itemChanged(item);
         });
         return false;
@@ -10380,7 +10395,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.list.forEach(function (item) {
         if (item.disable) return false;
         if (item.children && item.children.length > 0) return false;
-        item.checked = checkeStatus;
+        item.checked = checkStatus;
         _this.itemChanged(item);
       });
     },
@@ -14772,7 +14787,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v("\n              全选\n            ")])])])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.list), function(item) {
     return _c('li', {
-      key: item.key,
+      key: _vm.randomString(5) + item.key,
       staticClass: "ct-tree-select__list-item clear",
       attrs: {
         "label": item.label,

@@ -53,7 +53,7 @@
         </li>
         <li
           v-for="item in list"
-          :key="item.key"
+          :key="randomString(5) + item.key"
           :label="item.label"
           :value="item.id"
           class="ct-tree-select__list-item clear"
@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { randomString } from 'ct-util'
 import WhiteSpace from '../layout/white-space'
 import formChild from '../../mixins/form-child'
 
@@ -149,13 +150,19 @@ export default {
 
       return spaceLength + dotLength
     },
-    allChecked() {
-      return this.list.filter(item => !item.disable).length ===
-        this.list.filter(item => item.checked).length
+    allChecked: {
+      cache: false,
+      get() {
+        return this.list.filter(item => !item.disable).length ===
+          this.list.filter(item => item.checked).length
+      },
     },
-    allDisabled() {
-      return this.list.filter(item => item.disable).length ===
-        this.list.length
+    allDisabled: {
+      cache: false,
+      get() {
+        return this.list.filter(item => item.disable).length ===
+          this.list.length
+      },
     },
   },
   data() {
@@ -176,17 +183,20 @@ export default {
     }
   },
   methods: {
+    randomString(length, flag = false) {
+      return randomString(length, flag)
+    },
     prevent(e, payload) {
       if (payload.readonly || payload.disable) e.preventDefault()
     },
     selectAllItem(e) {
       e.preventDefault()
-      const checkeStatus = !this.allChecked
-      if (this.allDisabled && checkeStatus) return false
+      const checkStatus = !this.allChecked
+      if (this.allDisabled && checkStatus) return false
       if (this.anySelection) {
         this.list.forEach(item => {
           if (item.disable) return false
-          item.checked = checkeStatus
+          item.checked = checkStatus
           this.itemChanged(item)
         })
         return false
@@ -194,7 +204,7 @@ export default {
       this.list.forEach(item => {
         if (item.disable) return false
         if (item.children && item.children.length > 0) return false
-        item.checked = checkeStatus
+        item.checked = checkStatus
         this.itemChanged(item)
       })
     },
