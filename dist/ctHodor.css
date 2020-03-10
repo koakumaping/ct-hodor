@@ -1638,9 +1638,15 @@ body {
   padding: 20px;
   color: #909399;
 }
-.ct-table .ct-table-empty img[alt=empty_state] {
-  display: inline-block;
-  width: 360px;
+.ct-table .ct-table-empty .empty__img {
+  margin: 0 auto;
+  width: 380px;
+  height: 120px;
+  background-image: url(img/empty_state.jpg);
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 380px;
 }
 .ct-table .ct-table-loading {
   position: relative;
