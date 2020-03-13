@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Emitter from '@/mixins/emitter'
+import Emitter from '../../mixins/emitter'
 import formChild from '../../mixins/form-child'
 
 export default {
