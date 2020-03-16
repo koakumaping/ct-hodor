@@ -174,6 +174,8 @@ import {
   removeResizeListener,
 } from 'ct-util'
 
+import ctLoading from '../normal/ctLoading'
+
 import TableStore from './store'
 import ctTableHeader from './head'
 import ctTableBody from './body'
@@ -188,6 +190,7 @@ export default {
     ctTableHeader,
     ctTableBody,
     ctTableFooter,
+    ctLoading,
   },
   props: {
     // 传入的列表数据
