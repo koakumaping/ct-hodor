@@ -15,6 +15,7 @@ const ctDatePicker = require('./components/date-picker').default
 const ctBar = require('./components/bar').default
 const SingleSelect = require('./components/single-select').default
 const RemoteSelect = require('./components/remote-select').default
+const FilterSelect = require('./components/filter-select').default
 
 const { SingleBlock, MultiBlock } = require('./components/block')
 
@@ -81,6 +82,7 @@ const components = {
   ctBar,
   SingleSelect,
   RemoteSelect,
+  FilterSelect,
   SingleBlock,
   MultiBlock,
   ctPopover,
