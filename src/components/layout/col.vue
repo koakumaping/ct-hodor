@@ -13,16 +13,21 @@ export default {
   props: {
     span: {
       type: [String, Number],
-      default: 8,
+      default: '',
     },
+  },
+  data() {
+    return {
+      currentSpan: '',
+    }
   },
   computed: {
     colCls() {
-      return [`ct-${this.span}`]
+      return [`ct-${this.currentSpan}`]
     },
     gutterStyle() {
       const parent = this.findComponentUpward(this, 'ctRow')
-      let gutter = 0
+      let gutter = 16
       if (parent) {
         gutter = parent.gutter
       }
@@ -31,6 +36,11 @@ export default {
       ret.paddingRight = ret.paddingLeft
       return ret
     },
+  },
+  mounted() {
+    const parent = this.findComponentUpward(this, 'ctRow')
+    if (parent && parent.span) this.currentSpan = parent.span
+    if (this.span) this.currentSpan = this.span
   },
 }
 </script>

@@ -12,6 +12,10 @@ export default {
       type: Number,
       default: 16,
     },
+    span: {
+      type: [String, Number],
+      default: 8,
+    },
   },
   computed: {
     gutterStyle() {
