@@ -1,6 +1,6 @@
 {
   "name": "ct-hodor",
-  "version": "1.9.25",
+  "version": "1.9.30",
   "description": "hodor",
   "main": "src/index.js",
   "scripts": {
