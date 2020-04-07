@@ -215,23 +215,23 @@ export default {
       this.searchName = ''
     },
     handleClick(payload) {
-      payload = this._.clone(payload)
-      this.currentValue = payload.value
-      if (this._.isArray(payload.label)) {
+      const item = this._.clone(payload)
+      this.currentValue = item.value
+      if (this._.isArray(item.label)) {
         if (this.level === '') {
-          this.label = payload.label[0]
+          this.label = item.label[0]
         } else {
-          this.label = payload.label
+          this.label = item.label
             .filter(item => { if (item !== '') return item })
             .slice(0, this.level).toString().replace(/,/g, this.dot)
         }
       } else {
-        this.label = payload.label
+        this.label = item.label
       }
       // 增加text用于select的时候直接获取需要的文本
-      payload.text = this.label
+      item.text = this.label
 
-      this.$emit('select', payload)
+      this.$emit('select', item)
       this.hideList()
     },
     appendModal() {
@@ -266,6 +266,7 @@ export default {
   },
   beforeDestroy() {
     try {
+      this.label = ''
       this.removeModal()
     } catch (error) {
       (() => {})()
