@@ -1,6 +1,7 @@
 <template>
   <div class="ct-checkbox"
     :class="{ 'ct-checkbox-indeterminate': indeterminate, 'readonly': readonly, 'disabled': disabled }"
+    :title="label"
   >
     <label @click="prevent">
       <span :class="{ 'checked': getChecked, 'radio': type === 'radio' }">
@@ -8,7 +9,7 @@
         <input v-else type="radio" :value="content" v-model="currentValue">
       </span>
       {{ label }}
-      <slot></slot>
+      <slot />
     </label>
   </div>
 </template>

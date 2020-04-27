@@ -13,7 +13,6 @@
       @mouseout="handleMouseOut"
     >
       <span :title="name">{{ name }}</span>
-      <!-- <fa-font class="ct-single-select__arrow" name="angle-down" /> -->
       <fa-font class="ct-single-select__arrow"
         v-show="!showClearBtn"
         name="angle-down" />
@@ -40,9 +39,10 @@
           <flex-item
             v-for="item in line.label"
             :key="`${item}_${_.randomString(4)}`"
+            :title="item"
           >{{ $e(item) }}</flex-item>
         </flex>
-        <span v-else>{{ line.label }}</span>
+        <span v-else :title="line.label">{{ line.label }}</span>
       </li>
       <!-- <li class="useless"
         v-for="item in max - 1"

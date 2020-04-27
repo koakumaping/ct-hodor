@@ -2,7 +2,8 @@
   <li
     v-on:click="setCurrentValue(value)"
     :class="{ 'current': selected, 'is-disabled': disabled }"
-  >{{label}}</li>
+    :title="label"
+  >{{ label }}</li>
 </template>
 
 <script>

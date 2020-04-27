@@ -49,13 +49,8 @@
             v-if="level !== '' ? index < level : true"
           ><span :title="$e(item)">{{ $e(item) }}</span></flex-item>
         </flex>
-        <span v-else>{{ line.label }}</span>
+        <span v-else :title="line.label">{{ line.label }}</span>
       </li>
-      <li class="useless"
-        v-for="item in maxItem - 1"
-        :key="item"
-        v-show="(data.length > maxItem) && !bigData"
-      >{{item}}</li>
     </ul>
     <ul ref="list" class="ct-remote-select__list" :style="listStyle" v-show="visible" v-if="bigData">
       <li v-if="data.length === 0 && searchName !== ''">{{ loading ? '查询中' : '暂无相关数据' }}</li>
@@ -70,6 +65,7 @@
             v-for="(item, index) in line.label"
             :key="`${item}_${_.randomString(6)}`"
             v-if="level !== '' ? index < level : true"
+            :title="item"
           >{{ $e(item) }}</td>
         </tr>
       </table>

@@ -1,6 +1,6 @@
 <template>
   <div class="ct-select"
-    :style="{width: width}"
+    :style="{ width: width }"
     :class="selectCls"
     v-clickoutside="hideList"
     ref="ctSelect">
@@ -9,7 +9,8 @@
       @mouseover="handleMouseIn"
       @mouseout="handleMouseOut"
       v-on:click="toggleList"
-    >{{name}}
+      :title="name"
+    >{{ name }}
       <faFont class="ct-select-arrow"
         v-show="!showClearBtn"
         name="angle-down">
@@ -26,7 +27,7 @@
       class="ct-select-list"
       :style="listStyle"
     >
-      <ctInput
+      <ct-input
         v-model="searchName"
         placeholder="请输入搜索内容"
         v-if="filterable"
@@ -35,11 +36,6 @@
       />
       <ul ref="ctSelectUlList">
         <slot></slot>
-        <li class="useless"
-          v-for="item in maxItem - 1"
-          :key="item"
-          v-show="optionList.length > maxItem && place === 'bottom'"
-        >{{item}}</li>
       </ul>
     </div>
 
