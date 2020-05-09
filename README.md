@@ -1,4 +1,5 @@
 # ct-hodor
+已离职 停止更新
 ## install
 ```bash
 npm install ct-hodor
